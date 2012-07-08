@@ -1,0 +1,1 @@
+#Seleccione un paralelo#<?php foreach ($paralelos as $paralelo): ?><?php echo $paralelo->getParalelo() ?>#<?php endforeach; ?>#
