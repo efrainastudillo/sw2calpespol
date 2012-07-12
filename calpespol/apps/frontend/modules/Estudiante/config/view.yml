@@ -1,0 +1,9 @@
+## YAML Template.
+---
+default:
+  stylesheets:    []
+  
+  javascripts:    []
+  
+  has_layout:     true
+  layout:         layout_login

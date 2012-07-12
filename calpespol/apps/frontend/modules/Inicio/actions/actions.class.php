@@ -109,7 +109,7 @@ class InicioActions extends sfActions
 ////                  
 ////                  $this->getRequest()->setParameter('matricula', $matricula);
 ////                  $this->getRequest()->setParameter('internal', true);
-                //$this->redirect("Inicio/index");
+               // $this->redirect("Inicio/index");
 //              }
                 $message = array(
               "error" => "succes"
@@ -134,7 +134,7 @@ class InicioActions extends sfActions
           return $this->renderText(json_encode($message));
       }
 
-
+      return sfView::NONE;
       
  }
 

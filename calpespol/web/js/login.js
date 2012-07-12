@@ -62,12 +62,11 @@ $(document).ready(function(){
             complete: function()
             {
               //$("#mensaje_error").
-              window.location.href = 'http://localhost/nueva/sw2calpespol/calpespol/web/frontend_dev.php/Inicio/index';
             },
             success: function (data, status)
             {
                 $("#mensaje_error").text(data.error);
-                window.location.href = 'http://localhost/nueva/sw2calpespol/calpespol/web/frontend_dev.php/Inicio/index';
+                //window.location.href = 'http://localhost/nueva/sw2calpespol/calpespol/web/frontend_dev.php/Inicio/index';
 
 //              $("#propuesta_nombre_contratante").val(data.error);
 //              $("#propuesta_apellido_p_contratante").val(data.apellidoP);

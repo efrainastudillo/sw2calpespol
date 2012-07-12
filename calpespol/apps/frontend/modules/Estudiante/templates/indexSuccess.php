@@ -12,29 +12,27 @@
 
 <?php use_stylesheet('modulo/estilo.css') ?>
 
-<div class="panel">  
+<div class="panel">
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Lista de Estudiantes</p>    
+            <p>Inicio</p>    
         </div>
         
-    </div>   
-<!--    <div id="info">
-            <div id="contenido_izq">
-               Lista de Estudiantes
-            </div>
-    </div>-->
+        <div class="extra_head_panel">
+            <p> Laboratoroio de Potencia </p>
+        </div>
+    </div>
+
     <div class="body_panel">
         
         <div class="titulo_body_panel">
-            <p> MATERIA: </p>
-            <p> Laboratorio de Potencia </p>  
-        </div>       
+            <p> Consulta de Estudiantes </p>
+        </div>
         
         <div class="boton_new">
-            <a href="<?php echo url_for('Estudiante/new') ?>" class="button rounded black" id="new">
-                <span><img src="../images/new.png">&nbsp</span>Nuevo Estudiante
+            <a href="javascript:void(0);" class="button rounded black" id="new">
+                <img src="../images/new.png" width="15" height="15" /> Nuevo Estudiante
             </a> 
         </div>
         
@@ -44,73 +42,139 @@
 
                 <thead>
                     <tr>
-                        <td>Id Estudiante</td>
-                        <td>Nombre</td>
-                        <td>Email</td>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
                     </tr>
                 </thead>
 
                 <tbody>
-                    <?php foreach ($estudiantes as $estudiante): ?>
-                    <tr>
-                        <td><?php echo $estudiante->getId() ?></a></td>
-                        <td><?php echo $estudiante->getNombre() ?></td>
-                        <td><?php echo $estudiante->getMail() ?></td>
+                       <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
                     </tr>
-                    <?php endforeach; ?>    
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr><tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr><tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr><tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Detalle</td>
+                        <td>Puntaje</td>
+                        <td>Acción</td>	
+                    </tr>
+                    
+                    
+                    
                 </tbody>
 
                 <tfoot>
                     <tr>
-                        <td colspan="3">
-                            &nbsp;
-<!--                            <a href="<?php // echo url_for('Estudiante/new') ?>">New</a>-->
-                        </td>
+                        <td>&nbsp;</td>
+                        <td id="estilo1_celda">TOTAL</td>
+                        <td class="total" id="estilo2_celda">Total</td>
+                        <td>&nbsp;</td>
                     </tr>
                 </tfoot>
                 
             </table>
             
 	</div>
+
         <?php echo 
         "<script>
             jQuery(document).ready(function($)
             {
-                $('.tabla').tableScroll({width:900, height:200});
+                $('.tabla').tableScroll({width:950, height:200});
 
             });
         </script>"
         ?>
         
     </div>
+    
+    <div class="foot_panel">
+        <a class="button rounded black" href="#"> Volver a Actividades </a>
+    </div>
 
-<!--    <div id="contenedor_tabla" class="contenedor_tabla">
-<table>
-  <thead>
-    <tr>
-      <th>Id Estudiante</th>
-      <th>Nombre</th>
-      <th>E-mail</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php // foreach ($estudiantes as $estudiante): ?>
-    <tr>
-      <td><a href="<?php // echo url_for('Estudiante/edit?id='.$estudiante->getId()) ?>"><?php echo $estudiante->getId() ?></a></td>
-      <td><?php // echo $estudiante->getNombre() ?></td>
-      <td><?php // echo $estudiante->getMail() ?></td>
-    </tr>
-    <?php // endforeach; ?>
-  </tbody>
-  <tfoot>
-      <tr>
-        <td colspan="3">
-            <a href="<?php // echo url_for('Estudiante/new') ?>">New</a>
-        </td>
-      </tr>
-  </tfoot>
-</table>
-    </div>-->
 </div>
-
-  
