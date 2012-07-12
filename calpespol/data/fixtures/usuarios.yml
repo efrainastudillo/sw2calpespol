@@ -1,0 +1,42 @@
+## YAML Template.
+Usuario:
+  usuario_1:
+    id: breyes
+    nombre: Brick Reyes
+    mail: breyes@gmail.com
+    RolUsuario: rol_1
+  usuario_2:
+    id: jrubio
+    nombre: Jefferson Rubio
+    mail: jeff@gmail.com
+    RolUsuario: rol_1
+  usuario_3:
+    id: acaceres
+    nombre: Andrea Caceres
+    mail: andrea@gmail.com
+    RolUsuario: rol_2
+  usuario_4:
+    id: vrobles
+    nombre: Vanessa Robles
+    mail: vanessita.robles@gmail.com
+    RolUsuario: rol_2
+  usuario_5:
+    id: eastudillo
+    nombre: Efrain Astudillo
+    mail: efrain.astudillo@gmail.com
+    RolUsuario: rol_2
+  usuario_6:
+    id: jbermeo
+    nombre: Jennifer Bermeo
+    mail: jdbf1088@gmail.com
+    RolUsuario: rol_2
+  usuario_7:
+    id: aavila
+    nombre: Antonio Avila
+    mail: aavila@gmail.com
+    RolUsuario: rol_2
+  usuario_8:
+    id: mzambrano
+    nombre: Marcelo Zambrano
+    mail: marcelo@gmail.com
+    RolUsuario: rol_2

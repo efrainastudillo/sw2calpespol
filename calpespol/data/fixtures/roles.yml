@@ -1,0 +1,9 @@
+## YAML Template.
+RolUsuario:
+  rol_1:
+    nombre: Estudiante
+    detalle: Privilegios Mínimos en la Aplicación
+  rol_2:
+    nombre: Profesor
+    detalle: Privilegios Administrativos en la Aplicación
+    
