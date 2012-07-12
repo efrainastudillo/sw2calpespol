@@ -1,9 +1,0 @@
-## YAML Template.
----
-loginSuccess:
-  stylesheets: [layout/estiloLogin.css,modulo/Inicio/login.css]
-  
-  javascripts:    [login.js]
-  
-  has_layout:     true
-  layout:         layout_login

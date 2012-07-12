@@ -1,3 +1,0 @@
-Modulo:             Actividades
-Responsable:        Andrea Caceres
-Fecha:              4 de Junio de 2012

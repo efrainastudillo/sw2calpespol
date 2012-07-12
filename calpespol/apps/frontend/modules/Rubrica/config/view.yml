@@ -1,6 +1,0 @@
-## YAML Template.
-
-newRubricaSuccess:
-  
-  has_layout:     true
-  layout:         layout_popup
