@@ -10,13 +10,13 @@
         </div>
         <div class="form_login">
             <div class="form_centrado">
-                <form>
+                <form id="formulario" method="POST" action="login">
                     <div class="label"><label for="userID">Usuario:</label></div>
                     <div class="icono_error" id="i1" >*</div><div class="label"><input id="userID" name="userID" type="text" placeholder="User Espol" /></div>
                     <div class="corrector"></div>
                     <div class="label"><label for="userPASS">Contrasenia:</label></div>
                     <div class="icono_error" id="i2" >*</div><div class="label"><input id="userPASS" name="userPASS" type="password" placeholder="Contrasenia Espol" /></div>
-                    <div class="corrector" id="mensaje_error">Esto es un error</div>
+                    <div class="corrector" id="mensaje_error">mensaje oculto para errores</div>
                     <div class="corrector"></div>
                     <div style="float: right;width: 60px;text-align: center" class="button"><a style="width: 60px;" href="#">Login</a></div>
                 </form>

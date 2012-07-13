@@ -44,7 +44,7 @@ div.corrector{
 div#mensaje_error{
     color: crimson;
     font-size: 12px;
-    visibility: hidden;
+    visibility:hidden;
     float: right;
     margin-bottom: 10px;
 }

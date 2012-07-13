@@ -25,6 +25,12 @@ background-color:#D3E2C2;}
         /*padding-top: 10px;*/
 	height:35px;
 	background-color:#005353;}
+.div_sesion{
+    float: right;
+    width: 300px;
+    padding: 5px;
+    height: 25px;
+}
 #div_menu_cabecera{
 	height:110px;
 	background: #3d7a7a; /* Old browsers */

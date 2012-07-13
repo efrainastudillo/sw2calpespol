@@ -6,4 +6,4 @@ default:
   javascripts:    []
   
   has_layout:     true
-  layout:         layout_login
+  layout:         layout

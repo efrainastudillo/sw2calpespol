@@ -12,18 +12,23 @@
       <div id="div_contenedor_todo">
     	<div id="div_menu_sesion_usuario">
             <div id="div_menu_sesion_usuario_centrado">
-                <?php if(is_null($sf_user->getAttribute('user'))) :?>
+                <div class="div_sesion" style="text-align: right">
+                    <a href="#">
+                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=30x30') ?> Efrain Astudillo</span>
+                    </a> 
+                </div>
+                <div class="div_sesion">
                     <form method="POST" action="Inicio/login">
-                        <label for="usuario" >Usuario:</label>
-                        <input id="usuario" name="usuario" type="text" placeholder="Ingrese su Usuario" />
-                        <label for="password" >Contrasenia:</label>
-                        <input id="password" name="password" type="text" placeholder="Ingrese la Contrasenia" />
-                        <input id="login" type="submit"  value="Login" />
+                        <label for="usuario" >Materia:</label>                        
+                        <select id="materia_selecionada" style="width:200px;" name="thelist">
+                          <option>Laboratorio de Potencia 1</option>
+                          <option>Laboratorio de Potencia 2</option>
+                          <option>Maquinarias</option>
+                        </select>
                     </form>
-                <?php else:?>
-                    <span><?php echo $sf_user->getAttribute("user"); ?></span>
-                    <span><a href="Inicio/logout" >SALIR</a> </span>
-                <?php endif ?>
+                </div>
+                
+                <div class="div_corrector_float"></div>
             </div>
         </div>
     	<div id="div_menu_cabecera">

@@ -1,73 +1,109 @@
 <?php
-
+/**
+ * Objeto myUser que guarda los datos de Sesión de la aplicacion
+ * Cuando se quiera guardar algún dato específico en la sesión, se tendrá
+ * que crear los getter y setter correspondiente al objeto
+ * 
+ * @example Guardar el nombre 
+ *          public function getNombre(){
+ *              return $this->getAttribute('nombre')
+ *          }
+ *          public function setNombre($nombre){
+ *              $this->setAttribute('nombre',$nombre)
+ *          }
+ * @version 1.0
+ * @author Efrain Astudillo 
+ */
 class myUser extends sfBasicSecurityUser
 {
+    /**
+     *  Devuelve el nombre completo (Nombres y Apellidos) del Usuario actual
+     *  de la aplicacion
+     * @return type String
+     */
     public function getFullName(){
-
-        if($this->getAttribute('usuario')=="")
+        if($this->getAttribute('nombre_usuario')=="")
                 return 'Anónimo';
 
          $usuario = $this->getUserDB();
 
         if($usuario)
         return $usuario->getNombres()." ".$usuario->getApellidos();
-        return $this->getAttribute('usuario') . " <Usuario desconocido>";
-    }
-
-    public function userLogin(sfWebRequest $request){
-        $query = Doctrine_Query::create()
-          ->from('UsuarioBase u')
-          ->where('u.usuario = ?', $request->getParameter("usuario"))
-          ->andWhere('u.password = ?', $request->getParameter("password"));
-         $result=$query->execute();
-         
-        if($result->count()==0){
-            return false;
-        }
-         else {
-            $this->setAttribute('user',$result[0]->getUsuario());
-            $this->setAuthenticated(true);
-            return true;
-        }
+        return $this->getAttribute('nombre_usuario') . " <Usuario desconocido>";
     }
    
+    /**
+     *  Obtiene el Usuario de la base de datos correspondiente al nombre 
+     * de usuario de la Espol
+     * @return type Usuario
+     */
     public function getUserDB(){
-          $usuario = Doctrine_Core::getTable('Usuario')
+          $user = Doctrine_Core::getTable('Usuario')
             ->createQuery('u')
-            ->where('u.nombre_usuario= ?', $this->getAttribute('usuario'))
-            ->andWhere('u.activo = true')
+            ->where('u.usuario_espol= ?', $this->getUserEspol())
             ->fetchOne();
-
-        return $usuario;
-
+        return $user;
     }
-    public function getNombre(){
-        return $this->getAttribute('user');
+    
+    /**
+     * Obtiene el nombre del user de Espol
+     * @return type String
+     */
+    public function getUserEspol(){
+        return $this->getAttribute('usuario_espol');
     }
-//  static public function isFirstRequest( $boolean = null)
-//  {
-//    if (is_null($boolean))
-//    {
-//      return $this->getAttribute('first_request', true);
-//    }
-//    else
-//    {
-//      $this->setAttribute('first_request', $boolean);
-//    }
-//  }
-// 
-   public function setSesion($us)
-  {
-    $ids = $this->getAttribute('user');
- 
-    if (is_null($ids))
+    
+    /**
+     * Este nombre del Usuario de Espol se lo debe setear al iniciar la sesion
+     * @param type $user_espol nombre de usuario de la espol
+     */
+    public function setUserEspol($user_espol){
+        $this->setAttribute('usuario_espol',$user_espol);
+    }
+    /**
+     * Guarda el Objeto Usuario en la sesion
+     * @param type $us Usuario
+     */
+    public function setUsuario($us)
     {
-      $this->setAttribute('user',$us);
-      $this->setAuthenticated(true);
+        $ids = $this->getAttribute('usuario');
+        if (is_null($ids)){
+            $this->setAttribute('usuario',$us);
+            $this->setAuthenticated(true);
+        }
     }
-  }
-  public function hasSesion(){
-      $ids = $this->getAttribute('user');
+    
+    public function getMaterias(){
+        
+        $materias=$this->getAttribute("materias");
+        if($materias=="" || is_null($materias)){
+            return array('No tiene materias');
+        }
+        else{
+            
+        }
+         $usuario = $this->getUserDB();
+
+        if($usuario)
+        return $usuario->getNombres()." ".$usuario->getApellidos();
+        return $this->getAttribute('usuario') . " <Usuario desconocido>";
+    }
+    /**
+     * Retorna el Usuario que se encuentra en la Sesion
+     * @return type Usuario
+     */
+    public function getUsuario(){
+        return $this->getAttribute('usuario');
+        
+    }
+    
+    /**
+     *  Si el Usuario se ha logeado correctamente y si se ha almacenado en la
+     *  sesion
+     *  @return type Boolean
+     */
+    public function hasSesion(){
+      $ids = $this->getAttribute('usuario');
       if (is_null($ids))
         {
           return false;
@@ -75,15 +111,5 @@ class myUser extends sfBasicSecurityUser
             return true;
         }
   }
-//  static public function getSesion()
-//  {
-//    $ids = $this->getAttribute('user');
-// 
-//    if (is_null($ids))
-//    {
-//      return new UsuarioBase();
-//    }else{
-//        return $ids instanceof UsuarioBase;
-//    }
-//  }
+
 }

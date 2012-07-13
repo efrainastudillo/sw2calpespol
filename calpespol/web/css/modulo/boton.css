@@ -136,7 +136,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3aa54b', end
   color: #ffffff;
   display: inline-block;
   font-size: 0.8em;
-  margin: auto;
+  margin: 0 5px;
   padding: 5px;
   text-decoration: none;
   transition: all 0.5s ease;

@@ -17,7 +17,7 @@ $(document).ready(function(){
             $("#i1").css("visibility", "hidden");
         }else{
             $("#i1").css("visibility", "visible");
-        };
+        }
     });
     //evento asignado al texfied y se ejecuta cuando pierde el foco
     //llama a la respectiva funcion
@@ -26,7 +26,7 @@ $(document).ready(function(){
             $("#i2").css("visibility", "hidden");
         }else{
              $("#i2").css("visibility", "visible");
-        };
+        }
     });
     
         //evento click
@@ -38,9 +38,9 @@ $(document).ready(function(){
 //                }, function(xml){
 //                    getMessage(xml);
 //                });
-               getMensaje("authentication", inputIdUser.val(), contrasenia.val())
-                 
-
+               //getMensaje("authentication", inputIdUser.val(), contrasenia.val());
+                 //alert("efrain");
+                 $("#formulario").submit()
 
            }else{
            }

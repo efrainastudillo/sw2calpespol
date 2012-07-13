@@ -32,6 +32,11 @@
         
         <div class="boton_new">
             <a href="javascript:void(0);" class="button rounded black" id="new">
+                <img src="../images/new.png" width="15" height="15" /> Eliminar
+            </a> 
+        </div>
+        <div class="boton_new">
+            <a href="javascript:void(0);" class="button rounded black" id="">
                 <img src="../images/new.png" width="15" height="15" /> Nuevo Estudiante
             </a> 
         </div>
