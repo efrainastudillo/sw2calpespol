@@ -44,7 +44,7 @@ class InicioActions extends sfActions
   }
   
   public function executeLogout(sfWebRequest $request){
-      $this->getUser()->setAttribute('user',null);
+      $this->getUser()->logout();
       $this->redirect("Inicio/login");
   }
   

@@ -16,12 +16,18 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'id_curso'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Curso'), 'add_empty' => true)),
       'valor_ponderacion' => new sfWidgetFormFilterInput(),
       'nombre'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'parcial'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'factor_asist_1'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'factor_asist_2'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id_curso'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Curso'), 'column' => 'idcurso')),
       'valor_ponderacion' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'nombre'            => new sfValidatorPass(array('required' => false)),
+      'parcial'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'factor_asist_1'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'factor_asist_2'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('tipoactividad_filters[%s]');
@@ -45,6 +51,9 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'id_curso'          => 'ForeignKey',
       'valor_ponderacion' => 'Number',
       'nombre'            => 'Text',
+      'parcial'           => 'Number',
+      'factor_asist_1'    => 'Number',
+      'factor_asist_2'    => 'Number',
     );
   }
 }

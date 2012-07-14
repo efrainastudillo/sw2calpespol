@@ -13,21 +13,17 @@ abstract class BaseCursoFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'paralelo'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'anio'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'termino'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'factor_asist_1' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'factor_asist_2' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'id_materia'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Materia'), 'add_empty' => true)),
+      'paralelo'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'anio'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'termino'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'id_materia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Materia'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'paralelo'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'anio'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'termino'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'factor_asist_1' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'factor_asist_2' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'id_materia'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Materia'), 'column' => 'idmateria')),
+      'paralelo'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'anio'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'termino'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'id_materia' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Materia'), 'column' => 'idmateria')),
     ));
 
     $this->widgetSchema->setNameFormat('curso_filters[%s]');
@@ -47,13 +43,11 @@ abstract class BaseCursoFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'idcurso'        => 'Number',
-      'paralelo'       => 'Number',
-      'anio'           => 'Number',
-      'termino'        => 'Number',
-      'factor_asist_1' => 'Number',
-      'factor_asist_2' => 'Number',
-      'id_materia'     => 'ForeignKey',
+      'idcurso'    => 'Number',
+      'paralelo'   => 'Number',
+      'anio'       => 'Number',
+      'termino'    => 'Number',
+      'id_materia' => 'ForeignKey',
     );
   }
 }

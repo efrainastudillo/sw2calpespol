@@ -11,33 +11,27 @@ Doctrine_Manager::getInstance()->bindComponent('Curso', 'doctrine');
  * @property integer $paralelo
  * @property integer $anio
  * @property integer $termino
- * @property integer $factor_asist_1
- * @property integer $factor_asist_2
  * @property integer $id_materia
  * @property Materia $Materia
  * @property Doctrine_Collection $Tipoactividad
  * @property Doctrine_Collection $UsuarioCurso
  * 
- * @method integer             getIdcurso()        Returns the current record's "idcurso" value
- * @method integer             getParalelo()       Returns the current record's "paralelo" value
- * @method integer             getAnio()           Returns the current record's "anio" value
- * @method integer             getTermino()        Returns the current record's "termino" value
- * @method integer             getFactorAsist1()   Returns the current record's "factor_asist_1" value
- * @method integer             getFactorAsist2()   Returns the current record's "factor_asist_2" value
- * @method integer             getIdMateria()      Returns the current record's "id_materia" value
- * @method Materia             getMateria()        Returns the current record's "Materia" value
- * @method Doctrine_Collection getTipoactividad()  Returns the current record's "Tipoactividad" collection
- * @method Doctrine_Collection getUsuarioCurso()   Returns the current record's "UsuarioCurso" collection
- * @method Curso               setIdcurso()        Sets the current record's "idcurso" value
- * @method Curso               setParalelo()       Sets the current record's "paralelo" value
- * @method Curso               setAnio()           Sets the current record's "anio" value
- * @method Curso               setTermino()        Sets the current record's "termino" value
- * @method Curso               setFactorAsist1()   Sets the current record's "factor_asist_1" value
- * @method Curso               setFactorAsist2()   Sets the current record's "factor_asist_2" value
- * @method Curso               setIdMateria()      Sets the current record's "id_materia" value
- * @method Curso               setMateria()        Sets the current record's "Materia" value
- * @method Curso               setTipoactividad()  Sets the current record's "Tipoactividad" collection
- * @method Curso               setUsuarioCurso()   Sets the current record's "UsuarioCurso" collection
+ * @method integer             getIdcurso()       Returns the current record's "idcurso" value
+ * @method integer             getParalelo()      Returns the current record's "paralelo" value
+ * @method integer             getAnio()          Returns the current record's "anio" value
+ * @method integer             getTermino()       Returns the current record's "termino" value
+ * @method integer             getIdMateria()     Returns the current record's "id_materia" value
+ * @method Materia             getMateria()       Returns the current record's "Materia" value
+ * @method Doctrine_Collection getTipoactividad() Returns the current record's "Tipoactividad" collection
+ * @method Doctrine_Collection getUsuarioCurso()  Returns the current record's "UsuarioCurso" collection
+ * @method Curso               setIdcurso()       Sets the current record's "idcurso" value
+ * @method Curso               setParalelo()      Sets the current record's "paralelo" value
+ * @method Curso               setAnio()          Sets the current record's "anio" value
+ * @method Curso               setTermino()       Sets the current record's "termino" value
+ * @method Curso               setIdMateria()     Sets the current record's "id_materia" value
+ * @method Curso               setMateria()       Sets the current record's "Materia" value
+ * @method Curso               setTipoactividad() Sets the current record's "Tipoactividad" collection
+ * @method Curso               setUsuarioCurso()  Sets the current record's "UsuarioCurso" collection
  * 
  * @package    CALPESPOL
  * @subpackage model
@@ -80,26 +74,6 @@ abstract class BaseCurso extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
-             ));
-        $this->hasColumn('factor_asist_1', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'default' => '0',
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
-             ));
-        $this->hasColumn('factor_asist_2', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'default' => '0',
              'notnull' => true,
              'autoincrement' => false,
              'length' => 4,

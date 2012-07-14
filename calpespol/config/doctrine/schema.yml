@@ -114,22 +114,6 @@ Curso:
       primary: false
       notnull: true
       autoincrement: false
-    factor_asist_1:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    factor_asist_2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
     id_materia:
       type: integer(4)
       fixed: false
@@ -371,6 +355,29 @@ Tipoactividad:
       fixed: false
       unsigned: false
       primary: false
+      notnull: true
+      autoincrement: false
+    parcial:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    factor_asist_1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    factor_asist_2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
       notnull: true
       autoincrement: false
   relations:

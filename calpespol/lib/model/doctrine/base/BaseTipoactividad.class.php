@@ -11,6 +11,9 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @property integer $id_curso
  * @property integer $valor_ponderacion
  * @property string $nombre
+ * @property integer $parcial
+ * @property integer $factor_asist_1
+ * @property integer $factor_asist_2
  * @property Doctrine_Collection $Actividad
  * @property Curso $Curso
  * 
@@ -18,12 +21,18 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @method integer             getIdCurso()           Returns the current record's "id_curso" value
  * @method integer             getValorPonderacion()  Returns the current record's "valor_ponderacion" value
  * @method string              getNombre()            Returns the current record's "nombre" value
+ * @method integer             getParcial()           Returns the current record's "parcial" value
+ * @method integer             getFactorAsist1()      Returns the current record's "factor_asist_1" value
+ * @method integer             getFactorAsist2()      Returns the current record's "factor_asist_2" value
  * @method Doctrine_Collection getActividad()         Returns the current record's "Actividad" collection
  * @method Curso               getCurso()             Returns the current record's "Curso" value
  * @method Tipoactividad       setIdtipoactividad()   Sets the current record's "idtipoactividad" value
  * @method Tipoactividad       setIdCurso()           Sets the current record's "id_curso" value
  * @method Tipoactividad       setValorPonderacion()  Sets the current record's "valor_ponderacion" value
  * @method Tipoactividad       setNombre()            Sets the current record's "nombre" value
+ * @method Tipoactividad       setParcial()           Sets the current record's "parcial" value
+ * @method Tipoactividad       setFactorAsist1()      Sets the current record's "factor_asist_1" value
+ * @method Tipoactividad       setFactorAsist2()      Sets the current record's "factor_asist_2" value
  * @method Tipoactividad       setActividad()         Sets the current record's "Actividad" collection
  * @method Tipoactividad       setCurso()             Sets the current record's "Curso" value
  * 
@@ -70,6 +79,35 @@ abstract class BaseTipoactividad extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 45,
+             ));
+        $this->hasColumn('parcial', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('factor_asist_1', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('factor_asist_2', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
              ));
     }
 

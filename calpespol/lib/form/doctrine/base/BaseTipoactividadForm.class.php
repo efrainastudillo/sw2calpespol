@@ -19,6 +19,9 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'id_curso'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Curso'), 'add_empty' => false)),
       'valor_ponderacion' => new sfWidgetFormInputText(),
       'nombre'            => new sfWidgetFormInputText(),
+      'parcial'           => new sfWidgetFormInputText(),
+      'factor_asist_1'    => new sfWidgetFormInputText(),
+      'factor_asist_2'    => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +29,9 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'id_curso'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Curso'))),
       'valor_ponderacion' => new sfValidatorInteger(array('required' => false)),
       'nombre'            => new sfValidatorString(array('max_length' => 45)),
+      'parcial'           => new sfValidatorInteger(),
+      'factor_asist_1'    => new sfValidatorInteger(array('required' => false)),
+      'factor_asist_2'    => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('tipoactividad[%s]');

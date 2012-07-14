@@ -112,4 +112,8 @@ class myUser extends sfBasicSecurityUser
         }
   }
 
+  public function logout(){
+      $this->setUserEspol(null);
+      $this->setUsuario(null);
+  }
 }

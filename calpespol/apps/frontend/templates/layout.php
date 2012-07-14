@@ -14,7 +14,12 @@
             <div id="div_menu_sesion_usuario_centrado">
                 <div class="div_sesion" style="text-align: right">
                     <a href="#">
-                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=30x30') ?> Efrain Astudillo</span>
+                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=25x25') ?>
+                        <?php echo $sf_user->getUserEspol()?>
+                        </span>
+                    </a>
+                    <a href="<?php echo url_for("Inicio/logout") ?>">
+                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=30x30') ?>Salir</span>
                     </a> 
                 </div>
                 <div class="div_sesion">
@@ -27,7 +32,16 @@
                         </select>
                     </form>
                 </div>
-                
+                <div class="div_sesion">
+                    <form method="POST" action="Inicio/login">
+                        <label for="usuario" >Parcial:</label>                        
+                        <select id="materia_selecionada" style="width:40px;" name="thelist">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                    </form>
+                </div>
                 <div class="div_corrector_float"></div>
             </div>
         </div>
