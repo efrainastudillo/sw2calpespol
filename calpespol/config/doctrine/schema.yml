@@ -364,6 +364,11 @@ Tipoactividad:
       primary: false
       notnull: true
       autoincrement: false
+    es_extra:
+      type: boolean
+      primary: false
+      notnull: true
+      autoincrement: false
     factor_asist_1:
       type: integer(4)
       fixed: false
