@@ -1,17 +1,13 @@
 ## YAML Template.
+#  Creando Materias de Prueba Para el proyecto Calpespol
+#
 Materia:
   materia_1:
-    id_codigo: FIEC-3025
-    nombre: Laboratorio de Potencia 1
-    Curso: curso_1
+    nombre: Ingenieria de Software 1
   materia_2:
-    id_codigo: FIEC-4050
-    nombre: Laboratorio de Potencia 2
-    Curso: curso_2
+    nombre: Ingenieria de Software 2
+
   materia_3:
-    id_codigo: FIEC-6254
-    nombre: Laboratorio de Potencia 3
+    nombre: Desarrollo
   materia_4:
-    id_codigo: FIEC-6285
     nombre: Laboratorio de Potencia 4
-    Curso: curso_2

@@ -7,8 +7,6 @@
 ?>
 
 <h1>Authenticacion con Servicio Web  <?php echo $unavariable?></h1>
-<?php echo $matricula;
-    echo $elements->length;
-    echo $otra;
+<?php 
     echo $matricula;
     ?>

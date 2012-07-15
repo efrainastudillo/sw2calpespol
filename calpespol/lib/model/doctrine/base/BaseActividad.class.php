@@ -9,7 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('Actividad', 'doctrine');
  * 
  * @property integer $idactividad
  * @property string $nombre
- * @property integer $es_grupal
  * @property timestamp $fecha_entrega
  * @property integer $id_tipo_actividad
  * @property Tipoactividad $Tipoactividad
@@ -17,14 +16,12 @@ Doctrine_Manager::getInstance()->bindComponent('Actividad', 'doctrine');
  * 
  * @method integer             getIdactividad()       Returns the current record's "idactividad" value
  * @method string              getNombre()            Returns the current record's "nombre" value
- * @method integer             getEsGrupal()          Returns the current record's "es_grupal" value
  * @method timestamp           getFechaEntrega()      Returns the current record's "fecha_entrega" value
  * @method integer             getIdTipoActividad()   Returns the current record's "id_tipo_actividad" value
  * @method Tipoactividad       getTipoactividad()     Returns the current record's "Tipoactividad" value
  * @method Doctrine_Collection getLiteral()           Returns the current record's "Literal" collection
  * @method Actividad           setIdactividad()       Sets the current record's "idactividad" value
  * @method Actividad           setNombre()            Sets the current record's "nombre" value
- * @method Actividad           setEsGrupal()          Sets the current record's "es_grupal" value
  * @method Actividad           setFechaEntrega()      Sets the current record's "fecha_entrega" value
  * @method Actividad           setIdTipoActividad()   Sets the current record's "id_tipo_actividad" value
  * @method Actividad           setTipoactividad()     Sets the current record's "Tipoactividad" value
@@ -57,15 +54,6 @@ abstract class BaseActividad extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 70,
-             ));
-        $this->hasColumn('es_grupal', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 1,
              ));
         $this->hasColumn('fecha_entrega', 'timestamp', 25, array(
              'type' => 'timestamp',

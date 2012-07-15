@@ -11,7 +11,7 @@
  */
 class WSDLHandler {
     //put your code here
-    var $wsSAAC = "http://academico.espol.edu.ec/services/wsSAAC.wsdl";
+    var $wsSAAC = "https://www.academico.espol.edu.ec/Services/wsSAAC.asmx?WSDL";
     var $directorioEspol = "http://academico.espol.edu.ec/webservices/directorioEspol.asmx?WSDL";
     var $client;
 
