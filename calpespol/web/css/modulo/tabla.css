@@ -22,11 +22,11 @@
 .tablescroll_wrapper,
 .tablescroll_head,
 .tablescroll_foot{ 
-    border:1px solid #CCC; 
+    border-top:2px solid #a7c5a7; 
 }
 
 .tablescroll td{ 
-    padding:2px 10px; 
+    padding:6px 10px; 
 }
 
 .tablescroll_wrapper{ 
@@ -37,7 +37,7 @@
     font-family: "Trebuchet MS", sans-serif;
     font-size: 15px;
     font-weight: bold;
-    background-color: #DBDDC1;
+    background-color: #a7c5a7;
 /*    background:-webkit-gradient(
         linear,
         left bottom,
@@ -67,10 +67,11 @@
 }
 
 .tablescroll tbody td{ 
-    background-color:beige;
-    border: 1px solid #cdeb8e;
-    border-right:0; 
-    border-bottom:0; 
+    background-color:#ededcb;
+    border-top: 2px solid #f7f7e8;
+    border-bottom: 2px solid #f7f7e8;
+/*    border-right:0; 
+    border-bottom:0; */
     text-align: center;
 }
 
