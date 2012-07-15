@@ -1,20 +1,134 @@
-/* 
-    Document   : actividad
-    Created on : Jun 17, 2012, 12:25:20 PM
-    Author     : Efrain Astudillo
-    Description:
-        Purpose of the stylesheet follows.
+@charset "utf-8";
+/* CSS Document */
+/*
+*	Documento:		estilo.css
+*	Autor:			Efrain Astudillo
+*	Descripcion:	Este archivo gestiona todo el disenio del layout
+*	Fecha:			4 de Junio de 2012
 */
-
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-table tbody{
-    margin: 0;
-    text-align: left;
+* , html{
+	padding:0;
+	margin:0;
+	}
+body{font-family:"Lucida Grande", arial, sans-serif;
+background-color:#D3E2C2;}
+#div_contenedor_todo{
+	background-color:#D3E2C2;
+	height:auto;
+	}
+#div_menu_sesion_usuario_centrado{
+            width: 1000px;
+            margin: 0 auto;
+        }
+#div_menu_sesion_usuario{
+        color: white;
+        /*padding-top: 10px;*/
+	height:35px;
+	background-color:#005353;}
+.div_sesion{
+    float: right;
+    width: 300px;
+    padding: 5px;
+    height: 25px;
 }
-
-table th{
-    margin-left: 25px;
+#div_menu_cabecera{
+	height:110px;
+	background: #3d7a7a; /* Old browsers */
+	background: -moz-linear-gradient(top,  #3d7a7a 1%, #366b6b 34%, #284f4f 99%); 				   
+	 /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom,             				    
+	color-stop(1%,#3d7a7a), color-stop(34%,#366b6b), color-stop(99%,#284f4f)); 
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);     
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%); 
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);
+	 /* IE10+ */
+	background: linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);  
+	/* W3C*/
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d7a7a', 	     
+	endColorstr='#284f4f',GradientType=0 ); /* IE6-9 */
 }
+#div_menu_cabecera_centrado{
+	width:1000px;
+	margin:0 auto;
+	height:110px;
+	margin-bottom:5px;
+	}
+#div_logo_busqueda{
+	height:75px;
+	
+	}
+#div_menu_principal{
+	height:35px;
+	}
+#div_linea_bajo_menu{
+	background-color: #006F6F;
+	height:5px;
+	}
+#div_logo{
+	height:75px;
+	width:700px;
+	float:left;
+	}
+#div_logo_image{
+	float:left;
+	margin-top:5px;
+	margin-left:5px;}
+#div_logo_nombre{
+	float:left;
+	margin-top:18px;
+	margin-left:20px;}
+	
+#div_logo_nombre h1{
+	color:#FFF;}
+#div_busqueda{
+	height:75px;
+	width:300px;
+	float:left;
+	}
+#div_corrector_float{
+	clear:both;}
+	
+#div_contenedor{
+	width:1000px;
+	margin:0px auto;
+	}
+#div_contenedor_info{
+	z-index:0;
+	padding:15px;
+	height:80px;
+	margin-top:10px;
+	background-color:#ECECC6;
+	}
+	#div_contenedor_info p{}
+#div_contenedor_template{
+	padding:15px;
+	height:460px;
+	margin-top:10px;
+	margin-bottom:10px;
+	background-color:#F7F7E8;
+	border-style:solid;
+	border-width:1px;
+	border-color:#CCC;
+	}
+#footer{
+	height:50px;
+	background: #3d7a7a; /* Old browsers */
+	background: -moz-linear-gradient(top,  #3d7a7a 1%, #366b6b 34%, #284f4f 99%); 				    
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom,             				    
+	color-stop(1%,#3d7a7a), color-stop(34%,#366b6b), color-stop(99%,#284f4f)); 
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);     
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%); 
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);
+	 /* IE10+ */
+	background: linear-gradient(top,  #3d7a7a 1%,#366b6b 34%,#284f4f 99%);  
+	/* W3C*/
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d7a7a', 	     
+	endColorstr='#284f4f',GradientType=0 ); /* IE6-9 */
+	}

@@ -1,4 +1,4 @@
-<!-- IndexSucces del Modulo Inicio -->
+<!-- IndexSucces del Modulo Actividad -->
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
 <?php end_slot(); ?>
