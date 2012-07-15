@@ -20,15 +20,15 @@ class ActividadActions extends sfActions
     }
     
    public function executeMateria(sfWebRequest $request) {
-        $this->cursos = Doctrine_Core::getTable('Curso')
-                ->createQuery('a')
+        $this->materia= Doctrine_Core::getTable('Materia')
+                ->createQuery('m')
                 ->execute();
-        $this->materias = array();
-        foreach ($this->cursos as $curso) {
-            if(strcasecmp($cursos->getAnio(), $request->getParameter('anio'))&& strcasecmp($cursos->getTermino(), $request->getParameter('termino'))){
-                  $cod_materia = $curso->getIdCodigo();  
-            }
-        }
+//        $this->materias = array();
+//        foreach ($this->cursos as $curso) {
+//            if(strcasecmp($cursos->getAnio(), $request->getParameter('anio'))&& strcasecmp($cursos->getTermino(), $request->getParameter('termino'))){
+//                  $cod_materia = $curso->getIdCodigo();  
+//            }
+//        }
     }
     
     /**
