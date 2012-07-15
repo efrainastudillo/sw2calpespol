@@ -10,10 +10,16 @@
  */
 class ActividadActions extends sfActions
 {
-    
+//    Funcion que me devuelve una lista de paralelos
     public function executeConsultaParalelo(sfWebRequest $request){
         $this->q = Doctrine::getTable('Curso')
                 ->createQuery('select (id_materia)')
+                ->execute();
+    }
+//    Funcion que me devuelve la lista de actividades
+    public function executeActividad(sfWebRequest $request){
+        $this->actividad = Doctrine::getTable('Actividad')
+                ->createQuery('select (nombre)')
                 ->execute();
     }
     
