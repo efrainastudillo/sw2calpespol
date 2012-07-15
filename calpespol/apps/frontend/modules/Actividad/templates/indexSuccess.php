@@ -25,26 +25,19 @@
 <!--Body para crear una actividad    -->
 
     <div class="body_panel">
-        <label class="labelsForm" for="tipoactividad">Tipo de Actividad: </label>
-        <input type="text" name="tipoactividad" value="" /> <br/>
-        <label class="labelsForm" for="descripcion">Descripcion: </label>
-        <input type="text" name="descripcion" value="" /><br/>
-        <label class="labelsForm" for="tiporealizacion">Tipo de Realizacion: </label>
-        <select name="periodos" size="1" id="periodo_selec" >
-                        <option>Individual</option>
-                        <option>Grupal</option>
-        </select><br/>
-        <label class="labelsForm" for="fecha"> Fecha de entrega: </label>
-        <input name="fecha" type="date" id="fecha"/><br/>
-        <label class="labelsForm" for="ponderacion"> Ponderacion: </label>
-        <input type="text" name="ponderacion" value="" /><br/>
         <label class="labelsForm" for="paralelo"> Paralelo: </label>
-        <input type="text" name="paralelo" value="" /><br/>
+        <select href="Actividad/ConsultaParalelo" />
+        <div class="boton_new">
+            <a href="Actividad/new" class="button rounded black" id="new">
+                <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
+            </a> 
+        </div>
+        <div id="tabla">
+
+        </div>
     </div>
-    <div class="boton_new">
-        <a href="Rubrica/index" class="button rounded black" id="new">
-            <img src="../images/new.png" width="15" height="15" /> Crear
-        </a> 
-    </div>
+
+
+    
    
 </div>
