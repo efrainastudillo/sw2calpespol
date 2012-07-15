@@ -12,6 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @property integer $valor_ponderacion
  * @property string $nombre
  * @property integer $parcial
+ * @property boolean $es_extra
  * @property integer $factor_asist_1
  * @property integer $factor_asist_2
  * @property Doctrine_Collection $Actividad
@@ -22,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @method integer             getValorPonderacion()  Returns the current record's "valor_ponderacion" value
  * @method string              getNombre()            Returns the current record's "nombre" value
  * @method integer             getParcial()           Returns the current record's "parcial" value
+ * @method boolean             getEsExtra()           Returns the current record's "es_extra" value
  * @method integer             getFactorAsist1()      Returns the current record's "factor_asist_1" value
  * @method integer             getFactorAsist2()      Returns the current record's "factor_asist_2" value
  * @method Doctrine_Collection getActividad()         Returns the current record's "Actividad" collection
@@ -31,6 +33,7 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @method Tipoactividad       setValorPonderacion()  Sets the current record's "valor_ponderacion" value
  * @method Tipoactividad       setNombre()            Sets the current record's "nombre" value
  * @method Tipoactividad       setParcial()           Sets the current record's "parcial" value
+ * @method Tipoactividad       setEsExtra()           Sets the current record's "es_extra" value
  * @method Tipoactividad       setFactorAsist1()      Sets the current record's "factor_asist_1" value
  * @method Tipoactividad       setFactorAsist2()      Sets the current record's "factor_asist_2" value
  * @method Tipoactividad       setActividad()         Sets the current record's "Actividad" collection
@@ -88,6 +91,12 @@ abstract class BaseTipoactividad extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 8,
+             ));
+        $this->hasColumn('es_extra', 'boolean', null, array(
+             'type' => 'boolean',
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
              ));
         $this->hasColumn('factor_asist_1', 'integer', 4, array(
              'type' => 'integer',

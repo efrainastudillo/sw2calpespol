@@ -20,6 +20,7 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'valor_ponderacion' => new sfWidgetFormInputText(),
       'nombre'            => new sfWidgetFormInputText(),
       'parcial'           => new sfWidgetFormInputText(),
+      'es_extra'          => new sfWidgetFormInputCheckbox(),
       'factor_asist_1'    => new sfWidgetFormInputText(),
       'factor_asist_2'    => new sfWidgetFormInputText(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'valor_ponderacion' => new sfValidatorInteger(array('required' => false)),
       'nombre'            => new sfValidatorString(array('max_length' => 45)),
       'parcial'           => new sfValidatorInteger(),
+      'es_extra'          => new sfValidatorBoolean(),
       'factor_asist_1'    => new sfValidatorInteger(array('required' => false)),
       'factor_asist_2'    => new sfValidatorInteger(array('required' => false)),
     ));

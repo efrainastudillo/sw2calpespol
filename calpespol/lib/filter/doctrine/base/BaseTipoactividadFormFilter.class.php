@@ -17,6 +17,7 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'valor_ponderacion' => new sfWidgetFormFilterInput(),
       'nombre'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'parcial'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'es_extra'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'factor_asist_1'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'factor_asist_2'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
@@ -26,6 +27,7 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'valor_ponderacion' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'nombre'            => new sfValidatorPass(array('required' => false)),
       'parcial'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'es_extra'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'factor_asist_1'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'factor_asist_2'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
@@ -52,6 +54,7 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'valor_ponderacion' => 'Number',
       'nombre'            => 'Text',
       'parcial'           => 'Number',
+      'es_extra'          => 'Boolean',
       'factor_asist_1'    => 'Number',
       'factor_asist_2'    => 'Number',
     );
