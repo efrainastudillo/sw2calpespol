@@ -12,11 +12,9 @@ class ActividadActions extends sfActions
 {
     
     public function executeConsultaParalelo(sfWebRequest $request){
-        $q = Doctrine_Query::create()
-                ->select('c.paralelo')
-                ->from('Curso as c')
-                ->where('c.anio = 2012','c.termino = 1','c.id_materia = 1');
-        return  $q->execute();
+        $this->q = Doctrine::getTable('Curso')
+                ->createQuery('select (id_materia)')
+                ->execute();
     }
     
    public function executeMateria(sfWebRequest $request) {

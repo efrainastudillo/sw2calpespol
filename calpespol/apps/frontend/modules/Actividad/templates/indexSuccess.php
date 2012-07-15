@@ -26,7 +26,6 @@
 
     <div class="body_panel">
         <label class="labelsForm" for="paralelo"> Paralelo: </label>
-        <select href="Actividad/ConsultaParalelo" />
         <div class="boton_new">
             <a href="Actividad/new" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad

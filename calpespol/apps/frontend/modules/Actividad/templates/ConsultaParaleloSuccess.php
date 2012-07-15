@@ -1,13 +1,9 @@
-<?php
-?>
+<label class="labelsForm" for="paralelo"> Paralelo: </label>
 <select name="paralelo" size="1" id="parale_selec" >
-    <option>
-        <?php foreach ($q as $lista): ?>
-            <tr>
-                <td><?php echo $lista->getParalelo()?></td>
-            </tr>
-        <?php endforeach; ?>
-    </option>
-</select>
     
-
+        <?php foreach ($q as $para): ?>
+        <option>
+            <?php echo $para->getParalelo(); ?>
+        </option>
+        <?php endforeach; ?>
+</select>
