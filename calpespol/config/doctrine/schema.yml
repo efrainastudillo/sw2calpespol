@@ -360,31 +360,23 @@ Tipoactividad:
     es_extra:
       type: boolean
       primary: false
+      default: false
       notnull: true
-      autoincrement: false
     es_grupal:
-      type: integer(1)
-      fixed: false
-      unsigned: false
+      type: boolean
       primary: false
+      default: true
       notnull: true
-      autoincrement: false
-    factor_asist_1:
-      type: integer(4)
-      fixed: false
-      unsigned: false
+    tiene_factor_1:
+      type: boolean
       primary: false
-      default: '0'
+      default: false
       notnull: true
-      autoincrement: false
-    factor_asist_2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
+    tiene_factor_2:
+      type: boolean
       primary: false
-      default: '0'
+      default: false
       notnull: true
-      autoincrement: false
   relations:
     Actividad:
       local: idtipoactividad

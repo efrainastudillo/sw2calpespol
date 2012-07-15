@@ -19,9 +19,23 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      $handler = new WSDLHandler();
-      $handler->initWSSAACHandler();
-      $this->variable=$handler->scheduler("200801033");
+//      $handler = new WSDLHandler();
+//      $handler->initWSSAACHandler();
+//      $this->variable=$handler->scheduler("200801033");
+      $primera=date("13/01/2013");
+      $this->fecha=$primera;
+      $segunda="18/10/2012";
+      $tercera="14/01/2013";
+        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
+        if($result){
+            $this->variable="Esta en el rango";
+        }  
+        else if(!$result){
+             $this->variable="NO Esta en el rango";
+        }
+        else{
+            $this->variable="ERROR";
+        }
       
 //      $this->client = new SoapClient("https://www.academico.espol.edu.ec/Services/wsSAAC.asmx?WSDL", array());
 //      $results = (array) ($this->client->InfoProfesoresEstudiantesIds(array("anio" => 2012, "termino" => 1)));
@@ -70,7 +84,6 @@ class InicioActions extends sfActions
           if(is_bool($estado) && $estado){
               $this->forward("Inicio", "index");
           }
-        
       }else{
          
       }
@@ -145,23 +158,25 @@ class InicioActions extends sfActions
         if(isset($exists) && $exists) {
             $this->getUser()->setUserEspol($user);
             $this->getUser()->setAuthenticated(true);
-        //            $results = $handler->userData($user, $password);
-        //            $this->unavariable="SE logueo";
-        //            $doc = new DOMDocument();
-        //            $doc->loadXML($results);
-        //            $this->otra=$results;
-        //            $this->elements = $doc->getElementsByTagName("DATOS_USUARIO");
-        //            $this->node = $this->elements->item(0);
-        //            $this->matricula=$this->node->getElementsByTagName("MATRICULA")->item(0)->nodeValue ;
-        //$this->getUser()->setSesion($this->matricula);
-        //              if($this->elements->length>0) {
-        //                  $node = $this->elements->item(0);
-        //                  $this->matricula = $node->getElementsByTagName("MATRICULA")->length!=0 ? $node->getElementsByTagName("MATRICULA")->item(0)->nodeValue : "";
-        ////                  
-        ////                  $this->getRequest()->setParameter('matricula', $matricula);
-        ////                  $this->getRequest()->setParameter('internal', true);
-        // $this->redirect("Inicio/index");
-        //              }
+            
+            $results = $handler->userData($user, $password);
+            $doc = new DOMDocument();
+            $doc->loadXML($results);
+            $elements = $doc->getElementsByTagName("DATOS_USUARIO");
+            $node = $elements->item(0);
+            $matricula=$node->getElementsByTagName("MATRICULA")->item(0)->nodeValue ;
+            $nombres=$node->getElementsByTagName("NOMBRES")->item(0)->nodeValue ;
+            $apellidos=$node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue ;
+            $mail=$node->getElementsByTagName("CORREO")->item(0)->nodeValue ;
+            $userEspol=$user;
+            $usuario=new Usuario();
+            $usuario->setNombre($nombres);
+            $usuario->setApellido($apellidos);
+            $usuario->setMail($mail);
+            $usuario->setUsuarioEspol($userEspol);
+            $usuario->setMatricula($matricula);
+            $usuario->save();
+            
             return true;
 
         } else {

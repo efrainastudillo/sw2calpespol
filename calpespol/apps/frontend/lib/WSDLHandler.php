@@ -1,35 +1,55 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of WSDLHandler
- *
+ * Description de WSDLHandler
+ * Calpespol
+ * 
+ * @name WSDLHandler
  * @author Allan
+ * Modified:  Efrain Astudillo
  */
 class WSDLHandler {
     //put your code here
     var $wsSAAC = "https://www.academico.espol.edu.ec/Services/wsSAAC.asmx?WSDL";
-    var $directorioEspol = "http://academico.espol.edu.ec/webservices/directorioEspol.asmx?WSDL";
+    var $directorioEspol = "https://www.academico.espol.edu.ec/Services/directorioEspol.asmx?WSDL";
     var $client;
 
+    /**
+     * Inicializa el Servicio Web del WSSAAC
+     */
     public function initWSSAACHandler() {
         $this->client = new SoapClient($this->wsSAAC, array());
     }
 
+    /**
+     * Inicializa el Servicio Web de la Espol
+     * @deprecated 
+     */
     public function initDirectorioEspolHandler() {
         
-        $this->client = new  SoapClient("https://www.academico.espol.edu.ec/services/directorioEspol.asmx?WSDL", array());                
+        $this->client = new  SoapClient($this->directorioEspol, array());                
     }
 
+    /**
+     *  Autenticacion de los Usuarios por medio del Servicio Web proporcionado
+     *  Devuelve true si el Usuario existe con sus respectivos datos 
+     *  ingreados de otra manera devolvera false
+     *  por la Espol
+     * @param type $user            usuario espol
+     * @param type $password        contrasenia espol
+     * @return type                 boolean     
+     */
     public function authenticate($user,$password) {
         $results = (array) $this->client->autenticacion(array("varUser" => $user,"varContrasenia" => $password));
         $results = (array) ($results['autenticacionResult']);
         return $results[0];
     }
     
+    /**
+     *  Obtiene los datos del Usuario de Espol como los nombres, apellidos, etc
+     * @param type $user            usuiario espol
+     * @param type $password        contrasenia espol
+     * @return type                 XML como String        
+     */
     public function userData($user,$password) {
         $results = (array) $this->client->datosUsuario(array("varUser" => $user,"varContrasenia" => $password));
         $results = (array)($results['datosUsuarioResult']);
@@ -37,12 +57,23 @@ class WSDLHandler {
         return $this->cleanUserDataResult($results['any']);
     }
     
+    /**
+     *  Obtiene la informacion de las materias del Usuario registrado en el 
+     *  presente termino
+     * @param type $matricula   matricula del Estudiante
+     * @return type             XML como String
+     */
     public function scheduler($matricula) {
         $results = (array) $this->client->HorarioClasesScheluder(array("matricula" => $matricula));
         $results = (array) ($results['HorarioClasesScheluderResult']);
         return $this->cleanSchedulerResult($results['any']);
     }
 
+    /**
+     *  Formatea el response del Servicio Web a un XML  valido
+     * @param string $results       XML devuelto del Servicio Web
+     * @return string               XML como String
+     */
     private function cleanUserDataResult($results) {
         $results = "<?xml version=\"1.0\" encoding=\"utf-8\"?>".$results;
 //        $results = str_replace('<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet">', "<NewDataSet>", $results);
@@ -57,6 +88,12 @@ class WSDLHandler {
         return $results;
     }
 
+    /**
+     *  Limpia el response obtenido del metodo scheduler y lo formatea a un 
+     *  XML valido
+     * @param type $results     Response del Servicio Web
+     * @return type             XML como String
+     */
     private function cleanSchedulerResult($results){
         $results = "<?xml version=\"1.0\" encoding=\"utf-8\"?>".$results;
         $results = str_replace('<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet"><xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"><xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded"><xs:element name="V_MAT_REGISTRADAS"><xs:complexType><xs:sequence><xs:element name="IDCURSO" type="xs:int" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:short" minOccurs="0"/><xs:element name="PROFESOR" type="xs:string" minOccurs="0"/><xs:element name="NUMHORAS" type="xs:int" minOccurs="0"/><xs:element name="TIPOCURSO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="V_HORARIO_CLASES"><xs:complexType><xs:sequence><xs:element name="IDCURSO" type="xs:int" minOccurs="0"/><xs:element name="DIA" type="xs:short" minOccurs="0"/><xs:element name="HORAINICIO" type="xs:string" minOccurs="0"/><xs:element name="HORAFIN" type="xs:string" minOccurs="0"/><xs:element name="AULA" type="xs:string" minOccurs="0"/><xs:element name="BLOQUE" type="xs:string" minOccurs="0"/><xs:element name="CAMPUS" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element></xs:choice></xs:complexType></xs:element></xs:schema><diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">', "<NewDataSet>", $results);

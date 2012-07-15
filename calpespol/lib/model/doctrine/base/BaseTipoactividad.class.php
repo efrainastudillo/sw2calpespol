@@ -13,9 +13,9 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @property string $nombre
  * @property integer $parcial
  * @property boolean $es_extra
- * @property integer $es_grupal
- * @property integer $factor_asist_1
- * @property integer $factor_asist_2
+ * @property boolean $es_grupal
+ * @property boolean $tiene_factor_1
+ * @property boolean $tiene_factor_2
  * @property Doctrine_Collection $Actividad
  * @property Curso $Curso
  * 
@@ -25,9 +25,9 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @method string              getNombre()            Returns the current record's "nombre" value
  * @method integer             getParcial()           Returns the current record's "parcial" value
  * @method boolean             getEsExtra()           Returns the current record's "es_extra" value
- * @method integer             getEsGrupal()          Returns the current record's "es_grupal" value
- * @method integer             getFactorAsist1()      Returns the current record's "factor_asist_1" value
- * @method integer             getFactorAsist2()      Returns the current record's "factor_asist_2" value
+ * @method boolean             getEsGrupal()          Returns the current record's "es_grupal" value
+ * @method boolean             getTieneFactor1()      Returns the current record's "tiene_factor_1" value
+ * @method boolean             getTieneFactor2()      Returns the current record's "tiene_factor_2" value
  * @method Doctrine_Collection getActividad()         Returns the current record's "Actividad" collection
  * @method Curso               getCurso()             Returns the current record's "Curso" value
  * @method Tipoactividad       setIdtipoactividad()   Sets the current record's "idtipoactividad" value
@@ -37,8 +37,8 @@ Doctrine_Manager::getInstance()->bindComponent('Tipoactividad', 'doctrine');
  * @method Tipoactividad       setParcial()           Sets the current record's "parcial" value
  * @method Tipoactividad       setEsExtra()           Sets the current record's "es_extra" value
  * @method Tipoactividad       setEsGrupal()          Sets the current record's "es_grupal" value
- * @method Tipoactividad       setFactorAsist1()      Sets the current record's "factor_asist_1" value
- * @method Tipoactividad       setFactorAsist2()      Sets the current record's "factor_asist_2" value
+ * @method Tipoactividad       setTieneFactor1()      Sets the current record's "tiene_factor_1" value
+ * @method Tipoactividad       setTieneFactor2()      Sets the current record's "tiene_factor_2" value
  * @method Tipoactividad       setActividad()         Sets the current record's "Actividad" collection
  * @method Tipoactividad       setCurso()             Sets the current record's "Curso" value
  * 
@@ -98,37 +98,26 @@ abstract class BaseTipoactividad extends sfDoctrineRecord
         $this->hasColumn('es_extra', 'boolean', null, array(
              'type' => 'boolean',
              'primary' => false,
+             'default' => false,
              'notnull' => true,
-             'autoincrement' => false,
              ));
-        $this->hasColumn('es_grupal', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
+        $this->hasColumn('es_grupal', 'boolean', null, array(
+             'type' => 'boolean',
              'primary' => false,
+             'default' => true,
              'notnull' => true,
-             'autoincrement' => false,
-             'length' => 1,
              ));
-        $this->hasColumn('factor_asist_1', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
+        $this->hasColumn('tiene_factor_1', 'boolean', null, array(
+             'type' => 'boolean',
              'primary' => false,
-             'default' => '0',
+             'default' => false,
              'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
              ));
-        $this->hasColumn('factor_asist_2', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
+        $this->hasColumn('tiene_factor_2', 'boolean', null, array(
+             'type' => 'boolean',
              'primary' => false,
-             'default' => '0',
+             'default' => false,
              'notnull' => true,
-             'autoincrement' => false,
-             'length' => 4,
              ));
     }
 

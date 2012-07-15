@@ -14,4 +14,5 @@
 <h1>Authenticacion con Servicio Web</h1>
 <?php 
     echo $variable;
+    echo $fecha;
     ?>

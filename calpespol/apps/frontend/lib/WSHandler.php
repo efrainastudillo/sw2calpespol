@@ -1,14 +1,12 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of WSHandler
- *
- * @author Lisette
+ * Description de WSHandler
+ * Calpespol
+ * 
+ * @name WSHandler
+ * @author Lissete
+ * Modified:  Efrain Astudillo
  */
 class WSHandler {
 
@@ -16,12 +14,18 @@ class WSHandler {
     var $wsdl;
     var $client;
 
+    /**
+     * Inicializacion del Web Service del WSSAAC de la Espol
+     */
     public function initAcademico() {
         $this->wsdl = "Services/wsSAAC.asmx?WSDL";
         //$this->client = new SoapClient($this->SERVER.$this->wsdl);
         $this->client = new SoapClient(sfConfig::get("sf_web_dir") . "/webservices/wsSAAC.wsdl", array());
     }
 
+    /**
+     * Inicializacion del Web Service serviceDirectorio de la Espol
+     */
     public function initDirectorio() {
         $this->wsdl = "services/serviceDirectorio.asmx?WSDL";
     }
@@ -34,9 +38,9 @@ class WSHandler {
      * @return <type>
      */
     public function cargarPlanificacion($superuser, $periodo) {
-        //flush();
-//        set_time_limit(0);
-//        ignore_user_abort(1);
+    //      flush();
+    //      set_time_limit(0);
+    //      ignore_user_abort(1);
 
         try{
             $results = (array) ($this->client->InformacionPlanficacion(array("anio" => $periodo->getAnio(), "termino" => $periodo->getTermino())));
@@ -114,7 +118,7 @@ class WSHandler {
     }
 
     /**
-     *
+     * Carga los Usuarios con sus respectivos datos a la base de datos 
      * @param <type> $superuser
      * @param <type> $periodo
      * @return <type> 

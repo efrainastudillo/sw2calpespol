@@ -21,9 +21,9 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'nombre'            => new sfWidgetFormInputText(),
       'parcial'           => new sfWidgetFormInputText(),
       'es_extra'          => new sfWidgetFormInputCheckbox(),
-      'es_grupal'         => new sfWidgetFormInputText(),
-      'factor_asist_1'    => new sfWidgetFormInputText(),
-      'factor_asist_2'    => new sfWidgetFormInputText(),
+      'es_grupal'         => new sfWidgetFormInputCheckbox(),
+      'tiene_factor_1'    => new sfWidgetFormInputCheckbox(),
+      'tiene_factor_2'    => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -32,10 +32,10 @@ abstract class BaseTipoactividadForm extends BaseFormDoctrine
       'valor_ponderacion' => new sfValidatorInteger(array('required' => false)),
       'nombre'            => new sfValidatorString(array('max_length' => 45)),
       'parcial'           => new sfValidatorInteger(),
-      'es_extra'          => new sfValidatorBoolean(),
-      'es_grupal'         => new sfValidatorInteger(),
-      'factor_asist_1'    => new sfValidatorInteger(array('required' => false)),
-      'factor_asist_2'    => new sfValidatorInteger(array('required' => false)),
+      'es_extra'          => new sfValidatorBoolean(array('required' => false)),
+      'es_grupal'         => new sfValidatorBoolean(array('required' => false)),
+      'tiene_factor_1'    => new sfValidatorBoolean(array('required' => false)),
+      'tiene_factor_2'    => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('tipoactividad[%s]');

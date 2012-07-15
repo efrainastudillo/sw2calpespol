@@ -18,9 +18,9 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'nombre'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'parcial'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'es_extra'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'es_grupal'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'factor_asist_1'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'factor_asist_2'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'es_grupal'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tiene_factor_1'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tiene_factor_2'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -29,9 +29,9 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'nombre'            => new sfValidatorPass(array('required' => false)),
       'parcial'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'es_extra'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'es_grupal'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'factor_asist_1'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'factor_asist_2'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'es_grupal'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tiene_factor_1'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tiene_factor_2'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('tipoactividad_filters[%s]');
@@ -57,9 +57,9 @@ abstract class BaseTipoactividadFormFilter extends BaseFormFilterDoctrine
       'nombre'            => 'Text',
       'parcial'           => 'Number',
       'es_extra'          => 'Boolean',
-      'es_grupal'         => 'Number',
-      'factor_asist_1'    => 'Number',
-      'factor_asist_2'    => 'Number',
+      'es_grupal'         => 'Boolean',
+      'tiene_factor_1'    => 'Boolean',
+      'tiene_factor_2'    => 'Boolean',
     );
   }
 }

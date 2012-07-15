@@ -111,7 +111,9 @@ class myUser extends sfBasicSecurityUser
             return true;
         }
   }
-
+  /**
+   * Cierra la sesion 
+   */
   public function logout(){
       $this->setUserEspol(null);
       $this->setUsuario(null);
