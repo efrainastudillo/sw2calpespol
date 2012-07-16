@@ -8,20 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class ActividadActions extends sfActions
-{
-//    Funcion que me devuelve una lista de paralelos
-    public function executeConsultaParalelo(sfWebRequest $request){
-        $this->q = Doctrine::getTable('Curso')
-                ->createQuery('select (id_materia)')
-                ->execute();
-    }
-//    Funcion que me devuelve la lista de actividades
-    public function executeActividad(sfWebRequest $request){
-        $this->actividad = Doctrine::getTable('Actividad')
-                ->createQuery('select (nombre)')
-                ->execute();
-    }
+class ActividadActions extends sfActions{
     
    public function executeMateria(sfWebRequest $request) {
         $this->materia= Doctrine_Core::getTable('Materia')
@@ -86,9 +73,12 @@ class ActividadActions extends sfActions
     
   public function executeIndex(sfWebRequest $request)
   {
-    $this->actividads = Doctrine_Core::getTable('Actividad')
-      ->createQuery('a')
-      ->execute();
+    $this->q = Doctrine::getTable('Curso')
+                ->createQuery('select (id_materia)')
+                ->execute();
+    $this->a = Doctrine::getTable('Actividad')
+            ->createQuery('select (nombre)')
+            ->execute();
   }
 
   public function executeNew(sfWebRequest $request)
