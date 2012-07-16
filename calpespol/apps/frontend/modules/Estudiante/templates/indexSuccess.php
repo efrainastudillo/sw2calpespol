@@ -47,15 +47,37 @@
 
                 <thead>
                     <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Correo</td>
+                        <td>Usuario Espol</td>
+                        <td>Acciones</td>
                     </tr>
                 </thead>
 
                 <tbody>
-                       <tr>
+                    
+                    <?php 
+                    if(isset ($estudiantes)){
+                        foreach ($estudiantes as $est){
+                            echo "<tr>";
+                                echo "<td>".$est->getNombre()."</td>";
+                                echo "<td>".$est->getApellido()."</td>";
+                                echo "<td>".$est->getMail()."</td>";
+                                echo "<td>".$est->getUsuarioEspol()."</td>";
+                                echo "<td>";
+                                echo "<a href='Estudiante/delete?id=".$est->getIdUsuario()."'>";
+                                echo image_tag('/images/delete.png', 'size=18x18');
+                                echo "</a>";
+                                echo "<a href='Estudiante/edit?id=".$est->getIdUsuario()."'>";
+                                echo image_tag('/images/edit.png', 'size=18x18');
+                                echo "</a>";
+                                echo "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+<!--                    <tr>
                         <td>No.</td>
                         <td>Detalle</td>
                         <td>Puntaje</td>
@@ -147,20 +169,20 @@
                         <td>Detalle</td>
                         <td>Puntaje</td>
                         <td>Acción</td>	
-                    </tr>
+                    </tr>-->
                     
                     
                     
                 </tbody>
 
-                <tfoot>
+<!--                <tfoot>
                     <tr>
                         <td>&nbsp;</td>
                         <td id="estilo1_celda">TOTAL</td>
                         <td class="total" id="estilo2_celda">Total</td>
                         <td>&nbsp;</td>
                     </tr>
-                </tfoot>
+                </tfoot>-->
                 
             </table>
             

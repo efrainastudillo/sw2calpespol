@@ -40,11 +40,18 @@ $(document).ready(function(){
 //                });
                //getMensaje("authentication", inputIdUser.val(), contrasenia.val());
                  //alert("efrain");
-                 $("#formulario").submit()
+                 $("#formulario").submit();
 
            }else{
            }
         //alert("Hola");
+    });
+    $("#userID,#userPASS").keypress(function(event){
+        if(event.which==13){
+            if(validarRequerido(contrasenia,mensaje) && validarCaracteres(inputIdUser, mensaje)){
+                $("#formulario").submit();
+            }
+        }
     });
     
     function getMensaje(sfAction, user,pass)

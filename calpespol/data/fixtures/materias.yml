@@ -1,13 +1,39 @@
 ## YAML Template.
-#  Creando Materias de Prueba Para el proyecto Calpespol
+#  Creando datos de Prueba Para el proyecto Calpespol
 #
+#   Autor: Efrain Astudillo
+#   Fecha: 15 de julio de 2012
+#   Descripcion: Carga datos por default para pruebas a la base de datos
+
+#Materias
 Materia:
   materia_1:
-    nombre: Ingenieria de Software 1
+    nombre: LENGUAJES DE PROGRAMACIÓN
+    codigo_materia: FIEC01552
   materia_2:
-    nombre: Ingenieria de Software 2
-
+    nombre: INGENIERÍA DE SOFTWARE II
+    codigo_materia: FIEC03053
   materia_3:
-    nombre: Desarrollo
+    nombre: PROGRAMACIÓN ORIENTADA A OBJETOS
+    codigo_materia: FIEC04622
   materia_4:
-    nombre: Laboratorio de Potencia 4
+    nombre: SEÑALES Y SISTEMAS
+    codigo_materia: FIEC04382
+    
+#Roles de Usuario
+Rolusuario:
+  rol_1:
+    nombre: Estudiante
+  rol_2:
+    nombre: Ayudante
+  rol_3:
+    nombre: Profesor
+    
+#Tipos de Asistencia
+TipoAsistencia:
+  tipo_a_1:
+    nombre: Presente
+  tipo_a_2:
+    nombre: Ausente
+  tipo_a:
+    nombre: Atrasado

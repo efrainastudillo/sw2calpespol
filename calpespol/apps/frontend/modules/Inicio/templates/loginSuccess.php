@@ -10,9 +10,15 @@
         </div>
         <div class="form_login">
             <div class="form_centrado">
+                <div  class="flash_notice">
+                   <?php if ($sf_user->hasFlash('notice')): ?>
+                      <div><?php echo $sf_user->getFlash('notice') ?></div>
+                    <?php endif ?>
+                </div>
+                
                 <form id="formulario" method="POST" action="login">
                     <div class="label"><label for="userID">Usuario:</label></div>
-                    <div class="icono_error" id="i1" >*</div><div class="label"><input id="userID" name="userID" type="text" placeholder="User Espol" /></div>
+                    <div class="icono_error" id="i1" >*</div><div class="label"><input id="userID" name="userID" type="text" placeholder="Usuario Espol" /></div>
                     <div class="corrector"></div>
                     <div class="label"><label for="userPASS">Contrasenia:</label></div>
                     <div class="icono_error" id="i2" >*</div><div class="label"><input id="userPASS" name="userPASS" type="password" placeholder="Contrasenia Espol" /></div>

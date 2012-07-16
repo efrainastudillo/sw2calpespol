@@ -94,6 +94,95 @@
              return false;
          }
      }//fin de fechaEstaen Rango
+     
+     /**
+      *
+      * @param type $codigo_materia
+      * @return type 
+      */
+     public static function getMateria($codigo_materia){
+         $materia=Doctrine_Query::create()
+                 ->select("*")
+                 ->from("Materia m")
+                 ->where("m.codigo_materia=?",$codigo_materia)
+                 ->execute();
+         //Si El Usuario no esta registrado en ninguna de las materias que 
+         //se encuentra en el sistema
+//         if(intval($materias[0])==0){
+//             return false;
+//         }else{
+//            return true;
+//         }
+        return $materia;
+     }
+     /**
+      *
+      * @return type 
+      */
+     public static function getTermino(){
+         $fecha_actual=date("d/m/Y");
+         $anio=date("Y");
+         //para calcular el primer termino
+         $primera_1="01/05/".$anio;
+         $segunda_1="22/09/".$anio;
+         //para calcular el segundo termino
+         $primera_2_1="01/10/".$anio;
+         $segunda_2_1="31/12/".$anio;
+         $primera_2_2="01/01/".$anio;
+         $segunda_2_2="27/02/".$anio;
+         //para calcular el tercer termino
+         $primera_3="05/03/".$anio;
+         $segunda_3="05/05/".$anio;
+         
+         if(Utility::fechaEstaEnRango($fecha_actual, $primera_1, $segunda_1)){
+             return 1;
+         } elseif (Utility::fechaEstaEnRango($fecha_actual, $primera_2_1, $segunda_2_1) || Utility::fechaEstaEnRango($fecha_actual, $primera_2_2, $segunda_2_2)) {             
+            return 2;
+         }elseif(Utility::fechaEstaEnRango($fecha_actual, $primera_3, $segunda_3)){
+             return 3;
+         }else{
+             return -1;
+         }
+     }
+     /**
+      * 
+      * @param type $termino 
+      */
+     public static function getParcial($termino){
+         if($termino==1){
+             
+         }elseif($termino==2){
+             
+         }  elseif ($termino==3) {
+             
+         }
+     }
+     /**
+      *
+      * @param type $user_espol
+      * @return type 
+      */
+     public static function getUsuario($user_espol){
+         $user=Doctrine_Query::create()
+                 ->select("*")
+                 ->from("Usuario u")
+                 ->where("u.usuario_espol=?",$user_espol)
+                 ->execute();
+         return $user;
+     }
+     /**
+      *
+      * @param type $rol
+      * @return type 
+      */
+     public static function getRolUsuario($rol){
+         $rol=Doctrine_Query::create()
+                 ->select("*")
+                 ->from("Rolusuario u")
+                 ->where("u.nombre=?",$rol)
+                 ->execute();
+         return $rol[0];
+     }
  }//fin de la clase Utility
 ?>
 

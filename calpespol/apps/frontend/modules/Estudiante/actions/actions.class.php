@@ -12,9 +12,15 @@ class EstudianteActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->estudiantes = Doctrine_Core::getTable('usuario')
-      ->createQuery('a')
-      ->execute();
+      try {
+           $this->estudiantes = Doctrine_Core::getTable('Usuario')
+          ->createQuery('a')
+          ->execute();
+      } catch (Exception $exc) {
+          //echo $exc->getTraceAsString();
+      }
+
+     
   }
 
   public function executeNew(sfWebRequest $request)
@@ -36,8 +42,8 @@ class EstudianteActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($estudiante = Doctrine_Core::getTable('Estudiante')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
-    $this->form = new EstudianteForm($estudiante);
+    $this->forward404Unless($estudiante = Doctrine_Core::getTable('Usuario')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
+    $this->form = new UsuarioForm($estudiante);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -53,8 +59,8 @@ class EstudianteActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-    $this->forward404Unless($estudiante = Doctrine_Core::getTable('Estudiante')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
+    //$request->checkCSRFProtection();
+    $this->forward404Unless($estudiante = Doctrine_Core::getTable('Usuario')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
     $estudiante->delete();
     $this->redirect('Estudiante/index');
   }
