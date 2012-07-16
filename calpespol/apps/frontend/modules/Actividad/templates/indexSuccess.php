@@ -20,7 +20,7 @@
                 <p> Laboratorio de Potencia 1</p>
             </div>
     </div>
-    <!--Body para crear una actividad    -->
+    <!--Body para mostrar actividades    -->
     <div class="body_panel">
         <label class="labelsForm" for="paralelo"> Paralelo: </label>
         <select name="paralelo" size="1" id="parale_selec" >
@@ -31,7 +31,7 @@
                 <?php endforeach; ?>
         </select>
         <div class="boton_new">
-            <a href="#" class="button rounded black" id="new">
+            <a href="Actividad/new" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
         </div>
@@ -51,17 +51,17 @@
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php foreach ($a as $acti): ?>
                         <tr>
-                <!--//          Nombre de la actividad/es-->
+                <!--//      Nombre de la actividad/es-->
                             <td><?php echo $acti->getNombre(); ?></td>
-                <!--//          Nombre del tipo de la actividad-->
+                <!--//      Nombre del tipo de la actividad-->
                             <td><?php echo $acti->getTipoactividad()->getNombre(); ?></td>
-                <!--//          Si es grupal o individual-->
-                            <td><?php echo $acti->getTipoactividad()->getEsGrupal(); ?></td>
-                <!--//          Valor del tipo actividad, ponderacion-->
+                <!--//      Si es grupal o individual-->
+                            <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
+                <!--//      Valor del tipo actividad, ponderacion-->
                             <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-                            <td><img src="../images/edit (2).png" width="15" height="15" />
-                                <img src="../images/delete (2).png" width="15" height="15" />
-                                <img src="../images/add.png" width="15" height="15" />
+                            <td><a href="#" ><img src="../images/edit (2).png" width="15" height="15" /></a>
+                                <a href="#" ><img src="../images/delete (2).png" width="15" height="15" /></a>
+                                <a href="#" ><img src="../images/add.png" width="15" height="15" /></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

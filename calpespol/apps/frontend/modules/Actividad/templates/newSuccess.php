@@ -27,28 +27,36 @@
     </div>
     
 <!--Body para crear una actividad    -->
-
-    <div class="body_panel">
-        <label class="labelsForm" for="tipoactividad">Tipo de Actividad: </label>
-        <input type="text" name="tipoactividad" value="" /> <br/>
-        <label class="labelsForm" for="descripcion">Descripcion: </label>
-        <input type="text" name="descripcion" value="" /><br/>
-        <label class="labelsForm" for="tiporealizacion">Tipo de Realizacion: </label>
-        <select name="periodos" size="1" id="periodo_selec" >
-                        <option>Individual</option>
-                        <option>Grupal</option>
-        </select><br/>
-        <label class="labelsForm" for="fecha"> Fecha de entrega: </label>
-        <input name="fecha" type="date" id="fecha"/><br/>
-        <label class="labelsForm" for="ponderacion"> Ponderacion: </label>
-        <input type="text" name="ponderacion" value="" /><br/>
-        <label class="labelsForm" for="paralelo"> Paralelo: </label>
-        <input type="text" name="paralelo" value="" /><br/>
-    </div>
-    <div class="boton_new">
-        <a href="Rubrica/index" class="button rounded black" id="new">
-            <img src="../images/new.png" width="15" height="15" /> Crear
-        </a> 
-    </div>
-   
+    <form style="margin-left: 13em; margin-top: 2em">
+            <label>Tipo de Actividad: </label>
+            <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5.1em">
+                <?php foreach ($ta as $tipoact): ?>
+                <option>
+                    <?php echo $tipoact->getNombre(); ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+            <a href="#" style="color: black"><img src="../images/new.png" width="15" height="15" /> Crear</a>
+            <br/>
+<!--            <input type="text" name="tipoactividad" value="" style="margin-left: 5.1em" name="tipoactividad" /><br/>-->
+            <label>Descripcion: </label>
+            <input type="text" name="descripcion" value="" style="margin-left: 8em" name="descripcion"/><br/>
+            <label>Tipo de Realizacion: </label>
+            <select name="periodos" size="1" id="periodo_selec" style="margin-left: 3.9em" name="opcion">
+                            <option>Individual</option>
+                            <option>Grupal</option>
+            </select><br/>
+            <label> Fecha de entrega: </label>
+            <input name="fecha" type="date" id="fecha" style="margin-left: 4.8em" name="fecha"/><br/>
+            <label> Ponderacion: </label>
+            <input type="text" name="ponderacion" value="" style="margin-left: 7.5em" name="ponderacion"/><br/>
+            <label> Paralelo: </label>
+            <input type="text" name="paralelo" value="" style="margin-left: 9.9em" name="paralelo"/><br/>
+            <!--Boton que crea la actividad-->
+            <div style="margin-left: 20em; margin-top: 1em">
+                <a href="#" class="button rounded black" id="new">
+                    <img src="../images/new.png" width="15" height="15" /> Crear
+                </a> 
+            </div>
+    </form>
 </div>
