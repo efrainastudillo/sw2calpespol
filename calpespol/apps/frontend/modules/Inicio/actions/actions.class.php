@@ -135,7 +135,7 @@ class InicioActions extends sfActions
 //                    $r->save();
                     return true;
                 }
-                $this->getUser()->setFlash('notice', 'Usuario NO Consta en Alguna Materia Registrada del Sistema');
+                $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero no se encuentra a alguna materia del Sistema');
                 return false;
             }
             
