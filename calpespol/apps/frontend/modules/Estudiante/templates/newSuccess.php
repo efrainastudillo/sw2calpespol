@@ -27,7 +27,7 @@
          <table>
             <tbody>
                 <tr>
-                <th> <label for="idUsuario">ID:</label></th>
+                <th> <label for="idUsuario">Usuario Espol:</label></th>
                 <td>
                     <input name="idUsuario" type="text" id="idUsuario" />
                    
@@ -37,7 +37,7 @@
                 </td>
               </tr>
               <tr>
-                <th> <label for="nombre">Nombre:</label></th>
+                <th> <label for="nombre">Nombres:</label></th>
                 <td>
                     <input name="nombre" type="text" id="nombre" />
                     

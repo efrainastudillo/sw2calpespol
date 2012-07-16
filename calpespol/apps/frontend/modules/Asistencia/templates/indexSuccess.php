@@ -1,15 +1,16 @@
 <?php slot('logo') ?>
-    <?php echo image_tag('/images/estudiantes.png', 'alt_title=Estudiantes') ?>
+    <?php echo image_tag('/images/asistencias.png', 'alt_title=Asistencias') ?>
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Estudiantes" ?>
+    <?php echo "Asistencia" ?>
 <?php end_slot(); ?>
 
-<?php slot('estudiante-css') ?>
+<?php slot('asistencia-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
 
+<?php use_stylesheet('modulo/estilo.css') ?>
 
 <div class="panel">
     <div class="head_panel">

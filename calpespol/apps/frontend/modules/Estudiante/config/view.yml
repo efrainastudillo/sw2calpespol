@@ -1,7 +1,7 @@
 ## YAML Template.
 ---
-default:
-  stylesheets:    []
+newSuccess:
+  stylesheets:    [modulo/estudiante/estudiante.css]
   
   javascripts:    []
   
