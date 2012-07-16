@@ -78,7 +78,7 @@
                             <p><a href="<?php echo url_for('Estudiante/index') ?>">Estudiantes</a></p>
                         </li>
                         <li class="<?php if (!include_slot('actividad-css')): ?>deselected<?php endif; ?>" name="actividades">
-                            <p><a href="<?php echo url_for('Actividad/index') ?>">Actividades</a></p>
+                            <p><a href="<?php echo url_for('Actividad/ConsultaParalelo') ?>">Actividades</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                         <li class="<?php if (!include_slot('asistencia-css')): ?>deselected<?php endif; ?>" name="asistencias">

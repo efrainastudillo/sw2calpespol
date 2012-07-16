@@ -31,13 +31,5 @@
             <a href="Actividad/new" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
-        </div>
-        <div id="tabla">
-
-        </div>
     </div>
-
-
-    
-   
 </div>
