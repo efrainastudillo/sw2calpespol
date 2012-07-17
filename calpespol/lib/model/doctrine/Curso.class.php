@@ -12,5 +12,10 @@
  */
 class Curso extends BaseCurso
 {
-
+    public static function getParalelos()
+    {
+        $q = Doctrine_Query::create()
+        ->from('Curso c');
+        return $q->execute();
+    }
 }

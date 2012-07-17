@@ -92,7 +92,7 @@
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                         <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
-                            <p><a href="#">Notas</a></p>
+                            <p><a href="<?php echo url_for('Nota/index') ?>">Notas</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                     </ul>

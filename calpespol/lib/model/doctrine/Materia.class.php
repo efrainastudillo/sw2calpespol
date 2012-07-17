@@ -13,4 +13,10 @@
 class Materia extends BaseMateria
 {
 
+    public static function getMaterias()
+    {
+        $q = Doctrine_Query::create()
+        ->from('Materia m');
+        return $q->execute();
+    }
 }
