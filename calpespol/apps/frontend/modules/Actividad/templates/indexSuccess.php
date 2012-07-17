@@ -22,14 +22,17 @@
     </div>
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
-        <label class="labelsForm" for="paralelo"> Paralelo: </label>
-        <select name="paralelo" size="1" id="parale_selec" >
+        <div class="titulo_body_panel">
+            <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
+            <select name="paralelo" size="1" id="parale_selec" >
                 <?php foreach ($q as $para): ?>
                 <option>
                     <?php echo $para->getParalelo(); ?>
                 </option>
                 <?php endforeach; ?>
-        </select>
+            </select>
+        </div>
+        
         <div class="boton_new">
             <a href="Actividad/new" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
