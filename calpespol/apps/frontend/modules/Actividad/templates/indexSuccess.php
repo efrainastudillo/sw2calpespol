@@ -30,8 +30,8 @@
                 </option>
                 <?php endforeach; ?>
         </select>
-        <div class="boton_new">
-            <a href="Actividad/new" class="button rounded black" id="new">
+        <div class="boton_new" style="margin-bottom: 1em">
+            <a href="Actividad/createnew" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
         </div>

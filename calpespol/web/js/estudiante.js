@@ -1,15 +1,22 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * @author calpespol
+ * Descripción: Valida el texto ingresado de los input de tipo text dependiendo 
+ * de la funcion que se le asigne
  */
 $(document).ready(function(){
     
-    var inputIdUser = $("#idUsuario");  
-    var reqIdUser = $("#req-iduser"); 
-    var inputUsername = $("#nombre");  
-    var reqUsername = $("#req-username");  
-    var inputEmail = $("#email");  
-    var reqEmail = $("#req-email");  
+    var inputIdUser = $("#idUsuario");      //referencia del textfield a validar
+    var reqIdUser = $("#req-iduser");       //referencia a un tag del documento para mostrar
+                                            //el mensaje de error
+    var inputUsername = $("#nombre");       //referencia del textfield a validar
+    var reqUsername = $("#req-username");   //referencia a un tag del documento para mostrar
+                                            //el mensaje de error
+    var inputEmail = $("#email");           //referencia del textfield a validar
+    var reqEmail = $("#req-email");         //referencia a un tag del documento para mostrar
+                                            //el mensaje de error
     
     //evento asignado al texfied y se ejecuta cuando pierde el foco
     //llama a la respectiva funcion
@@ -68,18 +75,18 @@ $(document).ready(function(){
    function validarNumero(input,output){
        //NO cumple longitud minima  
         if(input.val().length == 0){
-            output.text(" * Campo Requerido");
-            output.css("visibility", "visible"); 
+            output.text(" * Campo Requerido");// mensaje de error
+            output.css("visibility", "visible"); //hace visible el tag del mensaje
             return false;  
         }  
         //no digitos de 0-9
         else if(!input.val().match(/^[0-9]+$/)){
-            output.text(" * Sólo dígitos [0-9]");
-            output.css("visibility", "visible");
+            output.text(" * Sólo dígitos [0-9]");// mensaje de error
+            output.css("visibility", "visible");//hace visible el tag del mensaje
 //            inputUsername.addClass("error");  
             return false;  
         }  
-        // SI longitud, SI digitos 0-9  
+        // SI longitud, SI digitos 0-9  hace oculto el tag que muestra el mensaje
         else{  
            output.css("visibility", "hidden");
             return true;  
@@ -95,18 +102,18 @@ $(document).ready(function(){
     function validarCaracteres(input,output){  
         //NO cumple longitud minima  
         if(input.val().length == 0){
-            output.text(" * Campo Requerido");
+            output.text(" * Campo Requerido");// mensaje de error
             output.css("visibility", "visible"); 
             return false;  
         }  
         //SI longitud pero caracteres diferentes de A-z  
         else if(!input.val().match(/^[a-zA-Z]+$/)){
-            output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");
+            output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
             output.css("visibility", "visible");
 //            inputUsername.addClass("error");  
             return false;  
         }  
-        // SI longitud, SI caracteres A-z  
+        // SI longitud, SI caracteres A-z  hace oculto el tag que muestra el mensaje
         else{  
            output.css("visibility", "hidden");
             return true;  
@@ -123,8 +130,8 @@ $(document).ready(function(){
     function validarEmail(input,output){  
         //NO hay nada escrito  
         if(input.val().length == 0){  
-            output.text(" * Campo Requerido");  
-            output.css("visibility", "visible");  
+            output.text(" * Campo Requerido");  // mensaje de error
+            output.css("visibility", "visible");  // hace visible el mensaje de error
             return false;  
         }  
         // SI escrito, NO VALIDO email  
@@ -133,7 +140,7 @@ $(document).ready(function(){
             output.css("visibility", "visible");  
             return false;  
         }  
-        // SI rellenado, SI email valido  
+        // SI rellenado, SI email valido hace oculto el tag que muestra el mensaje
         else{  
             output.css("visibility", "hidden");
             return true;  
