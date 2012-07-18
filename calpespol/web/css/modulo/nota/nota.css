@@ -1,0 +1,17 @@
+/* 
+    Document   : nota
+    Created on : 17/07/2012, 04:34:36 PM
+    Author     : Solis
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.materia{
+    float: left;
+    display: inline;
+}
+.paralelo{
+    margin-left: 3em;
+    float: right;
+    display: inline;
+}
