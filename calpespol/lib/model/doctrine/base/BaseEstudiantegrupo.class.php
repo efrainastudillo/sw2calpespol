@@ -54,7 +54,8 @@ abstract class BaseEstudiantegrupo extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Grupo', array(
              'local' => 'idgrupo',
-             'foreign' => 'idgrupo'));
+             'foreign' => 'idgrupo',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('UsuarioCurso', array(
              'local' => 'id_estudiante',

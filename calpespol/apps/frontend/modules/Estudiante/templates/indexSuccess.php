@@ -17,9 +17,9 @@
         <div class="titulo_head_panel">
             <p>Inicio</p>    
         </div>
-        
+
         <div class="extra_head_panel">
-            <p> Laboratoroio de Potencia </p>
+            <p> Laboratorio de Potencia </p>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
         <div class="boton_new">
             <a href="#" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Eliminar
-            </a> 
+            </a>
         </div>
         <div class="boton_new">
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">

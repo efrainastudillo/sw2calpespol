@@ -1,0 +1,8 @@
+## YAML Template.
+---
+index:
+  is_secure: on
+new:
+  is_secure: on
+edit:
+  is_secure: on

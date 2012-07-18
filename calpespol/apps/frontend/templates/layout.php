@@ -29,7 +29,7 @@
                     </a> 
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/login">
+                    <form method="POST" action="Inicio/change">
                         <label for="usuario" >Materia:</label>                        
                         <select id="materia_selecionada" style="width:200px;" name="thelist">
                           <option>Laboratorio de Potencia 1</option>
@@ -39,7 +39,7 @@
                     </form>
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/login">
+                    <form method="POST" action="Inicio/change">
                         <label for="usuario" >Parcial:</label>                        
                         <select id="materia_selecionada" style="width:40px;" name="thelist">
                           <option>1</option>

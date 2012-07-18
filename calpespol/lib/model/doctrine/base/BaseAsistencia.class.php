@@ -79,10 +79,12 @@ abstract class BaseAsistencia extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Tipoasistencia', array(
              'local' => 'id_tipo_asistencia',
-             'foreign' => 'idtipoasistencia'));
+             'foreign' => 'idtipoasistencia',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('UsuarioCurso', array(
              'local' => 'id_estudiante',
-             'foreign' => 'id_usuario_curso'));
+             'foreign' => 'id_usuario_curso',
+             'onDelete' => 'CASCADE'));
     }
 }

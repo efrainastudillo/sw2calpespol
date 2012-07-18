@@ -9,6 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('Actividad', 'doctrine');
  * 
  * @property integer $idactividad
  * @property string $nombre
+ * @property integer $nota
  * @property timestamp $fecha_entrega
  * @property integer $id_tipo_actividad
  * @property Tipoactividad $Tipoactividad
@@ -16,12 +17,14 @@ Doctrine_Manager::getInstance()->bindComponent('Actividad', 'doctrine');
  * 
  * @method integer             getIdactividad()       Returns the current record's "idactividad" value
  * @method string              getNombre()            Returns the current record's "nombre" value
+ * @method integer             getNota()              Returns the current record's "nota" value
  * @method timestamp           getFechaEntrega()      Returns the current record's "fecha_entrega" value
  * @method integer             getIdTipoActividad()   Returns the current record's "id_tipo_actividad" value
  * @method Tipoactividad       getTipoactividad()     Returns the current record's "Tipoactividad" value
  * @method Doctrine_Collection getLiteral()           Returns the current record's "Literal" collection
  * @method Actividad           setIdactividad()       Sets the current record's "idactividad" value
  * @method Actividad           setNombre()            Sets the current record's "nombre" value
+ * @method Actividad           setNota()              Sets the current record's "nota" value
  * @method Actividad           setFechaEntrega()      Sets the current record's "fecha_entrega" value
  * @method Actividad           setIdTipoActividad()   Sets the current record's "id_tipo_actividad" value
  * @method Actividad           setTipoactividad()     Sets the current record's "Tipoactividad" value
@@ -55,6 +58,16 @@ abstract class BaseActividad extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 70,
              ));
+        $this->hasColumn('nota', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'default' => 0,
+             'length' => 4,
+             ));
         $this->hasColumn('fecha_entrega', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
@@ -80,7 +93,8 @@ abstract class BaseActividad extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Tipoactividad', array(
              'local' => 'id_tipo_actividad',
-             'foreign' => 'idtipoactividad'));
+             'foreign' => 'idtipoactividad',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('Literal', array(
              'local' => 'idactividad',
