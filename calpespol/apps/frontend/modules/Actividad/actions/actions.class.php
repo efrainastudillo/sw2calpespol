@@ -83,7 +83,28 @@ class ActividadActions extends sfActions{
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new ActividadForm();
+    $this->ta = Doctrine::getTable('TipoActividad')
+            ->createQuery('select (nombre)')
+            ->execute();
+//    $this->form = new ActividadForm();
+//    $tipoactividad = $request->getParameter("tipoactividad");
+//    $descrip = $request->getParameter("descripcion");
+//    $opcion = $request->getParameter("opcion");
+//    $fecha = $request->getParameter("fecha");
+//    $ponde = $request->getParameter("ponderacion");
+//    $para = $request->getParameter("paralelo");
+//    //Ingresando datos a la tabla actividad
+//    $actividad = new Actividad();
+//    $actividad->setNombre($descrip);
+//    $actividad->setFechaEntrega($fecha);
+//    $actividad->save();
+//    
+//    //Ingresando datos a la tabla tipo actividad
+//    $tipoact = new Tipoactividad();
+//    $tipoact->setNombre($tipoactividad);
+//    $tipoact->setEsGrupal($opcion);
+//    $tipoact->setValorPonderacion($ponde);
+//    $tipoact->save();
   }
 
   public function executeCreate(sfWebRequest $request)

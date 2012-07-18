@@ -1,36 +1,51 @@
 <!-- IndexSucces del Modulo Actividad -->
 <?php slot('logo') ?>
-    <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
+    <?php echo image_tag('/images/notas.png', 'alt_title=Notas') ?>
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Actividades" ?>
+    <?php echo "Notas" ?>
 <?php end_slot(); ?>
 
-<?php slot('actividad-css') ?>
+<?php slot('nota-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-
+<?php use_stylesheet('/css/modulo/nota/nota.css');?>
+<?php use_javascript('/js/rubrica.js')?>
 <div class="panel">
     <div class="head_panel">
             <div class="titulo_head_panel">
-                <p>Registro de Actividad</p>
+                <p>Ingreso de Notas</p>
             </div>
-            <div class="extra_head_panel">
+<!--            <div class="extra_head_panel">
                 <p> Laboratorio de Potencia 1</p>
-            </div>
+            </div>-->
     </div>
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
         <div class="titulo_body_panel">
-            <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
-            <select name="paralelo" size="1" id="parale_selec" >
-                <?php foreach ($q as $para): ?>
-                <option>
-                    <?php echo $para->getParalelo(); ?>
-                </option>
-                <?php endforeach; ?>
-            </select>
+            <div class="materia">
+                <p> Materia: </p>
+                <select id="materias" name="materias" size="1" id="mat_selec" >
+                    <?php foreach ($materia as $mat): ?>
+                        <option>
+                            <?php echo $mat->getNombre(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                
+            </div>
+            <?php // echo $_POST['materias']; ?>
+            <div class="paralelo">
+                <p> Paralelo: </p>
+                <select name="paralelo" size="1" id="paralelo_selec" >
+                    <?php foreach ($curso as $cur): ?>
+                        <option>
+                            <?php echo $cur->getParalelo(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         </div>
         
         <div class="boton_new">
@@ -52,22 +67,22 @@
                 </thead>
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
-                    <?php foreach ($a as $acti): ?>
-                        <tr>
+                    <?php // foreach ($a as $acti): ?>
+<!--                        <tr>-->
                 <!--//      Nombre de la actividad/es-->
-                            <td><?php echo $acti->getNombre(); ?></td>
+                            <td><?php // echo $acti->getNombre(); ?></td>
                 <!--//      Nombre del tipo de la actividad-->
-                            <td><?php echo $acti->getTipoactividad()->getNombre(); ?></td>
+                            <td><?php // echo $acti->getTipoactividad()->getNombre(); ?></td>
                 <!--//      Si es grupal o individual-->
-                            <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
+                            <td><?php // if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
                 <!--//      Valor del tipo actividad, ponderacion-->
-                            <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-                            <td><a href="#" ><img src="../images/edit (2).png" width="15" height="15" /></a>
+                            <td><?php // echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
+<!--                            <td><a href="#" ><img src="../images/edit (2).png" width="15" height="15" /></a>
                                 <a href="#" ><img src="../images/delete (2).png" width="15" height="15" /></a>
                                 <a href="#" ><img src="../images/add.png" width="15" height="15" /></a>
                             </td>
-                        </tr>
-                    <?php endforeach; ?>
+                        </tr>-->
+                    <?php // endforeach; ?>
                 </tbody>
             </table>
         </div>
