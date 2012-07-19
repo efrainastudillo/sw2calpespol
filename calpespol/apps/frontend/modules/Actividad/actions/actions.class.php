@@ -80,31 +80,47 @@ class ActividadActions extends sfActions{
             ->createQuery('select (nombre)')
             ->execute();
   }
+  
+  public function executeCreatenew (sfWebRequest $request){
+      $this->ta = Doctrine::getTable('TipoActividad')
+            ->createQuery('select (nombre)')
+            ->execute();
+  }
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->ta = Doctrine::getTable('TipoActividad')
-            ->createQuery('select (nombre)')
-            ->execute();
-//    $this->form = new ActividadForm();
-//    $tipoactividad = $request->getParameter("tipoactividad");
-//    $descrip = $request->getParameter("descripcion");
-//    $opcion = $request->getParameter("opcion");
-//    $fecha = $request->getParameter("fecha");
-//    $ponde = $request->getParameter("ponderacion");
-//    $para = $request->getParameter("paralelo");
-//    //Ingresando datos a la tabla actividad
-//    $actividad = new Actividad();
-//    $actividad->setNombre($descrip);
-//    $actividad->setFechaEntrega($fecha);
-//    $actividad->save();
-//    
-//    //Ingresando datos a la tabla tipo actividad
-//    $tipoact = new Tipoactividad();
-//    $tipoact->setNombre($tipoactividad);
-//    $tipoact->setEsGrupal($opcion);
-//    $tipoact->setValorPonderacion($ponde);
-//    $tipoact->save();
+    
+    //$this->form = new ActividadForm();
+    $tipoactividad = $request->getParameter("tipoactividad");
+    $descrip = $request->getParameter("descripcion");
+    $opcion = $request->getParameter("opcion");
+    if ($option = "Individual")
+        $tipoact->setEsGrupal("0");
+    else
+        $tipoact->setEsGrupal("1");
+    $fecha = $request->getParameter("fecha");
+    $ponde = $request->getParameter("ponderacion");
+    $para = $request->getParameter("paralelo");
+    //Ingresando datos a la tabla actividad
+    $actividad = new Actividad();
+    $actividad->setNombre($descrip);
+    $actividad->setFechaEntrega($fecha);
+    //$actividad->save();
+    
+    //Ingresando datos a la tabla tipo actividad
+    $tipoact = new Tipoactividad();
+    $tipoact->setNombre($tipoactividad);
+    
+    $tipoact->setValorPonderacion($ponde);
+    $c = Doctrine_Query::create()
+                 ->select("*")
+                 ->from("Curso m")
+                 ->where("m.idcurso=?",1)
+                 ->execute();
+    $tipoact->setCurso($c[0]);
+    $tipoact->save();
+    $actividad->setTipoactividad($tipoact);
+    
   }
 
   public function executeCreate(sfWebRequest $request)

@@ -30,11 +30,17 @@
                     <?php echo $para->getParalelo(); ?>
                 </option>
                 <?php endforeach; ?>
+<<<<<<< HEAD
+        </select>
+        <div class="boton_new" style="margin-bottom: 1em">
+            <a href="Actividad/createnew" class="button rounded black" id="new">
+=======
             </select>
         </div>
         
         <div class="boton_new">
             <a href="Actividad/new" class="button rounded black" id="new">
+>>>>>>> 6598795502a03f4551c6454d16350fd5a84d35cd
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
         </div>
