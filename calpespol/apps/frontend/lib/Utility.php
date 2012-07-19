@@ -115,6 +115,25 @@
 //         }
         return $materia;
      }
+     public static function getAnioFin(){
+         $fecha_actual=date("d/m/Y");
+         $anio=date("Y");
+
+         //SEGUNDA PARTE
+         $primera_2_2="01/01/".$anio;
+         $segunda_2_2="27/02/".$anio;
+         //para calcular el tercer termino
+         $primera_3="05/03/".$anio;
+         $segunda_3="05/05/".$anio;
+         
+         if(Utility::fechaEstaEnRango($fecha_actual, $primera_2_2, $segunda_2_2)
+                 || Utility::fechaEstaEnRango($fecha_actual, $primera_3, $segunda_3)){
+             return $anio - 1;
+         }
+         else{
+             return $anio;
+         }
+     }
      /**
       *
       * @return type 
@@ -125,9 +144,10 @@
          //para calcular el primer termino
          $primera_1="01/05/".$anio;
          $segunda_1="22/09/".$anio;
-         //para calcular el segundo termino
+         //para calcular el segundo termino PRIMERA PARTE
          $primera_2_1="01/10/".$anio;
          $segunda_2_1="31/12/".$anio;
+         //SEGUNDA PARTE
          $primera_2_2="01/01/".$anio;
          $segunda_2_2="27/02/".$anio;
          //para calcular el tercer termino
@@ -136,7 +156,8 @@
          
          if(Utility::fechaEstaEnRango($fecha_actual, $primera_1, $segunda_1)){
              return 1;
-         } elseif (Utility::fechaEstaEnRango($fecha_actual, $primera_2_1, $segunda_2_1) || Utility::fechaEstaEnRango($fecha_actual, $primera_2_2, $segunda_2_2)) {             
+         } elseif (Utility::fechaEstaEnRango($fecha_actual, $primera_2_1, $segunda_2_1) 
+                 || Utility::fechaEstaEnRango($fecha_actual, $primera_2_2, $segunda_2_2)) {             
             return 2;
          }elseif(Utility::fechaEstaEnRango($fecha_actual, $primera_3, $segunda_3)){
              return 3;
