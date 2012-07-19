@@ -29,7 +29,7 @@
                     </a> 
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/login">
+                    <form method="POST" action="Inicio/change">
                         <label for="usuario" >Materia:</label>                        
                         <select id="materia_selecionada" style="width:200px;" name="thelist">
                           <option>Laboratorio de Potencia 1</option>
@@ -39,7 +39,7 @@
                     </form>
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/login">
+                    <form method="POST" action="Inicio/change">
                         <label for="usuario" >Parcial:</label>                        
                         <select id="materia_selecionada" style="width:40px;" name="thelist">
                           <option>1</option>
@@ -92,7 +92,7 @@
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                         <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
-                            <p><a href="#">Notas</a></p>
+                            <p><a href="<?php echo url_for('Nota/index') ?>">Notas</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                     </ul>

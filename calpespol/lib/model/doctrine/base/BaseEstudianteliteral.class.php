@@ -103,7 +103,8 @@ abstract class BaseEstudianteliteral extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Literal', array(
              'local' => 'idliteral',
-             'foreign' => 'idliteral'));
+             'foreign' => 'idliteral',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('UsuarioCurso', array(
              'local' => 'id_estudiante',

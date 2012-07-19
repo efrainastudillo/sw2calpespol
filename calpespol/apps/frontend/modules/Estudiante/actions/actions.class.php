@@ -19,8 +19,6 @@ class EstudianteActions extends sfActions
       } catch (Exception $exc) {
           //echo $exc->getTraceAsString();
       }
-
-     
   }
 
   public function executeNew(sfWebRequest $request)

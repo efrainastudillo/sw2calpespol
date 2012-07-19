@@ -88,11 +88,13 @@ abstract class BaseUsuarioCurso extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Curso', array(
              'local' => 'id_curso',
-             'foreign' => 'idcurso'));
+             'foreign' => 'idcurso',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Usuario', array(
              'local' => 'id_usuario',
-             'foreign' => 'idusuario'));
+             'foreign' => 'idusuario',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('Estudiantegrupo', array(
              'local' => 'id_usuario_curso',
@@ -104,7 +106,8 @@ abstract class BaseUsuarioCurso extends sfDoctrineRecord
 
         $this->hasOne('Rolusuario', array(
              'local' => 'id_rol',
-             'foreign' => 'idrolusuario'));
+             'foreign' => 'idrolusuario',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('Asistencia', array(
              'local' => 'id_usuario_curso',

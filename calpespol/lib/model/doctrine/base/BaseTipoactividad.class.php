@@ -130,6 +130,7 @@ abstract class BaseTipoactividad extends sfDoctrineRecord
 
         $this->hasOne('Curso', array(
              'local' => 'id_curso',
-             'foreign' => 'idcurso'));
+             'foreign' => 'idcurso',
+             'onDelete' => 'CASCADE'));
     }
 }

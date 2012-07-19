@@ -94,7 +94,8 @@ abstract class BaseCurso extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Materia', array(
              'local' => 'id_materia',
-             'foreign' => 'idmateria'));
+             'foreign' => 'idmateria',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('Tipoactividad', array(
              'local' => 'idcurso',

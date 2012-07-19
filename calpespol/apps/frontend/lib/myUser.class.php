@@ -59,8 +59,10 @@ class myUser extends sfBasicSecurityUser
      */
     public function setUserEspol($user_espol){
         $this->setAttribute('usuario_espol',$user_espol);
+        $this->setAuthenticated(true);
     }
     /**
+     * ESTO NO ES RECOMENDABLE HACER POR EL CONCEPTO DE SERIALIZACION
      * Guarda el Objeto Usuario en la sesion
      * @param type $us Usuario
      */
@@ -71,6 +73,14 @@ class myUser extends sfBasicSecurityUser
             $this->setAttribute('usuario',$us);
             $this->setAuthenticated(true);
         }
+    }
+     /**
+     * Retorna el Usuario que se encuentra en la Sesion
+     * @return type Usuario
+     */
+    public function getUsuario(){
+        return $this->getAttribute('usuario');
+        
     }
     
     public function getMaterias(){
@@ -84,38 +94,18 @@ class myUser extends sfBasicSecurityUser
         }
          $usuario = $this->getUserDB();
 
-        if($usuario)
-        return $usuario->getNombres()." ".$usuario->getApellidos();
+        if($usuario){
+            return $usuario->getNombres()." ".$usuario->getApellidos();
+        }
         return $this->getAttribute('usuario') . " <Usuario desconocido>";
     }
-    /**
-     * Retorna el Usuario que se encuentra en la Sesion
-     * @return type Usuario
-     */
-    public function getUsuario(){
-        return $this->getAttribute('usuario');
-        
-    }
-    
-    /**
-     *  Si el Usuario se ha logeado correctamente y si se ha almacenado en la
-     *  sesion
-     *  @return type Boolean
-     */
-    public function hasSesion(){
-      $ids = $this->getAttribute('usuario');
-      if (is_null($ids))
-        {
-          return false;
-        }else{
-            return true;
-        }
-  }
+
   /**
    * Cierra la sesion 
    */
   public function logout(){
-      $this->setUserEspol(null);
-      $this->setUsuario(null);
+      $this->getAttributeHolder()->clear();
+      $this->getUser()->setAuthenticated(false);
+      $this->clearCredentials();
   }
 }

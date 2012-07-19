@@ -19,7 +19,7 @@ Materia:
   materia_4:
     nombre: SEÑALES Y SISTEMAS
     codigo_materia: FIEC04382
-    
+
 #Roles de Usuario
 Rolusuario:
   rol_1:
@@ -28,7 +28,7 @@ Rolusuario:
     nombre: Ayudante
   rol_3:
     nombre: Profesor
-    
+
 #Tipos de Asistencia
 TipoAsistencia:
   tipo_a_1:

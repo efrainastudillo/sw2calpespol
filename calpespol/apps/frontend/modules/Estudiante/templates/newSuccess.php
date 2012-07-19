@@ -12,8 +12,7 @@
 <?php use_stylesheet('estudiante/estudiante.css') ?>
 <?php use_javascript('estudiante.js') ?>
 
-<div class="panel">
-    
+<div class="panel">    
     <!--Barra informativo de la categoria de actividad: nombre, tipo de actividad y tipo de categoria    -->
     <div id="info">
             <!--nombre de categoria de actividad      -->
@@ -39,8 +38,7 @@
               <tr>
                 <th> <label for="nombre">Nombres:</label></th>
                 <td>
-                    <input name="nombre" type="text" id="nombre" />
-                    
+                    <input name="nombre" type="text" id="nombre" />                    
                 </td>
                 <td >
                     <span id="req-username" class="requisites">Tiene deshabilitado Javascript</span>
@@ -49,23 +47,19 @@
               <tr>
                 <th><label  for="email">E-Mail:</label></th>
                 <td>
-                    <input name="email" type="text" id="email" />
-                    
+                    <input name="email" type="text" id="email" />                    
                 </td>
                 <td>
                     <span id="req-email" class="requisites">Tiene deshabilitado Javascript</span>
                 </td>
-              </tr>
-              
+              </tr>              
             </tbody>
             <tfoot>
               <tr>
                 <td colspan="3">
-
                     <input id="grabarEstudiante" type="button" value="Grabar" />
                 </td>
               </tr>
-
             </tfoot>
           </table>
         </form>
