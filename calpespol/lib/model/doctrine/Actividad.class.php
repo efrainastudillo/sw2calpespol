@@ -12,9 +12,20 @@
  */
 class Actividad extends BaseActividad
 {
+    public static function getActividades(){
+        $a = Doctrine_Query::create()
+        ->from('Actividad a');
+        return $a->execute();
+    }
     public function listaActividad(sfWebRequest $request){ 
         $this->actividad = Doctrine::getTable('Actividad')
                 ->createQuery('select (nombre)')
                 ->execute();
     }
+    public static function getActividadesByUserEspol($user_espol){
+        $a = Doctrine_Query::create()
+        ->from('Actividad a');
+        return $a->execute();
+    }
+
 }

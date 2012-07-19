@@ -16,20 +16,19 @@ Actividad:
       default: 'Actividad sin Nombre'
       notnull: true
       autoincrement: false
-    nota:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-      default: 0
     fecha_entrega:
       type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false
+    nota:
+      type: integer
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
       autoincrement: false
     id_tipo_actividad:
       type: integer(4)
