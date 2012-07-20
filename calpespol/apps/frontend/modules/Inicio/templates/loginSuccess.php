@@ -16,7 +16,7 @@
                     <?php endif ?>
                 </div>
                 
-                <form id="formulario" method="POST" action="login">
+                <form id="formulario" method="POST" action="<?php echo url_for("Inicio/login")?>">
                     <div class="label"><label for="userID">Usuario:</label></div>
                     <div class="icono_error" id="i1" >*</div><div class="label"><input id="userID" name="userID" type="text" placeholder="Usuario Espol" /></div>
                     <div class="corrector"></div>

@@ -62,7 +62,7 @@ class InicioActions extends sfActions
       }//fin del if externo
   }
   /**
-   *   
+   * Cierra la Sesion y nos redirige a la pagina de Login
    * @param sfWebRequest $request 
    */
   public function executeLogout(sfWebRequest $request){
