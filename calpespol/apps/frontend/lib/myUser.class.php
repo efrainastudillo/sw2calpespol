@@ -4,7 +4,7 @@
  * Cuando se quiera guardar algún dato específico en la sesión, se tendrá
  * que crear los getter y setter correspondiente al objeto
  * 
- * @example Guardar el nombre 
+ * @example Guardar el Nombre 
  *          public function getNombre(){
  *              return $this->getAttribute('nombre')
  *          }
@@ -22,14 +22,18 @@ class myUser extends sfBasicSecurityUser
      * @return type String
      */
     public function getFullName(){
-        if($this->getAttribute('nombre_usuario')=="")
+        //si no tiene nigun nombre en la sesion
+        if($this->getAttribute('usuario_espol')=="")
                 return 'Anónimo';
-
+        //obtiene el Usuario de la base
          $usuario = $this->getUserDB();
-
+         
+         //si existe ese Usuario en la base, muestra los nombres y apellidos
         if($usuario)
-        return $usuario->getNombres()." ".$usuario->getApellidos();
-        return $this->getAttribute('nombre_usuario') . " <Usuario desconocido>";
+            return $usuario->getNombre()." ".$usuario->getApellido();
+        
+        //retorna lo que contenga en la sesion mas Usuario Desconocido
+        return $this->getAttribute('usuario_espol') . " <Usuario desconocido>";
     }
    
     /**

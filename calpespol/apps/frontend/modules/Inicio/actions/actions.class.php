@@ -51,7 +51,7 @@ class InicioActions extends sfActions
  
           if(is_bool($estado) && $estado){//actualiza los datos en la base
               $usuario=  Utility::getUsuario($user);
-              $this->getUser()->setUserEspol($usuario[0]->getNombre()." ".$usuario[0]->getApellido()); 
+              $this->getUser()->setUserEspol($user); 
               $this->getUser()->setUsuario($usuario);
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");

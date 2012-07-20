@@ -21,7 +21,7 @@
                 <div class="div_sesion" style="text-align: right">
                     <a href="#">
                         <span><?php echo image_tag('/images/system-switch-user.png', 'size=25x25') ?>
-                        <?php echo $sf_user->getUserEspol()?>
+                        <?php echo $sf_user->getFullName()?>
                         </span>
                     </a>
                     <a href="<?php echo url_for("Inicio/logout") ?>">
