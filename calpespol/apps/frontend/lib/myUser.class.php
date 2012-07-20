@@ -109,6 +109,7 @@ class myUser extends sfBasicSecurityUser
    */
   public function logout(){
       $this->getAttributeHolder()->clear();
+      $this->setAuthenticated(false);
       $this->clearCredentials();
   }
 }
