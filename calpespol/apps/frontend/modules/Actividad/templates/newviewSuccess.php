@@ -31,9 +31,9 @@
             <label>Tipo de Actividad: </label>
             <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5.1em">
                 <?php foreach ($ta as $tipoact): ?>
-                <option>
-                    <?php echo $tipoact->getNombre(); ?>
-                </option>
+                    <option>
+                        <?php echo $tipoact->getNombre(); ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
             <a href="#" style="color: black"><img src="../images/new.png" width="15" height="15" /> Crear</a>
@@ -42,7 +42,7 @@
             <label>Descripcion: </label>
             <input type="text" name="descripcion" value="" style="margin-left: 8em" name="descripcion"/><br/>
             <label>Tipo de Realizacion: </label>
-            <select name="periodos" size="1" id="periodo_selec" style="margin-left: 3.9em" name="opcion">
+            <select name="periodo_selec" size="1" id="periodo_selec" style="margin-left: 3.9em" name="opcion">
                             <option>Individual</option>
                             <option>Grupal</option>
             </select><br/>

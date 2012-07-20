@@ -55,42 +55,65 @@ class ActividadActions extends sfActions{
     //return sfView::NONE;
     }
     public function executeParalelo(sfWebRequest $request) {
-        $this->materias = Doctrine_Core::getTable('Materia')
-                ->createQuery('a')
-                ->execute();
-        foreach ($this->materias as $materia) 
-            if(strcasecmp($materia->getNombre(), $request->getParameter('materia')))
-                $cod_materia = $materia->getIdCodigo();
-        $this->cursos = Doctrine_Core::getTable('Curso')
-                ->createQuery('a')
-                ->execute();
-        $this->paralelos = array();
-        foreach ($this->cursos as $curso) 
-            if($curso->getAnio()==$request->getParameter('anio')  &&  $curso->getTermino()==$request->getParameter('termino') && strcasecmp($curso->getIdMateria(),$cod_materia)==0)
-                array_push($this->paralelos,$curso);
+//        $this->materias = Doctrine_Core::getTable('Materia')
+//                ->createQuery('a')
+//                ->execute();
+//        foreach ($this->materias as $materia) 
+//            if(strcasecmp($materia->getNombre(), $request->getParameter('materia')))
+//                $cod_materia = $materia->getIdCodigo();
+//        $this->cursos = Doctrine_Core::getTable('Curso')
+//                ->createQuery('a')
+//                ->execute();
+//        $this->paralelos = array();
+//        foreach ($this->cursos as $curso) 
+//            if($curso->getAnio()==$request->getParameter('anio')  &&  $curso->getTermino()==$request->getParameter('termino') && strcasecmp($curso->getIdMateria(),$cod_materia)==0)
+//                array_push($this->paralelos,$curso);
     }
     
     
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->q = Doctrine::getTable('Curso')
-                ->createQuery('select (id_materia)')
-                ->execute();
+  public function executeIndex(sfWebRequest $request){
+
+    //DESCOMENTARLO
+//    $this->q = Doctrine::getTable('Curso')
+//                ->createQuery('select (id_materia)')
+//                ->execute();
+      //PRUEBA
+      $this->q=  Doctrine_Query::create()
+              ->select('c.paralelo')
+              ->from('Curso c')
+              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol
+              ->execute();
+      
+      //Me devuelve la lista de las actividades
     $this->a = Doctrine::getTable('Actividad')
-            ->createQuery('select (nombre)')
+            ->createQuery('select (idactividad)')
             ->execute();
   }
   
-  public function executeCreatenew (sfWebRequest $request){
-      $this->ta = Doctrine::getTable('TipoActividad')
-            ->createQuery('select (nombre)')
-            ->execute();
+  public function executeNewView(){
+//      $this->ta = Doctrine::getTable('TipoActividad')
+//              ->createQuery('select(idtipoactividad)')
+//              ->execute();
+      
+      $this->ta=  Doctrine_Query::create()
+              ->select('ta.nombre')
+              ->from('Tipoactividad ta')
+              ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+              ->where('u.usuario_espol=?','alcacere')//este es el usuario espol
+              ->execute();
+      
+      //TERMINO
+      //Utility::getTermino();
+      
   }
+  
 
-  public function executeNew(sfWebRequest $request)
-  {
-    
-    //$this->form = new ActividadForm();
+  public function executeNew(sfWebRequest $request){
+    $this->form = new ActividadForm();
     $tipoactividad = $request->getParameter("tipoactividad");
     $descrip = $request->getParameter("descripcion");
     $opcion = $request->getParameter("opcion");
@@ -120,6 +143,7 @@ class ActividadActions extends sfActions{
     $tipoact->setCurso($c[0]);
     $tipoact->save();
     $actividad->setTipoactividad($tipoact);
+    $actividad->save();
     
   }
 

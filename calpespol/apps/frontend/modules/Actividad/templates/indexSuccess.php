@@ -24,23 +24,16 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
             <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
-            <select name="paralelo" size="1" id="parale_selec" >
+           <select name="paralelo" size="1" id="parale_selec" >
                 <?php foreach ($q as $para): ?>
                 <option>
                     <?php echo $para->getParalelo(); ?>
                 </option>
                 <?php endforeach; ?>
-<<<<<<< HEAD
-        </select>
-        <div class="boton_new" style="margin-bottom: 1em">
-            <a href="Actividad/createnew" class="button rounded black" id="new">
-=======
             </select>
-        </div>
         
-        <div class="boton_new">
-            <a href="Actividad/new" class="button rounded black" id="new">
->>>>>>> 6598795502a03f4551c6454d16350fd5a84d35cd
+            <div class="boton_new" style="margin: 1em">
+            <a href="Actividad/NewView" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
         </div>
@@ -74,6 +67,7 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>

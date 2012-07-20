@@ -58,16 +58,6 @@ abstract class BaseActividad extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 70,
              ));
-        $this->hasColumn('nota', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'default' => 0,
-             'length' => 4,
-             ));
         $this->hasColumn('fecha_entrega', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
