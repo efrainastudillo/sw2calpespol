@@ -18,6 +18,8 @@ class NotaActions extends sfActions
     
     $this->materia = Materia::getMaterias();
     $this->curso = Curso::getParalelos();
+    $this->actividad = Actividad::getActividades();
+    $this->literal = Literal::getLiterales();
   }
 
   public function executeNew(sfWebRequest $request)

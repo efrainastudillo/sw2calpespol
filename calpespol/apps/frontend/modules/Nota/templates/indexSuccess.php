@@ -46,11 +46,21 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="actividad">
+                <p> Actividad: </p>
+                <select name="actividad" size="1" id="acti_selec" >
+                    <?php foreach ($actividad as $act): ?>
+                        <option>
+                            <?php echo $act->getNombre(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         </div>
         
         <div class="boton_new">
             <a href="Actividad/new" class="button rounded black" id="new">
-                <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
+                <img src="../images/new.png" width="15" height="15" /> Cargar Información
             </a> 
         </div>
         
@@ -58,17 +68,128 @@
             <table class="tabla" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>Descripcion</td>
-                        <td>Tipo de Realizacion</td>
-                        <td>Tipo de Actividad</td>
-                        <td>Valor Ponderacion</td>
-                        <td>Acciones</td>
+<!--                        <td>Grupos</td>
+                        <td>Literal 1 (2p)</td>                       
+                        <td>Literal 2 (2p)</td>
+                        <td>Literal 3 (2p)</td>
+                        <td>Literal 4 (2p)</td>
+                        <td>Total</td>-->
+                        <td>Grupos</td>
+                        <?php
+                        if (isset($literal)) {
+                            foreach ($literal as $lit) {
+                                echo "<td>" . $lit->getNombreLiteral(). "</td>";
+                            }
+                        }
+                        ?>
+                        <td>Total</td>
+                        
+                        
+                        
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php // foreach ($a as $acti): ?>
-<!--                        <tr>-->
+                    <tr>
+                        <td>Grupo 1</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                                        <tr>
+                        <td>Grupo 2</td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
+                        <td>10</td>
+                    </tr>
+                    
+
                 <!--//      Nombre de la actividad/es-->
                             <td><?php // echo $acti->getNombre(); ?></td>
                 <!--//      Nombre del tipo de la actividad-->

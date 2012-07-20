@@ -14,12 +14,6 @@ class ActividadActions extends sfActions{
         $this->materia= Doctrine_Core::getTable('Materia')
                 ->createQuery('m')
                 ->execute();
-//        $this->materias = array();
-//        foreach ($this->cursos as $curso) {
-//            if(strcasecmp($cursos->getAnio(), $request->getParameter('anio'))&& strcasecmp($cursos->getTermino(), $request->getParameter('termino'))){
-//                  $cod_materia = $curso->getIdCodigo();  
-//            }
-//        }
     }
     
     /**
@@ -54,61 +48,54 @@ class ActividadActions extends sfActions{
     return $this->renderText($response);
     //return sfView::NONE;
     }
-    public function executeParalelo(sfWebRequest $request) {
-//        $this->materias = Doctrine_Core::getTable('Materia')
-//                ->createQuery('a')
-//                ->execute();
-//        foreach ($this->materias as $materia) 
-//            if(strcasecmp($materia->getNombre(), $request->getParameter('materia')))
-//                $cod_materia = $materia->getIdCodigo();
-//        $this->cursos = Doctrine_Core::getTable('Curso')
-//                ->createQuery('a')
-//                ->execute();
-//        $this->paralelos = array();
-//        foreach ($this->cursos as $curso) 
-//            if($curso->getAnio()==$request->getParameter('anio')  &&  $curso->getTermino()==$request->getParameter('termino') && strcasecmp($curso->getIdMateria(),$cod_materia)==0)
-//                array_push($this->paralelos,$curso);
-    }
-    
+   
     
   public function executeIndex(sfWebRequest $request){
-
-    //DESCOMENTARLO
-//    $this->q = Doctrine::getTable('Curso')
-//                ->createQuery('select (id_materia)')
-//                ->execute();
-      //PRUEBA
-      $this->q=  Doctrine_Query::create()
-              ->select('c.paralelo')
-              ->from('Curso c')
-              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol
-              ->execute();
       
-      //Me devuelve la lista de las actividades
-    $this->a = Doctrine::getTable('Actividad')
-            ->createQuery('select (idactividad)')
+      //Me da el termino actual
+      $termino = Utility::getTermino();  
+      //Me devuelve la lista de paralelos del usuario
+      $this->q=  Doctrine_Query::create()
+          ->select('c.paralelo')
+          ->from('Curso c')
+          ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+          ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+          ->where('u.usuario_espol=?','alcacere')//este es el usuario espol $this->getUser()->getUserEspol()
+          ->andWhere('c.termino =?',$termino)
+          ->execute();
+//      $nombre = $this->getUser()->getUserEspol();
+//      return $nombre;
+      
+    //Me devuelve la lista de las actividades del usuario
+    $this->a = Doctrine_Query::create()
+            ->select('a.idactividad')
+            ->from('Actividad a')
+            ->innerjoin('a.Tipoactividad ta ON a.idactividad = ta.idtipoactividad')
+            ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+            ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+            ->where('u.usuario_espol=?','alcacere')
+            ->andwhere('c.termino=?',$termino)
+            ->execute();
+    
+    //Me devuelve la lista de materia
+    $this->m = Doctrine::getTable('Materia')
+            ->createQuery('select *')
             ->execute();
   }
   
   public function executeNewView(){
-//      $this->ta = Doctrine::getTable('TipoActividad')
-//              ->createQuery('select(idtipoactividad)')
-//              ->execute();
-      
+     
+      $termino = Utility::getTermino();  
       $this->ta=  Doctrine_Query::create()
               ->select('ta.nombre')
               ->from('Tipoactividad ta')
               ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('u.usuario_espol=?','alcacere')//este es el usuario espol
+              ->where('u.usuario_espol=?','alcacere') //este es el usuario espol
+              ->andWhere('c.termino =?',$termino)
               ->execute();
-      
-      //TERMINO
-      //Utility::getTermino();
-      
   }
   
 

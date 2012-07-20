@@ -17,9 +17,6 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      if(!$this->getUser()->isAuthenticated()){
-          $this->redirect("Inicio/login");
-      }
 //      $handler = new WSDLHandler();
 //      $handler->initWSSAACHandler();
 //      $this->variable=$handler->scheduler("200801033");
@@ -56,7 +53,8 @@ class InicioActions extends sfActions
               $usuario=  Utility::getUsuario($user);
               $this->getUser()->setUserEspol($usuario[0]->getNombre()." ".$usuario[0]->getApellido()); 
               $this->getUser()->setUsuario($usuario);
-              $this->forward("Inicio", "index");
+              $this->getUser()->setAuthenticated(true);
+              $this->redirect("Inicio/index");
           }else{
 
               

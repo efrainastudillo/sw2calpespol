@@ -12,5 +12,10 @@
  */
 class Literal extends BaseLiteral
 {
-
+    public static function getLiterales()
+    {
+        $q = Doctrine_Query::create()
+        ->from('Literal l');
+        return $q->execute();
+    }
 }

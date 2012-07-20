@@ -12,6 +12,11 @@
 }
 .paralelo{
     margin-left: 3em;
+    float: left;
+    display: inline;
+}
+.actividad{
+    margin-left: 3em;
     float: right;
     display: inline;
 }
