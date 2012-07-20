@@ -60,7 +60,7 @@ class ActividadActions extends sfActions{
           ->from('Curso c')
           ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
           ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-          ->where('u.usuario_espol=?','alcacere')//este es el usuario espol $this->getUser()->getUserEspol()
+          ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol $this->getUser()->getUserEspol()
           ->andWhere('c.termino =?',$termino)
           ->execute();
 //      $nombre = $this->getUser()->getUserEspol();
@@ -74,7 +74,7 @@ class ActividadActions extends sfActions{
             ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->where('u.usuario_espol=?','alcacere')
+            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andwhere('c.termino=?',$termino)
             ->execute();
     
