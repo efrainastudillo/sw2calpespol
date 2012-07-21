@@ -115,7 +115,7 @@
 //         }
         return $materia;
      }
-     public static function getAnioFin(){
+     public static function getAnio(){
          $fecha_actual=date("d/m/Y");
          $anio=date("Y");
 
@@ -191,19 +191,7 @@
                  ->execute();
          return $user;
      }
-     /**
-      *
-      * @param type $rol
-      * @return type 
-      */
-     public static function getRolUsuario($rol){
-         $rol=Doctrine_Query::create()
-                 ->select("*")
-                 ->from("Rolusuario u")
-                 ->where("u.nombre=?",$rol)
-                 ->execute();
-         return $rol[0];
-     }
+   
  }//fin de la clase Utility
 ?>
 

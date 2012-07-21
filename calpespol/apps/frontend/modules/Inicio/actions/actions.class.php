@@ -17,23 +17,23 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-//      $handler = new WSDLHandler();
-//      $handler->initWSSAACHandler();
-//      $this->variable=$handler->scheduler("200801033");
-      $primera=date("13/01/2013");
+      $handler = new WSHandler();
+      $handler->initAcademico();
+     // $this->variable=$handler->cargarPlanificacion("null", 2012);
+//      $primera=date("13/01/2013");
       $this->fecha=  Utility::getTermino();
-      $segunda="18/10/2012";
-      $tercera="14/01/2013";
-        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
-        if($result){
+//      $segunda="18/10/2012";
+//      $tercera="14/01/2013";
+//        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
+//        if($result){
             $this->variable="Esta en el rango";
-        }  
-        else if(!$result){
-             $this->variable="NO Esta en el rango";
-        }
-        else{
-            $this->variable="ERROR";
-        }
+//        }  
+//        else if(!$result){
+//             $this->variable="NO Esta en el rango";
+//        }
+//        else{
+//            $this->variable="ERROR";
+//        }
   }
   /**
    * Vista para hacer Login con el Usuario de la espol
@@ -47,12 +47,12 @@ class InicioActions extends sfActions
       $password = $request->getParameter("userPASS");
       if(isset($user) && isset ($password)){
           
-          $estado=$this->getAuthentication($user, $password);
+          $estado= $this->getAuthentication($user, $password);
  
           if(is_bool($estado) && $estado){//actualiza los datos en la base
-              $usuario=  Utility::getUsuario($user);
+              //$usuario=  Utility::getUsuario($user);
               $this->getUser()->setUserEspol($user); 
-              $this->getUser()->setUsuario($usuario);
+             // $this->getUser()->setUsuario($usuario);
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");
           }else{
@@ -70,16 +70,27 @@ class InicioActions extends sfActions
       $this->redirect("Inicio/login");
   }
   /**
-   *
-   * @param type $user
-   * @param type $password
-   * @return type 
+   * El usuario se autentica con el Usuario y password de la Espol si lo logra,
+   * lo siguiente que se preguntara es si esta registado en alguna materia de la Espol,
+   * Si lo esta lo proximo que se pregunta es SI se encuentra en la base de datos del 
+   * Sistema. SI lo esta, retorna TRUE sino crea un Usuario con toda la informacion del 
+   * Curso a la que pertenece y retorna TRUE, de alguna otra manera retornara FALSE
+   * @param type $user      String
+   * @param type $password  String
+   * @return type           Boolean
    */
- private function getAuthentication($user,$password){
+  private function getAuthentication($user,$password){
+        //$handler = new WSDLHandler();
         $handler = new WSDLHandler();
-        $handler->initDirectorioEspolHandler();
+        $estado=false;
+        //$handler->initDirectorioEspolHandler();
+        if(!$handler->initDirectorioEspolHandler()){
+            return false;        
+        }
         $handler2 = new WSDLHandler();
-        $handler2->initWSSAACHandler();
+        if(!$handler2->initWSSAACHandler()){
+            return false;
+        }
         $exists = $handler->authenticate($user, $password);
         if(isset($exists) && $exists) {                        
             $results = $handler->userData($user, $password);
@@ -100,45 +111,51 @@ class InicioActions extends sfActions
             for ($i = 0; $i < $elements->length; $i++) {
                 $node = $elements->item($i);
                 //$idcurso = $node->getElementsByTagName("IDCURSO")->length!=0 ? $node->getElementsByTagName("IDCURSO")->item(0)->nodeValue : "";
-//                $profesor = $node->getElementsByTagName("PROFESOR")->length!=0 ? $node->getElementsByTagName("PROFESOR")->item(0)->nodeValue : "";
-//                $materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue : "";
-//                $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue : "";
+                //$profesor = $node->getElementsByTagName("PROFESOR")->length!=0 ? $node->getElementsByTagName("PROFESOR")->item(0)->nodeValue : "";
+                //$materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue : "";
+                $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue : "";
                 $cod_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue : "";
                 $temp_materia=Utility::getMateria($cod_materia);
                 if($temp_materia->count()==0){
                     continue;
                 }else{
-                    //agrego todos los datos correspondientes
-//                    $termino=Utility::getTermino();
-//                    $curso=new Curso();
-//                    $curso->setAnio(date("Y"));
-//                    $curso->setParalelo($paralelo);
-//                    $curso->setTermino($termino);
-//                    $curso->setMateria($temp_materia[0]);
-                   // $curso->save();
+                    //agrego todos los datos correspondientes                    
                     $u=  Utility::getUsuario($userEspol);
-                    if($u->count()==0){
-                        $usuario=new Usuario();
-                        $usuario->setNombre($nombres);
-                        $usuario->setApellido($apellidos);
-                        $usuario->setMail($mail);
-                        $usuario->setUsuarioEspol($userEspol);
-                        $usuario->setMatricula($matricula);
-                        $usuario->save();
-                    }
-                    
-                    //break;
-                    //$usuario->save();
-//                    $r=new UsuarioCurso();
-//                    $r->setRolusuario(Utility::getRolUsuario("Estudiante"));
-//                    $r->setCurso($curso);
-//                    $r->setUsuario($usuario);
-//                    $r->save();
-                    return true;
+                    //significa que el usuario no se encuentra registrado en la base
+                    //pero tiene todos los requisitos de estarlo
+                    if( $u->count()==0){
+                        $u[0]=new Usuario();
+                        $u[0]->setNombre($nombres);
+                        $u[0]->setApellido($apellidos);
+                        $u[0]->setMail($mail);
+                        $u[0]->setUsuarioEspol($userEspol);
+                        $u[0]->setMatricula($matricula);
+                        $u[0]->save();
+                        $termino=Utility::getTermino();
+                        $anio=  Utility::getAnio();
+                        $curso=new Curso();
+                        $curso->setAnio($anio);
+                        $curso->setParalelo($paralelo);
+                        $curso->setTermino($termino);
+                        $curso->setMateria($temp_materia[0]);
+                        $curso->save();
+                        $r=new UsuarioCurso();
+                        $rol=Rolusuario::getRolUsuario("Estudiante");
+                        $r->setRolusuario($rol);
+                        $this->getUser()->setRol($rol->getNombre());
+                        $r->setCurso($curso);
+                        $r->setUsuario($u[0]);
+                        $r->save();
+                    }else{
+                        //no hago nada
+                    }  
+                    $estado= true;
                 }
-                $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero no se encuentra a alguna materia del Sistema');
-                return false;
+                
             }
+            if(!$estado)
+                $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero no se encuentra Registrado en alguna Materia del Sistema');
+            return $estado;
             
         } else {
             $this->getUser()->setFlash('notice', 'Usuario o Contrasenia son Inválidas');

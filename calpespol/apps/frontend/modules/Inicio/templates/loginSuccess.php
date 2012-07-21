@@ -32,5 +32,3 @@
             <p>Escuela Superior Politécnica del Litoral</p>
             <p>Copyright @ 2012</p>
         </div>
-
-<a href="index">index</a>

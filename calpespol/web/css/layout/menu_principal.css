@@ -5,7 +5,7 @@ ul{
 	padding:0;
 }
 
-li{
+#div_menu_principal li{
 	z-index:50;
 	width:100px;
 	height:35px;
@@ -17,12 +17,12 @@ li{
 	font-family:"Arial", Gadget, sans-serif;
 }
 
-a{
+#div_menu_principal a{
 	color:#FFF;
 	text-decoration:none;
 }
 
-ul li p{
+#div_menu_principal ul li p{
 	margin-top:7px;
 }
 

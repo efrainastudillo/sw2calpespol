@@ -19,19 +19,29 @@
     	<div id="div_menu_sesion_usuario">
             <div id="div_menu_sesion_usuario_centrado">
                 <div class="div_sesion" style="text-align: right">
-                    <a href="#">
-                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=25x25') ?>
-                        <?php echo $sf_user->getFullName()?>
-                        </span>
-                    </a>
-                    <a href="<?php echo url_for("Inicio/logout") ?>">
-                        <span><?php echo image_tag('/images/system-switch-user.png', 'size=30x30') ?>Salir</span>
-                    </a> 
+                    <ul>
+                        <li>
+                            <img src='../images/user2.png' width="23px" height="23px" align="top" />
+                        </li>                        
+                        <li>
+                            <a href="#">
+                                <?php echo $sf_user->getFullName()?>
+                            </a>
+                        </li>
+                        <li>
+                            <img src='../images/salir.png' width="23px" height="23px" align="top"/>
+                        </li>
+                        <li>
+                            <a href="<?php echo url_for("Inicio/logout") ?>" > 
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="div_sesion">
                     <form method="POST" action="Inicio/change">
                         <label for="usuario" >Materia:</label>                        
-                        <select id="materia_selecionada" style="width:200px;" name="thelist">
+                        <select id="materia_selecionada" style="width:200px;" name="lista_materias">
                           <option>Laboratorio de Potencia 1</option>
                           <option>Laboratorio de Potencia 2</option>
                           <option>Maquinarias</option>
@@ -41,7 +51,7 @@
                 <div class="div_sesion">
                     <form method="POST" action="Inicio/change">
                         <label for="usuario" >Parcial:</label>                        
-                        <select id="materia_selecionada" style="width:40px;" name="thelist">
+                        <select id="parcial_selecionado" style="width:40px;" name="lista_parciales">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>

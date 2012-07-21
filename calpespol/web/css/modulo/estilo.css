@@ -78,7 +78,7 @@ div.titulo_head_panel p{
     Descripción :   Distribuye contenido adicional a la derecha de la cabecera. 
 */
 div.extra_head_panel{
-    float: right;                           /* Posicionamiento a la derecha */                                       
+    float: right;                           /* Posicionamiento a la derecha */     
 }
 
 /*
