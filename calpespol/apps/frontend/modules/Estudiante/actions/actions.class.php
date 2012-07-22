@@ -57,9 +57,14 @@ class EstudianteActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    //$request->checkCSRFProtection();
-    $this->forward404Unless($estudiante = Doctrine_Core::getTable('Usuario')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
-    $estudiante->delete();
+    $id=$request->getParameter('id');
+    if($id==$this->getUser()->getUserDB()->getIdusuario()){
+        $this->getUser()->setFlash('mensaje', 'No se Puede Eliminar (Usuario Actual)');
+    }else{
+        $this->forward404Unless($estudiante = Doctrine_Core::getTable('Usuario')->find(array($request->getParameter('id'))), sprintf('Object estudiante does not exist (%s).', $request->getParameter('id')));
+        $estudiante->delete();
+        $this->getUser()->setFlash('mensaje', 'Usuario Eliminado Correctamente');
+    }
     $this->redirect('Estudiante/index');
   }
   public function executeProcess(sfWebRequest $request){

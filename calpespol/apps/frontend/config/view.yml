@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [layout/estilo.css,layout/menu_principal.css,modulo/estilo.css,modulo/tabla.css,modulo/boton.css]
 
-  javascripts:    [jquery-1.7.2.min.js,animated-menu.js,jquery.tablescroll.js,modal.popup.js]
+  javascripts:    [jquery-1.7.2.min.js,animated-menu.js,jquery.tablescroll.js,modal.popup.js,layout.js]
 
   has_layout:     true
   layout:         layout

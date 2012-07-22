@@ -113,7 +113,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3aa54b', end
 */
 
 
-
+.button a{
+    text-decoration: none;
+    color: #ffffff;
+}
 
 .button {
   -moz-border-radius: 2px;

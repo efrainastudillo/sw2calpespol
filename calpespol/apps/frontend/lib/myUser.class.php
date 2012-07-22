@@ -83,12 +83,30 @@ class myUser extends sfBasicSecurityUser
      * @return type Usuario
      */
     public function getUsuario(){
-        return $this->getAttribute('usuario');
-        
+        return $this->getAttribute('usuario');       
     }
     
-    public function getMaterias(){
-        
+    /**
+     * Obtengo el Rol Del Usuario que se ha logeado;
+     * @return type Rolusuario
+     */
+    public function isEstudiante(){
+       $rol= $this->getAttribute("rol");
+       if($rol=="Estudiante"){
+           return true;
+       }
+       elseif($rol=="Profesor" || $rol=="Ayudante"){
+           return false;
+       }
+    }
+    public function setRol($rol){
+        $this->setAttribute("rol",$rol);
+    }
+    /**
+     * Obtener las materias del Usuario 
+     * @return type 
+     */
+    public function getMaterias(){        
         $materias=$this->getAttribute("materias");
         if($materias=="" || is_null($materias)){
             return array('No tiene materias');
@@ -99,13 +117,13 @@ class myUser extends sfBasicSecurityUser
          $usuario = $this->getUserDB();
 
         if($usuario){
-            return $usuario->getNombres()." ".$usuario->getApellidos();
+            return $usuario->getNombre()." ".$usuario->getApellido();
         }
         return $this->getAttribute('usuario') . " <Usuario desconocido>";
     }
 
   /**
-   * Cierra la sesion 
+   * Cierra la sesion elimina los datos de la sesion
    */
   public function logout(){
       $this->getAttributeHolder()->clear();

@@ -22,14 +22,31 @@ background-color:#D3E2C2;}
         }
 #div_menu_sesion_usuario{
         color: white;
-        /*padding-top: 10px;*/
 	height:35px;
 	background-color:#005353;}
 .div_sesion{
     float: right;
     width: 300px;
-    padding: 5px;
+    margin-top:7px;
     height: 25px;
+}
+.div_sesion li{
+    margin: auto;
+    list-style: none;
+    width: 100px;
+}
+.div_sesion ul li{    
+    display: inline;
+}
+.div_sesion ul li img{
+    margin: 0px;
+    padding: 0px;
+}
+.div_sesion ul li a{
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    color: #FFF;
 }
 #div_menu_cabecera{
 	height:110px;

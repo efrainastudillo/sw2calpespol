@@ -20,7 +20,7 @@ class WSHandler {
     public function initAcademico() {
         $this->wsdl = "Services/wsSAAC.asmx?WSDL";
         //$this->client = new SoapClient($this->SERVER.$this->wsdl);
-        $this->client = new SoapClient(sfConfig::get("sf_web_dir") . "/webservices/wsSAAC.wsdl", array());
+        $this->client = new SoapClient("https://www.academico.espol.edu.ec/services/wsSAAC.asmx?WSDL", array());
     }
 
     /**
@@ -43,78 +43,82 @@ class WSHandler {
     //      ignore_user_abort(1);
 
         try{
-            $results = (array) ($this->client->InformacionPlanficacion(array("anio" => $periodo->getAnio(), "termino" => $periodo->getTermino())));
+            $results = (array) ($this->client->InformacionPlanficacion(array("anio" => "2012", "termino" => "1S")));
             $results = (array) ($results['InformacionPlanficacionResult']);            
             $results = $this->cleanWSPlanificacion($results['any']);
 
-            $doc = new DOMDocument('1.0', 'utf-8');
-            $doc->loadXML($results);
-            $elements = $doc->getElementsByTagName("MATERIA_PARALELO");
-
-            echo "\nSe actualizaran ".$elements->length." cursos.\n";
-            sfContext::getInstance()->getLogger()->info("{Planificacion} Se actualizaran ".$elements->length." cursos.");
-            // RECORREMOS LOS CURSOS
-//            ob_start();
-            for ($i = 0; $i < $elements->length; $i++) {
-
-                try{
-                    $node = $elements->item($i);
-
-                    $codigo_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue : "";
-                    $nombre_materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue: "";
-                    $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue: "";
-                    $examen_parcial = $node->getElementsByTagName("EXAMENPARCIAL")->length!=0 ? $node->getElementsByTagName("EXAMENPARCIAL")->item(0)->nodeValue: "";
-                    $examen_final = $node->getElementsByTagName("EXAMENFINAL")->length!=0 ? $node->getElementsByTagName("EXAMENFINAL")->item(0)->nodeValue: "";
-                    $examen_mejoramiento = $node->getElementsByTagName("EXAMENMEJORAMIENTO")->length!=0 ? $node->getElementsByTagName("EXAMENMEJORAMIENTO")->item(0)->nodeValue: "";
-                    $num_creditos = $node->getElementsByTagName("NUMCREDITOS")->length!=0 ? $node->getElementsByTagName("NUMCREDITOS")->item(0)->nodeValue: "";
-                    $cod_unidad = $node->getElementsByTagName("CODUNIDAD")->length!=0 ? $node->getElementsByTagName("CODUNIDAD")->item(0)->nodeValue: "";
-
-                    //departamento
-                    $departamento = new Departamento();
-                    $departamento->setSiglas(trim($cod_unidad));
-                    $departamento->setEliminado(false);
-
-                    //materia
-                    $materia = new Materia();
-                    $materia->setCodigo(trim($codigo_materia));
-                    $materia->setNombre(($nombre_materia));
-                    $materia->setDepartamento($departamento);
-                    $materia->setCreditos(($num_creditos));
-                    $materia->setEliminado(false);
-
-                    //curso (paralelo)
-                    $curso = new Curso();
-                    $curso->setEliminado(false);
-                    $curso->setPeriodo($periodo);
-                    $curso->setParalelo(trim($paralelo));
-                    $curso->setMateria($materia);
-                    
-                    if($examen_parcial) $curso->setExamenParcial($examen_parcial);
-                    if($examen_final) $curso->setExamenFinal($examen_final);
-                    if($examen_mejoramiento) $curso->setExamenMejoramiento($examen_mejoramiento);
-                    
-                    $curso->save();
-                    $curso->free(true);
-
-                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") actualizado! \n";
-//                    $this->flush_buffers();
-                    
-                }catch(Exception $ee){
-                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") error! [".$ee->getMessage()."] \n";
-                    sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error $codigo_materia (".trim($paralelo).")");
-                }           
-
-            }
-
+//            $doc = new DOMDocument('1.0', 'utf-8');
+//            $doc->loadXML($results);
+//            $elements = $doc->getElementsByTagName("MATERIA_PARALELO");
+//
+//            echo "\nSe actualizaran ".$elements->length." cursos.\n";
+//            sfContext::getInstance()->getLogger()->info("{Planificacion} Se actualizaran ".$elements->length." cursos.");
+//            // RECORREMOS LOS CURSOS
+////            ob_start();
+//            for ($i = 0; $i < $elements->length; $i++) {
+//
+//                try{
+//                    $node = $elements->item($i);
+//
+//                    $codigo_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue : "";
+//                    $nombre_materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue: "";
+//                    $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue: "";
+//                    $examen_parcial = $node->getElementsByTagName("EXAMENPARCIAL")->length!=0 ? $node->getElementsByTagName("EXAMENPARCIAL")->item(0)->nodeValue: "";
+//                    $examen_final = $node->getElementsByTagName("EXAMENFINAL")->length!=0 ? $node->getElementsByTagName("EXAMENFINAL")->item(0)->nodeValue: "";
+//                    $examen_mejoramiento = $node->getElementsByTagName("EXAMENMEJORAMIENTO")->length!=0 ? $node->getElementsByTagName("EXAMENMEJORAMIENTO")->item(0)->nodeValue: "";
+//                    $num_creditos = $node->getElementsByTagName("NUMCREDITOS")->length!=0 ? $node->getElementsByTagName("NUMCREDITOS")->item(0)->nodeValue: "";
+//                    $cod_unidad = $node->getElementsByTagName("CODUNIDAD")->length!=0 ? $node->getElementsByTagName("CODUNIDAD")->item(0)->nodeValue: "";
+//
+//                    //departamento
+//                    $departamento = new Departamento();
+//                    $departamento->setSiglas(trim($cod_unidad));
+//                    $departamento->setEliminado(false);
+//
+//                    //materia
+//                    $materia = new Materia();
+//                    $materia->setCodigo(trim($codigo_materia));
+//                    $materia->setNombre(($nombre_materia));
+//                    $materia->setDepartamento($departamento);
+//                    $materia->setCreditos(($num_creditos));
+//                    $materia->setEliminado(false);
+//
+//                    //curso (paralelo)
+//                    $curso = new Curso();
+//                    $curso->setEliminado(false);
+//                    $curso->setPeriodo($periodo);
+//                    $curso->setParalelo(trim($paralelo));
+//                    $curso->setMateria($materia);
+//                    
+//                    if($examen_parcial) $curso->setExamenParcial($examen_parcial);
+//                    if($examen_final) $curso->setExamenFinal($examen_final);
+//                    if($examen_mejoramiento) $curso->setExamenMejoramiento($examen_mejoramiento);
+//                    
+//                    $curso->save();
+//                    $curso->free(true);
+//
+//                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") actualizado! \n";
+////                    $this->flush_buffers();
+//                    
+//                }catch(Exception $ee){
+//                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") error! [".$ee->getMessage()."] \n";
+//                    sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error $codigo_materia (".trim($paralelo).")");
+//                }           
+//
+//            }
+//
+//        }  catch (Exception $e){
+//            sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error general");
+//            echo $e->getMessage();
+//            return false;
+//        }
+//
+////        ob_flush();
+//        sfContext::getInstance()->getLogger()->info("{Planificacion}  ".$periodo->getPeriodoSlug()." exitosa");
+//        return true;
         }  catch (Exception $e){
-            sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error general");
-            echo $e->getMessage();
-            return false;
-        }
 
-//        ob_flush();
-        sfContext::getInstance()->getLogger()->info("{Planificacion}  ".$periodo->getPeriodoSlug()." exitosa");
-        return true;
+        }
+    return $results;
     }
 
     /**

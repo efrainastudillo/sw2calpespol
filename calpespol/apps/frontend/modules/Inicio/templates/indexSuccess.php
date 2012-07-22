@@ -15,6 +15,9 @@
 <?php 
     echo $variable;
     echo $fecha;
+    if($sf_user->isEstudiante()){
+      echo "Estudiante"  ;
+    }else {echo "profesor";}
     ?>
 
  

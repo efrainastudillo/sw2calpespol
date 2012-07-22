@@ -16,11 +16,11 @@
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Inicio</p>    
+            <p>Asistencias</p>    
         </div>
         
         <div class="extra_head_panel">
-            <p> Laboratoroio de Potencia </p>
+            <p> Laboratorio de Potencia </p>
         </div>
     </div>
 

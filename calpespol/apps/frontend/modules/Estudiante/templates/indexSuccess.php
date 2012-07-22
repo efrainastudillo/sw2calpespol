@@ -8,18 +8,24 @@
 
 <?php slot('estudiante-css') ?>
     <?php echo "selected" ?>
-<?php end_slot(); ?>
+<?php end_slot();?>
 
 
 <div class="panel">
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Inicio</p>    
+            <p>Inicio</p>  
+            
         </div>
-
+        
         <div class="extra_head_panel">
             <p> Laboratorio de Potencia </p>
+        </div>
+        <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+           <?php if ($sf_user->hasFlash('mensaje')): ?>
+              <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+            <?php endif ?>
         </div>
     </div>
 
@@ -76,102 +82,7 @@
                         }
                     }
                     ?>
-<!--                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>-->
-                    
-                    
-                    
+                
                 </tbody>
 
 <!--                <tfoot>

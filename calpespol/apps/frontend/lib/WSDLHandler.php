@@ -17,7 +17,13 @@ class WSDLHandler {
      * Inicializa el Servicio Web del WSSAAC
      */
     public function initWSSAACHandler() {
-        $this->client = new SoapClient($this->wsSAAC, array());
+        try {
+             $this->client = new SoapClient($this->wsSAAC, array());
+             return true;
+        } catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            return false;
+        }
     }
 
     /**
@@ -25,8 +31,13 @@ class WSDLHandler {
      * @deprecated 
      */
     public function initDirectorioEspolHandler() {
-        
-        $this->client = new  SoapClient($this->directorioEspol, array());                
+        try {
+            $this->client = new  SoapClient($this->directorioEspol, array()); 
+            return true;
+        } catch (Exception $exc) {
+           // echo $exc->getTraceAsString();
+            return false;
+        }
     }
 
     /**
