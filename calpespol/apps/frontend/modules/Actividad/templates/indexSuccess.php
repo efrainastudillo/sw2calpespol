@@ -34,26 +34,6 @@
                     <?php endforeach; ?>
                 </select>
            </div>
-           <!--div que contiene al comboBox de materias    -->
-           <div>
-               <p> <label class="labelsForm" for="paralelo"> Materia: </label> </p>
-               <select name="materia" size="1" id="materia_selecionada" >
-                    <?php foreach ($m as $mat): ?>
-                    <option>
-                        <?php echo $mat->getNombre(); ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-           </div>
-           <!--div que contiene al comboBox de termino    -->
-           <div>
-               <p> <label class="labelsForm" for="paralelo"> Termino: </label> </p>
-               <select name="termino" size="1" id="termino_seleccionado" >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-           </div>
            <!--div que contiene el boton de Crear nueva actividad    -->
             <div class="boton_new" style="margin: 1em">
                 <a href="#" class="button rounded black" id="new">
@@ -109,6 +89,5 @@
             });
         </script>"
     ?>
-    
     </div>
 </div>

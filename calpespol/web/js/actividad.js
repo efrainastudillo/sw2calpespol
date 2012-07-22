@@ -27,6 +27,14 @@ $(document).ready(function(){
 //                     "<br />");
 //     });
 //   }
+//Esto es JQuery  aqui cojo el tag que div y que contiene el id grabar_actividad eso tb  falleta ba?
+//aa?/es tb faltaba de implementar para q grabe? claro porque el boton esta hecho en css y no sabe que hacer por loque tu debes
+//hacer el submit 
+    $("div#grabar_actividad").click(function(){
+        //alert("funciona");
+        $("#formulario").submit();//en esta linea envia el formulario 
+    });
+    
    $("#materia_select").change(function(){
         jQuery.post('Actividad/prueba', 
         {   query:$("#materia_select option:selected").text()

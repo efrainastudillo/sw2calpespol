@@ -1,6 +1,5 @@
 ## YAML Template.
 ---
-
-stylesheets:    [actividad.css]
-
-javascripts:    [actividad.js]
+newviewSucces:
+  stylesheets:    [modulo/actividad/actividad.css]
+  javascripts:    [js/actividad.js]

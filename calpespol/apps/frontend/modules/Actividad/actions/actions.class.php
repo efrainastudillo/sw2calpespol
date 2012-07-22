@@ -14,41 +14,7 @@ class ActividadActions extends sfActions{
         $this->materia= Doctrine_Core::getTable('Materia')
                 ->createQuery('m')
                 ->execute();
-    }
-    
-    /**
-     * Funcion que ejecuta la Vista Prueba
-     * @param sfWebRequest $request
-     * @return type
-     */
-    public function executePrueba(sfWebRequest $request){
-    //-- Aquí podríamos ejecutar lo necesario para trabajar con la base de datos,
-    //   archivos, arrays, lógica de negocios, etc.
- 
-    $response.= "<?xml version=\"1.0\"?>\n";
-//    $response.= "<response>\n";
-//    $response.= "\t<status>1</status>\n";
-//    //$message['msg'] = htmlspecialchars(stripslashes($message['msg']));
-//    $response.= "\t<opcion>\n";
-//    $response.= "\t\t<author>".$request->getParameter("user")."</author>\n";
-//    $response.= "\t\t<text>Hola Hello World</text>\n";
-//    $response.= "\t</message>\n";	
-//
-//    $response.= "</response>";
-    
-    $response.= "<response>\n";
-    $response.= "\t<status>1</status>\n";
-    //$message['msg'] = htmlspecialchars(stripslashes($message['msg']));
-    $response.= "\t<materia>\n";
-    $response.= "\t\t<nombre>".$request->getParameter("user")."</nombre>\n";
-    $response.= "\t</materia>\n";	
-
-    $response.= "</response>";
-    //$this->getResponse()->setContent($response);
-    return $this->renderText($response);
-    //return sfView::NONE;
-    }
-   
+    } 
     
   public function executeIndex(sfWebRequest $request){
       
@@ -63,28 +29,31 @@ class ActividadActions extends sfActions{
           ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol $this->getUser()->getUserEspol()
           ->andWhere('c.termino =?',$termino)
           ->execute();
-//      $nombre = $this->getUser()->getUserEspol();
-//      return $nombre;
       
     //Me devuelve la lista de las actividades del usuario
     $this->a = Doctrine_Query::create()
             ->select('a.idactividad')
             ->from('Actividad a')
-            ->innerjoin('a.Tipoactividad ta ON a.idactividad = ta.idtipoactividad')
+            ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
             ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+            ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+            ->execute();
+    
+    //Me devuelve la lista de materia del usuario
+    $this->m=Doctrine_Query::create()
+            ->select('m.idmateria')
+            ->from('Materia m')
+            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
             ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andwhere('c.termino=?',$termino)
             ->execute();
-    
-    //Me devuelve la lista de materia
-    $this->m = Doctrine::getTable('Materia')
-            ->createQuery('select *')
-            ->execute();
   }
   
-  public function executeNewView(){
+  public function executeNewView(sfWebRequest $request){
      
       $termino = Utility::getTermino();  
       $this->ta=  Doctrine_Query::create()
@@ -93,45 +62,73 @@ class ActividadActions extends sfActions{
               ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('u.usuario_espol=?','alcacere') //este es el usuario espol
-              ->andWhere('c.termino =?',$termino)
+              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol()) //este es el usuario espol
               ->execute();
   }
   
+  public function executeActividad(sfWebRequest $request){}
+  
+  public function executeProcess(sfWebRequest $request){
+      //Obteniedo parametros del form
+      $this->form = new TipoactividadForm();
+      $tiact = $request->getParameter('tipoactividad');
+      $tireal = $request->getParameter('tiporealizacion');
+      $grade = $request->getParameter('ponderacion');
+      
+      //Obtemiendo datos de la DB
+      $this->c = Doctrine_Query::create()
+              ->select('*')
+              ->from('Curso c')
+              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
+              ->where('m.nombre =?','SW1')
+              ->execute();
+      $this->p = Doctrine_Query::create()
+              ->select('c.paralelo')
+              ->from('Curso c')
+              ->innerjoin ('c.Materia m ON c.id_materia = m.idmateria')
+              ->where('m.nombre=?','SW1')
+              ->execute();
+      
+        //Ingresando los datos a la base
+        $newtipoacti = new Tipoactividad();
+        $newtipoacti ->setNombre($tiact);
+        //Ingresando 0 si es individual o 1 si es grupal
+        if (strcmp($tireal, 'Individual'))
+            $newtipoacti ->setEsGrupal(1);
+        else
+            $newtipoacti ->setEsGrupal(0);
+        $newtipoacti->setCurso($this->c[0]);
+        $newtipoacti ->setValorPonderacion($grade);
+        $newtipoacti->setCurso($this->p[0]);
+        $newtipoacti->save();
+        $this->redirect("Actividad/NewView");
+      
+  }
+ 
 
   public function executeNew(sfWebRequest $request){
+    //Obteniendo parametros del form
     $this->form = new ActividadForm();
-    $tipoactividad = $request->getParameter("tipoactividad");
-    $descrip = $request->getParameter("descripcion");
-    $opcion = $request->getParameter("opcion");
-    if ($option = "Individual")
-        $tipoact->setEsGrupal("0");
-    else
-        $tipoact->setEsGrupal("1");
-    $fecha = $request->getParameter("fecha");
-    $ponde = $request->getParameter("ponderacion");
-    $para = $request->getParameter("paralelo");
-    //Ingresando datos a la tabla actividad
-    $actividad = new Actividad();
-    $actividad->setNombre($descrip);
-    $actividad->setFechaEntrega($fecha);
-    //$actividad->save();
+    $idact = $request->getParameter('tipoactivid');
+    $nombre = $request->getParameter('descripcion');
+    $date = $request->getParameter('fecha');
+    $grade = $request->getParameter('nota');
     
-    //Ingresando datos a la tabla tipo actividad
-    $tipoact = new Tipoactividad();
-    $tipoact->setNombre($tipoactividad);
+    $termino = Utility::getTermino();
+    $this->ta=  Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
+              ->select('*')
+              ->from('Tipoactividad ta')
+              ->where('ta.nombre =?',$idact)
+              ->execute();
     
-    $tipoact->setValorPonderacion($ponde);
-    $c = Doctrine_Query::create()
-                 ->select("*")
-                 ->from("Curso m")
-                 ->where("m.idcurso=?",1)
-                 ->execute();
-    $tipoact->setCurso($c[0]);
-    $tipoact->save();
-    $actividad->setTipoactividad($tipoact);
-    $actividad->save();
-    
+    //Ingresando los datos a la base
+    $newact = new Actividad();
+    $newact ->setNombre($nombre);
+    $newact->setTipoactividad($this->ta[0]);
+    $newact ->setFechaEntrega($date);
+    $newact ->setNota($grade);
+    $newact->save();
+    $this->redirect("Actividad/index");
   }
 
   public function executeCreate(sfWebRequest $request)
