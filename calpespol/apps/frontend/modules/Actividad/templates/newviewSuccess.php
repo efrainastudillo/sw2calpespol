@@ -35,14 +35,11 @@
         </select>
         <br/>
         <label>Descripcion de la actividad: </label>
-        <input type="text" name="descripcion" value="" name="descripcion"/><br/>
+        <input type="text" name="descripcion" value="" /><br/>
         <label> Fecha de entrega: </label>
         <input name="fecha" type="date" id="fecha" /><br/>
         <label> Nota: </label>
         <input type="text" name="nota" value="" /><br/>
-        <label>Ponderacion: </label>
-        <input type="text" name="ponderacion" value="" /><br/>
-        
         <!--Boton que crea la actividad-->
         <div id="grabar_actividad" style="margin-left: 20em; margin-top: 1em">
             <a href="#" class="button rounded black" >
@@ -50,9 +47,10 @@
             </a> 
         </div>
     </form>
-        <div class="boton_new" style="margin: 1em">
-            <a href="#" class="button rounded black" id="new">
-                <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
-            </a> 
-        </div>
+    <div class="boton_new">
+        <a href="Actividad/actividad" class="button rounded black" id="new">
+            <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
+        </a> 
+    </div>
+
 </div>

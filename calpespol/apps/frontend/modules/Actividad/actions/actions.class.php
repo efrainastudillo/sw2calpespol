@@ -34,12 +34,11 @@ class ActividadActions extends sfActions{
     $this->a = Doctrine_Query::create()
             ->select('a.idactividad')
             ->from('Actividad a')
-            ->innerjoin('a.Tipoactividad ta ON a.idactividad = ta.idtipoactividad')
+            ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
             ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
             ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-            ->andwhere('c.termino=?',$termino)
             ->execute();
     
     //Me devuelve la lista de materia del usuario
@@ -64,8 +63,46 @@ class ActividadActions extends sfActions{
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
               ->where('u.usuario_espol=?',$this->getUser()->getUserEspol()) //este es el usuario espol
-              ->andWhere('c.termino =?',$termino)
               ->execute();
+  }
+  
+  public function executeActividad(sfWebRequest $request){}
+  
+  public function executeProcess(sfWebRequest $request){
+      //Obteniedo parametros del form
+      $this->form = new TipoactividadForm();
+      $tiact = $request->getParameter('tipoactividad');
+      $tireal = $request->getParameter('tiporealizacion');
+      $grade = $request->getParameter('ponderacion');
+      
+      //Obtemiendo datos de la DB
+      $this->c = Doctrine_Query::create()
+              ->select('*')
+              ->from('Curso c')
+              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
+              ->where('m.nombre =?','SW1')
+              ->execute();
+      $this->p = Doctrine_Query::create()
+              ->select('c.paralelo')
+              ->from('Curso c')
+              ->innerjoin ('c.Materia m ON c.id_materia = m.idmateria')
+              ->where('m.nombre=?','SW1')
+              ->execute();
+      
+        //Ingresando los datos a la base
+        $newtipoacti = new Tipoactividad();
+        $newtipoacti ->setNombre($tiact);
+        //Ingresando 0 si es individual o 1 si es grupal
+        if (strcmp($tireal, 'Individual'))
+            $newtipoacti ->setEsGrupal(1);
+        else
+            $newtipoacti ->setEsGrupal(0);
+        $newtipoacti->setCurso($this->c[0]);
+        $newtipoacti ->setValorPonderacion($grade);
+        $newtipoacti->setCurso($this->p[0]);
+        $newtipoacti->save();
+        $this->redirect("Actividad/NewView");
+      
   }
  
 
