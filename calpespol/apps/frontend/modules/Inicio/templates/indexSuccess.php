@@ -12,12 +12,17 @@
 <?php end_slot(); ?>
 
 <h1>Authenticacion con Servicio Web</h1>
-<?php 
-    echo $variable;
-    echo $fecha;
-    if($sf_user->isEstudiante()){
-      echo "Estudiante"  ;
-    }else {echo "profesor";}
-    ?>
-
+<form action="<?php echo url_for('Inicio/index') ?>" method="POST">
+  <table>
+    <tr>
+       <?php foreach ($fecha as $f){
+           echo $f->getNombre();
+       }?>
+      <td colspan="2">
+        <input type="submit" />
+        <?php echo link_to('Delete', 'Estudiante/index', array('popup' => array('popupWindow', 'width=600,height=400,left=320,top=0'))) ?>
+      </td>
+    </tr>
+  </table>
+</form>
  

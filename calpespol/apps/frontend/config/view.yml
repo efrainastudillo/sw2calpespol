@@ -6,9 +6,9 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
+    title:        ::.Calpespol
+    description:  symfony project
+    keywords:     Espol,Laboratorio de Potencia,Fiec
     #language:     en
     #robots:       index, follow
 

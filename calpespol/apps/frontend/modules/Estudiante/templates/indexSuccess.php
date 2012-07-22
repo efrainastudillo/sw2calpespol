@@ -10,6 +10,8 @@
     <?php echo "selected" ?>
 <?php end_slot();?>
 
+<?php include_stylesheets() ?>
+<?php include_javascripts() ?>
 
 <div class="panel">
     <div class="head_panel">
@@ -35,11 +37,6 @@
             <p> Consulta de Estudiantes </p>
         </div>
         
-        <div class="boton_new">
-            <a href="#" class="button rounded black" id="new">
-                <img src="../images/new.png" width="15" height="15" /> Eliminar
-            </a>
-        </div>
         <div class="boton_new">
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
                 <img src="../images/new.png" width="15" height="15" /> Nuevo Estudiante
@@ -71,12 +68,10 @@
                                 echo "<td>".$est->getMail()."</td>";
                                 echo "<td>".$est->getUsuarioEspol()."</td>";
                                 echo "<td>";
-                                echo "<a href='Estudiante/delete?id=".$est->getIdUsuario()."'>";
-                                echo image_tag('/images/delete.png', 'size=18x18');
-                                echo "</a>";
-                                echo "<a href='Estudiante/edit?id=".$est->getIdUsuario()."'>";
-                                echo image_tag('/images/edit.png', 'size=18x18');
-                                echo "</a>";
+                                echo link_to(image_tag('/images/delete.png', 'size=18x18'), 'Estudiante/delete?id='.
+                                        $est->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?'));              
+                                echo link_to(image_tag('/images/edit.png', 'size=18x18'), 'Estudiante/edit?id='.
+                                        $est->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?'));
                                 echo "</td>";
                             echo "</tr>";
                         }

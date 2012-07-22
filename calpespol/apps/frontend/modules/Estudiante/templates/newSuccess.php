@@ -1,5 +1,5 @@
 <?php slot('logo') ?>
-    <?php echo image_tag('/images/estudiantes.png', 'alt_title=Estudiantes') ?>
+    <?php echo image_tag('/images/estudiantes.png', array('alt_title'=>'Estudiantes','class'=>'hola')) ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
     <?php echo "Estudiantes" ?>
@@ -8,60 +8,90 @@
 <?php slot('estudiante-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_stylesheet('estilo.css') ?>
-<?php use_stylesheet('estudiante/estudiante.css') ?>
-<?php use_javascript('estudiante.js') ?>
 
-<div class="panel">    
-    <!--Barra informativo de la categoria de actividad: nombre, tipo de actividad y tipo de categoria    -->
-    <div id="info">
-            <!--nombre de categoria de actividad      -->
-            <div id="contenido_izq">
-                Agregar Estudiante
-            </div>
+<?php include_stylesheets() ?>
+<?php include_javascripts() ?>
+
+<div class="panel">
+    <div class="head_panel">
+        
+        <div class="titulo_head_panel">
+            <p>Actualización de Estudiante</p>            
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php $materia=$sf_user->getMaterias();
+                   echo "<p>".$materia[0]->getNombre()."</p>"; ?>
+              
+        </div>
+        <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+           <?php if ($sf_user->hasFlash('mensaje')): ?>
+              <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+            <?php endif ?>
+        </div>
     </div>
-    <div id="contenedor_tabla" class="contenedor_tabla">
-        <form method="POST" action="process" >
-        <div id="prueba"></div>
-         <table>
-            <tbody>
+
+    <div class="body_panel">
+        
+        <div class="titulo_body_panel">
+            <p>  </p>
+        </div>
+        
+        <div id="regresar_lista" class="boton_new">
+            <a href="<?php echo url_for("Estudiante/index")?>" class="button rounded black" >
+                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Estudiantes
+            </a>
+        </div>
+        <div>
+            <form id="form_edit_estudiante" action="<?php echo url_for('Estudiante/create') ?>" method="POST">
+              <table>
+                  <tr style="display: none">
+                      <th>Id:</th>
+                      <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
+                  </tr>
+                  <tr>
+                      <th>Nombres:</th>
+                      <td><input id="nombres" name="nombres" type="text" placeholder="Nombres" value=""/></td>
+                      <td><span id="req-nombres" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Apellidos:</th>
+                      <td><input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" value=""/></td>
+                      <td><span id="req-apellidos" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Usuario de Espol:</th>
+                      <td><input id="user_espol" name="userespol" type="text" placeholder="Usuario de Espol" value=""/></td>
+                      <td><span id="req-user_espol" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Correo:</th>
+                      <td><input id="correo" name="correo" type="text" placeholder="Correo" value=""/></td>
+                      <td><span id="req-correo" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Matrícula:</th>
+                      <td><input id="matricula" name="matricula" type="text" maxlength="9" placeholder="Matricula" value=""/></td>
+                      <td><span id="req-matricula" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Cédula:</th>
+                      <td><input id="cedula" name="cedula" type="text" maxlength="10" placeholder="Cedula" value=""/></td>
+                      <td><span id="req-cedula" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
                 <tr>
-                <th> <label for="idUsuario">Usuario Espol:</label></th>
-                <td>
-                    <input name="idUsuario" type="text" id="idUsuario" />
-                   
-                </td>
-                <td>
-                    <span id="req-iduser" class="requisites"></span>
-                </td>
-              </tr>
-              <tr>
-                <th> <label for="nombre">Nombres:</label></th>
-                <td>
-                    <input name="nombre" type="text" id="nombre" />                    
-                </td>
-                <td >
-                    <span id="req-username" class="requisites">Tiene deshabilitado Javascript</span>
-                </td>
-              </tr>
-              <tr>
-                <th><label  for="email">E-Mail:</label></th>
-                <td>
-                    <input name="email" type="text" id="email" />                    
-                </td>
-                <td>
-                    <span id="req-email" class="requisites">Tiene deshabilitado Javascript</span>
-                </td>
-              </tr>              
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="3">
-                    <input id="grabarEstudiante" type="button" value="Grabar" />
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </form>
-    </div>
+                  <td colspan="2">
+                    <div id="update_user" class="boton_new">
+                        <a href="#" class="button rounded black" >
+                            <img src="../images/new.png" width="15" height="15" /> Grabar
+                        </a>
+                    </div>
+
+                  </td>
+                </tr>
+              </table>
+            </form>
+        </div>
+    </div> 
 </div>
+    

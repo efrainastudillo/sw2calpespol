@@ -13,6 +13,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property string $apellido
  * @property string $mail
  * @property string $matricula
+ * @property string $cedula
  * @property Doctrine_Collection $UsuarioCurso
  * 
  * @method integer             getIdusuario()     Returns the current record's "idusuario" value
@@ -21,6 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method string              getApellido()      Returns the current record's "apellido" value
  * @method string              getMail()          Returns the current record's "mail" value
  * @method string              getMatricula()     Returns the current record's "matricula" value
+ * @method string              getCedula()        Returns the current record's "cedula" value
  * @method Doctrine_Collection getUsuarioCurso()  Returns the current record's "UsuarioCurso" collection
  * @method Usuario             setIdusuario()     Sets the current record's "idusuario" value
  * @method Usuario             setUsuarioEspol()  Sets the current record's "usuario_espol" value
@@ -28,6 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method Usuario             setApellido()      Sets the current record's "apellido" value
  * @method Usuario             setMail()          Sets the current record's "mail" value
  * @method Usuario             setMatricula()     Sets the current record's "matricula" value
+ * @method Usuario             setCedula()        Sets the current record's "cedula" value
  * @method Usuario             setUsuarioCurso()  Sets the current record's "UsuarioCurso" collection
  * 
  * @package    CALPESPOL
@@ -86,8 +89,13 @@ abstract class BaseUsuario extends sfDoctrineRecord
              ));
         $this->hasColumn('matricula', 'string', 45, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 45,
+             ));
+        $this->hasColumn('cedula', 'string', 45, array(
+             'type' => 'string',
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
