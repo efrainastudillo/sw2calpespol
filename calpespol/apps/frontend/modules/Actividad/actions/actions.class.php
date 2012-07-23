@@ -62,7 +62,7 @@ class ActividadActions extends sfActions{
               ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol()) //este es el usuario espol
+              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
               ->execute();
   }
   

@@ -25,16 +25,17 @@
     <!--Body para crear una actividad    -->
     <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="process">
         <label>Nombre del tipo actividad: </label>
-        <input type="text" name="tipoactividad" value=""/><br/>
+        <input type="text" name="tipoactividad" value="" style="margin-left: 3.1em" /><br/>
         <label>Tipo de Realizacion: </label>
-        <select name="tiporealizacion" size="1" id="tipo_reali">
+        <select name="tiporealizacion" size="1" id="tipo_reali" style="margin-left: 6em">
             <option>Individual</option>
             <option>Grupal</option>
         </select><br/>
+        
         <label>Ponderacion: </label>
-        <input type="text" name="ponderacion" value=""/><br/>
+        <input type="text" name="ponderacion" value="" style="margin-left: 9.7em"/><br/>
         <!--Boton que crea el tipo actividad-->
-        <div id="grabar_actividad" style="margin-left: 20em; margin-top: 1em">
+        <div id="grabar_actividad" style="margin-left: 20em; margin-top: 1.5em; margin-left: 10em">
             <a href="#" class="button rounded black" >
                 <img src="../images/new.png" width="15" height="15" /> Crear tipo actividad
             </a> 

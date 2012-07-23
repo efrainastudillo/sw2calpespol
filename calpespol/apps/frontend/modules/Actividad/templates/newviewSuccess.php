@@ -26,7 +26,7 @@
     <!--Body para crear una actividad    -->
     <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="new">
         <label>Tipo de Actividad: </label>
-        <select name="tipoactivid" size="1" id="tipo_acti" >
+        <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5em">
             <?php foreach ($ta as $tipoact): ?>
                 <option>
                     <?php echo $tipoact->getNombre(); ?>
@@ -37,20 +37,19 @@
         <label>Descripcion de la actividad: </label>
         <input type="text" name="descripcion" value="" /><br/>
         <label> Fecha de entrega: </label>
-        <input name="fecha" type="date" id="fecha" /><br/>
+        <input name="fecha" type="date" id="fecha" style="margin-left: 4.7em"/><br/>
         <label> Nota: </label>
-        <input type="text" name="nota" value="" /><br/>
+        <input type="text" name="nota" value="" style="margin-left: 11.7em"/><br/>
         <!--Boton que crea la actividad-->
-        <div id="grabar_actividad" style="margin-left: 20em; margin-top: 1em">
+        <div id="grabar_actividad" style="margin-left: 15em; margin-top: 1em">
             <a href="#" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Crear
+                <img src="../images/new.png" width="15" height="15" /> Crear Actividad
+            </a> 
+        </div>
+        <div class="boton_new">
+            <a href="Actividad/actividad" class="button rounded black" id="new" style="margin-top: -3.5em; margin-left: -30em">
+                <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
             </a> 
         </div>
     </form>
-    <div class="boton_new">
-        <a href="Actividad/actividad" class="button rounded black" id="new">
-            <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
-        </a> 
-    </div>
-
 </div>
