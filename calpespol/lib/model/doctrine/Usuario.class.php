@@ -7,10 +7,41 @@
  * 
  * @package    CALPESPOL
  * @subpackage model
- * @author     Your name here
+ * @author     Efrain Astudillo
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Usuario extends BaseUsuario
 {
+    /**
+     * Pregunta si el usuario existe en la base de datos dada la matricula
+     * @param type $matricula
+     * @return type Boolean  True si existe y si no False
+     */
+    public static function existeUsuario($matricula){
+        $user=Doctrine_Query::create()
+        ->select("*")
+        ->from('Usuario u')
+        ->where("u.matricula=?",$matricula)
+        ->execute();
+        
+        if($user->count()==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+     *  Obtiene el Usuario por la matricula
+     * @param type $matricula
+     * @return type Usuario
+     */
+    public static function getUsuarioByMatricula($matricula){
+        $user = Doctrine_Query::create()
+        ->select("*")
+        ->from('Usuario u')
+        ->where("u.matricula=?",$matricula)
+        ->fetchOne();
+        return $user;
+    }
 
 }

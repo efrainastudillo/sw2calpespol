@@ -37,6 +37,7 @@
                     <?php endforeach; ?>
                 </select>
            </div>
+            
            <!--div que contiene al comboBox de materias    -->
            <div class="item_2">
                <p> <label class="labelsForm" for="paralelo"> Materia: </label> </p>
@@ -59,6 +60,18 @@
            </div> 
            
         </div>
+           <!--div que contiene el boton de Crear nueva actividad    -->
+            <div class="boton_new" style="margin: 1em">
+                <a href="#" class="button rounded black" id="new">
+                    <img src="../images/new.png" width="15" height="15" /> Consultar
+                </a> 
+            </div>
+            <!--div que contiene el boton de Crear nueva actividad    -->
+            <div class="boton_new" style="margin: 1em">
+                <a href="Actividad/NewView" class="button rounded black" id="new">
+                    <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
+                </a> 
+            </div>
         
         <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
@@ -144,6 +157,7 @@
 
         <?php endforeach;?>     
 
+
         <?php echo 
             "<script>
                 jQuery(document).ready(function($)
@@ -153,5 +167,6 @@
                 });
             </script>"
         ?>
+
     </div>
 </div>

@@ -458,8 +458,11 @@ Usuario:
       autoincrement: false
     matricula:
       type: string(45)
-      fixed: false
-      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    cedula:
+      type: string(45)
       primary: false
       notnull: false
       autoincrement: false

@@ -107,21 +107,23 @@ class myUser extends sfBasicSecurityUser
      * @return type 
      */
     public function getMaterias(){        
-        $materias=$this->getAttribute("materias");
-        if($materias=="" || is_null($materias)){
-            return array('No tiene materias');
-        }
-        else{
-            
-        }
-         $usuario = $this->getUserDB();
-
-        if($usuario){
-            return $usuario->getNombre()." ".$usuario->getApellido();
-        }
-        return $this->getAttribute('usuario') . " <Usuario desconocido>";
+        $materias= Doctrine_Query::create()
+            ->select('m.*')
+            ->from('Materia m')
+            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
+            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+            ->innerjoin('uc.Usuario u ON u.idusuario = uc.id_usuario')            
+            ->where('u.usuario_espol=?',  $this->getUserEspol())
+            ->execute();
+        return $materias;
     }
-
+    public function getMateriaActual(){
+        return $this->getAttribute("materia");
+    }
+    
+    public function setMateriaActual($materia){
+        $this->setAttribute("materia",$materia);
+    }
   /**
    * Cierra la sesion elimina los datos de la sesion
    */

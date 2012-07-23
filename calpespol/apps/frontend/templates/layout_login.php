@@ -4,7 +4,7 @@
         <?php include_http_metas() ?>
         <?php include_metas() ?>
         <?php include_title() ?>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <?php echo stylesheet_tag('favicon.png',array('type'=>'image/png','rel'=>'shortcut icon')) ?>
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
     </head>
