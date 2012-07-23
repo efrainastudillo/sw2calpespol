@@ -51,6 +51,15 @@ class ActividadActions extends sfActions{
             ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andwhere('c.termino=?',$termino)
             ->execute();
+    
+//    $this->l = Doctrine_Query::create()
+//        ->select('l.id_actividad')        
+//        ->from('Literal l')
+//        ->innerjoin('l.Actividad a ON l.id_actividad = a.idactividad')
+//        ->where('a.idactividad=?',10)      
+//        ->execute();
+//    $this->l = Literal::getLiteralesXActividad(20);
+    
   }
   
   public function executeNewView(sfWebRequest $request){
@@ -178,5 +187,16 @@ class ActividadActions extends sfActions{
 
       $this->redirect('Actividad/edit?id='.$actividad->getId());
     }
+  }
+  
+    /* LITERALES */ 
+  public function executeNewLiteral(sfWebRequest $request){     
+  }
+  
+  public function executeSaveLiteral(sfWebRequest $request)
+  {
+      $item = new Literal();
+      $item -> grabarEstudiante($request);
+      $this -> redirect('Actividad/index');
   }
 }

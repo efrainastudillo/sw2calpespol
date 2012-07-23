@@ -23,13 +23,6 @@ Actividad:
       primary: false
       notnull: true
       autoincrement: false
-    nota:
-      type: integer
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     id_tipo_actividad:
       type: integer(4)
       fixed: false
@@ -465,8 +458,11 @@ Usuario:
       autoincrement: false
     matricula:
       type: string(45)
-      fixed: false
-      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    cedula:
+      type: string(45)
       primary: false
       notnull: false
       autoincrement: false

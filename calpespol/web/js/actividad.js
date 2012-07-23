@@ -28,6 +28,12 @@ $(document).ready(function(){
 //     });
 //   }
 
+<<<<<<< HEAD
+=======
+//Esto es JQuery  aqui cojo el tag que div y que contiene el id grabar_actividad eso tb  falleta ba?
+//aa?/es tb faltaba de implementar para q grabe? claro porque el boton esta hecho en css y no sabe que hacer por loque tu debes
+//hacer el submit 
+>>>>>>> 56b4fa32bc2d430504c1f957e35f99ec1b6dcb87
     $("div#grabar_actividad").click(function(){
         //alert("funciona");
         $("#formulario").submit();//en esta linea envia el formulario 
@@ -35,7 +41,7 @@ $(document).ready(function(){
     
    $("#materia_select").change(function(){
         jQuery.post('Actividad/prueba', 
-        {   query:$("#materia_select option:selected").text()
+        {query:$("#materia_select option:selected").text()
         }, function(xml){
             //$("#prueba").empty();
             addMaterias(xml);
@@ -53,4 +59,20 @@ $(document).ready(function(){
                              "<br />");
      });
    }
+   
+   /////////////////LITERALES
+   
+    $(".flecha_literal").on("click", function() {
+        //mostrar los literales de la actividad clickeada
+        if($(this).attr("src")=="../images/arrow-right-3.png"){
+            $(".flecha_literal").attr("src","../images/arrow-right-3.png");
+            $(this).attr("src","../images/arrow-down-3.png");
+            $(".tabla_literal").css("visibility","visible");
+            $(".tabla_literal").css("display","block");
+            
+        }else{
+            $(this).attr("src","../images/arrow-right-3.png");
+            $(".tabla_literal").slideUp();
+        }  
+    });
 });

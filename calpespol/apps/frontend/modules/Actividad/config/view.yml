@@ -1,5 +1,14 @@
 ## YAML Template.
----
-newviewSucces:
+newLiteralSuccess:
+  
+  has_layout:     true
+  layout:         layout_popup
+
+indexSuccess:
+ 
+  stylesheets:    [modulo/actividad/actividad.css]
+  javascripts:    [actividad.js]
+
+newViewSucces:
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [js/actividad.js]

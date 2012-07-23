@@ -23,10 +23,10 @@ table td{
     
 }
 
-#req-username, #req-email, #req-iduser{
+#req-user_espol, #req-nombres, #req-apellidos,#req-cedula,#req-matricula,#req-correo{
     color: red;
     visibility: hidden;
-    font-size: 8px;
+    font-size: 11px;
 }
 table td a{
     color: black;

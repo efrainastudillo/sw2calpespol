@@ -10,18 +10,19 @@
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_title() ?>
-    <link rel="shortcut icon" href="/eimages/estudiantes.png" type='image/png'/>
+    <?php echo stylesheet_tag('favicon.png',array('type'=>'image/png','rel'=>'shortcut icon')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
   <body>
+      <?php $materias = $sf_user->getMaterias();?>
       <div id="div_contenedor_todo">
     	<div id="div_menu_sesion_usuario">
             <div id="div_menu_sesion_usuario_centrado">
                 <div class="div_sesion" style="text-align: right">
                     <ul>
                         <li>
-                            <img src='../images/user2.png' width="23px" height="23px" align="top" />
+                            <?php echo image_tag('/images/user2.png', array('alt_title'=>'User','class'=>'UserImage','align'=>'top','size'=>'23x23')) ?>                           
                         </li>                        
                         <li>
                             <a href="#">
@@ -29,7 +30,7 @@
                             </a>
                         </li>
                         <li>
-                            <img src='../images/salir.png' width="23px" height="23px" align="top"/>
+                            <?php echo image_tag('/images/salir.png', array('alt_title'=>'Salir','class'=>'Salir','align'=>'top','size'=>'23x23')) ?>
                         </li>
                         <li>
                             <a href="<?php echo url_for("Inicio/logout") ?>" > 
@@ -39,12 +40,22 @@
                     </ul>
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/change">
-                        <label for="usuario" >Materia:</label>                        
+                    <form id="form_materias" method="POST" action="<?php echo url_for("Inicio/materia");?>">
+                        <label for="usuario" >Materia:</label>                    
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
-                          <option>Laboratorio de Potencia 1</option>
-                          <option>Laboratorio de Potencia 2</option>
-                          <option>Maquinarias</option>
+                            <?php
+                            if(isset ($materias)){
+                                $i=0;
+                                foreach ($materias as $value) {
+                                    if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
+                                        echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    }else{
+                                        echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    }
+                                }                            
+                            }?>
+                            <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
+                            <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                         </select>
                     </form>
                 </div>
@@ -88,7 +99,7 @@
                             <p><a href="#">Materias</a></p>
                         </li>
                         <li class="<?php if (!include_slot('ayudantia-css')): ?>deselected<?php endif; ?>" name="grupos">
-                            <p><a href="#">Grupos</a></p>
+                            <p><a href="<?php echo url_for('Grupo/index') ?>">Grupos</a></p>
                         </li>
                         <li class="<?php if (!include_slot('estudiante-css')): ?>deselected<?php endif; ?>" name="estudiantes">
                             <p><a href="<?php echo url_for('Estudiante/index') ?>">Estudiantes</a></p>

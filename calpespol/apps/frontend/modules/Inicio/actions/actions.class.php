@@ -5,7 +5,7 @@
  *
  * @package    CALPESPOL
  * @subpackage Inicio
- * @author     Your name here
+ * @author     Efrain Astudillo
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class InicioActions extends sfActions
@@ -17,24 +17,55 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      $handler = new WSHandler();
-      $handler->initAcademico();
-     // $this->variable=$handler->cargarPlanificacion("null", 2012);
+//      $handler = new WSDLHandler();
+//      $handler->initWSSAACHandler();
+      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
 //      $primera=date("13/01/2013");
-      $this->fecha=  Utility::getTermino();
+      $this->fecha=  Doctrine_Query::create()
+            ->select('m.*')
+            ->from('Materia m')
+            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
+            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+            ->innerjoin('uc.Usuario u ON u.idusuario = uc.id_usuario')            
+            ->where('u.usuario_espol=?',"gianvall")
+            ->execute();
+     // $this->processForm($request, $this->fecha);
 //      $segunda="18/10/2012";
 //      $tercera="14/01/2013";
 //        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
 //        if($result){
-            $this->variable="Esta en el rango";
-//        }  
+           // $this->variable=$request->getOptions();
+            //$this->getUser()->setMateriaActual($this->variable);
+            
+//            $modulo=sfContext::getInstance()->getModuleName();
+//      $action=sfContext::getInstance()->getActionName();
+      //$materia=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      //$this->getUser()->setMateriaActual($materia);
+//      $this->redirect($modulo."/".$action);
 //        else if(!$result){
 //             $this->variable="NO Esta en el rango";
 //        }
 //        else{
 //            $this->variable="ERROR";
 //        }
+            
   }
+  
+  /**
+   * 
+   * @param sfWebRequest $request 
+   */
+  public function executeMateria(sfWebRequest $request){
+      $this->variable=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      $this->getUser()->setMateriaActual($this->variable);
+      
+      $modulo=$_POST['modulo'];
+      $action=$_POST['accion'];
+      //$materia=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      //$this->getUser()->setMateriaActual($materia);
+      $this->redirect($modulo."/".$action);
+  }
+  
   /**
    * Vista para hacer Login con el Usuario de la espol
    * @param sfWebRequest $request 
@@ -69,7 +100,8 @@ class InicioActions extends sfActions
       $this->getUser()->logout();
       $this->redirect("Inicio/login");
   }
-  /**
+  
+   /**
    * El usuario se autentica con el Usuario y password de la Espol si lo logra,
    * lo siguiente que se preguntara es si esta registado en alguna materia de la Espol,
    * Si lo esta lo proximo que se pregunta es SI se encuentra en la base de datos del 
@@ -85,7 +117,7 @@ class InicioActions extends sfActions
         $estado=false;
         //$handler->initDirectorioEspolHandler();
         if(!$handler->initDirectorioEspolHandler()){
-            return false;        
+            return false;
         }
         $handler2 = new WSDLHandler();
         if(!$handler2->initWSSAACHandler()){
@@ -120,42 +152,41 @@ class InicioActions extends sfActions
                     continue;
                 }else{
                     //agrego todos los datos correspondientes                    
-                    $u=  Utility::getUsuario($userEspol);
+                    //$u=  Utility::getUsuario($userEspol);
                     //significa que el usuario no se encuentra registrado en la base
                     //pero tiene todos los requisitos de estarlo
-                    if( $u->count()==0){
-                        $u[0]=new Usuario();
-                        $u[0]->setNombre($nombres);
-                        $u[0]->setApellido($apellidos);
-                        $u[0]->setMail($mail);
-                        $u[0]->setUsuarioEspol($userEspol);
-                        $u[0]->setMatricula($matricula);
-                        $u[0]->save();
-                        $termino=Utility::getTermino();
-                        $anio=  Utility::getAnio();
-                        $curso=new Curso();
-                        $curso->setAnio($anio);
-                        $curso->setParalelo($paralelo);
-                        $curso->setTermino($termino);
-                        $curso->setMateria($temp_materia[0]);
-                        $curso->save();
-                        $r=new UsuarioCurso();
-                        $rol=Rolusuario::getRolUsuario("Estudiante");
-                        $r->setRolusuario($rol);
-                        $this->getUser()->setRol($rol->getNombre());
-                        $r->setCurso($curso);
-                        $r->setUsuario($u[0]);
-                        $r->save();
-                    }else{
-                        //no hago nada
-                    }  
-                    $estado= true;
+//                    if( $u->count()==0){
+//                        $u[0]=new Usuario();
+//                        $u[0]->setNombre($nombres);
+//                        $u[0]->setApellido($apellidos);
+//                        $u[0]->setMail($mail);
+//                        $u[0]->setUsuarioEspol($userEspol);
+//                        $u[0]->setMatricula($matricula);
+//                        $u[0]->save();
+//                     }else{
+//                         //
+//                        $termino=Utility::getTermino();
+//                        $anio=  Utility::getAnio();
+//                        $curso=new Curso();
+//                        $curso->setAnio($anio);
+//                        $curso->setParalelo($paralelo);
+//                        $curso->setTermino($termino);
+//                        $curso->setMateria($temp_materia[0]);
+//                        $curso->save();
+//                        $r=new UsuarioCurso();
+//                        $rol=Rolusuario::getRolUsuario("Estudiante");
+//                        $r->setRolusuario($rol);
+//                        $this->getUser()->setRol($rol->getNombre());
+//                        $r->setCurso($curso);
+//                        $r->setUsuario($u[0]);
+//                        $r->save();                     
+//                    }  
+                    return true;
                 }
                 
             }
-            if(!$estado)
-                $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero no se encuentra Registrado en alguna Materia del Sistema');
-            return $estado;
+            $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero NO se encuentra Registrado en alguna Materia del Sistema');
+            return false;
             
         } else {
             $this->getUser()->setFlash('notice', 'Usuario o Contrasenia son Inválidas');
