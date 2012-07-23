@@ -50,16 +50,7 @@ class ActividadActions extends sfActions{
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
             ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andwhere('c.termino=?',$termino)
-            ->execute();
-    
-//    $this->l = Doctrine_Query::create()
-//        ->select('l.id_actividad')        
-//        ->from('Literal l')
-//        ->innerjoin('l.Actividad a ON l.id_actividad = a.idactividad')
-//        ->where('a.idactividad=?',10)      
-//        ->execute();
-//    $this->l = Literal::getLiteralesXActividad(20);
-    
+            ->execute();    
   }
   
   public function executeNewView(sfWebRequest $request){
