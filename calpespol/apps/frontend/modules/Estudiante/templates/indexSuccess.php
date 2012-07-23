@@ -22,7 +22,7 @@
         </div>
         
         <div class="extra_head_panel">
-            <p> Laboratorio de Potencia </p>
+            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
         <div style="margin-right:200px;color: red;"  class="extra_head_panel">
            <?php if ($sf_user->hasFlash('mensaje')): ?>

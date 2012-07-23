@@ -117,7 +117,13 @@ class myUser extends sfBasicSecurityUser
             ->execute();
         return $materias;
     }
-
+    public function getMateriaActual(){
+        return $this->getAttribute("materia");
+    }
+    
+    public function setMateriaActual($materia){
+        $this->setAttribute("materia",$materia);
+    }
   /**
    * Cierra la sesion elimina los datos de la sesion
    */

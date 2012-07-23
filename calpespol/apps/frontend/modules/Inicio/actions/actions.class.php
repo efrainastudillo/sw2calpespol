@@ -17,8 +17,8 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      $handler = new WSDLHandler();
-      $handler->initWSSAACHandler();
+//      $handler = new WSDLHandler();
+//      $handler->initWSSAACHandler();
       //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
 //      $primera=date("13/01/2013");
       $this->fecha=  Doctrine_Query::create()
@@ -34,14 +34,36 @@ class InicioActions extends sfActions
 //      $tercera="14/01/2013";
 //        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
 //        if($result){
-            $this->variable="Esta en el rango";
-//        }  
+           // $this->variable=$request->getOptions();
+            //$this->getUser()->setMateriaActual($this->variable);
+            
+//            $modulo=sfContext::getInstance()->getModuleName();
+//      $action=sfContext::getInstance()->getActionName();
+      //$materia=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      //$this->getUser()->setMateriaActual($materia);
+//      $this->redirect($modulo."/".$action);
 //        else if(!$result){
 //             $this->variable="NO Esta en el rango";
 //        }
 //        else{
 //            $this->variable="ERROR";
 //        }
+            
+  }
+  
+  /**
+   * 
+   * @param sfWebRequest $request 
+   */
+  public function executeMateria(sfWebRequest $request){
+      $this->variable=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      $this->getUser()->setMateriaActual($this->variable);
+      
+      $modulo=$_POST['modulo'];
+      $action=$_POST['accion'];
+      //$materia=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
+      //$this->getUser()->setMateriaActual($materia);
+      $this->redirect($modulo."/".$action);
   }
   
   /**
@@ -77,17 +99,6 @@ class InicioActions extends sfActions
   public function executeLogout(sfWebRequest $request){
       $this->getUser()->logout();
       $this->redirect("Inicio/login");
-  }
- 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()));
-    if ($form->isValid())
-    {
-      //$actividad = $form->save();
-
-      //$this->redirect('Actividad/edit?id='.$actividad->getId());
-    }
   }
   
    /**

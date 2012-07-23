@@ -40,15 +40,22 @@
                     </ul>
                 </div>
                 <div class="div_sesion">
-                    <form method="POST" action="Inicio/change">
-                        <label for="usuario" >Materia:</label>                       
+                    <form id="form_materias" method="POST" action="<?php echo url_for("Inicio/materia");?>">
+                        <label for="usuario" >Materia:</label>                    
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
                             <?php
                             if(isset ($materias)){
+                                $i=0;
                                 foreach ($materias as $value) {
-                                    echo "<option>".$value->getNombre()."</option>";                                
+                                    if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
+                                        echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    }else{
+                                        echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    }
                                 }                            
                             }?>
+                            <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
+                            <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                         </select>
                     </form>
                 </div>

@@ -20,8 +20,7 @@
         </div>
         
         <div class="extra_head_panel">
-            <?php $materia=$sf_user->getMaterias();
-                   echo "<p>".$materia[0]->getNombre()."</p>"; ?>
+            <?php  echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
               
         </div>
         <div style="margin-right:200px;color: red;"  class="extra_head_panel">

@@ -17,6 +17,10 @@
     <tr>
        <?php foreach ($fecha as $f){
            echo $f->getNombre();
+           echo $sf_context->getModuleName();
+           echo $sf_context->getActionName();
+           //echo $variable;
+           echo $sf_user->getMateriaActual();
        }?>
       <td colspan="2">
         <input type="submit" />
