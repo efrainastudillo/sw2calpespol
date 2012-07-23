@@ -12,5 +12,10 @@
  */
 class Usuario extends BaseUsuario
 {
-
+    public static function getUsuarios()
+    {
+        $u = Doctrine_Query::create()
+        ->from('usuario u');
+        return $u->execute();
+    }
 }

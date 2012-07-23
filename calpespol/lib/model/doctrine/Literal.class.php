@@ -12,10 +12,22 @@
  */
 class Literal extends BaseLiteral
 {
-    public static function getLiterales()
+//    public static function getLiterales()
+//    {
+//        $q = Doctrine_Query::create()
+//        ->from('Literal l');
+//        return $q->execute();
+//    }
+    
+    
+        public static function getLiterales()
     {
         $q = Doctrine_Query::create()
-        ->from('Literal l');
-        return $q->execute();
+        ->select('*')   
+        ->from('literal l')
+        ->where('l.id_actividad=?', '2');
+        return $q->execute();  
     }
+    
+    
 }
