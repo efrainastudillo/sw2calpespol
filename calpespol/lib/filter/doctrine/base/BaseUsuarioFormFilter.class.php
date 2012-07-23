@@ -18,6 +18,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'apellido'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mail'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'matricula'     => new sfWidgetFormFilterInput(),
+      'cedula'        => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +27,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'apellido'      => new sfValidatorPass(array('required' => false)),
       'mail'          => new sfValidatorPass(array('required' => false)),
       'matricula'     => new sfValidatorPass(array('required' => false)),
+      'cedula'        => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('usuario_filters[%s]');
@@ -51,6 +53,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'apellido'      => 'Text',
       'mail'          => 'Text',
       'matricula'     => 'Text',
+      'cedula'        => 'Text',
     );
   }
 }

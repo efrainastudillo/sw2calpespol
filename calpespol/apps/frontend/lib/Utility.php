@@ -115,6 +115,12 @@
 //         }
         return $materia;
      }
+     
+     /**
+      * Obtengo el Anio que representa el presente Termino.
+      * Internamente coge la fecha actual del Sistema y valida para retornar el anio.
+      * @return String  Anio de tipo String
+      */
      public static function getAnio(){
          $fecha_actual=date("d/m/Y");
          $anio=date("Y");
@@ -134,9 +140,11 @@
              return $anio;
          }
      }
+     
      /**
-      *
-      * @return type 
+      * Obtiene el Termino actual de acuerdo a la fecha actual del Sistema y los 
+      * rangos de Fechas a las que consta cada Semestre en la Espol.
+      * @return Integer 
       */
      public static function getTermino(){
          $fecha_actual=date("d/m/Y");
@@ -166,8 +174,8 @@
          }
      }
      /**
-      * 
-      * @param type $termino 
+      * Obtiene el parcial dado el termino 
+      * @param Integer $termino dado el termino que parcial le corresponde
       */
      public static function getParcial($termino){
          if($termino==1){
@@ -179,9 +187,9 @@
          }
      }
      /**
-      *
-      * @param type $user_espol
-      * @return type 
+      * 
+      * @param String $user_espol Nombre de Usuario de Espol
+      * @return Array de Tipo de Usuarios 
       */
      public static function getUsuario($user_espol){
          $user=Doctrine_Query::create()
@@ -192,6 +200,7 @@
          return $user;
      }
    
+ 
  }//fin de la clase Utility
 ?>
 

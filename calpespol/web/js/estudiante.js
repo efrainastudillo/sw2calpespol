@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  * 
- * @author calpespol
+ * @author Efrain Astudillo
  * Descripción: Valida el texto ingresado de los input de tipo text dependiendo 
  * de la funcion que se le asigne
  */
@@ -34,6 +34,9 @@ $(document).ready(function(){
         validarEmail(inputEmail, reqEmail);
     });
     
+    $("div#update_user").click(function(){
+        
+    });
         //evento click
        $("#grabarEstudiante").click(function(){
            if(validarCaracteres(inputUsername,reqUsername) && validarEmail(inputEmail, reqEmail) && validarNumero(inputIdUser, reqIdUser)){
@@ -145,5 +148,6 @@ $(document).ready(function(){
             output.css("visibility", "hidden");
             return true;  
         }  
-    }  
+    } 
+
 });

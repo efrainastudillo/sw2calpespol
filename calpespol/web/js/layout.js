@@ -11,7 +11,6 @@
 $(document).ready(function(){
     
    $("#materia_selecionada").change(function(){
-        alert($("#materia_selecionada option:selected").text());
-      // alert($(this).text())
+       $("form#form_materias").submit();
    });
 });

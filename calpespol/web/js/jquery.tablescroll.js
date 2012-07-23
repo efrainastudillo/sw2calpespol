@@ -183,6 +183,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 		width: null, // width of the table (head, body and foot), null defaults to the tables natural width
 		height: 100, // height of the scrollable area
 		containerClass: 'tablescroll' // the plugin wraps the table in a div with this css class
-	};
+	};  
 
 })(jQuery);

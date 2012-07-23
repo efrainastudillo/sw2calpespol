@@ -30,96 +30,7 @@ class WSHandler {
         $this->wsdl = "services/serviceDirectorio.asmx?WSDL";
     }
 
-    /**
-     * Carga o actualiza la planificación del periodo dado
-     * El superuser es el usuario administrador
-     * @param <type> $superuser
-     * @param <type> $periodo
-     * @return <type>
-     */
-    public function cargarPlanificacion($superuser, $periodo) {
-    //      flush();
-    //      set_time_limit(0);
-    //      ignore_user_abort(1);
-
-        try{
-            $results = (array) ($this->client->InformacionPlanficacion(array("anio" => "2012", "termino" => "1S")));
-            $results = (array) ($results['InformacionPlanficacionResult']);            
-            $results = $this->cleanWSPlanificacion($results['any']);
-
-//            $doc = new DOMDocument('1.0', 'utf-8');
-//            $doc->loadXML($results);
-//            $elements = $doc->getElementsByTagName("MATERIA_PARALELO");
-//
-//            echo "\nSe actualizaran ".$elements->length." cursos.\n";
-//            sfContext::getInstance()->getLogger()->info("{Planificacion} Se actualizaran ".$elements->length." cursos.");
-//            // RECORREMOS LOS CURSOS
-////            ob_start();
-//            for ($i = 0; $i < $elements->length; $i++) {
-//
-//                try{
-//                    $node = $elements->item($i);
-//
-//                    $codigo_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue : "";
-//                    $nombre_materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue: "";
-//                    $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue: "";
-//                    $examen_parcial = $node->getElementsByTagName("EXAMENPARCIAL")->length!=0 ? $node->getElementsByTagName("EXAMENPARCIAL")->item(0)->nodeValue: "";
-//                    $examen_final = $node->getElementsByTagName("EXAMENFINAL")->length!=0 ? $node->getElementsByTagName("EXAMENFINAL")->item(0)->nodeValue: "";
-//                    $examen_mejoramiento = $node->getElementsByTagName("EXAMENMEJORAMIENTO")->length!=0 ? $node->getElementsByTagName("EXAMENMEJORAMIENTO")->item(0)->nodeValue: "";
-//                    $num_creditos = $node->getElementsByTagName("NUMCREDITOS")->length!=0 ? $node->getElementsByTagName("NUMCREDITOS")->item(0)->nodeValue: "";
-//                    $cod_unidad = $node->getElementsByTagName("CODUNIDAD")->length!=0 ? $node->getElementsByTagName("CODUNIDAD")->item(0)->nodeValue: "";
-//
-//                    //departamento
-//                    $departamento = new Departamento();
-//                    $departamento->setSiglas(trim($cod_unidad));
-//                    $departamento->setEliminado(false);
-//
-//                    //materia
-//                    $materia = new Materia();
-//                    $materia->setCodigo(trim($codigo_materia));
-//                    $materia->setNombre(($nombre_materia));
-//                    $materia->setDepartamento($departamento);
-//                    $materia->setCreditos(($num_creditos));
-//                    $materia->setEliminado(false);
-//
-//                    //curso (paralelo)
-//                    $curso = new Curso();
-//                    $curso->setEliminado(false);
-//                    $curso->setPeriodo($periodo);
-//                    $curso->setParalelo(trim($paralelo));
-//                    $curso->setMateria($materia);
-//                    
-//                    if($examen_parcial) $curso->setExamenParcial($examen_parcial);
-//                    if($examen_final) $curso->setExamenFinal($examen_final);
-//                    if($examen_mejoramiento) $curso->setExamenMejoramiento($examen_mejoramiento);
-//                    
-//                    $curso->save();
-//                    $curso->free(true);
-//
-//                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") actualizado! \n";
-////                    $this->flush_buffers();
-//                    
-//                }catch(Exception $ee){
-//                    echo "$i) ".$codigo_materia . "(" .trim($paralelo) . ") error! [".$ee->getMessage()."] \n";
-//                    sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error $codigo_materia (".trim($paralelo).")");
-//                }           
-//
-//            }
-//
-//        }  catch (Exception $e){
-//            sfContext::getInstance()->getLogger()->info("{Planificacion} cargarPlanificacion error general");
-//            echo $e->getMessage();
-//            return false;
-//        }
-//
-////        ob_flush();
-//        sfContext::getInstance()->getLogger()->info("{Planificacion}  ".$periodo->getPeriodoSlug()." exitosa");
-//        return true;
-        }  catch (Exception $e){
-
-        }
-    return $results;
-    }
+   
 
     /**
      * Carga los Usuarios con sus respectivos datos a la base de datos 
@@ -400,14 +311,14 @@ class WSHandler {
 
     private function cleanWSPlanificacion($xmlstr){        
         $results = "<?xml version='1.0' encoding='utf-8'?>" . $xmlstr;
-        $results = str_replace('<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet"><xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"><xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded"><xs:element name="MATERIA_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="EXAMENPARCIAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENFINAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENMEJORAMIENTO" type="xs:dateTime" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODUNIDAD" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_PROFESOR"><xs:complexType><xs:sequence><xs:element name="IDENTIFICACION" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_ESTUDIANTE"><xs:complexType><xs:sequence><xs:element name="MATRICULA" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="HORARIO_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="NUMDIA" type="xs:string" minOccurs="0"/><xs:element name="HI" type="xs:duration" minOccurs="0"/><xs:element name="HF" type="xs:duration" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="REQUISITOS_MATERIA"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODIGOMATREQ" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATREQ" type="xs:string" minOccurs="0"/><xs:element name="TIPO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element></xs:choice></xs:complexType></xs:element></xs:schema><diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1"><NewDataSet xmlns="">', "<NewDataSet>", $results);
-        $results = str_replace('</diffgr:diffgram>', "", $results);
-        $results = str_replace('</InformacionPlanficacionResult>', "", $results);
-        $results = str_replace('</InformacionPlanficacionResponse>', "", $results);
-        $results = str_replace('</soap:Body>', "", $results);
-        $results = str_replace('</soap:Envelope>', "", $results);
-        $results = str_replace('msdata:', "", $results);
-        $results = str_replace('diffgr:', "", $results);
+//        $results = str_replace('<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet"><xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"><xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded"><xs:element name="MATERIA_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="EXAMENPARCIAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENFINAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENMEJORAMIENTO" type="xs:dateTime" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODUNIDAD" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_PROFESOR"><xs:complexType><xs:sequence><xs:element name="IDENTIFICACION" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_ESTUDIANTE"><xs:complexType><xs:sequence><xs:element name="MATRICULA" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="HORARIO_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="NUMDIA" type="xs:string" minOccurs="0"/><xs:element name="HI" type="xs:duration" minOccurs="0"/><xs:element name="HF" type="xs:duration" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="REQUISITOS_MATERIA"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODIGOMATREQ" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATREQ" type="xs:string" minOccurs="0"/><xs:element name="TIPO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element></xs:choice></xs:complexType></xs:element></xs:schema><diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1"><NewDataSet xmlns="">', "<NewDataSet>", $results);
+//        $results = str_replace('</diffgr:diffgram>', "", $results);
+//        $results = str_replace('</InformacionPlanficacionResult>', "", $results);
+//        $results = str_replace('</InformacionPlanficacionResponse>', "", $results);
+//        $results = str_replace('</soap:Body>', "", $results);
+//        $results = str_replace('</soap:Envelope>', "", $results);
+//        $results = str_replace('msdata:', "", $results);
+//        $results = str_replace('diffgr:', "", $results);
         return $results;
     }
     private function cleanWSUsuarios($xmlstr){        

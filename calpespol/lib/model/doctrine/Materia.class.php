@@ -19,4 +19,35 @@ class Materia extends BaseMateria
         ->from('Materia m');
         return $q->execute();
     }
+    
+    public static function existeMateria($codigo){
+        $q = Doctrine_Query::create()
+        ->select("*")
+        ->from('Materia m')
+        ->where("m.codigo_materia=?",$codigo)
+        ->execute();
+        
+        if($q->count()==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public static function getMateriaByCodigo($codigo){
+        $q = Doctrine_Query::create()
+        ->select("*")
+        ->from('Materia m')
+        ->where("m.codigo_materia=?",$codigo)
+        ->fetchOne();
+        return $q;
+    }
+    
+    public static function getMateriasDeUsuario($user_espol){
+        $materias=Doctrine_Query::create()
+        ->select("*")
+        ->from('Materia m')
+        ->innerJoin()
+        ->where("m.codigo_materia=?",$user_espol)
+        ->execute();
+    }
 }

@@ -10,7 +10,9 @@
      
 */
 
-.tablescroll{
+.tablescroll,
+.tabla_actividad,
+.tabla_literal{
     /*background-color:#fff; */
     text-align: center;
     font-family: "Trebuchet MS", sans-serif;
@@ -18,14 +20,18 @@
     font-weight: normal;
 }
 
-.tablescroll td, 
+.tablescroll td,
+.tabla_actividad td,
+.tabla_literal td,
 .tablescroll_wrapper,
 .tablescroll_head,
 .tablescroll_foot{ 
     border-top:2px solid #a7c5a7; 
 }
 
-.tablescroll td{ 
+.tablescroll td,
+.tabla_actividad td,
+.tabla_literal td{ 
     padding:6px 10px; 
 }
 
@@ -38,44 +44,31 @@
     font-size: 15px;
     font-weight: bold;
     background-color: #a7c5a7;
-/*    background:-webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.02, rgb(123,192,67)),
-        color-stop(0.51, rgb(139,198,66)),
-        color-stop(0.87, rgb(158,217,41))
-        );
-    background: -moz-linear-gradient(
-        center bottom,
-        rgb(123,192,67) 2%,
-        rgb(139,198,66) 51%,
-        rgb(158,217,41) 87%
-        ); */
     color:#000;
-    /*text-shadow:1px 1px 1px #568F23;*/
     border-left:0; 
     border-top:0;
-   /* border:1px solid #CCC;*/
-   /* border-bottom:1px solid #568F23;*/
     margin-bottom:3px; 
 }
 
-.tablescroll thead td{ 
+.tablescroll thead td,
+.tabla_actividad thead td,
+.tabla_literal thead td{ 
     border-right:0; 
     border-bottom:0;    
 }
 
-.tablescroll tbody td{ 
+.tablescroll tbody td,
+.tabla_actividad tbody td,
+.tabla_literal tbody td{ 
     background-color:#ededcb;
     border-top: 2px solid #f7f7e8;
     border-bottom: 2px solid #f7f7e8;
-/*    border-right:0; 
-    border-bottom:0; */
     text-align: center;
 }
 
-.tablescroll tbody tr.first td{ 
+.tablescroll tbody tr.first td,
+.tabla_actividad tbody tr.first td,
+.tabla_literal tbody tr.first td{ 
     border-top:0; 
 }
 
@@ -83,13 +76,22 @@
     font-weight:normal; 
     background-color:beige; 
     border-left:0; 
-   /* border-top:1px solid #568F23;*/
     margin-top:3px; 
 }
 
-.tablescroll tfoot td{ 
+.tablescroll tfoot td,
+.tabla_actividad tfoot td,
+.tabla_literal tfoot td{ 
     border-right:0; 
     border-bottom:0; 
+}
+
+.tabla_literal{
+    visibility: hidden;
+}
+
+#head_literal{
+    background-color: #d7d78c;
 }
 
 #estilo1_celda{

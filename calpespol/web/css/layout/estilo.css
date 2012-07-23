@@ -26,14 +26,15 @@ background-color:#D3E2C2;}
 	background-color:#005353;}
 .div_sesion{
     float: right;
-    width: 300px;
+    width: auto;
     margin-top:7px;
+    margin-left: 20px;
     height: 25px;
 }
 .div_sesion li{
     margin: auto;
     list-style: none;
-    width: 100px;
+    width: auto;
 }
 .div_sesion ul li{    
     display: inline;
@@ -45,7 +46,7 @@ background-color:#D3E2C2;}
 .div_sesion ul li a{
     text-align: center;
     padding: 0;
-    text-decoration: none;
+    text-decoration: underline;
     color: #FFF;
 }
 #div_menu_cabecera{
