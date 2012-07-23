@@ -27,9 +27,10 @@ $(document).ready(function(){
 //                     "<br />");
 //     });
 //   }
+   
    $("#materia_select").change(function(){
         jQuery.post('Actividad/prueba', 
-        {   query:$("#materia_select option:selected").text()
+        {query:$("#materia_select option:selected").text()
         }, function(xml){
             //$("#prueba").empty();
             addMaterias(xml);
@@ -47,4 +48,20 @@ $(document).ready(function(){
                              "<br />");
      });
    }
+   
+   /////////////////LITERALES
+   
+    $(".flecha_literal").on("click", function() {
+        //mostrar los literales de la actividad clickeada
+        if($(this).attr("src")=="../images/arrow-right-3.png"){
+            $(".flecha_literal").attr("src","../images/arrow-right-3.png");
+            $(this).attr("src","../images/arrow-down-3.png");
+            $(".tabla_literal").css("visibility","visible");
+            $(".tabla_literal").css("display","block");
+            
+        }else{
+            $(this).attr("src","../images/arrow-right-3.png");
+            $(".tabla_literal").slideUp();
+        }  
+    });
 });

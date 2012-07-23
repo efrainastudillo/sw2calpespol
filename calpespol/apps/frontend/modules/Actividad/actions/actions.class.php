@@ -70,7 +70,7 @@ class ActividadActions extends sfActions{
     $this->a = Doctrine_Query::create()
             ->select('a.idactividad')
             ->from('Actividad a')
-            ->innerjoin('a.Tipoactividad ta ON a.idactividad = ta.idtipoactividad')
+            ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
             ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
@@ -82,6 +82,15 @@ class ActividadActions extends sfActions{
     $this->m = Doctrine::getTable('Materia')
             ->createQuery('select *')
             ->execute();
+    
+//    $this->l = Doctrine_Query::create()
+//        ->select('l.id_actividad')        
+//        ->from('Literal l')
+//        ->innerjoin('l.Actividad a ON l.id_actividad = a.idactividad')
+//        ->where('a.idactividad=?',10)      
+//        ->execute();
+//    $this->l = Literal::getLiteralesXActividad(20);
+    
   }
   
   public function executeNewView(){
@@ -181,5 +190,16 @@ class ActividadActions extends sfActions{
 
       $this->redirect('Actividad/edit?id='.$actividad->getId());
     }
+  }
+  
+    /* LITERALES */ 
+  public function executeNewLiteral(sfWebRequest $request){     
+  }
+  
+  public function executeSaveLiteral(sfWebRequest $request)
+  {
+      $item = new Literal();
+      $item -> grabarEstudiante($request);
+      $this -> redirect('Actividad/index');
   }
 }

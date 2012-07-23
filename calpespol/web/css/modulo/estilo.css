@@ -117,9 +117,9 @@ div.body_panel{
                     principal y uno opcional para el cuerpo del panel.
 */
 div.titulo_body_panel{
-    height: 2.5em;                          /* Altura del div de titulo */
+/*    height: 2.5em;                           Altura del div de titulo */
     display: inline-table;                  /* Poner los elementos juntos*/
-    margin: 0.5em;                          /* espaciado externo*/    
+    margin: 0.5em;                           /*espaciado externo*/    
     margin-left: 0em;
 }
 
@@ -148,7 +148,8 @@ div.titulo_body_panel p:last-child{
 */
 div.boton_new{
     float: right;                           /* Posicionamiento a la derecha*/
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 /*
     Nombre      :   foot_panel
