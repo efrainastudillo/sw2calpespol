@@ -60,18 +60,6 @@
            </div> 
            
         </div>
-           <!--div que contiene el boton de Crear nueva actividad    -->
-            <div class="boton_new" style="margin: 1em">
-                <a href="#" class="button rounded black" id="new">
-                    <img src="../images/new.png" width="15" height="15" /> Consultar
-                </a> 
-            </div>
-            <!--div que contiene el boton de Crear nueva actividad    -->
-            <div class="boton_new" style="margin: 1em">
-                <a href="Actividad/NewView" class="button rounded black" id="new">
-                    <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
-                </a> 
-            </div>
         
         <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
@@ -83,7 +71,7 @@
         <!--div que divide la consulta de la tabla de datos    -->
         <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>
           
-<!--        div que contiene el boton de Crear nueva actividad    -->
+        <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin-right: 1em;">
             <a href="Actividad/NewView" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Nueva Actividad

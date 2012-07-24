@@ -32,8 +32,7 @@
                             <?php echo $mat->getNombre(); ?>
                         </option>
                     <?php endforeach; ?>
-                </select>
-                
+                </select>    
             </div>
             <?php // echo $_POST['materias']; ?>
             <div class="paralelo">
@@ -63,151 +62,77 @@
                 <img src="../images/new.png" width="15" height="15" /> Cargar Información
             </a> 
         </div>
-        
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
                 <thead>
                     <tr>
-<!--                        <td>Grupos</td>
-                        <td>Literal 1 (2p)</td>                       
-                        <td>Literal 2 (2p)</td>
-                        <td>Literal 3 (2p)</td>
-                        <td>Literal 4 (2p)</td>
-                        <td>Total</td>-->
+<!--                   //     <?php
+                       // if ( $literal = 1) {
+                       //     echo "<td>Estudiantes</td>";
+                      //  }else{
+                        //    echo "<td>Grupos</td>";
+                      //  }
+                       // ?>
+                        -->
+                        
                         <td>Grupos</td>
                         <?php
                         if (isset($literal)) {
                             foreach ($literal as $lit) {
-                                echo "<td>" . $lit->getNombreLiteral(). "</td>";
+                                echo "<td>" . "Literal (". $lit-> getValorPonderacion().")"  . "</td>";
                             }
                         }
                         ?>
-                        <td>Total</td>
-                        
-                        
-                        
-                        
+                        <td>Total</td> 
                     </tr>
                 </thead>
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
-                    <?php // foreach ($a as $acti): ?>
-                    <tr>
-                        <td>Grupo 1</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                                        <tr>
-                        <td>Grupo 2</td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td><input type="text" placeholder="nota" size="3" maxlength="3" style="text-align:right"></td>
-                        <td>10</td>
-                    </tr>
-                    
-
-                <!--//      Nombre de la actividad/es-->
-                            <td><?php // echo $acti->getNombre(); ?></td>
-                <!--//      Nombre del tipo de la actividad-->
-                            <td><?php // echo $acti->getTipoactividad()->getNombre(); ?></td>
-                <!--//      Si es grupal o individual-->
-                            <td><?php // if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
-                <!--//      Valor del tipo actividad, ponderacion-->
-                            <td><?php // echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-<!--                            <td><a href="#" ><img src="../images/edit (2).png" width="15" height="15" /></a>
-                                <a href="#" ><img src="../images/delete (2).png" width="15" height="15" /></a>
-                                <a href="#" ><img src="../images/add.png" width="15" height="15" /></a>
-                            </td>
-                        </tr>-->
-                    <?php // endforeach; ?>
+                    <?php
+                    if (isset($usuario)) {
+                        foreach ($usuario as $us) {
+                            echo "<tr>";
+                            echo "<td>" . $us->getNombre() . "</td>";
+                            if (isset($literal)) {
+                                foreach ($literal as $lit) {
+                                    echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                }
+                            }
+                            echo "<td>10</td>";
+                            echo "</tr>";
+                          
+                          //echo "<td>" . "Literal (" . $lit->getValorPonderacion() . ")" . "</td>";
+                            }
+                        }
+                        ?>
                 </tbody>
             </table>
         </div>
+ </div>       
+        
+        <div class="tableScroll" style="margin-top: 1em">
+        <table class="tabla" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>Literales</td>
+                    <td>Descripción</td>
+                </tr>
+            </thead>
+            <tbody>
+                 <?php 
+                    if(isset ($literal)){
+                        foreach ($literal as $lit){
+                            echo "<tr>";
+                                echo "<td>" . "Literal (" . $lit->getValorPonderacion() . ")" . "</td>";
+                                echo "<td>".$lit->getNombreLiteral()."</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+            </tbody>
+        </table>
     </div>
+
     <?php echo 
         "<script>
             jQuery(document).ready(function($)
