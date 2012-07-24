@@ -33,7 +33,7 @@
                             <?php echo image_tag('/images/salir.png', array('alt_title'=>'Salir','class'=>'Salir','align'=>'top','size'=>'23x23')) ?>
                         </li>
                         <li>
-                            <a href="<?php echo url_for("Inicio/logout") ?>" > 
+                            <a href="<?php echo url_for("Inicio/logout") ?>" >
                                 Salir
                             </a>
                         </li>
@@ -44,19 +44,17 @@
                         <label for="usuario" >Materia:</label>                    
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
                             <?php
-                            if(isset ($materias)){
-                                $i=0;
-                                foreach ($materias as $value) {                                   
+                            if(isset ($materias)){                           
+                                foreach ($materias as $value) {
                                     if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
                                         echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }else{
+                                        if(strcasecmp("", $sf_user->getMateriaActual())==0){
+                                            $sf_user->setMateriaActual($value->getNombre());
+                                        }
                                         echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }
-                                }
-                                if(!$sf_user->hasMateriaActual()){
-                                    $sf_user->setMateriaActual($materias[0].getNombre());
-                                }
-                                
+                                }                                
                             }?>
                             <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
                             <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
