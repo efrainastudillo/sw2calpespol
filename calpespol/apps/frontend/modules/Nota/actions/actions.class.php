@@ -20,7 +20,7 @@ class NotaActions extends sfActions
     $this->curso = Curso::getParalelos();
     $this->actividad = Actividad::getActividades();
     $this->literal = Literal::getLiterales();
-    $this->usuario = Usuario::getUsuarios();
+    $this->usuario = Usuario::getUsuarioByMatricula();
   }
 
   public function executeNew(sfWebRequest $request)
