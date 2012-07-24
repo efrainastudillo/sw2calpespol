@@ -48,7 +48,14 @@ class myUser extends sfBasicSecurityUser
             ->fetchOne();
         return $user;
     }
-    
+    public function hasMateriaActual(){
+        if($this->hasAttribute("materia")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     /**
      * Obtiene el nombre del user de Espol
      * @return type String
@@ -63,7 +70,6 @@ class myUser extends sfBasicSecurityUser
      */
     public function setUserEspol($user_espol){
         $this->setAttribute('usuario_espol',$user_espol);
-        $this->setAuthenticated(true);
     }
     /**
      * ESTO NO ES RECOMENDABLE HACER POR EL CONCEPTO DE SERIALIZACION
@@ -99,8 +105,19 @@ class myUser extends sfBasicSecurityUser
            return false;
        }
     }
+    /**
+     *
+     * @param type $rol 
+     */
     public function setRol($rol){
         $this->setAttribute("rol",$rol);
+    }
+    
+    /**
+     * 
+     */
+    public function getRol(){
+        $this->getAttribute("rol");
     }
     /**
      * Obtener las materias del Usuario 

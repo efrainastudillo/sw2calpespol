@@ -17,8 +17,8 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-//      $handler = new WSDLHandler();
-//      $handler->initWSSAACHandler();
+     // $handler = new WSDLHandler();
+     // $handler->initWSSAACHandler();
       //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
 //      $primera=date("13/01/2013");
       $this->fecha=  Doctrine_Query::create()

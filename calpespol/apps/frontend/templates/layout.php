@@ -46,13 +46,17 @@
                             <?php
                             if(isset ($materias)){
                                 $i=0;
-                                foreach ($materias as $value) {
+                                foreach ($materias as $value) {                                   
                                     if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
                                         echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }else{
                                         echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }
-                                }                            
+                                }
+                                if(!$sf_user->hasMateriaActual()){
+                                    $sf_user->setMateriaActual($materias[0].getNombre());
+                                }
+                                
                             }?>
                             <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
                             <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />

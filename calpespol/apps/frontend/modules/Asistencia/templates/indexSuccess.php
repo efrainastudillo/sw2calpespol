@@ -20,7 +20,7 @@
         </div>
         
         <div class="extra_head_panel">
-            <p> Laboratorio de Potencia </p>
+            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
     </div>
 

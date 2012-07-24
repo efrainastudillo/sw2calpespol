@@ -28,10 +28,10 @@ abstract class BaseUsuarioForm extends BaseFormDoctrine
       'idusuario'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('idusuario')), 'empty_value' => $this->getObject()->get('idusuario'), 'required' => false)),
       'usuario_espol' => new sfValidatorString(array('max_length' => 45)),
       'nombre'        => new sfValidatorString(array('max_length' => 45)),
-      'apellido'      => new sfValidatorString(array('max_length' => 45, 'required' => true)),
-      'mail'          => new sfValidatorString(array('max_length' => 45, 'required' => true)),
-      'matricula'     => new sfValidatorString(array('max_length' => 45, 'required' => true)),
-      'cedula'        => new sfValidatorString(array('max_length' => 10, 'required' => true)),
+      'apellido'      => new sfValidatorString(array('max_length' => 45)),
+      'mail'          => new sfValidatorString(array('max_length' => 45)),
+      'matricula'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'cedula'        => new sfValidatorString(array('max_length' => 45, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('usuario[%s]');
