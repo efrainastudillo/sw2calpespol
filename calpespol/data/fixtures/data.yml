@@ -1,0 +1,1077 @@
+Asistencia:
+  Asistencia_1:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_2
+  Asistencia_2:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_2
+Curso:
+  Curso_1:
+    paralelo: '1'
+    anio: '2012'
+    termino: '1'
+    Materia: Materia_1
+  Curso_2:
+    paralelo: '1'
+    anio: '2012'
+    termino: '1'
+    Materia: Materia_2
+  Curso_3:
+    paralelo: '1'
+    anio: '2012'
+    termino: '1'
+    Materia: Materia_4
+Materia:
+  Materia_1:
+    nombre: 'LENGUAJES DE PROGRAMACIÓN'
+    codigo_materia: FIEC01552
+  Materia_2:
+    nombre: 'INGENIERÍA DE SOFTWARE II'
+    codigo_materia: FIEC03053
+  Materia_3:
+    nombre: 'PROGRAMACIÓN ORIENTADA A OBJETOS'
+    codigo_materia: FIEC04622
+  Materia_4:
+    nombre: 'SEÑALES Y SISTEMAS'
+    codigo_materia: FIEC04382
+Rolusuario:
+  Rolusuario_1:
+    nombre: Estudiante
+  Rolusuario_2:
+    nombre: Ayudante
+  Rolusuario_3:
+    nombre: Profesor
+Tipoasistencia:
+  Tipoasistencia_1:
+    nombre: Presente
+  Tipoasistencia_2:
+    nombre: Ausente
+  Tipoasistencia_3:
+    nombre: Atrasado
+Usuario:
+  Usuario_1:
+    usuario_espol: asampin
+    nombre: 'ANGEL JULIO'
+    apellido: 'SAMPIN AVILES'
+    mail: asampin@espol.edu.ec
+    matricula: '200307221'
+    cedula: '0916817141'
+  Usuario_2:
+    usuario_espol: dculcay
+    nombre: 'DAVID AMABLE'
+    apellido: 'CULCAY ORELLANA'
+    mail: dculcay@espol.edu.ec
+    matricula: '200502409'
+    cedula: '0922400270'
+  Usuario_3:
+    usuario_espol: dvillalb
+    nombre: 'GERMAN DANIEL'
+    apellido: 'VILLALBA LYNCH'
+    mail: dvillalb@espol.edu.ec
+    matricula: '200503654'
+    cedula: '0924906308'
+  Usuario_4:
+    usuario_espol: luiargus
+    nombre: 'LUIS ARMANDO'
+    apellido: 'GUSÑAY CORO'
+    mail: luiargus@espol.edu.ec
+    matricula: '200506020'
+    cedula: '0925519308'
+  Usuario_5:
+    usuario_espol: jornavar
+    nombre: 'JORGE ARMANDO'
+    apellido: 'NAVARRETE MENDOZA'
+    mail: jornavar@espol.edu.ec
+    matricula: '200510287'
+    cedula: '0925028391'
+  Usuario_6:
+    usuario_espol: camora
+    nombre: 'CRUZ ANA'
+    apellido: 'MORA OCAÑA'
+    mail: camora@espol.edu.ec
+    matricula: '200515336'
+    cedula: '0920142650'
+  Usuario_7:
+    usuario_espol: vrobles
+    nombre: 'VANESSA YANINA'
+    apellido: 'ROBLES SOLIS'
+    mail: vrobles@espol.edu.ec
+    matricula: '200520708'
+    cedula: '0921897724'
+  Usuario_8:
+    usuario_espol: diearbri
+    nombre: 'DIEGO  ARMANDO'
+    apellido: 'BRIONES  BRIONES'
+    mail: diearbri@espol.edu.ec
+    matricula: '200601938'
+    cedula: '0921415758'
+  Usuario_9:
+    usuario_espol: jdcuadra
+    nombre: 'JOSE DANIEL'
+    apellido: 'CUADRADO JUMBO'
+    mail: jdcuadra@espol.edu.ec
+    matricula: '200608859'
+    cedula: '0924024896'
+  Usuario_10:
+    usuario_espol: ismatorr
+    nombre: 'ISAAC MANUEL'
+    apellido: 'TORRES BERMEO'
+    mail: ismatorr@espol.edu.ec
+    matricula: '200611598'
+    cedula: '0926332446'
+  Usuario_11:
+    usuario_espol: alivagom
+    nombre: 'ALICE VANESSA'
+    apellido: 'GOMEZ CANTOS'
+    mail: alivagom@espol.edu.ec
+    matricula: '200621183'
+    cedula: '0926078924'
+  Usuario_12:
+    usuario_espol: hecadmos
+    nombre: 'HECTOR ADRIAN'
+    apellido: 'MOSQUERA FUENTES'
+    mail: hecadmos@espol.edu.ec
+    matricula: '200628204'
+    cedula: '0502875065'
+  Usuario_13:
+    usuario_espol: smoncayo
+    nombre: 'SERGIO XAVIER'
+    apellido: 'MONCAYO PIONCE'
+    mail: smoncayo@espol.edu.ec
+    matricula: '200700201'
+    cedula: '0923444715'
+  Usuario_14:
+    usuario_espol: fatandaz
+    nombre: 'FREDDY ALEX'
+    apellido: 'TANDAZO YANEZ'
+    mail: fatandaz@espol.edu.ec
+    matricula: '200703676'
+    cedula: '0926228107'
+  Usuario_15:
+    usuario_espol: aledcerv
+    nombre: 'ALEX  DARIO'
+    apellido: 'CERVANTES   BALLADARES'
+    mail: aledcerv@espol.edu.ec
+    matricula: '200705259'
+    cedula: '0924829245'
+  Usuario_16:
+    usuario_espol: hlpilco
+    nombre: 'HENRY  LEONARDO'
+    apellido: 'PILCO  NAULA'
+    mail: hlpilco@espol.edu.ec
+    matricula: '200712354'
+    cedula: '0916683071'
+  Usuario_17:
+    usuario_espol: rajila
+    nombre: 'RONALD DANIEL'
+    apellido: 'AJILA CALVA'
+    mail: rajila@espol.edu.ec
+    matricula: '200714962'
+    cedula: '1104537574'
+  Usuario_18:
+    usuario_espol: evarela
+    nombre: 'ERICK ANDRES'
+    apellido: 'VARELA BENAVIDES'
+    mail: evarela@espol.edu.ec
+    matricula: '200717197'
+    cedula: '0927255398'
+  Usuario_19:
+    usuario_espol: ccerezo
+    nombre: 'CARLOS LUIS'
+    apellido: 'CEREZO ROMERO'
+    mail: ccerezo@espol.edu.ec
+    matricula: '200723351'
+    cedula: '0705114775'
+  Usuario_20:
+    usuario_espol: franherm
+    nombre: 'FRANK GUILLERMO'
+    apellido: 'HERMIDA VILLA'
+    mail: franherm@espol.edu.ec
+    matricula: '200728210'
+    cedula: '0704801554'
+  Usuario_21:
+    usuario_espol: mcsalaza
+    nombre: 'MARIUXI CYNTHIA'
+    apellido: 'SALAZAR PIEDRA'
+    mail: mcsalaza@espol.edu.ec
+    matricula: '200728483'
+    cedula: '0927640565'
+  Usuario_22:
+    usuario_espol: luialall
+    nombre: 'LUIGGY ALBERTO'
+    apellido: 'ALLAUCA GUSQUI'
+    mail: luialall@espol.edu.ec
+    matricula: '200734473'
+    cedula: '0927292011'
+  Usuario_23:
+    usuario_espol: ejastudi
+    nombre: 'EFRAIN JOSE'
+    apellido: 'ASTUDILLO VARGAS'
+    mail: ejastudi@espol.edu.ec
+    matricula: '200801033'
+    cedula: '0924141187'
+  Usuario_24:
+    usuario_espol: bdzambra
+    nombre: 'BORIS DARIO'
+    apellido: 'ZAMBRANO CRUZ'
+    mail: bdzambra@espol.edu.ec
+    matricula: '200801066'
+    cedula: '0704728070'
+  Usuario_25:
+    usuario_espol: axastudi
+    nombre: 'ANGEL XAVIER'
+    apellido: 'ASTUDILLO AGUILAR'
+    mail: axastudi@espol.edu.ec
+    matricula: '200805034'
+    cedula: '0924074057'
+  Usuario_26:
+    usuario_espol: jwcorone
+    nombre: 'JOSE WILLIAM'
+    apellido: 'CORONEL DELGADO'
+    mail: jwcorone@espol.edu.ec
+    matricula: '200817518'
+    cedula: '1313031864'
+  Usuario_27:
+    usuario_espol: ipuero
+    nombre: 'IVAN MATHEUS'
+    apellido: 'PUERO CASTRO'
+    mail: ipuero@espol.edu.ec
+    matricula: '200820868'
+    cedula: '0930164223'
+  Usuario_28:
+    usuario_espol: alevinue
+    nombre: 'ALEJANDRO  DAVID'
+    apellido: 'VINUEZA   PROAÑO'
+    mail: alevinue@espol.edu.ec
+    matricula: '200837318'
+    cedula: '0930080486'
+  Usuario_29:
+    usuario_espol: maraespi
+    nombre: 'MARLON ANDRES'
+    apellido: 'ESPINOZA PACHECO'
+    mail: maraespi@espol.edu.ec
+    matricula: '200902070'
+    cedula: '0705118958'
+  Usuario_30:
+    usuario_espol: rianjara
+    nombre: 'RICHARD ANDRES'
+    apellido: 'JARA BRAVO'
+    mail: rianjara@espol.edu.ec
+    matricula: '200904936'
+    cedula: '0930102918'
+  Usuario_31:
+    usuario_espol: brosgarc
+    nombre: 'BRYAN OSWALDO'
+    apellido: 'GARCES MURILLO'
+    mail: brosgarc@espol.edu.ec
+    matricula: '200905099'
+    cedula: '0930836549'
+  Usuario_32:
+    usuario_espol: ynunez
+    nombre: 'YAMIL ABRAHAM'
+    apellido: 'NUÑEZ AGUIRRE'
+    mail: ynunez@espol.edu.ec
+    matricula: '200907525'
+    cedula: '0915496368'
+  Usuario_33:
+    usuario_espol: cajafran
+    nombre: 'CARLOS JAVIER'
+    apellido: 'FRANCO COCHEA'
+    mail: cajafran@espol.edu.ec
+    matricula: '200914166'
+    cedula: '0923396592'
+  Usuario_34:
+    usuario_espol: luienper
+    nombre: 'LUIS ENRIQUE'
+    apellido: 'PEREZ LOPEZ'
+    mail: luienper@espol.edu.ec
+    matricula: '200919892'
+    cedula: '0919527739'
+  Usuario_35:
+    usuario_espol: davalbar
+    nombre: 'DAVID ALEJANDRO'
+    apellido: 'BARRERA GUANO'
+    mail: davalbar@espol.edu.ec
+    matricula: '201018322'
+    cedula: '0930394804'
+  Usuario_36:
+    usuario_espol: joalguzm
+    nombre: 'JORGE ALFREDO'
+    apellido: 'GUZMAN QUINDE'
+    mail: joalguzm@espol.edu.ec
+    matricula: '201020401'
+    cedula: '0704322726'
+  Usuario_37:
+    usuario_espol: carluesp
+    nombre: 'CARLOS LUIS'
+    apellido: 'ESPINOZA BARZOLA'
+    mail: carluesp@espol.edu.ec
+    matricula: '201023959'
+    cedula: '0927343590'
+  Usuario_38:
+    usuario_espol: rdchavez
+    nombre: 'RAMON DAVID'
+    apellido: 'CHAVEZ CEVALLOS'
+    mail: rdchavez@espol.edu.ec
+    matricula: '200407724'
+    cedula: '0924787476'
+  Usuario_39:
+    usuario_espol: xgranda
+    nombre: 'XAVIER FERNANDO'
+    apellido: 'GRANDA REINOSO'
+    mail: xgranda@espol.edu.ec
+    matricula: '200424190'
+    cedula: '0922524905'
+  Usuario_40:
+    usuario_espol: ivalderr
+    nombre: 'ISMAEL RAFAEL'
+    apellido: 'VALDERRAMA SALTOS'
+    mail: ivalderr@espol.edu.ec
+    matricula: '200505469'
+    cedula: '0922002316'
+  Usuario_41:
+    usuario_espol: evizueta
+    nombre: 'JOSE EDUARDO'
+    apellido: 'VIZUETA ARELLANO'
+    mail: evizueta@espol.edu.ec
+    matricula: '200521425'
+    cedula: '0916643828'
+  Usuario_42:
+    usuario_espol: caanleon
+    nombre: 'CARLOS  ANDRES'
+    apellido: 'LEON  LUCAS'
+    mail: caanleon@espol.edu.ec
+    matricula: '200605640'
+    cedula: '1309207536'
+  Usuario_43:
+    usuario_espol: devizuet
+    nombre: 'DAVID ELIAS'
+    apellido: 'VIZUETA REYES'
+    mail: devizuet@espol.edu.ec
+    matricula: '200609915'
+    cedula: '0925837650'
+  Usuario_44:
+    usuario_espol: breyes
+    nombre: BRICK
+    apellido: 'REYES ZAMBRANO'
+    mail: breyes@espol.edu.ec
+    matricula: '200627297'
+    cedula: '0919730150'
+  Usuario_45:
+    usuario_espol: jfcahuen
+    nombre: 'JUAN  FERNANDO'
+    apellido: 'CAHUEÑAS   NAVAS'
+    mail: jfcahuen@espol.edu.ec
+    matricula: '200709657'
+    cedula: '0919440503'
+  Usuario_46:
+    usuario_espol: afmite
+    nombre: 'ALEX FABIAN'
+    apellido: 'MITE ANASTACIO'
+    mail: afmite@espol.edu.ec
+    matricula: '200712982'
+    cedula: '0918297631'
+  Usuario_47:
+    usuario_espol: alcacere
+    nombre: 'ANDREA LISETTE'
+    apellido: 'CACERES MOLINA'
+    mail: alcacere@espol.edu.ec
+    matricula: '200719326'
+    cedula: '0914868328'
+  Usuario_48:
+    usuario_espol: rxcampoz
+    nombre: 'RICARDO XAVIER'
+    apellido: 'CAMPOZANO VASCONES'
+    mail: rxcampoz@espol.edu.ec
+    matricula: '200720456'
+    cedula: '0927258400'
+  Usuario_49:
+    usuario_espol: caronqui
+    nombre: 'CARLOS ALBERTO'
+    apellido: 'RONQUILLO CASTRO'
+    mail: caronqui@espol.edu.ec
+    matricula: '200724326'
+    cedula: '0927132324'
+  Usuario_50:
+    usuario_espol: rdmacias
+    nombre: 'ROBINSON DIEGO'
+    apellido: 'MACIAS SANDOVAL'
+    mail: rdmacias@espol.edu.ec
+    matricula: '200725893'
+    cedula: '0923923908'
+  Usuario_51:
+    usuario_espol: wgortiz
+    nombre: 'WILSON GABRIEL'
+    apellido: 'ORTIZ MONCADA'
+    mail: wgortiz@espol.edu.ec
+    matricula: '200726750'
+    cedula: '1804561411'
+  Usuario_52:
+    usuario_espol: jjrubio
+    nombre: 'JEFFERSON JAVIER'
+    apellido: 'RUBIO ANGULO'
+    mail: jjrubio@espol.edu.ec
+    matricula: '200800845'
+    cedula: '0928617000'
+  Usuario_53:
+    usuario_espol: gonanand
+    nombre: 'GONZALO ANDRES'
+    apellido: 'ANDRADE MOREIRA'
+    mail: gonanand@espol.edu.ec
+    matricula: '200803484'
+    cedula: '0920645793'
+  Usuario_54:
+    usuario_espol: caanorte
+    nombre: 'CARLOS ANDRES'
+    apellido: 'ORTEGA VENTURA'
+    mail: caanorte@espol.edu.ec
+    matricula: '200805075'
+    cedula: '0924104185'
+  Usuario_55:
+    usuario_espol: marfzuri
+    nombre: 'MARIA FERNANDA'
+    apellido: 'ZURITA ARAUJO'
+    mail: marfzuri@espol.edu.ec
+    matricula: '200825115'
+    cedula: '0922962485'
+  Usuario_56:
+    usuario_espol: plmendez
+    nombre: 'PEDRO LUIS'
+    apellido: 'MENDEZ YEPEZ'
+    mail: plmendez@espol.edu.ec
+    matricula: '200829257'
+    cedula: '0930068515'
+  Usuario_57:
+    usuario_espol: archuto
+    nombre: 'ARMANDO ROBERTO'
+    apellido: 'CHUTO MARTINEZ'
+    mail: archuto@espol.edu.ec
+    matricula: '200611424'
+    cedula: '0926791005'
+  Usuario_58:
+    usuario_espol: maannara
+    nombre: 'MARCO ANTONIO'
+    apellido: 'NARANJO DIAZ'
+    mail: maannara@espol.edu.ec
+    matricula: '200709558'
+    cedula: '0927176834'
+  Usuario_59:
+    usuario_espol: solesjai
+    nombre: 'SOLANGE ESMERALDA'
+    apellido: 'JAIME SALTOS'
+    mail: solesjai@espol.edu.ec
+    matricula: '200730430'
+    cedula: '0927938985'
+  Usuario_60:
+    usuario_espol: embravo
+    nombre: 'ELIZABETH MONSERRAT'
+    apellido: 'BRAVO MITE'
+    mail: embravo@espol.edu.ec
+    matricula: '200732899'
+    cedula: '0917556029'
+  Usuario_61:
+    usuario_espol: cbenalca
+    nombre: 'CARLOS MANUEL'
+    apellido: 'BENALCAZAR TORRES'
+    mail: cbenalca@espol.edu.ec
+    matricula: '200733954'
+    cedula: '0704447671'
+  Usuario_62:
+    usuario_espol: ricanrob
+    nombre: 'RICARDO ANDRES'
+    apellido: 'ROBALINO RONQUILLO'
+    mail: ricanrob@espol.edu.ec
+    matricula: '200804045'
+    cedula: '0922116157'
+  Usuario_63:
+    usuario_espol: welreseg
+    nombre: 'WELLINGTON RENE'
+    apellido: 'SEGARRA PANCHANA'
+    mail: welreseg@espol.edu.ec
+    matricula: '200804797'
+    cedula: '0923679971'
+  Usuario_64:
+    usuario_espol: edjofran
+    nombre: 'EDSON JONATHAN'
+    apellido: 'FRANCO BORJA'
+    mail: edjofran@espol.edu.ec
+    matricula: '200809614'
+    cedula: '0930324876'
+  Usuario_65:
+    usuario_espol: dicakich
+    nombre: 'DIANA CAROLINA'
+    apellido: 'KICHIMBO FARIAS'
+    mail: dicakich@espol.edu.ec
+    matricula: '200811537'
+    cedula: '0930204300'
+  Usuario_66:
+    usuario_espol: andnitor
+    nombre: 'ANDREA NINOSCA'
+    apellido: 'TORRES RANGEL'
+    mail: andnitor@espol.edu.ec
+    matricula: '200812766'
+    cedula: '0926593740'
+  Usuario_67:
+    usuario_espol: kcreina
+    nombre: 'KIARA CAROLINA'
+    apellido: 'REINA TORRES'
+    mail: kcreina@espol.edu.ec
+    matricula: '200815405'
+    cedula: '0925032500'
+  Usuario_68:
+    usuario_espol: gatotoy
+    nombre: 'GUSTAVO ALFREDO'
+    apellido: 'TOTOY GUANANGA'
+    mail: gatotoy@espol.edu.ec
+    matricula: '200819563'
+    cedula: '0930054473'
+  Usuario_69:
+    usuario_espol: jlcosta
+    nombre: 'JANINA LIZBETH'
+    apellido: 'COSTA CAMPUZANO'
+    mail: jlcosta@espol.edu.ec
+    matricula: '200829778'
+    cedula: '0930128897'
+  Usuario_70:
+    usuario_espol: djpezo
+    nombre: 'DIEGO JAVIER'
+    apellido: 'PEZO SERRANO'
+    mail: djpezo@espol.edu.ec
+    matricula: '200836575'
+    cedula: '0928287614'
+  Usuario_71:
+    usuario_espol: racoloma
+    nombre: 'ROBERT ANTONY'
+    apellido: 'COLOMA CLAVIJO'
+    mail: racoloma@espol.edu.ec
+    matricula: '200902120'
+    cedula: '0929310597'
+  Usuario_72:
+    usuario_espol: osedloor
+    nombre: 'OSCAR EDUARDO'
+    apellido: 'LOOR QUEVEDO'
+    mail: osedloor@espol.edu.ec
+    matricula: '200904167'
+    cedula: '0930510110'
+  Usuario_73:
+    usuario_espol: ronjgarc
+    nombre: 'RONALD JOEL'
+    apellido: 'GARCIA ARCOS'
+    mail: ronjgarc@espol.edu.ec
+    matricula: '200904522'
+    cedula: '0923005615'
+  Usuario_74:
+    usuario_espol: vangirev
+    nombre: 'VANESSA GIANELLA'
+    apellido: 'REVELO HERAS'
+    mail: vangirev@espol.edu.ec
+    matricula: '200905305'
+    cedula: '0930561022'
+  Usuario_75:
+    usuario_espol: sksamani
+    nombre: 'STEPHANY KATHERINE'
+    apellido: 'SAMANIEGO VILLARROEL'
+    mail: sksamani@espol.edu.ec
+    matricula: '200906436'
+    cedula: '0916800097'
+  Usuario_76:
+    usuario_espol: pcmacias
+    nombre: 'PATRICIA CARLOTA'
+    apellido: 'MACIAS JIJON'
+    mail: pcmacias@espol.edu.ec
+    matricula: '200909430'
+    cedula: '0803106590'
+  Usuario_77:
+    usuario_espol: waenriqu
+    nombre: 'WILSON ARTHUR'
+    apellido: 'ENRIQUEZ SALDAÑA'
+    mail: waenriqu@espol.edu.ec
+    matricula: '200912780'
+    cedula: '0927219915'
+  Usuario_78:
+    usuario_espol: almanosa
+    nombre: 'ANDRES LEONARDO'
+    apellido: 'MANOSALVAS ZUÑIGA'
+    mail: almanosa@espol.edu.ec
+    matricula: '200915809'
+    cedula: '0930132519'
+  Usuario_79:
+    usuario_espol: jialbanc
+    nombre: 'JIMMY ALEJANDRO'
+    apellido: 'BANCHON ZAMBRANO'
+    mail: jialbanc@espol.edu.ec
+    matricula: '200919611'
+    cedula: '0915823355'
+  Usuario_80:
+    usuario_espol: denbevil
+    nombre: 'DENISSE BEATRIZ'
+    apellido: 'VILLAMAR HERRERA'
+    mail: denbevil@espol.edu.ec
+    matricula: '200919983'
+    cedula: '0926225236'
+  Usuario_81:
+    usuario_espol: jlmonar
+    nombre: 'JOSE LUIS'
+    apellido: 'MONAR JAIME'
+    mail: jlmonar@espol.edu.ec
+    matricula: '200920155'
+    cedula: '1207104116'
+  Usuario_82:
+    usuario_espol: gianvall
+    nombre: 'GIANINA ANABELL'
+    apellido: 'VALLEJO GORDILLO'
+    mail: gianvall@espol.edu.ec
+    matricula: '200920254'
+    cedula: '0925820243'
+  Usuario_83:
+    usuario_espol: mfaguila
+    nombre: 'MARIA FERNANDA'
+    apellido: 'AGUILAR ROMERO'
+    mail: mfaguila@espol.edu.ec
+    matricula: '201018272'
+    cedula: '0705001394'
+  Usuario_84:
+    usuario_espol: jgcruz
+    nombre: 'JORGE GABRIEL'
+    apellido: 'CRUZ GUZÑAY'
+    mail: jgcruz@espol.edu.ec
+    matricula: '201018736'
+    cedula: '0923391528'
+  Usuario_85:
+    usuario_espol: jrmite
+    nombre: 'JORGE RAINIER'
+    apellido: 'MITE LABRE'
+    mail: jrmite@espol.edu.ec
+    matricula: '201020146'
+    cedula: '0925664435'
+  Usuario_86:
+    usuario_espol: cevimedi
+    nombre: 'CECIBEL VIRGINIA'
+    apellido: 'MEDINA NARANJO'
+    mail: cevimedi@espol.edu.ec
+    matricula: '201020229'
+    cedula: '0927515437'
+  Usuario_87:
+    usuario_espol: pcjordan
+    nombre: 'PAOLA CAROLINA'
+    apellido: 'JORDAN FIGUEROA'
+    mail: pcjordan@espol.edu.ec
+    matricula: '201020534'
+    cedula: '0705192623'
+  Usuario_88:
+    usuario_espol: apelizal
+    nombre: 'ADRIAN PATRICIO'
+    apellido: 'ELIZALDE ORELLANA'
+    mail: apelizal@espol.edu.ec
+    matricula: '201024528'
+    cedula: '0923607873'
+  Usuario_89:
+    usuario_espol: gsantiag
+    nombre: 'GUSTAVO DANIEL'
+    apellido: 'SANTIAGO ARIAS'
+    mail: gsantiag@espol.edu.ec
+    matricula: '201024551'
+    cedula: '0929606614'
+UsuarioCurso:
+  UsuarioCurso_1:
+    Curso: Curso_1
+    Usuario: Usuario_1
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_2:
+    Curso: Curso_1
+    Usuario: Usuario_2
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_3:
+    Curso: Curso_1
+    Usuario: Usuario_3
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_4:
+    Curso: Curso_1
+    Usuario: Usuario_4
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_5:
+    Curso: Curso_1
+    Usuario: Usuario_5
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_6:
+    Curso: Curso_1
+    Usuario: Usuario_6
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_7:
+    Curso: Curso_1
+    Usuario: Usuario_7
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_8:
+    Curso: Curso_1
+    Usuario: Usuario_8
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_9:
+    Curso: Curso_1
+    Usuario: Usuario_9
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_10:
+    Curso: Curso_1
+    Usuario: Usuario_10
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_11:
+    Curso: Curso_1
+    Usuario: Usuario_11
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_12:
+    Curso: Curso_1
+    Usuario: Usuario_12
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_13:
+    Curso: Curso_1
+    Usuario: Usuario_13
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_14:
+    Curso: Curso_1
+    Usuario: Usuario_14
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_15:
+    Curso: Curso_1
+    Usuario: Usuario_15
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_16:
+    Curso: Curso_1
+    Usuario: Usuario_16
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_17:
+    Curso: Curso_1
+    Usuario: Usuario_17
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_18:
+    Curso: Curso_1
+    Usuario: Usuario_18
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_19:
+    Curso: Curso_1
+    Usuario: Usuario_19
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_20:
+    Curso: Curso_1
+    Usuario: Usuario_20
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_21:
+    Curso: Curso_1
+    Usuario: Usuario_21
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_22:
+    Curso: Curso_1
+    Usuario: Usuario_22
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_23:
+    Curso: Curso_1
+    Usuario: Usuario_23
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_24:
+    Curso: Curso_1
+    Usuario: Usuario_24
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_25:
+    Curso: Curso_1
+    Usuario: Usuario_25
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_26:
+    Curso: Curso_1
+    Usuario: Usuario_26
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_27:
+    Curso: Curso_1
+    Usuario: Usuario_27
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_28:
+    Curso: Curso_1
+    Usuario: Usuario_28
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_29:
+    Curso: Curso_1
+    Usuario: Usuario_29
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_30:
+    Curso: Curso_1
+    Usuario: Usuario_30
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_31:
+    Curso: Curso_1
+    Usuario: Usuario_31
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_32:
+    Curso: Curso_1
+    Usuario: Usuario_32
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_33:
+    Curso: Curso_1
+    Usuario: Usuario_33
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_34:
+    Curso: Curso_1
+    Usuario: Usuario_34
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_35:
+    Curso: Curso_1
+    Usuario: Usuario_35
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_36:
+    Curso: Curso_1
+    Usuario: Usuario_36
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_37:
+    Curso: Curso_1
+    Usuario: Usuario_37
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_38:
+    Curso: Curso_2
+    Usuario: Usuario_38
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_39:
+    Curso: Curso_2
+    Usuario: Usuario_39
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_40:
+    Curso: Curso_2
+    Usuario: Usuario_2
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_41:
+    Curso: Curso_2
+    Usuario: Usuario_3
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_42:
+    Curso: Curso_2
+    Usuario: Usuario_40
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_43:
+    Curso: Curso_2
+    Usuario: Usuario_7
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_44:
+    Curso: Curso_2
+    Usuario: Usuario_41
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_45:
+    Curso: Curso_2
+    Usuario: Usuario_8
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_46:
+    Curso: Curso_2
+    Usuario: Usuario_42
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_47:
+    Curso: Curso_2
+    Usuario: Usuario_43
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_48:
+    Curso: Curso_2
+    Usuario: Usuario_44
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_49:
+    Curso: Curso_2
+    Usuario: Usuario_14
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_50:
+    Curso: Curso_2
+    Usuario: Usuario_15
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_51:
+    Curso: Curso_2
+    Usuario: Usuario_45
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_52:
+    Curso: Curso_2
+    Usuario: Usuario_16
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_53:
+    Curso: Curso_2
+    Usuario: Usuario_46
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_54:
+    Curso: Curso_2
+    Usuario: Usuario_17
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_55:
+    Curso: Curso_2
+    Usuario: Usuario_18
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_56:
+    Curso: Curso_2
+    Usuario: Usuario_47
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_57:
+    Curso: Curso_2
+    Usuario: Usuario_48
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_58:
+    Curso: Curso_2
+    Usuario: Usuario_49
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_59:
+    Curso: Curso_2
+    Usuario: Usuario_50
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_60:
+    Curso: Curso_2
+    Usuario: Usuario_51
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_61:
+    Curso: Curso_2
+    Usuario: Usuario_22
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_62:
+    Curso: Curso_2
+    Usuario: Usuario_52
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_63:
+    Curso: Curso_2
+    Usuario: Usuario_23
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_64:
+    Curso: Curso_2
+    Usuario: Usuario_53
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_65:
+    Curso: Curso_2
+    Usuario: Usuario_54
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_66:
+    Curso: Curso_2
+    Usuario: Usuario_55
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_67:
+    Curso: Curso_2
+    Usuario: Usuario_56
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_68:
+    Curso: Curso_3
+    Usuario: Usuario_57
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_69:
+    Curso: Curso_3
+    Usuario: Usuario_58
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_70:
+    Curso: Curso_3
+    Usuario: Usuario_59
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_71:
+    Curso: Curso_3
+    Usuario: Usuario_60
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_72:
+    Curso: Curso_3
+    Usuario: Usuario_61
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_73:
+    Curso: Curso_3
+    Usuario: Usuario_62
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_74:
+    Curso: Curso_3
+    Usuario: Usuario_63
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_75:
+    Curso: Curso_3
+    Usuario: Usuario_64
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_76:
+    Curso: Curso_3
+    Usuario: Usuario_65
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_77:
+    Curso: Curso_3
+    Usuario: Usuario_66
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_78:
+    Curso: Curso_3
+    Usuario: Usuario_67
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_79:
+    Curso: Curso_3
+    Usuario: Usuario_68
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_80:
+    Curso: Curso_3
+    Usuario: Usuario_69
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_81:
+    Curso: Curso_3
+    Usuario: Usuario_70
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_82:
+    Curso: Curso_3
+    Usuario: Usuario_71
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_83:
+    Curso: Curso_3
+    Usuario: Usuario_72
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_84:
+    Curso: Curso_3
+    Usuario: Usuario_73
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_85:
+    Curso: Curso_3
+    Usuario: Usuario_74
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_86:
+    Curso: Curso_3
+    Usuario: Usuario_75
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_87:
+    Curso: Curso_3
+    Usuario: Usuario_76
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_88:
+    Curso: Curso_3
+    Usuario: Usuario_77
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_89:
+    Curso: Curso_3
+    Usuario: Usuario_78
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_90:
+    Curso: Curso_3
+    Usuario: Usuario_79
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_91:
+    Curso: Curso_3
+    Usuario: Usuario_80
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_92:
+    Curso: Curso_3
+    Usuario: Usuario_81
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_93:
+    Curso: Curso_3
+    Usuario: Usuario_82
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_94:
+    Curso: Curso_3
+    Usuario: Usuario_83
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_95:
+    Curso: Curso_3
+    Usuario: Usuario_84
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_96:
+    Curso: Curso_3
+    Usuario: Usuario_85
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_97:
+    Curso: Curso_3
+    Usuario: Usuario_86
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_98:
+    Curso: Curso_3
+    Usuario: Usuario_87
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_99:
+    Curso: Curso_3
+    Usuario: Usuario_88
+    Rolusuario: Rolusuario_1
+  UsuarioCurso_100:
+    Curso: Curso_3
+    Usuario: Usuario_89
+    Rolusuario: Rolusuario_1
