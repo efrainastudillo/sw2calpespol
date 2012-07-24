@@ -19,7 +19,7 @@ class InicioActions extends sfActions
   {
 //      $handler = new WSDLHandler();
 //      $handler->initWSSAACHandler();
-      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
+//      $this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
 //      $primera=date("13/01/2013");
       $this->fecha=  Doctrine_Query::create()
             ->select('m.*')
