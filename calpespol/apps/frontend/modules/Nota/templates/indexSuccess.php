@@ -17,9 +17,9 @@
             <div class="titulo_head_panel">
                 <p>Ingreso de Notas</p>
             </div>
-<!--            <div class="extra_head_panel">
-                <p> Laboratorio de Potencia 1</p>
-            </div>-->
+            <div class="extra_head_panel">
+               <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+            </div>
     </div>
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
@@ -28,7 +28,7 @@
                 <p> Materia: </p>
                 <select id="materias" name="materias" size="1" id="mat_selec" >
                     <?php foreach ($materia as $mat): ?>
-                        <option>
+                        <option value="">
                             <?php echo $mat->getNombre(); ?>
                         </option>
                     <?php endforeach; ?>
@@ -66,20 +66,21 @@
             <table class="tabla" cellspacing="0">
                 <thead>
                     <tr>
-<!--                   //     <?php
-                       // if ( $literal = 1) {
+                        <?php //
+                       // if ($literal = 1) {
                        //     echo "<td>Estudiantes</td>";
-                      //  }else{
-                        //    echo "<td>Grupos</td>";
-                      //  }
-                       // ?>
-                        -->
+                       // } else {
+                       //     echo "<td>Grupos</td>";
+                        //}
+                        ?>
+                   
                         
                         <td>Grupos</td>
                         <?php
                         if (isset($literal)) {
+                            $i=1;
                             foreach ($literal as $lit) {
-                                echo "<td>" . "Literal (". $lit-> getValorPonderacion().")"  . "</td>";
+                                echo "<td>" . "Literal ". $i++ ." (" .$lit-> getValorPonderacion().")"  . "</td>";
                             }
                         }
                         ?>
@@ -90,6 +91,7 @@
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
                     if (isset($usuario)) {
+                        echo $usuario->count();
                         foreach ($usuario as $us) {
                             echo "<tr>";
                             echo "<td>" . $us->getNombre() . "</td>";
@@ -104,7 +106,7 @@
                           //echo "<td>" . "Literal (" . $lit->getValorPonderacion() . ")" . "</td>";
                             }
                         }
-                        ?>
+//                        ?>
                 </tbody>
             </table>
         </div>
@@ -121,9 +123,10 @@
             <tbody>
                  <?php 
                     if(isset ($literal)){
+                        $i=1;
                         foreach ($literal as $lit){
                             echo "<tr>";
-                                echo "<td>" . "Literal (" . $lit->getValorPonderacion() . ")" . "</td>";
+                                echo "<td>" . "Literal ". $i++ ." (" . $lit->getValorPonderacion() . ")" . "</td>";
                                 echo "<td>".$lit->getNombreLiteral()."</td>";
                             echo "</tr>";
                         }

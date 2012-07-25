@@ -15,12 +15,23 @@ class NotaActions extends sfActions
     $this->estudianteliterals = Doctrine_Core::getTable('estudianteliteral')
       ->createQuery('a')
       ->execute();
-    
+    $user=$this->getUser()->getUserDB();
     $this->materia = Materia::getMaterias();
-    $this->curso = Curso::getParalelos();
+    $this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
     $this->actividad = Actividad::getActividades();
     $this->literal = Literal::getLiterales();
-    $this->usuario = Usuario::getUsuarios();
+    $this->usuario = Doctrine_Query::create()
+            ->from('Usuario u')
+            ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
+            ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+            ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario') 
+            ->where('m.nombre=?',$this->getUser()->getMateriaActual())
+            ->andWhere('c.anio=?', '2012')
+            ->andWhere('c.termino=?', '1')
+            ->andWhere('ru.nombre=?', 'Estudiante')
+            ->execute();
+            
   }
 
   public function executeNew(sfWebRequest $request)

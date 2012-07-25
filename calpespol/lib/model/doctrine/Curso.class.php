@@ -12,10 +12,16 @@
  */
 class Curso extends BaseCurso
 {
-    public static function getParalelos()
+    public static function getParalelosOfUsuarioByMateria($materia,$iduser)
     {
         $q = Doctrine_Query::create()
-        ->from('Curso c');
-        return $q->execute();
+        ->select("*")
+        ->from('Curso c')
+                ->innerJoin("c.Materia m ON c.id_materia=m.idmateria")
+                ->innerJoin("c.UsuarioCurso uc ON uc.id_curso=c.idcurso")
+                ->where("m.nombre=?",$materia)
+                ->andWhere("uc.id_usuario=?",$iduser)
+                ->execute();
+        return $q;
     }
 }
