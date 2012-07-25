@@ -16,12 +16,12 @@
 
 <div class="panel">
     <div class="head_panel">
-            <div class="titulo_head_panel">
-                <p>Consulta de Actividad</p>
-            </div>
-            <div class="extra_head_panel">
-                <p> Laboratorio de Potencia 1</p>
-            </div>
+        <div class="titulo_head_panel">
+            <p>Consulta de Actividad</p>
+        </div>
+        <div class="extra_head_panel">
+            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+        </div>
     </div>
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
@@ -104,7 +104,6 @@
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
                         <td><a href="#" ><img src="../images/edit_2.png" width="15" height="15" title="Edita la actividad"/></a>&nbsp &nbsp 
                             <a href="#" ><img src="../images/delete_2.png" width="15" height="15" title="Elimina la actividad" /></a>&nbsp &nbsp 
-                            <a href="javascript:void(0);" id="nuevo_literal"><img src="../images/add.png" width="15" height="15" title="Nuevo Literal" /></a>
                         </td>
                     </tr>  
                 <?php endforeach; ?>

@@ -20,14 +20,18 @@ class ActividadActions extends sfActions{
       
       //Me da el termino actual
       $termino = Utility::getTermino();  
-      //Me devuelve la lista de paralelos del usuario
+      //Me devuelve la lista de paralelos del usuario de acuerdo a la materia
+      //seleccionada <?php echo "<p>".$sf_user->getMateriaActual()."</p>";
+
       $this->q=  Doctrine_Query::create()
           ->select('c.paralelo')
           ->from('Curso c')
           ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
           ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+          ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
           ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol $this->getUser()->getUserEspol()
           ->andWhere('c.termino =?',$termino)
+          ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
           ->execute();
       
     //Me devuelve la lista de las actividades del usuario
@@ -75,18 +79,18 @@ class ActividadActions extends sfActions{
       $tireal = $request->getParameter('tiporealizacion');
       $grade = $request->getParameter('ponderacion');
       
-      //Obtemiendo datos de la DB
+      //Obteniendo datos de la DB
       $this->c = Doctrine_Query::create()
               ->select('*')
               ->from('Curso c')
               ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-              ->where('m.nombre =?','SW1')
+              ->where('m.nombre =?',$this->getUser()->getMateriaActual())
               ->execute();
       $this->p = Doctrine_Query::create()
               ->select('c.paralelo')
               ->from('Curso c')
               ->innerjoin ('c.Materia m ON c.id_materia = m.idmateria')
-              ->where('m.nombre=?','SW1')
+              ->where('m.nombre=?',$this->getUser()->getMateriaActual())
               ->execute();
       
         //Ingresando los datos a la base

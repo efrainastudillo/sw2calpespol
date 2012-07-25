@@ -17,7 +17,7 @@ class EstudianteActions extends sfActions
           ->createQuery('a')
           ->execute();
       } catch (Exception $exc) {
-          //echo $exc->getTraceAsString();
+          //
       }
   }
 
