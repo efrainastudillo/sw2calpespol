@@ -1,3 +1,124 @@
+Actividad:
+  Actividad_1:
+    nombre: 'Examen Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_1
+  Actividad_2:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_2
+  Actividad_3:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_2
+  Actividad_4:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_3
+  Actividad_5:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_3
+  Actividad_6:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_4
+  Actividad_7:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_4
+  Actividad_8:
+    nombre: 'Proyecto Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_5
+  Actividad_9:
+    nombre: 'Examen Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_6
+  Actividad_10:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_7
+  Actividad_11:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_7
+  Actividad_12:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_8
+  Actividad_13:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_8
+  Actividad_14:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_9
+  Actividad_15:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_9
+  Actividad_16:
+    nombre: 'Proyecto Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_10
+  Actividad_17:
+    nombre: 'Examen Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_11
+  Actividad_18:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_12
+  Actividad_19:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_12
+  Actividad_20:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_13
+  Actividad_21:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_13
+  Actividad_22:
+    nombre: Capitulo1
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_14
+  Actividad_23:
+    nombre: Capitulo2
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_14
+  Actividad_24:
+    nombre: 'Proyecto Primer Parcial'
+    fecha_entrega: '0000-00-00 00:00:00'
+    nota: '0'
+    Tipoactividad: Tipoactividad_15
 Asistencia:
   Asistencia_1:
     fecha: '2012-07-24 00:00:00'
@@ -23,6 +144,264 @@ Curso:
     anio: '2012'
     termino: '1'
     Materia: Materia_4
+Estudiantegrupo:
+  Estudiantegrupo_1_1:
+    Grupo: Grupo_1
+    UsuarioCurso: UsuarioCurso_1
+  Estudiantegrupo_1_2:
+    Grupo: Grupo_1
+    UsuarioCurso: UsuarioCurso_2
+  Estudiantegrupo_2_3:
+    Grupo: Grupo_2
+    UsuarioCurso: UsuarioCurso_3
+  Estudiantegrupo_2_4:
+    Grupo: Grupo_2
+    UsuarioCurso: UsuarioCurso_4
+  Estudiantegrupo_3_5:
+    Grupo: Grupo_3
+    UsuarioCurso: UsuarioCurso_5
+  Estudiantegrupo_3_6:
+    Grupo: Grupo_3
+    UsuarioCurso: UsuarioCurso_6
+  Estudiantegrupo_4_7:
+    Grupo: Grupo_4
+    UsuarioCurso: UsuarioCurso_7
+  Estudiantegrupo_4_8:
+    Grupo: Grupo_4
+    UsuarioCurso: UsuarioCurso_8
+  Estudiantegrupo_5_9:
+    Grupo: Grupo_5
+    UsuarioCurso: UsuarioCurso_9
+  Estudiantegrupo_5_10:
+    Grupo: Grupo_5
+    UsuarioCurso: UsuarioCurso_10
+  Estudiantegrupo_6_11:
+    Grupo: Grupo_6
+    UsuarioCurso: UsuarioCurso_11
+  Estudiantegrupo_6_12:
+    Grupo: Grupo_6
+    UsuarioCurso: UsuarioCurso_12
+  Estudiantegrupo_7_13:
+    Grupo: Grupo_7
+    UsuarioCurso: UsuarioCurso_13
+  Estudiantegrupo_7_14:
+    Grupo: Grupo_7
+    UsuarioCurso: UsuarioCurso_14
+  Estudiantegrupo_8_15:
+    Grupo: Grupo_8
+    UsuarioCurso: UsuarioCurso_15
+  Estudiantegrupo_8_16:
+    Grupo: Grupo_8
+    UsuarioCurso: UsuarioCurso_16
+  Estudiantegrupo_9_17:
+    Grupo: Grupo_9
+    UsuarioCurso: UsuarioCurso_17
+  Estudiantegrupo_9_18:
+    Grupo: Grupo_9
+    UsuarioCurso: UsuarioCurso_18
+  Estudiantegrupo_10_19:
+    Grupo: Grupo_10
+    UsuarioCurso: UsuarioCurso_19
+  Estudiantegrupo_10_20:
+    Grupo: Grupo_10
+    UsuarioCurso: UsuarioCurso_20
+  Estudiantegrupo_11_21:
+    Grupo: Grupo_11
+    UsuarioCurso: UsuarioCurso_21
+  Estudiantegrupo_11_22:
+    Grupo: Grupo_11
+    UsuarioCurso: UsuarioCurso_22
+  Estudiantegrupo_12_23:
+    Grupo: Grupo_12
+    UsuarioCurso: UsuarioCurso_23
+  Estudiantegrupo_12_24:
+    Grupo: Grupo_12
+    UsuarioCurso: UsuarioCurso_24
+  Estudiantegrupo_13_25:
+    Grupo: Grupo_13
+    UsuarioCurso: UsuarioCurso_25
+  Estudiantegrupo_13_26:
+    Grupo: Grupo_13
+    UsuarioCurso: UsuarioCurso_26
+  Estudiantegrupo_14_27:
+    Grupo: Grupo_14
+    UsuarioCurso: UsuarioCurso_27
+  Estudiantegrupo_14_28:
+    Grupo: Grupo_14
+    UsuarioCurso: UsuarioCurso_28
+  Estudiantegrupo_15_29:
+    Grupo: Grupo_15
+    UsuarioCurso: UsuarioCurso_29
+  Estudiantegrupo_15_30:
+    Grupo: Grupo_15
+    UsuarioCurso: UsuarioCurso_30
+Grupo:
+  Grupo_1:
+    numero: '1'
+    nombre: Grupo1
+  Grupo_2:
+    numero: '2'
+    nombre: Grupo2
+  Grupo_3:
+    numero: '3'
+    nombre: Grupo3
+  Grupo_4:
+    numero: '4'
+    nombre: Grupo4
+  Grupo_5:
+    numero: '5'
+    nombre: Grupo5
+  Grupo_6:
+    numero: '6'
+    nombre: Grupo6
+  Grupo_7:
+    numero: '7'
+    nombre: Grupo7
+  Grupo_8:
+    numero: '8'
+    nombre: Grupo8
+  Grupo_9:
+    numero: '9'
+    nombre: Grupo9
+  Grupo_10:
+    numero: '10'
+    nombre: Grupo10
+  Grupo_11:
+    numero: '11'
+    nombre: Grupo11
+  Grupo_12:
+    numero: '12'
+    nombre: Grupo12
+  Grupo_13:
+    numero: '13'
+    nombre: Grupo13
+  Grupo_14:
+    numero: '14'
+    nombre: Grupo14
+  Grupo_15:
+    numero: '15'
+    nombre: Grupo15
+Literal:
+  Literal_1:
+    nombre_literal: 'DIAGRAMA DE BLOQUES TCA785 (PAG 2 DATASHEET)'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_1
+  Literal_2:
+    nombre_literal: 'INTERPRETAR SEÑALES EN EL TIEMPO DEL TCA 785 DEL DATASHEET (PAG 3 DATA'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_1
+  Literal_3:
+    nombre_literal: 'IDENTIFICAR BLOQUES DE 1 CIRCUITO DE APLICACIÓN INCLUIDO EN EL DATASHE'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_2
+  Literal_4:
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_2
+  Literal_5:
+    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 5 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_3
+  Literal_6:
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_3
+  Literal_7:
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_4
+  Literal_8:
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_4
+  Literal_9:
+    nombre_literal: 'PROBLEMAS 10.3 Y 10.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_5
+  Literal_10:
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_5
+  Literal_11:
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_6
+  Literal_12:
+    nombre_literal: 'PROBLEMAS 3.16 Y 3.17 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_6
+  Literal_13:
+    nombre_literal: 'APLICACIÓN AL CONTROL DE MOTORES DC.- CAPÍTULO 8.- FIGURA 8.1.- DESCRI'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_7
+  Literal_14:
+    nombre_literal: 'SIMPOWERSYSTEMS.- BLOQUE "Synchronized 6-Pulse Generator": CLIC DERECH'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_7
+  Literal_15:
+    nombre_literal: 'DISEÑAR EN SPICE UN CIRCUITO QUE VARÍE EL ANGULO DE DISPARO ENTRE 0-18'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_8
+  Literal_16:
+    nombre_literal: 'DIAGRAMA DE BLOQUES TCA785 (PAG 2 DATASHEET)'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_9
+  Literal_17:
+    nombre_literal: 'INTERPRETAR SEÑALES EN EL TIEMPO DEL TCA 785 DEL DATASHEET (PAG 3 DATA'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_9
+  Literal_18:
+    nombre_literal: 'IDENTIFICAR BLOQUES DE 1 CIRCUITO DE APLICACIÓN INCLUIDO EN EL DATASHE'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_10
+  Literal_19:
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_10
+  Literal_20:
+    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 5 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_11
+  Literal_21:
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    valor_ponderacion: '5.00'
+    Actividad: Actividad_11
+  Literal_22:
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_12
+  Literal_23:
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_12
+  Literal_24:
+    nombre_literal: 'PROBLEMAS 10.3 Y 10.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_13
+  Literal_25:
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_13
+  Literal_26:
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_14
+  Literal_27:
+    nombre_literal: 'PROBLEMAS 3.16 Y 3.17 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_14
+  Literal_28:
+    nombre_literal: 'APLICACIÓN AL CONTROL DE MOTORES DC.- CAPÍTULO 8.- FIGURA 8.1.- DESCRI'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_15
+  Literal_29:
+    nombre_literal: 'SIMPOWERSYSTEMS.- BLOQUE "Synchronized 6-Pulse Generator": CLIC DERECH'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_15
+  Literal_30:
+    nombre_literal: 'DISEÑAR EN SPICE UN CIRCUITO QUE VARÍE EL ANGULO DE DISPARO ENTRE 0-18'
+    valor_ponderacion: '10.00'
+    Actividad: Actividad_16
 Materia:
   Materia_1:
     nombre: 'LENGUAJES DE PROGRAMACIÓN'
@@ -43,6 +422,142 @@ Rolusuario:
     nombre: Ayudante
   Rolusuario_3:
     nombre: Profesor
+Tipoactividad:
+  Tipoactividad_1:
+    Curso: Curso_1
+    valor_ponderacion: '50'
+    nombre: Examen
+    parcial: '1'
+    es_extra: false
+    es_grupal: false
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_2:
+    Curso: Curso_1
+    valor_ponderacion: '10'
+    nombre: Leccion
+    parcial: '1'
+    es_extra: false
+    es_grupal: false
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_3:
+    Curso: Curso_1
+    valor_ponderacion: '10'
+    nombre: Deber
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: true
+    tiene_factor_2: false
+  Tipoactividad_4:
+    Curso: Curso_1
+    valor_ponderacion: '20'
+    nombre: Taller
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_5:
+    Curso: Curso_1
+    valor_ponderacion: '10'
+    nombre: Proyecto
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_6:
+    Curso: Curso_2
+    valor_ponderacion: '60'
+    nombre: Examen
+    parcial: '1'
+    es_extra: false
+    es_grupal: false
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_7:
+    Curso: Curso_2
+    valor_ponderacion: '10'
+    nombre: Leccion
+    parcial: '1'
+    es_extra: false
+    es_grupal: false
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_8:
+    Curso: Curso_2
+    valor_ponderacion: '10'
+    nombre: Deber
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: true
+    tiene_factor_2: false
+  Tipoactividad_9:
+    Curso: Curso_2
+    valor_ponderacion: '10'
+    nombre: Taller
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_10:
+    Curso: Curso_2
+    valor_ponderacion: '10'
+    nombre: Proyecto
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_11:
+    Curso: Curso_3
+    valor_ponderacion: '50'
+    nombre: Examen
+    parcial: '1'
+    es_extra: false
+    es_grupal: false
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_12:
+    Curso: Curso_3
+    valor_ponderacion: '20'
+    nombre: Leccion
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_13:
+    Curso: Curso_3
+    valor_ponderacion: '10'
+    nombre: Deber
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: true
+    tiene_factor_2: false
+  Tipoactividad_14:
+    Curso: Curso_3
+    valor_ponderacion: '10'
+    nombre: Taller
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
+  Tipoactividad_15:
+    Curso: Curso_3
+    valor_ponderacion: '10'
+    nombre: Proyecto
+    parcial: '1'
+    es_extra: false
+    es_grupal: true
+    tiene_factor_1: false
+    tiene_factor_2: false
 Tipoasistencia:
   Tipoasistencia_1:
     nombre: Presente
@@ -152,7 +667,7 @@ Usuario:
   Usuario_15:
     usuario_espol: aledcerv
     nombre: 'ALEX  DARIO'
-    apellido: 'CERVANTES BALLADARES'
+    apellido: 'CERVANTES   BALLADARES'
     mail: aledcerv@espol.edu.ec
     matricula: '200705259'
     cedula: '0924829245'
