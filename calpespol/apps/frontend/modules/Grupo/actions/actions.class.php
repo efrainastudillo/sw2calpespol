@@ -38,14 +38,6 @@ class GrupoActions extends sfActions {
     }
 
     public function executeConsulta(sfWebRequest $request) {
-        $cursos = Doctrine_Core::getTable('Curso')
-                ->createQuery('a')
-                ->leftJoin('a.Materia m')
-                ->where('a.anio = ?',$request->getParameter('anio'))
-                ->andWhere('a.termino = ?',$request->getParameter('termino'))
-                ->andWhere('a.paralelo = ?',$request->getParameter('paralelo'))
-                ->andWhere('m.nombre = ?',$request->getParameter('materia'))
-                ->execute();
         $this->estudiantes = Doctrine_Core::getTable('Estudiantecurso')
                 ->createQuery('e')
                 ->leftJoin('e.Usuario u')
@@ -75,6 +67,29 @@ class GrupoActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
+        if($this->getUser()->hasMateriaActual()){
+            $materias = Doctrine_Core::getTable('Materia')
+                    ->createQuery('m')
+                    ->where('m.nombre = ?',$this->getUser()->getMateriaActual())
+                    ->execute();
+            $id_materia = $materias[0].getCodigoMateria();
+            $roles = Doctrine_Core::getTable('Rolusuario')
+                    ->createQuery('r')
+                    ->where('r.nombre = ?','Estudiante')
+                    ->execute();
+            $id_rol = $roles[0].getIdrolusuario();
+            $cursos = Doctrine_Core::getTable('Curso')
+                    ->createQuery('c')
+                    ->where('c.paralelo = ?',$this->getUser()->getParaleloActual())
+                    ->andWhere('c.id_materia = ?', $id_materia)
+                    ->execute();
+            $id_curso = $cursos[0].getIdcurso();
+            $this->lista = DoctrineCore::getTable('UsuarioCurso')
+                    ->createQuery('uc')
+                    ->where('uc.id_curso = ?',$id_curso)
+                    ->andWhere('uc.id_rol = ?', $id_rol)
+                    ->execute();
+        }
     }
 
     public function executeNew(sfWebRequest $request) {
