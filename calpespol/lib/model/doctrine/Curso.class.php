@@ -19,9 +19,22 @@ class Curso extends BaseCurso
         ->from('Curso c')
                 ->innerJoin("c.Materia m ON c.id_materia=m.idmateria")
                 ->innerJoin("c.UsuarioCurso uc ON uc.id_curso=c.idcurso")
+                
                 ->where("m.nombre=?",$materia)
                 ->andWhere("uc.id_usuario=?",$iduser)
                 ->execute();
+        return $q;
+    }
+    public static function getCursoByParaleloAndMateria($paralelo,$materia){
+        $q=Doctrine_Query::create()
+                ->select("")
+                ->from('Curso c')
+                ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
+                ->where('c.anio=?',  Utility::getAnio())
+                ->andWhere('c.termino=?',  Utility::getTermino())
+                ->andWhere('m.nombre=?',$materia)
+                ->andWhere('c.paralelo=?',$paralelo)
+            ->fetchOne();
         return $q;
     }
 }

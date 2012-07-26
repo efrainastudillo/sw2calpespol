@@ -21,13 +21,13 @@
         </div>
         
         <div class="extra_head_panel">
-            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
         </div>
-        <div style="margin-right:200px;color: red;"  class="extra_head_panel">
-           <?php if ($sf_user->hasFlash('mensaje')): ?>
-              <div><?php echo $sf_user->getFlash('mensaje') ?></div>
-            <?php endif ?>
-        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
+        </div> 
+        
     </div>
 
     <div class="body_panel">

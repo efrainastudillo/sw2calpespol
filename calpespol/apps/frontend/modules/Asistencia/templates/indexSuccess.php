@@ -16,31 +16,33 @@
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Asistencias</p>    
+            <p>Consulta de Estudiantes</p>  
+            
         </div>
         
         <div class="extra_head_panel">
             <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+        </div>
+        
+        <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+           <?php if ($sf_user->hasFlash('mensaje')): ?>
+              <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+            <?php endif ?>
         </div>
     </div>
 
     <div class="body_panel">
         
         <div class="titulo_body_panel">
-            <p> Consulta de Estudiantes </p>
+            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
         
-        <div class="boton_new">
-            <a href="#" class="button rounded black" id="new">
-                <img src="../images/new.png" width="15" height="15" /> Eliminar
-            </a> 
-        </div>
-        <div class="boton_new">
+        <div class="boton_new" title="Crear Nuevo Estudiante">
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
-                <img src="../images/new.png" width="15" height="15" /> Nuevo Estudiante
+                <img src="../images/new.png" width="15" height="15"/> Nuevo Estudiante
             </a> 
         </div>
-        
+        <div style="clear: both;visibility: hidden"></div>
         <div class="tableScroll">
             
             <table class="tabla" cellspacing="0">
@@ -66,113 +68,17 @@
                                 echo "<td>".$est->getMail()."</td>";
                                 echo "<td>".$est->getUsuarioEspol()."</td>";
                                 echo "<td>";
-                                echo "<a href='Estudiante/delete?id=".$est->getIdUsuario()."'>";
-                                echo image_tag('/images/delete.png', 'size=18x18');
-                                echo "</a>";
-                                echo "<a href='Estudiante/edit?id=".$est->getIdUsuario()."'>";
-                                echo image_tag('/images/edit.png', 'size=18x18');
-                                echo "</a>";
+                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Estudiante/edit?id='.
+                                        $est->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Estudiante'));
+                                echo '&nbsp &nbsp' ;
+                                echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Estudiante/delete?id='.
+                                        $est->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Estudiante'));              
                                 echo "</td>";
                             echo "</tr>";
                         }
                     }
                     ?>
-<!--                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr><tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Detalle</td>
-                        <td>Puntaje</td>
-                        <td>Acción</td>	
-                    </tr>-->
-                    
-                    
-                    
+                
                 </tbody>
 
 <!--                <tfoot>
@@ -198,10 +104,6 @@
         </script>"
         ?>
         
-    </div>
-    
-    <div class="foot_panel">
-        <a class="button rounded black" href="#"> Volver a Actividades </a>
     </div>
 
 </div>

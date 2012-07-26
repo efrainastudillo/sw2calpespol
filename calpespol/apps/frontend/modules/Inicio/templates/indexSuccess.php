@@ -15,8 +15,7 @@
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Inicio</p>  
-            
+            <p>Inicio está hecho para pruebas</p>            
         </div>
         
         <div class="extra_head_panel">

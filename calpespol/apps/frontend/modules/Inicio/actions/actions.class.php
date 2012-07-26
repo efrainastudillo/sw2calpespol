@@ -53,6 +53,18 @@ class InicioActions extends sfActions
             
   }
   
+  public function executeAdminlogin(sfWebRequest $request){
+      $user = $request->getParameter("userID");
+      $password = $request->getParameter("userPASS");
+      if(isset($user) && isset ($password)){    
+          //$estado= $this->getAuthentication($user, $password);
+              $this->getUser()->setUserEspol("Administrador"); 
+               $this->getUser()->setRol("Administrador");
+              $this->getUser()->setAuthenticated(true);
+              $this->redirect("Inicio/index");
+             
+      }//fin del if externo
+  }
   /**
    * Cambia la materia actual del Usuario del sistema y lo almacena 
    * en la sesion del usuario

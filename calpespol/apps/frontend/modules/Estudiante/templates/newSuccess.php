@@ -16,24 +16,27 @@
     <div class="head_panel">
         
         <div class="titulo_head_panel">
-            <p>Actualización de Estudiante</p>            
+            <p>Nuevo Estudiante</p>            
         </div>
         
         <div class="extra_head_panel">
-            <?php  echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
-              
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
         </div>
-        <div style="margin-right:200px;color: red;"  class="extra_head_panel">
-           <?php if ($sf_user->hasFlash('mensaje')): ?>
-              <div><?php echo $sf_user->getFlash('mensaje') ?></div>
-            <?php endif ?>
-        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
+        </div> 
+        
     </div>
 
     <div class="body_panel">
         
         <div class="titulo_body_panel">
-            <p>  </p>
+            <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+               <?php if ($sf_user->hasFlash('mensaje')): ?>
+                  <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+                <?php endif ?>
+            </div>
         </div>
         
         <div id="regresar_lista" class="boton_new">
@@ -41,12 +44,25 @@
                 <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Estudiantes
             </a>
         </div>
+        <div style="clear: both;visibility: hidden"></div>
         <div>
             <form id="form_edit_estudiante" action="<?php echo url_for('Estudiante/create') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
                       <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
+                  </tr>
+                  <tr>
+                      <th>Paralelo:</th>
+                      <td><select name="paralelo">
+                              <?php $usuario=$sf_user->getUserDB();
+                                  $par=Curso::getParalelosOfUsuarioByMateria($sf_user->getMateriaActual(),$usuario->getIdUsuario());
+                                  foreach ($par as $p){
+                                    echo '<option value="'.$p->getParalelo().'">'.$p->getParalelo().'</option>' ;
+                                  }
+                              ?>
+                          </select></td>
+                      <td></td>
                   </tr>
                   <tr>
                       <th>Nombres:</th>
@@ -91,6 +107,8 @@
               </table>
             </form>
         </div>
+        <div class="mensaje_ayuda"><p>Verifique que el Estudiante que quiere Ingresar al Sistema Corresponda al Paralelo y Materia Actual</p></div>
     </div> 
+    
 </div>
     

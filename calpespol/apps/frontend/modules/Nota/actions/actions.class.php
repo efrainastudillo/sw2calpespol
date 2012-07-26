@@ -17,7 +17,9 @@ class NotaActions extends sfActions
       ->execute();
     $user=$this->getUser()->getUserDB();
     $this->materia = Materia::getMaterias();
-    $this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
+    if(isset ($user) && $user)
+        //$this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
+        $this->curso =  $this->getUser ()->getParalelos();
     $this->actividad = Actividad::getActividades();
     $this->literal = Literal::getLiterales();
     $this->usuario = Doctrine_Query::create()
