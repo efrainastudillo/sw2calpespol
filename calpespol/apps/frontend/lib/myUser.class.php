@@ -93,8 +93,8 @@ class myUser extends sfBasicSecurityUser
     }
     
     /**
-     * Obtengo el Rol Del Usuario que se ha logeado;
-     * @return type Rolusuario
+     * Si el Usuario actual logeado tiene rol Estudiante
+     * @return Boolean True si es el Rol es tipo Estudiante, False otherwise
      */
     public function isEstudiante(){
        $rol= $this->getAttribute("rol");
@@ -106,22 +106,35 @@ class myUser extends sfBasicSecurityUser
        }
     }
     /**
-     *
-     * @param type $rol 
+     * SI el Usuario actual logeado tiene rol de Administrador
+     * @return Boolean True si Es administrador el Usuario logeado actual
+     */
+    public function isAdmin(){
+        $admin=$this->getRol();
+        if(strcasecmp($admin, 'Administrador')==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * Coloca en la Sesion del Usario el tipo de Rol que tiene
+     * @param String puede se Estudiante,Profesor, Ayudante o Administrador 
      */
     public function setRol($rol){
         $this->setAttribute("rol",$rol);
     }
     
     /**
-     * 
+     * Obtengo el Rol Del Usuario que se ha logeado;
+     * @return String puede ser Estudiante, Ayudante, Profesor o Administrador
      */
     public function getRol(){
-        $this->getAttribute("rol");
+       return $this->getAttribute("rol");
     }
     /**
      * Obtener las materias del Usuario 
-     * @return type 
+     * @return Array COntiene las materias 
      */
     public function getMaterias(){        
         $materias= Doctrine_Query::create()
@@ -134,12 +147,49 @@ class myUser extends sfBasicSecurityUser
             ->execute();
         return $materias;
     }
+    /**
+     * Paralelos
+     * @return Array Devuelve los paralelos del Usuario 
+     */
+    public function getParalelos(){
+        $q = Doctrine_Query::create()
+        ->select("*")
+        ->from('Curso c')
+                ->innerJoin("c.Materia m ON c.id_materia=m.idmateria")
+                ->innerJoin("c.UsuarioCurso uc ON uc.id_curso=c.idcurso")
+                ->innerJoin("uc.Usuario u ON uc.id_usuario=u.idusuario")
+                ->where("m.nombre=?",  $this->getMateriaActual())
+                ->andWhere("u.usuario_espol=?",$this->getUserEspol())
+                ->execute();
+        return $q;
+    }
+    /**
+     * Retorna la materia Actual seleccionada
+     * @return String  
+     */
     public function getMateriaActual(){
         return $this->getAttribute("materia");
     }
-    
+    /**
+     * Guarda la materia seleccionada en la sesion
+     * @param String Nombre de la Materia a ser Almacenada en la sesion 
+     */
     public function setMateriaActual($materia){
         $this->setAttribute("materia",$materia);
+    }
+    /**
+     * Retorna el paralelo actual que se ha seleccionado
+     * @return String 
+     */
+    public function getParaleloActual(){
+        return $this->getAttribute("paralelo");
+    }
+    /**
+     * Guarda el paralelo seleccionado en la sesion
+     * @param String  
+     */
+    public function setParaleloActual($paralelo){
+        $this->setAttribute("paralelo",$paralelo);
     }
   /**
    * Cierra la sesion elimina los datos de la sesion

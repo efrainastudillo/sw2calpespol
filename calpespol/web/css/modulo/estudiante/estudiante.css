@@ -31,3 +31,11 @@ table td{
 table td a{
     color: black;
 } 
+
+div.mensaje_ayuda p{
+    text-align: center;
+    margin: 0px 20px;
+    width: 310px;
+    font-size: 10px;
+    color: #005353;
+}
