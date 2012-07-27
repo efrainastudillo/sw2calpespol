@@ -17,6 +17,15 @@ class AsistenciaActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    //$this->forward('default', 'module');
+      $fecha=$request->getParameter("fecha");
+      $f= date_create($fecha);
+      $this->asistencias=Asistencia::getAsistenciasByFecha(
+              $this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual(), $fecha);
+      if($this->asistencias->count()==0){
+          $this->getUser()->setFlash('mensaje','No Existe Asistencias para la Fecha dada >> '.date_format($f, 'l jS F Y'));
+      }
+      else{
+          $this->getUser()->setFlash('mensaje','');
+      }
   }
 }
