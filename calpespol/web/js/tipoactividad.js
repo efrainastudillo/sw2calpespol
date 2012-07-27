@@ -8,18 +8,15 @@
  */
 $(document).ready(function(){
     //Declaracion de variables
-    var inputNota = $("#grade");       
-    var reqNota= $("#req-nota");
+    var inputTipoacti = $("#tipo_acti");       
+    var reqTipoacti= $("#req-tipacti");
     
-    var inputDescrip = $("#descrip");
-    var reqDescrip = $("#req-descripcion");
-    
-    var inputDate = $("#date");
-    var reqDate = $("#req-fecha");
+    var inputPond = $("#ponde");
+    var reqPond = $("#req-pond");
     
 //Funcion que ejecuta la accion guardar
     $("div#grabar_actividad").click(function(){
-        if(validarNumero(inputNota,reqNota)&&validarCaracteres(inputDescrip,reqDescrip)&&validarFecha(inputDate,reqDate)){
+        if(validarNumero(inputPond,reqPond)&&validarCaracteres(inputTipoacti,reqTipoacti)){
             $("#formulario").submit();//en esta linea envia el formulario
         }
         else
@@ -93,6 +90,7 @@ $(document).ready(function(){
             return true;  
         }  
    }
+   
    /**
     * Valida 
     *   -   si el campo input no han ingresado nada (Campo requerido)
@@ -120,16 +118,7 @@ $(document).ready(function(){
         }  
     }
     
-           /**
-    * Valida 
-    *   -   si el campo input no han ingresado nada (Campo requerido)
-    *   -   Si los caracteres ingresados son diferentes de alguna letra del abcdario
-    *   @param input referencia del texfield
-    *   @param output referencia al span en donde se agregara el texto de error a mostrar
-    */
-    function validarFecha(input,output){  
-       
-    }
+
    
    /*                        Sección Literales                            */
    

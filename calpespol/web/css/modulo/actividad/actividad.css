@@ -1,10 +1,9 @@
-@charset "utf-8";
-/* CSS Document */
-/*
-*	Documento:		estilo.css
-*	Autor:			Efrain Astudillo
-*	Descripcion:	Este archivo gestiona todo el disenio del layout
-*	Fecha:			4 de Junio de 2012
+/* 
+    Document   : actividad
+    Created on : Jun 17, 2012, 12:25:20 PM
+    Author     : Andrea Cáceres
+    Description:
+        Estilo de la pagina Actividad.
 */
 
 .item_1{
@@ -24,4 +23,10 @@
 
 .item_1, .item_2, .item_3{
     margin-top: 0.2em;
+}
+
+#req-descripcion, #req-nota, #req-fecha, #req-tipacti, #req-pond{
+    color: red;
+    visibility: hidden;
+    font-size: 11px;
 }

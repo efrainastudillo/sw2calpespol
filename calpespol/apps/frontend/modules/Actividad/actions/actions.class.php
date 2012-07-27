@@ -5,7 +5,7 @@
  *
  * @package    CALPESPOL
  * @subpackage Actividad
- * @author     Your name here
+ * @author     Andrea Cáceres
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class ActividadActions extends sfActions{
@@ -148,29 +148,57 @@ class ActividadActions extends sfActions{
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ActividadForm($actividad);
+    $this->actividad = Doctrine_Query::create()
+            ->select("*")
+            ->from('Actividad a')
+            ->where('a.idactividad = ?', $request->getParameter("id"))
+            ->fetchOne();
+    
+    $this->ta = Doctrine_Query::create()
+          ->select('ta.nombre')
+          ->from('TipoActividad ta')
+          ->innerjoin('ta.Actividad a ON ta.idtipoactividad = a.id_tipo_actividad')
+          ->where('a.idactividad=?',$request->getParameter("id"))
+          ->execute();
+    
+    $this->forward404Unless($this->actividad);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ActividadForm($actividad);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
+      $id=$request->getParameter("id");
+      $ta = Doctrine_Query::create()
+              ->select('ta.nombre')
+              ->from('TipoActividad ta')
+              ->innerjoin('ta.Actividad a ON ta.idtipoactividad = a.id_tipo_actividad')
+              ->where('a.idactividad=?',$id)
+              ->execute();
+      
+      $descrip=$request->getParameter("descripcion");
+      $date=$request->getParameter("fecha");
+      $grade=$request->getParameter("nota");
+      
+      $actividad = Doctrine_Query::create()
+            ->select("*")
+            ->from('Actividad a')
+            ->where('a.idactividad = ?', $id)
+            ->execute();
+      $actividad->setNombre($ta);
+      $actividad->setApellido($descrip);
+      $actividad->setMail($date);
+      $actividad->setMatricula($grade);
+      $actividad->save();
+      $this->getUser()->setFlash('mensaje', 'Actividad Actualizado Exitosamente');
+      $this->redirect("Actividad/index");
   }
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
-    $actividad->delete();
-
-    $this->redirect('Actividad/index');
+      $id=$request->getParameter('id');
+      $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
+      $actividad->delete();
+      $this->getUser()->setFlash('mensaje', 'Actividad Eliminada Correctamente');
+      $this->redirect('Actividad/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
