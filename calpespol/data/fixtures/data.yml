@@ -127,7 +127,99 @@ Asistencia:
   Asistencia_2:
     fecha: '2012-07-28 00:00:00'
     Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_3
+  Asistencia_3:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_4
+  Asistencia_4:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_3
+  Asistencia_5:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
     UsuarioCurso: UsuarioCurso_2
+  Asistencia_6:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_2
+  Asistencia_7:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_5
+  Asistencia_8:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_5
+  Asistencia_9:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_6
+  Asistencia_10:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_7
+  Asistencia_11:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_5
+  Asistencia_12:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_3
+    UsuarioCurso: UsuarioCurso_9
+  Asistencia_13:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_8
+  Asistencia_14:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_10
+  Asistencia_15:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_11
+  Asistencia_16:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_11
+  Asistencia_17:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_12
+  Asistencia_18:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_13
+  Asistencia_19:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_12
+  Asistencia_20:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_13
+  Asistencia_21:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_15
+  Asistencia_22:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_15
+  Asistencia_23:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_16
+  Asistencia_24:
+    fecha: '2012-07-24 00:00:00'
+    Tipoasistencia: Tipoasistencia_1
+    UsuarioCurso: UsuarioCurso_18
+  Asistencia_25:
+    fecha: '2012-07-28 00:00:00'
+    Tipoasistencia: Tipoasistencia_2
+    UsuarioCurso: UsuarioCurso_6
 Curso:
   Curso_1:
     paralelo: '1'

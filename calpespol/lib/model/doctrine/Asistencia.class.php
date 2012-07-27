@@ -13,4 +13,25 @@
 class Asistencia extends BaseAsistencia
 {
 
+    /**
+     *
+     * @param type $materia
+     * @param type $paralelo
+     * @param type $fecha
+     * @return type 
+     */
+    public static function getAsistenciasByFecha($materia,$paralelo,$fecha){
+        $q=Doctrine_Query::create()
+              ->from('Asistencia a')
+              ->innerJoin('a.Tipoasistencia ta ON a.id_tipo_asistencia=ta.idtipoasistencia')
+              ->innerJoin('a.UsuarioCurso uc ON a.id_estudiante=uc.id_usuario_curso')
+              ->innerJoin('uc.Usuario u ON uc.id_usuario=u.idusuario')
+              ->innerJoin('uc.Curso c ON uc.id_curso=c.idcurso')
+              ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
+              ->where('m.nombre=?', $materia )
+              ->andWhere('c.paralelo=?',$paralelo)
+              ->andWhere('a.fecha=?',$fecha)
+              ->execute();
+      return $q;
+    }
 }
