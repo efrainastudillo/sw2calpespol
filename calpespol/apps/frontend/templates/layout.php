@@ -15,7 +15,7 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-      <?php $materias = $sf_user->getMaterias();?>
+      <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos();?>
       <div id="div_contenedor_todo">
     	<div id="div_menu_sesion_usuario">
             <div id="div_menu_sesion_usuario_centrado">
@@ -25,8 +25,13 @@
                             <?php echo image_tag('/images/user2.png', array('alt_title'=>'User','class'=>'UserImage','align'=>'top','size'=>'23x23')) ?>                           
                         </li>                        
                         <li>
-                            <a href="#">
-                                <?php echo $sf_user->getFullName()?>
+                            <a href="#">                                
+                                <?php if($sf_user->isAdmin()){
+                                        echo "Administrador";
+                                    }else{
+                                        echo $sf_user->getFullName();
+                                    }
+                                ?>
                             </a>
                         </li>
                         <li>
@@ -40,6 +45,7 @@
                     </ul>
                 </div>
                 <div class="div_sesion">
+                    <?php if(!$sf_user->isAdmin()):?>
                     <form id="form_materias" method="POST" action="<?php echo url_for("Inicio/materia");?>">
                         <label for="usuario" >Materia:</label>                    
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
@@ -60,16 +66,31 @@
                             <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                         </select>
                     </form>
+                    <?php endif;?>
                 </div>
                 <div class="div_sesion">
+                    <?php if(!$sf_user->isAdmin()):?>
                     <form method="POST" action="Inicio/change">
-                        <label for="usuario" >Parcial:</label>                        
-                        <select id="parcial_selecionado" style="width:40px;" name="lista_parciales">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
+                        <label for="usuario" >Paralelo:</label>
+                        <select id="paralelo_selecionado" style="width:40px;" name="lista_paralelos">
+                          <?php
+                            if(isset ($paralelos)){
+                                foreach ($paralelos as $value) {
+                                    if(strcasecmp($value->getParalelo(), $sf_user->getParaleloActual())==0){
+                                        echo "<option selected='selected' value='".$value->getParalelo()."' >".$value->getParalelo()."</option>";
+                                    }else{
+                                        if(strcasecmp("", $sf_user->getParaleloActual())==0){
+                                            $sf_user->setParaleloActual($value->getParalelo());
+                                        }
+                                        echo "<option  value='".$value->getParalelo()."' >".$value->getParalelo()."</option>";
+                                    }
+                                }                                
+                            }?>
+                            <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
+                            <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                         </select>
                     </form>
+                    <?php endif;?>
                 </div>
                 <div class="div_corrector_float"></div>
             </div>
@@ -100,12 +121,15 @@
                         <li class="<?php if (!include_slot('materia-css')): ?>deselected<?php endif; ?>" name="materias">
                             <p><a href="#">Materias</a></p>
                         </li>
+                        <?php if(!$sf_user->isAdmin()):?>
                         <li class="<?php if (!include_slot('ayudantia-css')): ?>deselected<?php endif; ?>" name="grupos">
                             <p><a href="<?php echo url_for('Grupo/index') ?>">Grupos</a></p>
                         </li>
+                         
                         <li class="<?php if (!include_slot('estudiante-css')): ?>deselected<?php endif; ?>" name="estudiantes">
                             <p><a href="<?php echo url_for('Estudiante/index') ?>">Estudiantes</a></p>
                         </li>
+                        
                         <li class="<?php if (!include_slot('actividad-css')): ?>deselected<?php endif; ?>" name="actividades">
                             <p><a href="<?php echo url_for('Actividad/index') ?>">Actividades</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
@@ -118,6 +142,17 @@
                             <p><a href="<?php echo url_for('Nota/index') ?>">Notas</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
+                        <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
+                            <p><a href="<?php echo url_for('Nota/index') ?>">Ayudantes</a></p>
+                            <!-- <p class="subtext">Legal things</p> -->
+                        </li>
+                        <?php endif;?>
+                        <?php if($sf_user->isAdmin()):?>
+                        <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
+                            <p><a href="<?php echo url_for('Nota/index') ?>">Profesores</a></p>
+                            <!-- <p class="subtext">Legal things</p> -->
+                        </li>
+                        <?php endif;?>
                     </ul>
                 </div>
             </div>

@@ -10,5 +10,8 @@ indexSuccess:
   javascripts:    [actividad.js]
 
 newViewSucces:
+
   stylesheets:    [modulo/actividad/actividad.css]
-  javascripts:    [js/actividad.js]
+  javascripts:    [jquery.ui.core.min.js,jquery.ui.widget.min.js,jquery.ui.datepicker.min.js,asistencia.js]
+  has_layout:     true
+  layout:         layout

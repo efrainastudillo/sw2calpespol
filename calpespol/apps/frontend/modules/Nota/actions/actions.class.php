@@ -17,7 +17,9 @@ class NotaActions extends sfActions
       ->execute();
     
     $user=$this->getUser()->getUserDB();
-    $this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
+    if(isset ($user) && $user)
+        //$this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
+        $this->curso =  $this->getUser ()->getParalelos();
     $this->usuario = Doctrine_Query::create()
             ->from('Usuario u')
             ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')

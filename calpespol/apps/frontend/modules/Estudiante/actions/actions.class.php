@@ -2,20 +2,18 @@
 
 /**
  * Estudiante actions.
- *
+ * 
  * @package    CALPESPOL
  * @subpackage Estudiante
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Efrain Astudillo
+ * @version    1.0
  */
 class EstudianteActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
       try {
-           $this->estudiantes = Doctrine_Core::getTable('Usuario')
-          ->createQuery('a')
-          ->execute();
+           $this->estudiantes = Usuario::getEstudiantesByParaleloAndMateria('1', $this->getUser()->getMateriaActual());
       } catch (Exception $exc) {
           //
       }
@@ -27,9 +25,14 @@ class EstudianteActions extends sfActions
       
   }
 
+  /**
+   *
+   * @param sfWebRequest $request 
+   */
   public function executeCreate(sfWebRequest $request)
   {
       $id       =$request->getParameter("id");
+      $paralelo =$request->getParameter("paralelo");
       $nombres  =$request->getParameter("nombres");
       $apellidos=$request->getParameter("apellidos");
       $userespol=$request->getParameter("userespol");
@@ -44,7 +47,14 @@ class EstudianteActions extends sfActions
       $estudiante->setCedula($cedula);
       $estudiante->setUsuarioEspol($userespol);
       $estudiante->save();
-      $this->getUser()->setFlash('mensaje', 'Usuario Creado');
+      $curso= Curso::getCursoByParaleloAndMateria($paralelo, $this->getUser()->getMateriaActual());
+      $usuarioCurso=new UsuarioCurso();
+      $usuarioCurso->setUsuario($estudiante);
+      $usuarioCurso->setCurso($curso);
+      $usuarioCurso->setRolusuario(Rolusuario::getRolUsuario("Estudiante"));
+      $usuarioCurso->save();
+      //coloca el mensaje exitoso
+      $this->getUser()->setFlash('mensaje', 'Usuario Creado Exitosamente');
       $this->redirect("Estudiante/new");
   }
 
@@ -81,7 +91,7 @@ class EstudianteActions extends sfActions
       $estudiante->setCedula($cedula);
       $estudiante->setUsuarioEspol($userespol);
       $estudiante->save();
-       $this->getUser()->setFlash('mensaje', 'Usuario Actualizado');
+      $this->getUser()->setFlash('mensaje', 'Usuario Actualizado Exitosamente');
       $this->redirect("Estudiante/index");
   }
 

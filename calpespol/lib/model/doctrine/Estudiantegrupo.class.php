@@ -12,5 +12,12 @@
  */
 class Estudiantegrupo extends BaseEstudiantegrupo
 {
-
+    public static function getGrupoDeEstudiante($id_estudiante){
+        $q=Doctrine_Query::create()
+                ->select("*")
+                ->from('Estudiantegrupo e')
+                ->where('e.id_estudiante = ?',  $id_estudiante)
+            ->fetchOne();
+        return $q;
+    }
 }

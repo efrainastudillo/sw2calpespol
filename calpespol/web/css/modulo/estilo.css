@@ -78,7 +78,8 @@ div.titulo_head_panel p{
     Descripción :   Distribuye contenido adicional a la derecha de la cabecera. 
 */
 div.extra_head_panel{
-    float: right;                           /* Posicionamiento a la derecha */     
+    float: right;                           /* Posicionamiento a la derecha */  
+    margin-left: 50px;
 }
 
 /*
@@ -107,7 +108,7 @@ div.extra_head_panel img{
                     principal del mismo. Se le agregará espaciado interno.
 */
 div.body_panel{
-   /* padding: 0.5em 2.5em 0.5em 1.5em;     */  /* Espaciado interno */ 
+/*    padding: 0.5em 2.5em 0.5em 1.5em;        Espaciado interno  */
     
 }
 

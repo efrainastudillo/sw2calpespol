@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
     
         //evento click
-       $("div.button").click(function(){
+       $("div#login").click(function(){
            if(validarRequerido(contrasenia,mensaje) && validarCaracteres(inputIdUser, mensaje)){
 //                jQuery.post('process',
 //                {id: inputIdUser.val(),

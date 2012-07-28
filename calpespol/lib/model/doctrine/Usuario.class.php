@@ -43,5 +43,20 @@ class Usuario extends BaseUsuario
         ->fetchOne();
         return $user;
     }
-
+    
+    public static function getEstudiantesByParaleloAndMateria($paralelo,$materia){
+        $q=Doctrine_Query::create()
+            ->from('Usuario u')
+            ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
+            ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+            ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario')
+            ->where('m.nombre=?',$materia)
+            ->andWhere('c.anio=?', Utility::getAnio())
+            ->andWhere('c.termino=?', Utility::getTermino())
+            ->andWhere('c.paralelo=?',$paralelo)
+            ->andWhere('ru.nombre=?', 'Estudiante')
+            ->execute();
+        return $q;
+    }
 }

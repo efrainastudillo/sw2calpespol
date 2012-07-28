@@ -64,6 +64,7 @@
     border-top: 2px solid #f7f7e8;
     border-bottom: 2px solid #f7f7e8;
     text-align: center;
+    text-shadow: 0 2px 0 #FFFFFF;
 }
 
 .tablescroll tbody tr.first td,
@@ -86,7 +87,7 @@
     border-bottom:0; 
 }
 
-.tabla_literal{
+.tabla_literal{ 
     visibility: hidden;
 }
 
