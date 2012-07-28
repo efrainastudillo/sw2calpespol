@@ -59,20 +59,4 @@ class Usuario extends BaseUsuario
             ->execute();
         return $q;
     }
-    
-    public static function a(){
-       $q = Doctrine_Query::create()
-            ->from('Usuario u')
-            ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
-            ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
-            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
-            ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario') 
-            ->where('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->andWhere('c.anio=?', '2012')
-            ->andWhere('c.termino=?', '1')
-            ->andWhere('ru.nombre=?', 'Estudiante')
-            ->execute();
-       return $q;
-    }
-
 }

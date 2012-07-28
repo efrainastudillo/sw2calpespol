@@ -60,6 +60,7 @@ class InicioActions extends sfActions
           //$estado= $this->getAuthentication($user, $password);
               $this->getUser()->setUserEspol("Administrador"); 
                $this->getUser()->setRol("Administrador");
+               $this->getUser()->addCredentials("Administrador");
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");
              
@@ -95,6 +96,8 @@ class InicioActions extends sfActions
  
           if(is_bool($estado) && $estado){//actualiza los datos en la base
               $this->getUser()->setUserEspol($user); 
+             // $this->getUser()->setRol($this->getUser()->getUserDB()->getUsuarioCurso()->item(0)->getRolUsuario());
+               $this->getUser()->addCredentials("Estudiante");
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");
           }else{
@@ -135,7 +138,7 @@ class InicioActions extends sfActions
             return false;
         }
         $exists = $handler->authenticate($user, $password);
-        if(isset($exists) && $exists) {                        
+        if(isset($exists) && $exists) {
             $results = $handler->userData($user, $password);
             $doc = new DOMDocument();
             $doc->loadXML($results);

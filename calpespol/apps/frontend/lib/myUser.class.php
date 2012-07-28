@@ -97,11 +97,10 @@ class myUser extends sfBasicSecurityUser
      * @return Boolean True si es el Rol es tipo Estudiante, False otherwise
      */
     public function isEstudiante(){
-       $rol= $this->getAttribute("rol");
-       if($rol=="Estudiante"){
+       if($this->hasCredential('Estudiante')){
            return true;
        }
-       elseif($rol=="Profesor" || $rol=="Ayudante"){
+       else{
            return false;
        }
     }

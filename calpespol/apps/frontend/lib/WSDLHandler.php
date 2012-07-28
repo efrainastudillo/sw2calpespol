@@ -148,6 +148,20 @@ class WSDLHandler {
     }        
   }
   
+  public function getInfoProfesor($elementosProfesor,$codigoMateria,$paralelo){
+      
+      for ($i = 0; $i < $elementosProfesor->length; $i++) {
+        $node = $elementosProfesor->item($i);
+        $identificacion= $node->getElementsByTagName("IDENTIFICACION")->length!=0 ? $node->getElementsByTagName("IDENTIFICACION")->item(0)->nodeValue : "";
+        $codigo_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue: "";
+        $paralelo       = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue: "";
+        $codigo_materia = trim($codigo_materia);
+        $paralelo       = trim($paralelo);
+        $identificacion = trim($identificacion);
+        
+      }
+  }
+  
    /**
      * Carga o actualiza la planificación del periodo dado
      * El superuser es el usuario administrador
