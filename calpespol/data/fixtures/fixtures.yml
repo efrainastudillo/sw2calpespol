@@ -15,3 +15,14 @@
 #     password: changeme
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
+Rolusuario:
+  Rolusuario_1:
+    nombre: Estudiante
+  Rolusuario_2:
+    nombre: Ayudante
+  Rolusuario_3:
+    nombre: Profesor
+Materia:
+  Materia_1:
+    nombre: 'LENGUAJES DE PROGRAMACIÓN'
+    codigo_materia: FIEC01552

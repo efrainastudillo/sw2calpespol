@@ -22,6 +22,7 @@ class Usuario extends BaseUsuario
         ->select("*")
         ->from('Usuario u')
         ->where("u.matricula=?",$matricula)
+        ->orWhere("u.usuario_espol=?",$matricula)
         ->execute();
         
         if($user->count()==0){
@@ -44,6 +45,12 @@ class Usuario extends BaseUsuario
         return $user;
     }
     
+    /**
+     * Obtengo los Estudiantes del Curso
+     * @param String $paralelo
+     * @param String $materia
+     * @return Usuario 
+     */
     public static function getEstudiantesByParaleloAndMateria($paralelo,$materia){
         $q=Doctrine_Query::create()
             ->from('Usuario u')
@@ -56,6 +63,23 @@ class Usuario extends BaseUsuario
             ->andWhere('c.termino=?', Utility::getTermino())
             ->andWhere('c.paralelo=?',$paralelo)
             ->andWhere('ru.nombre=?', 'Estudiante')
+            ->execute();
+        return $q;
+    }
+    
+    
+    public static function getAyudantesCurso($paralelo,$materia){
+         $q=Doctrine_Query::create()
+            ->from('Usuario u')
+            ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
+            ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+            ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario')
+            ->where('m.nombre=?',$materia)
+            ->andWhere('c.anio=?', Utility::getAnio())
+            ->andWhere('c.termino=?', Utility::getTermino())
+            ->andWhere('c.paralelo=?',$paralelo)
+            ->andWhere('ru.nombre=?', 'Ayudante')
             ->execute();
         return $q;
     }

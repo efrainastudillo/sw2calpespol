@@ -100,18 +100,17 @@ $(document).ready(function(){
             output.text(" * Campo Requerido");// mensaje de error
             output.css("visibility", "visible"); 
             return false;  
-        }  
+        }
         //SI longitud pero caracteres diferentes de A-z  
         else if(!input.val().match(/^[a-zA-Z]+$/)){
             output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
             output.css("visibility", "visible");
-            return false;  
-        }  
+            return false;
+        }
         // SI longitud, SI caracteres A-z  hace oculto el tag que muestra el mensaje
-        else{  
+        else{
            output.css("visibility", "hidden");
             return true;  
-        }  
+        }
     }
-    
 });

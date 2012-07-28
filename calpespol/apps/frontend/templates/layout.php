@@ -13,9 +13,10 @@
     <?php echo stylesheet_tag('favicon.png',array('type'=>'image/png','rel'=>'shortcut icon')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos();?>
   </head>
   <body>
-      <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos();?>
+      
       <div id="div_contenedor_todo">
     	<div id="div_menu_sesion_usuario">
             <div id="div_menu_sesion_usuario_centrado">
@@ -50,17 +51,18 @@
                         <label for="usuario" >Materia:</label>                    
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
                             <?php
-                            if(isset ($materias)){                           
+                            if(isset ($materias)){
+                                $temp=$sf_user->getMateriaActual();
                                 foreach ($materias as $value) {
-                                    if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
+                                    if(strcasecmp($value->getNombre(), $temp)==0){
                                         echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }else{
-                                        if(strcasecmp("", $sf_user->getMateriaActual())==0){
+                                        if(strcasecmp($temp, "")==0){
                                             $sf_user->setMateriaActual($value->getNombre());
                                         }
                                         echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }
-                                }                                
+                                }
                             }?>
                             <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
                             <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
@@ -75,11 +77,12 @@
                         <select id="paralelo_selecionado" style="width:40px;" name="lista_paralelos">
                           <?php
                             if(isset ($paralelos)){
+                                $temp=$sf_user->getParaleloActual();
                                 foreach ($paralelos as $value) {
                                     if(strcasecmp($value->getParalelo(), $sf_user->getParaleloActual())==0){
                                         echo "<option selected='selected' value='".$value->getParalelo()."' >".$value->getParalelo()."</option>";
                                     }else{
-                                        if(strcasecmp("", $sf_user->getParaleloActual())==0){
+                                        if(strcasecmp($temp, "")==0){
                                             $sf_user->setParaleloActual($value->getParalelo());
                                         }
                                         echo "<option  value='".$value->getParalelo()."' >".$value->getParalelo()."</option>";
@@ -142,14 +145,14 @@
                             <p><a href="<?php echo url_for('Nota/index') ?>">Notas</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
-                        <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
-                            <p><a href="<?php echo url_for('Nota/index') ?>">Ayudantes</a></p>
+                        <li class="<?php if (!include_slot('ayudante-css')): ?>deselected<?php endif; ?>" name="ayudantes">
+                            <p><a href="<?php echo url_for('Ayudante/index') ?>">Ayudantes</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                         <?php endif;?>
                         <?php if($sf_user->isAdmin()):?>
-                        <li class="<?php if (!include_slot('nota-css')): ?>deselected<?php endif; ?>" name="notas">
-                            <p><a href="<?php echo url_for('Nota/index') ?>">Profesores</a></p>
+                        <li class="<?php if (!include_slot('profesor-css')): ?>deselected<?php endif; ?>" name="profesores">
+                            <p><a href="<?php echo url_for('Profesor/index') ?>">Profesores</a></p>
                             <!-- <p class="subtext">Legal things</p> -->
                         </li>
                         <?php endif;?>
