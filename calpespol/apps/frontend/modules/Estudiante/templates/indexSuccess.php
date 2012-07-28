@@ -62,18 +62,18 @@
                     
                     <?php 
                     if(isset ($estudiantes)){
-                        foreach ($estudiantes as $est){
+                        foreach ($estudiantes as $asist){
                             echo "<tr>";
-                                echo "<td>".$est->getNombre()."</td>";
-                                echo "<td>".$est->getApellido()."</td>";
-                                echo "<td>".$est->getMail()."</td>";
-                                echo "<td>".$est->getUsuarioEspol()."</td>";
+                                echo "<td>".$asist->getNombre()."</td>";
+                                echo "<td>".$asist->getApellido()."</td>";
+                                echo "<td>".$asist->getMail()."</td>";
+                                echo "<td>".$asist->getUsuarioEspol()."</td>";
                                 echo "<td>";
                                 echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Estudiante/edit?id='.
-                                        $est->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Estudiante'));
+                                        $asist->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Estudiante'));
                                 echo '&nbsp &nbsp' ;
                                 echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Estudiante/delete?id='.
-                                        $est->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Estudiante'));              
+                                        $asist->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Estudiante'));              
                                 echo "</td>";
                             echo "</tr>";
                         }

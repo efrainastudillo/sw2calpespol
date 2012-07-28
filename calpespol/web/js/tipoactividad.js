@@ -8,22 +8,15 @@
  */
 $(document).ready(function(){
     //Declaracion de variables
-    var inputNota = $("#grade");       
-    var reqNota= $("#req-nota");
+    var inputTipoacti = $("#tipo_acti");       
+    var reqTipoacti= $("#req-tipacti");
     
-    var inputDescrip = $("#descrip");
-    var reqDescrip = $("#req-descripcion");
-    
-    var inputDate = $("#date");
-    var reqDate = $("#req-fecha");
+    var inputPond = $("#ponde");
+    var reqPond = $("#req-pond");
     
 //Funcion que ejecuta la accion guardar
-    $("div#grabar_actividad").click(function(){
-        if((validarNumero(inputNota,reqNota)) && (validarCaracteres(inputDescrip,reqDescrip)) == true){
-            $("#formulario").submit();//en esta linea envia el formulario
-        }
-        else
-            alert("Llene bien el formulario");
+    $("div#grabar_actividad").click(function(){       
+        $("#formulario").submit();//en esta linea envia el formulario
     });
       
    $("#materia_select").change(function(){
@@ -70,8 +63,14 @@ $(document).ready(function(){
     *   @param output referencia al span en donde se agregara el texto de error a mostrar
     */
    function validarNumero(input,output){
+       //NO cumple longitud minima  
+        if(input.val().length == 0){
+            output.text(" * Campo Requerido");// mensaje de error
+            output.css("visibility", "visible"); //hace visible el tag del mensaje
+            return false;  
+        }  
         //no digitos de 0-9
-        if(!input.val().match(/^[0-9]+$/)){
+        else if(!input.val().match(/^[0-9]+$/)){
             output.text(" * Sólo dígitos [0-9]");// mensaje de error
             output.css("visibility", "visible");//hace visible el tag del mensaje
             return false;  
@@ -87,6 +86,7 @@ $(document).ready(function(){
             return true;  
         }  
    }
+   
    /**
     * Valida 
     *   -   si el campo input no han ingresado nada (Campo requerido)
@@ -114,48 +114,4 @@ $(document).ready(function(){
         }  
     }
     
-           /**
-    * Valida 
-    *   -   si el campo input no han ingresado nada (Campo requerido)
-    *   -   Si los caracteres ingresados son diferentes de alguna letra del abcdario
-    *   @param input referencia del texfield
-    *   @param output referencia al span en donde se agregara el texto de error a mostrar
-    */
-    function validarFecha(input,output){  
-       
-    }
-    
-   function FechaActual(){
-        var f = new Date();
-        return (f.getDate() + "/" + (f.getMonth()+1) + "/" + f.getFullYear());
-   }
-   
-   /*                        Sección Literales                            */
-   
-    /*
-     * Método que muestra los literales de una actividad
-     */
-    $(".flecha_literal").on("click", function() {
-        
-        $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
-        //Cambia el color del tr de la actividad escogida, para reconocer a que actividad 
-        //pertenecen los literales mostrados.
-        $(this).parent().css("background-color","#D3E2C2");
-        $(this).parent().nextAll().css("background-color","#D3E2C2");
-        //Div tabla_literal que tiene la tabla con el id de la actividad clickeada.
-        var tabla_literal = $("."+$(this).attr("id")).parent().parent();
-        //Escondo todos los literales que no pertecen a la actividad escogida.
-        $(".tabla_literal").css("display","none");
-        //Diseño: pregunta si el estado de la flecha indicadora para que 
-        //retroalimente al usuario que literales de que actividad se estan viendo.
-        if($(this).attr("src")=="../images/arrow-right-3.png"){
-            $(".flecha_literal").attr("src","../images/arrow-right-3.png");
-            $(this).attr("src","../images/arrow-down-3.png");
-            tabla_literal.css("visibility","visible");
-            tabla_literal.css("display","block");
-        }else{
-            $(this).attr("src","../images/arrow-right-3.png");
-            $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
-        }  
-    });
 });

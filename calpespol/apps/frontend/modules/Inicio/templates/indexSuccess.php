@@ -58,17 +58,17 @@
                     
                     <?php 
                     if(isset ($estudiantes)){
-                        foreach ($estudiantes as $est){
+                        foreach ($estudiantes as $$asist){
                             echo "<tr>";
-                                echo "<td>".$est->getNombre()."</td>";
-                                echo "<td>".$est->getApellido()."</td>";
-                                echo "<td>".$est->getMail()."</td>";
-                                echo "<td>".$est->getUsuarioEspol()."</td>";
+                                echo "<td>".$$asist->getNombre()."</td>";
+                                echo "<td>".$$asist->getApellido()."</td>";
+                                echo "<td>".$$asist->getMail()."</td>";
+                                echo "<td>".$$asist->getUsuarioEspol()."</td>";
                                 echo "<td>";
                                 echo link_to(image_tag('/images/delete.png', 'size=18x18'), 'Estudiante/delete?id='.
-                                        $est->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?'));              
+                                        $$asist->getIdUsuario(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?'));              
                                 echo link_to(image_tag('/images/edit.png', 'size=18x18'), 'Estudiante/edit?id='.
-                                        $est->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?'));
+                                        $$asist->getIdUsuario(), array('post=true','confirm' => 'Esta seguro que quiere Editar?'));
                                 echo "</td>";
                             echo "</tr>";
                         }

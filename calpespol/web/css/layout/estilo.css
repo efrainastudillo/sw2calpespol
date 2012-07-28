@@ -130,6 +130,7 @@ background-color:#D3E2C2;}
 	border-style:solid;
 	border-width:1px;
 	border-color:#CCC;
+        overflow: auto;
 	}
 #footer{
 	height:50px;

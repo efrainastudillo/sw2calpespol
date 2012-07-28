@@ -91,7 +91,7 @@ class EstudianteActions extends sfActions
       $estudiante->setCedula($cedula);
       $estudiante->setUsuarioEspol($userespol);
       $estudiante->save();
-       $this->getUser()->setFlash('mensaje', 'Usuario Actualizado Exitosamente');
+      $this->getUser()->setFlash('mensaje', 'Usuario Actualizado Exitosamente');
       $this->redirect("Estudiante/index");
   }
 

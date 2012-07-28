@@ -10,5 +10,8 @@ indexSuccess:
   javascripts:    [actividad.js]
 
 newViewSucces:
+  
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [js/actividad.js]
+  has_layout:     true
+  layout :        layout

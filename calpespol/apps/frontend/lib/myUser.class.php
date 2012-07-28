@@ -97,11 +97,10 @@ class myUser extends sfBasicSecurityUser
      * @return Boolean True si es el Rol es tipo Estudiante, False otherwise
      */
     public function isEstudiante(){
-       $rol= $this->getAttribute("rol");
-       if($rol=="Estudiante"){
+       if($this->hasCredential('Estudiante')){
            return true;
        }
-       elseif($rol=="Profesor" || $rol=="Ayudante"){
+       else{
            return false;
        }
     }
@@ -190,6 +189,15 @@ class myUser extends sfBasicSecurityUser
      */
     public function setParaleloActual($paralelo){
         $this->setAttribute("paralelo",$paralelo);
+    }
+    
+    public function hasParaleloActual(){
+        if($this->hasAttribute("paralelo")){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
   /**
    * Cierra la sesion elimina los datos de la sesion

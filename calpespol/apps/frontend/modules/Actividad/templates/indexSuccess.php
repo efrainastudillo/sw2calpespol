@@ -103,9 +103,11 @@
                         <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
                         <!--Valor del tipo actividad, ponderacion-->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-                        <td><a href="#" ><img src="../images/edit_2.png" width="15" height="15" title="Edita la actividad"/></a>&nbsp &nbsp 
-                            <a href="#" ><img src="../images/delete_2.png" width="15" height="15" title="Elimina la actividad" /></a>&nbsp &nbsp 
-                            <a href="javascript:void(0);" id="nuevo_literal"><img src="../images/add.png" width="15" height="15" title="Nuevo Literal" /></a>
+                        <td>
+                            <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
+                                        $acti->getIdactividad(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
+                            <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
                         </td>
                     </tr>  
                 <?php endforeach; ?>
