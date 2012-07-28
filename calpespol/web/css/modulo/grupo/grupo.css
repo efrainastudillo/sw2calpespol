@@ -1,0 +1,46 @@
+/* 
+    Document   : grupo
+    Created on : 28/07/2012, 08:18:20 AM
+    Author     : BrickJr
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#grupo_button_new, #grupo_button_edit, #grupo_button_delete {
+	cursor:pointer;
+	font-size: 14px;
+	color: #123d54;
+	padding: 3px;
+	padding-right: 5px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	border: 1px solid #296600;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.7),
+		0px 1px 0px rgba(255,255,255,0.3);
+}
+
+#grupo_button_new{
+    background-image: url(../../../images/new.png);
+	background-repeat:no-repeat;
+}
+
+#grupo_button_edit{
+    background-image: url(../../../images/edit.png);
+	background-repeat:no-repeat;
+}
+
+#grupo_button_delete{
+    background-image: url(../../../images/delete.png);
+	background-repeat:no-repeat;
+}

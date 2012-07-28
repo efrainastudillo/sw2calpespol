@@ -24,7 +24,9 @@ class GrupoActions extends sfActions {
                     ->andWhere('uc.id_rol = ?', $id_rol)
                     ->execute();
             $this->rol = $this->getActualRol()->getNombre();
-        }
+        }else
+            $this->redirect('Inicio/index');
+            
     }
 
     public function executeNew(sfWebRequest $request) {
