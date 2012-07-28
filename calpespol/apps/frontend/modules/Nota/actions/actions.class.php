@@ -15,11 +15,9 @@ class NotaActions extends sfActions
     $this->estudianteliterals = Doctrine_Core::getTable('estudianteliteral')
       ->createQuery('a')
       ->execute();
+    
     $user=$this->getUser()->getUserDB();
-    $this->materia = Materia::getMaterias();
     $this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
-    $this->actividad = Actividad::getActividades();
-    $this->literal = Literal::getLiterales();
     $this->usuario = Doctrine_Query::create()
             ->from('Usuario u')
             ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
@@ -31,6 +29,40 @@ class NotaActions extends sfActions
             ->andWhere('c.termino=?', '1')
             ->andWhere('ru.nombre=?', 'Estudiante')
             ->execute();
+     $this->grupos = Doctrine_Query::create()
+            ->from('Grupo g')
+            ->innerJoin('g.Estudiantegrupo eg on eg.idgrupo=g.idgrupo')
+            ->innerJoin('eg.UsuarioCurso uc on eg.id_estudiante=uc.id_usuario_curso')
+            ->innerJoin('uc.Curso c on uc.id_curso = c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+            ->where('m.nombre=?',$this->getUser()->getMateriaActual())
+            ->execute();
+     
+    $this->tipactividad = Doctrine_Query::create()
+            ->from('TipoActividad ta')
+            ->innerJoin('ta.Curso c on c.idCurso = ta.id_curso')
+            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+            ->execute();           
+    
+    $this->actividad = Doctrine_Query::create()
+            ->from('Actividad a')
+            ->innerJoin('a.Tipoactividad ta on ta.idTipoactividad = a.id_tipo_actividad')
+            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+            ->execute();
+    
+   $this->esgrupal = Doctrine_Query::create()
+            ->from('tipoActividad ta')
+            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
+            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+            ->execute();
+    
+    $this->literal = Literal::getLiterales();
+    
+
             
   }
 
