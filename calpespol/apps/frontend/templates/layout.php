@@ -71,10 +71,10 @@
                 <div class="div_sesion">
                     <?php if(!$sf_user->isAdmin()):?>
                     <form method="POST" action="Inicio/change">
-                        <label for="usuario" >Paralelo:</label>                        
+                        <label for="usuario" >Paralelo:</label>
                         <select id="paralelo_selecionado" style="width:40px;" name="lista_paralelos">
                           <?php
-                            if(isset ($paralelos)){                           
+                            if(isset ($paralelos)){
                                 foreach ($paralelos as $value) {
                                     if(strcasecmp($value->getParalelo(), $sf_user->getParaleloActual())==0){
                                         echo "<option selected='selected' value='".$value->getParalelo()."' >".$value->getParalelo()."</option>";
