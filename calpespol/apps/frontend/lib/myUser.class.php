@@ -191,6 +191,15 @@ class myUser extends sfBasicSecurityUser
     public function setParaleloActual($paralelo){
         $this->setAttribute("paralelo",$paralelo);
     }
+    
+    public function hasParaleloActual(){
+        if($this->hasAttribute("paralelo")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
   /**
    * Cierra la sesion elimina los datos de la sesion
    */
