@@ -56,7 +56,7 @@
         </div>
         <div class="boton_new">
             <a href="Actividad/actividad" class="button rounded black" id="new" style="margin-top: -2.9em; margin-left: -30em">
-                <img src="../images/new.png" width="15" height="15" /> Crear Nueva Actividad
+                <img src="../images/new.png" width="15" height="15" /> Crear Tipo Actividad
             </a> 
         </div>
     </form>

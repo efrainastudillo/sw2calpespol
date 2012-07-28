@@ -8,15 +8,19 @@
  */
 $(document).ready(function(){
     //Declaracion de variables
-    var inputTipoacti = $("#tipo_acti");       
-    var reqTipoacti= $("#req-tipacti");
+    var inputDescrip = $("#descrip");       
+    var reqDescript= $("#req-descripcion");
     
-    var inputPond = $("#ponde");
-    var reqPond = $("#req-pond");
+    var inputGrade = $("#grade");
+    var reqGrade = $("#req-nota");
     
 //Funcion que ejecuta la accion guardar
-    $("div#grabar_actividad").click(function(){       
-        $("#formulario").submit();//en esta linea envia el formulario
+    $("div#grabar_actividad").click(function(){
+        if(validarNumero(inputGrade,reqGrade)&&validarCaracteres(inputDescrip,reqDescript)){
+            $("#formulario").submit();//en esta linea envia el formulario
+        }
+        else
+            alert("Llene bien el formulario");
     });
       
    $("#materia_select").change(function(){

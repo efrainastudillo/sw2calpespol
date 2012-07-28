@@ -19,7 +19,7 @@ $(document).ready(function(){
     
 //Funcion que ejecuta la accion guardar
     $("div#grabar_actividad").click(function(){
-        if(validarNumero(inputNota,reqNota)&&validarCaracteres(inputDescrip,reqDescrip)&&validarFecha(inputDate,reqDate)){
+        if((validarNumero(inputNota,reqNota)) && (validarCaracteres(inputDescrip,reqDescrip)) == true){
             $("#formulario").submit();//en esta linea envia el formulario
         }
         else
@@ -70,14 +70,8 @@ $(document).ready(function(){
     *   @param output referencia al span en donde se agregara el texto de error a mostrar
     */
    function validarNumero(input,output){
-       //NO cumple longitud minima  
-        if(input.val().length == 0){
-            output.text(" * Campo Requerido");// mensaje de error
-            output.css("visibility", "visible"); //hace visible el tag del mensaje
-            return false;  
-        }  
         //no digitos de 0-9
-        else if(!input.val().match(/^[0-9]+$/)){
+        if(!input.val().match(/^[0-9]+$/)){
             output.text(" * Sólo dígitos [0-9]");// mensaje de error
             output.css("visibility", "visible");//hace visible el tag del mensaje
             return false;  
@@ -130,6 +124,11 @@ $(document).ready(function(){
     function validarFecha(input,output){  
        
     }
+    
+   function FechaActual(){
+        var f = new Date();
+        return (f.getDate() + "/" + (f.getMonth()+1) + "/" + f.getFullYear());
+   }
    
    /*                        Sección Literales                            */
    

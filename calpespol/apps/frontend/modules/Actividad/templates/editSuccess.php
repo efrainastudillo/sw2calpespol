@@ -10,7 +10,7 @@
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_javascript('actividad.js') ?>
+<?php use_javascript('editactividad.js') ?>
 <?php use_stylesheet("modulo/actividad/actividad.css")?>
 
 <div class="panel">
@@ -25,7 +25,7 @@
         </div>
 
     <!--Body para crear una actividad    -->
-    <form id="formulario_edit_activity" style="margin-left: 13em; margin-top: 2em" action="new">
+    <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="new">
         <label>Tipo de Actividad: </label>
         <label name="tipoactivid" style="margin-left: 4.2em">
             <?php foreach ($ta as $tipoacti): ?>
@@ -33,15 +33,15 @@
             <?php endforeach; ?>
         </label><br/>
         <label>Descripcion de la actividad: </label>
-        <input type="text" name="descripcion" value="" />
-        <span id="req-descripcion">Tiene desahabilitado el JavaScript</span><br/><br/>
+        <input id="descrip" type="text" name="descripcion" value="" />
+        <span id="req-descripcion">Tiene desahabilitado el JavaScript</span><br/>
         <label> Fecha de entrega: </label>
         <input name="fecha" type="date" id="fecha" style="margin-left: 4.7em"/><br/>
         <label> Nota: </label>
-        <input type="text" name="nota" value="" style="margin-left: 11.7em"/>
+        <input id="grade" type="text" name="nota" value="" style="margin-left: 11.7em"/>
         <span id="req-nota">Tiene desahabilitado el JavaScript</span><br/>
         <!--Boton que crea la actividad-->
-        <div id="edit_actividad" style="margin-left: 15em; margin-top: 1em">
+        <div id="grabar_actividad" style="margin-left: 15em; margin-top: 1em">
             <a href="#" class="button rounded black" >
                 <img src="../images/new.png" width="15" height="15" /> Actualizar
             </a> 

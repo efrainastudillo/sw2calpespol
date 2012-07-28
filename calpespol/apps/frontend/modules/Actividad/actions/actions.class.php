@@ -77,36 +77,43 @@ class ActividadActions extends sfActions{
       $this->form = new TipoactividadForm();
       $tiact = $request->getParameter('tipoactividad');
       $tireal = $request->getParameter('tiporealizacion');
+      $extra= $request->getParameter('extra');
+      $parcial=$request->getParameter('parcial');
       $grade = $request->getParameter('ponderacion');
       
       //Obteniendo datos de la DB
       $this->c = Doctrine_Query::create()
-              ->select('*')
+              ->select('c.idcurso')
               ->from('Curso c')
+              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-              ->where('m.nombre =?',$this->getUser()->getMateriaActual())
+              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+              ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+              ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
               ->execute();
-      $this->p = Doctrine_Query::create()
-              ->select('c.paralelo')
-              ->from('Curso c')
-              ->innerjoin ('c.Materia m ON c.id_materia = m.idmateria')
-              ->where('m.nombre=?',$this->getUser()->getMateriaActual())
-              ->execute();
-      
+     
         //Ingresando los datos a la base
         $newtipoacti = new Tipoactividad();
+        $newtipoacti ->setCurso($this->c[0]);
         $newtipoacti ->setNombre($tiact);
+        $newtipoacti ->setValorPonderacion($grade);
+        $newtipoacti ->setParcial($parcial);
         //Ingresando 0 si es individual o 1 si es grupal
         if (strcmp($tireal, 'Individual'))
             $newtipoacti ->setEsGrupal(1);
         else
-            $newtipoacti ->setEsGrupal(0);
-        $newtipoacti->setCurso($this->c[0]);
-        $newtipoacti ->setValorPonderacion($grade);
-        $newtipoacti->setCurso($this->p[0]);
-        $newtipoacti->save();
-        $this->redirect("Actividad/NewView");
-      
+            $newtipoacti ->setEsGrupal(0);       
+        //Ingresando 0 si es Ordinaria o 1 si es Extra
+        if (strcmp($tireal, 'Extra'))
+            $newtipoacti ->setEsExtra(1);
+        else
+            $newtipoacti ->setEsExtra(0);
+        
+        $newtipoacti ->setTieneFactor1(0);
+        $newtipoacti ->setTieneFactor2(0);
+        $newtipoacti->save();   
+        $this->redirect("Actividad/index");
+        
   }
  
 
@@ -120,9 +127,15 @@ class ActividadActions extends sfActions{
     
     $termino = Utility::getTermino();
     $this->ta=  Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
-              ->select('*')
+              ->select('ta.idtipoactividad')
               ->from('Tipoactividad ta')
+              ->innerjoin ('ta.Curso c ON ta.id_curso = idcurso')
+              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
+              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
               ->where('ta.nombre =?',$idact)
+              ->andWhere('u.usuario_espol=?',$this->getUser()->getUserEspol())
+              ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
               ->execute();
     
     //Ingresando los datos a la base
@@ -132,6 +145,7 @@ class ActividadActions extends sfActions{
     $newact ->setFechaEntrega($date);
     $newact ->setNota($grade);
     $newact->save();
+    $this->getUser()->setFlash('mensaje', 'Actividad Guardada Exitosamente');
     $this->redirect("Actividad/index");
   }
 
@@ -152,7 +166,7 @@ class ActividadActions extends sfActions{
             ->select("*")
             ->from('Actividad a')
             ->where('a.idactividad = ?', $request->getParameter("id"))
-            ->fetchOne();
+            ->execute();
     
     $this->ta = Doctrine_Query::create()
           ->select('ta.nombre')
