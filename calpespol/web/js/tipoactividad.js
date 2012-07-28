@@ -1,11 +1,9 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- * 
  * @author Andrea Cáceres
  * Descripción: Valida el texto ingresado de los input de tipo text dependiendo 
  * de la funcion que se le asigne
  */
+
 $(document).ready(function(){
     //Declaracion de variables
     var inputTipoacti = $("#tipo_acti");       
@@ -14,9 +12,48 @@ $(document).ready(function(){
     var inputPond = $("#ponde");
     var reqPond = $("#req-pond");
     
-//Funcion que ejecuta la accion guardar
+    var inpureal = $("#tipo_reali");
+    var reqreal = $("#req-selec1");
+    
+    var inputextra = $("#extra");
+    var reqextra = $("#req-selec2");
+    
+    var inputparcial = $("#parcial");
+    var reqparcial = $("#req-selec3");
+    
+    /*Eventos asignados a los texfied y se ejecutan cuando pierden el foco
+    entonces llaman a las respectivas funciones*/
+    inputTipoacti.blur(function(){
+        validarCaracteres(inputTipoacti,reqTipoacti);
+    });
+    //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inputPond.blur(function(){
+        validarNumero(inputPond,reqPond);
+    });
+        //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inpureal.blur(function(){
+        validarSeleccion(inpureal,reqreal);
+    });
+        //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inputextra.blur(function(){
+        validarSeleccion(inputextra,reqextra);
+    });
+        //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inputparcial.blur(function(){
+        validarSeleccion(inputparcial,reqparcial);
+    });
+    
+    //Funcion que ejecuta la accion guardar
     $("div#grabar_actividad").click(function(){       
-        $("#formulario").submit();//en esta linea envia el formulario
+        if(validarCaracteres(inputTipoacti,reqTipoacti)&&validarNumero(inputPond,reqPond)&&(validarSeleccion(inpureal,reqreal)&& (validarSeleccion(inputextra,reqextra)) && (validarSeleccion(inputparcial,reqparcial)) )){
+            $("#formulario").submit();//en esta linea envia el formulario
+        }
+        else
+            alert("Llene bien el formulario");
     });
       
    $("#materia_select").change(function(){
@@ -112,6 +149,18 @@ $(document).ready(function(){
            output.css("visibility", "hidden");
             return true;  
         }  
+    }
+    
+    function validarSeleccion(input,output){
+        if (input != undefined && input.value != "" ){
+            output.text(" * Escoja una opcion");// mensaje de error
+            output.css("visibility", "visible");
+            return false;
+        }
+        else{
+            output.css("visibility", "hidden");
+            return true;
+        }
     }
     
 });

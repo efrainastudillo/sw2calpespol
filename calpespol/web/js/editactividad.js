@@ -1,11 +1,9 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- * 
  * @author Andrea Cáceres
  * Descripción: Valida el texto ingresado de los input de tipo text dependiendo 
  * de la funcion que se le asigne
  */
+
 $(document).ready(function(){
     //Declaracion de variables
     var inputDescrip = $("#descrip");       
@@ -14,7 +12,19 @@ $(document).ready(function(){
     var inputGrade = $("#grade");
     var reqGrade = $("#req-nota");
     
-//Funcion que ejecuta la accion guardar
+    /*Eventos asignados a los texfied y se ejecutan cuando pierden el foco
+    entonces llaman a las respectivas funciones*/
+    inputDescrip.blur(function(){
+        validarCaracteres(inputDescrip,reqDescript);
+    });
+    
+    //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inputGrade.blur(function(){
+        validarNumero(inputGrade,reqGrade);
+    });
+    
+    //Funcion que ejecuta la accion guardar
     $("div#grabar_actividad").click(function(){
         if(validarNumero(inputGrade,reqGrade)&&validarCaracteres(inputDescrip,reqDescript)){
             $("#formulario").submit();//en esta linea envia el formulario

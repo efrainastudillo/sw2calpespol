@@ -33,20 +33,20 @@
         <select name="tiporealizacion" size="1" id="tipo_reali" style="margin-left: 6em">
             <option>Individual</option>
             <option>Grupal</option>
-        </select><br/>
+        </select><span id="req-selec1">Tiene desahabilitado el JavaScript</span><br/>
         
         <label>Tipo de la actividad: </label>
         <select name="extra" size="1" id="extra" style="margin-left: 6.1em">
             <option>Ordinaria</option>
             <option>Extra</option>
-        </select><br/>
+        </select><span id="req-selec2">Tiene desahabilitado el JavaScript</span><br/>
         
         <label>Parcial: </label>
         <select name="parcial" size="1" id="parcial" style="margin-left: 12.8em">
             <option>1</option>
             <option>2</option>
             <option>3</option>
-        </select><br/>
+        </select><span id="req-selec3">Tiene desahabilitado el JavaScript</span><br/>
         
         <label>Ponderacion: </label>
         <input id="ponde" type="text" name="ponderacion" value="" style="margin-left: 9.7em"/>

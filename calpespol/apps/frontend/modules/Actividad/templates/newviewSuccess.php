@@ -29,18 +29,18 @@
         <label>Tipo de Actividad: </label>
         <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5em">
             <?php foreach ($ta as $tipoact): ?>
-                <option>
+                <option >
                     <?php echo $tipoact->getNombre(); ?>
                 </option>
             <?php endforeach; ?>
-        </select>
+        </select><span id="option">Tiene desahabilitado el JavaScript</span>
         <br/>
         <!--DESCRIPCION DE LA ACTIVIDAD-->
         <label>Descripcion de la actividad: </label>
         <input id="descrip" type="text" name="descripcion" value="" />
         <span id="req-descripcion">Tiene desahabilitado el JavaScript</span><br/>
         <!--FECHA DE ENTRADA-->
-        <label> Fecha de entrega: </label>
+        <label> Fecha de entrega: </label>        
         <input id="date" name="fecha" type="date" id="fecha" style="margin-left: 4.7em"/>
         <span id="req-fecha">Tiene desahabilitado el JavaScript</span><br/>
         <!--INGRESO DE LA NOTA-->
