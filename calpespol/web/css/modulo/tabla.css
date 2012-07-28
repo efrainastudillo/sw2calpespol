@@ -87,8 +87,8 @@
     border-bottom:0; 
 }
 
-.tabla_literal{
-    visibility: hidden;
+.tabla_literal{ 
+    display: none;
 }
 
 #head_literal{

@@ -90,7 +90,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 			if (!wrapper.parent('div').hasClass(settings.containerClass))
 			{
 				$('<div></div>').addClass(settings.containerClass).insertBefore(wrapper).append(wrapper);
-			}
+                        }
 
 			var width = settings.width ? settings.width : tb.outerWidth();
 
@@ -182,7 +182,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 		flush: true, // makes the last thead and tbody column flush with the scrollbar
 		width: null, // width of the table (head, body and foot), null defaults to the tables natural width
 		height: 100, // height of the scrollable area
-		containerClass: 'tablescroll' // the plugin wraps the table in a div with this css class
+		containerClass: 'tablescroll', // the plugin wraps the table in a div with this css class
+                containerId: '999' // the value id table
 	};  
 
 })(jQuery);

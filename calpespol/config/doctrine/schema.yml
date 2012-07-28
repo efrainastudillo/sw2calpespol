@@ -475,7 +475,6 @@ Usuario:
       autoincrement: false
   relations:
     Usuariocurso:
-      
       local: idusuario
       foreign: id_usuario
       type: many

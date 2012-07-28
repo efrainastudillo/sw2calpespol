@@ -72,7 +72,7 @@
         <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>
           
         <!--div que contiene el boton de Crear nueva actividad    -->
-        <div class="boton_new" style="margin-right: 1em;">
+        <div class="boton_new" style="margin-right: 1em; ">
             <a href="Actividad/NewView" class="button rounded black" id="new">
                 <img src="../images/new.png" width="15" height="15" /> Nueva Actividad
             </a> 
@@ -93,27 +93,33 @@
                 <!--Aqui va la tabla que muestra todas las actividades-->
                 <?php foreach ($a as $acti): ?>
                     <tr>
-                        <td style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo 150+$acti->getIdActividad()?> ></td>
-            <!--//      Nombre de la actividad/es-->
+                        <!--Flecha indicadora si esta visible o no los literales de una actividad-->
+                        <td style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo sha1($acti->getIdActividad())?> ></td>
+                        <!--Nombre de la actividades-->
                         <td><?php echo $acti->getNombre(); ?></td>
-            <!--//      Nombre del tipo de la actividad-->
+                        <!--Nombre del tipo de la actividad-->
                         <td><?php echo $acti->getTipoactividad()->getNombre(); ?></td>
-            <!--//      Si es grupal o individual-->
+                        <!--Si es grupal o individual-->
                         <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
-            <!--//      Valor del tipo actividad, ponderacion-->
+                        <!--Valor del tipo actividad, ponderacion-->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-                        <td><a href="#" ><img src="../images/edit_2.png" width="15" height="15" title="Edita la actividad"/></a>&nbsp &nbsp 
-                            <a href="#" ><img src="../images/delete_2.png" width="15" height="15" title="Elimina la actividad" /></a>&nbsp &nbsp 
+                        <td>
+                            <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
+                                        $acti->getIdactividad(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
+                            <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
                         </td>
                     </tr>  
                 <?php endforeach; ?>
             </tbody>
         </table>
-
+        
+        <!--Aquí van las tablas que muestran los literales de cada actividad-->
         <?php foreach($a as $acti): ?>
             <?php $total = 0;?> 
             <div>
-                <table class="tabla2" id=<?php echo 150+$acti->getIdActividad()?>>
+                <table class="tabla2 <?php echo sha1($acti->getIdActividad())?>">
+                    
                     <thead style="background-color: #d7d78c;">
                         <tr>
                             <td>Descripción del literal</td>
@@ -121,16 +127,22 @@
                             <td>Acción</td>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         <?php foreach($l = Literal::getLiteralesXActividad($acti->getIdActividad()) as $lit): ?>
                         <tr>
                             <td><?php echo $lit->getNombreLiteral();?></td>
                             <td><?php echo $lit->getValorPonderacion();?></td>
-                            <td><a href="#" ><img src="../images/delete_2.png" width="15" height="15" /></a></td>
+                            <td>
+                                <a href="<?php echo url_for('Actividad/newLiteral/?actividad='.(sha1($acti->getIdActividad())).'&literal='.(sha1($lit->getIdLiteral()))) ?>" >
+                                    <img src="../images/delete_2.png" width="15" height="15" />
+                                </a>
+                            </td>
                         </tr>
                         <?php $total = $total + $lit->getValorPonderacion();?>
                         <?php endforeach;?>
                     </tbody>
+                    
                     <tfoot>
                         <tr>
                             <td id="estilo1_celda">TOTAL</td>

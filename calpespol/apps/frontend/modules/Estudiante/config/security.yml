@@ -1,8 +1,14 @@
 ## YAML Template.
 ---
+# Autor: Efrain Astudillo 
+# Fecha: 27 de Julio de 2012
+# Descripcion:  Seguridad para el modulo Estudiantes
 index:
   is_secure: on
+  credentials: [[Administrador,Estudiante,Profesor,Ayudante]]
 new:
   is_secure: on
+  credentials: [[Administrador,Profesor,Ayudante]]
 edit:
   is_secure: on
+  credentials: [[Administrador,Profesor,Ayudante]]
