@@ -73,7 +73,7 @@
           
         <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin-right: 1em; ">
-            <a href="Actividad/NewView" class="button rounded black" id="new">
+            <a href="Actividad/NewView" class="button rounded black" id="new" title="Crear actividad">
                 <img src="../images/new.png" width="15" height="15" /> Nueva Actividad
             </a> 
         </div>
@@ -94,7 +94,7 @@
                 <?php foreach ($a as $acti): ?>
                     <tr>
                         <!--Flecha indicadora si esta visible o no los literales de una actividad-->
-                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo sha1($acti->getIdActividad())?> ></td>
+                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo $acti->getIdActividad()?> ></td>
                         <!--Nombre de la actividades-->
                         <td><?php echo $acti->getNombre(); ?></td>
                         <!--Nombre del tipo de la actividad-->
@@ -107,7 +107,8 @@
                             <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
-                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
+                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getTipoactividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
                         </td>
                     </tr>  
                 <?php endforeach; ?>
@@ -118,7 +119,7 @@
         <?php foreach($a as $acti): ?>
             <?php $total = 0;?> 
             <div>
-                <table class="tabla2 <?php echo sha1($acti->getIdActividad())?>">
+                <table class="tabla2 <?php echo $acti->getIdActividad()?>">
                     
                     <thead style="background-color: #d7d78c;">
                         <tr>
@@ -134,9 +135,8 @@
                             <td><?php echo $lit->getNombreLiteral();?></td>
                             <td><?php echo $lit->getValorPonderacion();?></td>
                             <td>
-                                <a href="<?php echo url_for('Actividad/newLiteral/?actividad='.(sha1($acti->getIdActividad())).'&literal='.(sha1($lit->getIdLiteral()))) ?>" >
-                                    <img src="../images/delete_2.png" width="15" height="15" />
-                                </a>
+                                <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/DeleteLiteral?id='.
+                                        $lit->getIdLiteral(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Literal')); ?>             
                             </td>
                         </tr>
                         <?php $total = $total + $lit->getValorPonderacion();?>
