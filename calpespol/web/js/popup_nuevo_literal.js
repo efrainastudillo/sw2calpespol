@@ -28,8 +28,8 @@ $(document).ready(function() {
 
             //This method initialises the modal popup
     
-    $("#nuevo_literal").click(function() {
-        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, source, loadingImage);
+    $(".nuevo_literal").on("click", function() {
+        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, 'Actividad/newLiteral?idActividad='+$(this).attr("id"), loadingImage);
     });
 
     //This method hides the popup when the escape key is pressed

@@ -228,7 +228,7 @@ class ActividadActions extends sfActions{
   
     /* LITERALES */ 
   public function executeNewLiteral(sfWebRequest $request){  
-//      $this -> id_actividad_literal = $request->getParameter('idActividad');
+      $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
   
   public function executeSaveLiteral(sfWebRequest $request)

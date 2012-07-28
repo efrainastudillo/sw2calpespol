@@ -108,7 +108,7 @@
                                         $acti->getIdactividad(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
-                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getTipoactividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
+                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getIdActividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
                         </td>
                     </tr>  
                 <?php endforeach; ?>
