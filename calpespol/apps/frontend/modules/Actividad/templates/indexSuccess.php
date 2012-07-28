@@ -27,49 +27,49 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
             <!--div que contiene al comboBox de paralelos    -->
-            <div class="item_1">
+<!--            <div class="item_1">
                <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
                <select name="paralelo" size="1" id="parale_selec" >
-                    <?php foreach ($q as $para): ?>
+                    <?php // foreach ($q as $para): ?>
                     <option>
-                        <?php echo $para->getParalelo(); ?>
+                        <?php // echo $para->getParalelo(); ?>
                     </option>
-                    <?php endforeach; ?>
+                    <?php // endforeach; ?>
                 </select>
-           </div>
+           </div>-->
             
            <!--div que contiene al comboBox de materias    -->
-           <div class="item_2">
+<!--           <div class="item_2">
                <p> <label class="labelsForm" for="paralelo"> Materia: </label> </p>
                <select name="materia" size="1" id="materia_selecionada" >
-                    <?php foreach ($m as $mat): ?>
+                    <?php // foreach ($m as $mat): ?>
                     <option>
-                        <?php echo $mat->getNombre(); ?>
+                        <?php // echo $mat->getNombre(); ?>
                     </option>
-                    <?php endforeach; ?>
+                    <?php // endforeach; ?>
                 </select>
-           </div>
+           </div>-->
            <!--div que contiene al comboBox de termino    -->
-           <div class="item_3">
+<!--           <div class="item_3">
                <p> <label class="labelsForm" for="paralelo"> Termino: </label> </p>
                <select name="termino" size="1" id="termino_seleccionado" >
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                 </select>
-           </div> 
+           </div> -->
            
-        </div>
+<!--        </div>-->
         
-        <!--div que contiene el boton de Crear nueva actividad    -->
-        <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
+        <!--div que contiene el boton de consultar actividad    -->
+<!--        <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
             <a href="#" class="button rounded black" id="new">
                 <img src="../images/find.png" width="15" height="15" /> Consultar
             </a> 
-        </div>
+        </div>-->
         
         <!--div que divide la consulta de la tabla de datos    -->
-        <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>
+<!--        <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>-->
           
         <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin-right: 1em; ">
@@ -77,6 +77,8 @@
                 <img src="../images/new.png" width="15" height="15" /> Nueva Actividad
             </a> 
         </div>
+        
+        <div style="clear: both;visibility: hidden"></div>
         
         <table class="tabla">
             <thead>
@@ -160,8 +162,8 @@
             "<script>
                 jQuery(document).ready(function($)
                 {
-                    $('.tabla').tableScroll({width:950, height:150, containerClass:'tabla_actividad'});
-                    $('.tabla2').tableScroll({width:950, height:75, containerClass:'tabla_literal'});
+                    $('.tabla').tableScroll({width:950, height:170, containerClass:'tabla_actividad'});
+                    $('.tabla2').tableScroll({width:950, height:100, containerClass:'tabla_literal'});
                 });
             </script>"
         ?>

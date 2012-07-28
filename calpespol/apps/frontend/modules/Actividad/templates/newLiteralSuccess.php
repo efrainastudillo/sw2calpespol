@@ -1,7 +1,7 @@
 <?php use_stylesheet('modulo/form.css') ?>
 <?php use_stylesheet('modulo/boton.css') ?>
 
-<form class="formulario" action="actividad/SaveLiteral"  method="get">
+<form class="formulario" action="actividad/SaveLiteral"  method="POST">
     <legend>Nuevo Literal</legend>
     <div id="div_linea_bajo_menu"></div>
     <label for="descripcion">Descripción</label>

@@ -234,7 +234,6 @@ class ActividadActions extends sfActions{
   public function executeSaveLiteral(sfWebRequest $request)
   {
       $item = new Literal();
-      $this->getUser() -> setFlash('mensaje',$request->getParameter('idActividad'));
       $item -> grabarLiteral($request);
       $this -> redirect('Actividad/index');
   }
