@@ -54,3 +54,21 @@ function crearGrupo(){
 		ajax.send();
 	}
 }
+
+/**
+ * 
+ */
+function eliminarGrupo(id_grupo,id_estudiante){
+    var ajax = ajaxFunction();
+    ajax.onreadystatechange = function(){
+            if(ajax.readyState == 4 && ajax.status==200){
+                var mensaje = ajax.responseText;
+                mensaje = mensaje.substring(mensaje.indexOf("div_contenedor_template"), mensaje.length)
+                mensaje = mensaje.substring(mensaje.indexOf(">")+1, mensaje.indexOf("</div>"))
+                jAlert(mensaje, 'CALPESPOL');
+                window.open('delete','_self');
+            }
+    }
+    ajax.open("GET","erase?grupo="+id_grupo+"&estudiante="+id_estudiante,true);
+    ajax.send();
+}

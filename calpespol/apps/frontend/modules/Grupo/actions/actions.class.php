@@ -127,6 +127,20 @@ class GrupoActions extends sfActions {
             $this->redirect('Inicio/index');
         }
     }
+    
+    public function executeErase(sfWebRequest $request){
+        try{
+            Doctrine_Query::create()
+                ->delete()
+                ->from('EstudianteGrupo eg')
+                ->where('eg.idgrupo = ?', $request->getParameter('grupo'))
+                ->andWhere('eg.id_estudiante = ?', $request->getParameter('estudiante'))
+                ->execute();
+            $this->mensaje = "Estudiante ha sido eliminado del grupo.";
+        }  catch (Exception $e){
+            $this->mensaje = "El registro no pudo ser eliminado.";
+        }
+    }
 
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
