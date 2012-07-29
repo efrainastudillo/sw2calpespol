@@ -112,7 +112,7 @@ class GrupoActions extends sfActions {
         
     }
 
-    public function executeEdit(sfWebRequest $request) {
+    public function executeDelete(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             $id_rol = $this->getIDRol("Estudiante");
             $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
@@ -138,13 +138,8 @@ class GrupoActions extends sfActions {
         $this->setTemplate('edit');
     }
 
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($grupo = Doctrine_Core::getTable('Grupo')->find(array($request->getParameter('id'))), sprintf('Object grupo does not exist (%s).', $request->getParameter('id')));
-        $grupo->delete();
-
-        $this->redirect('Grupo/index');
+    public function executeEdit(sfWebRequest $request) {
+        
     }
 
     /**
