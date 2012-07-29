@@ -24,16 +24,6 @@
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
         <div class="titulo_body_panel">
-            <div class="materia">
-                <p> Materia: </p>
-                <select id="materias" name="materias" size="1" id="mat_selec" >
-                    <?php foreach ($materia as $mat): ?>
-                        <option value="">
-                            <?php echo $mat->getNombre(); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>    
-            </div>
             <?php // echo $_POST['materias']; ?>
             <div class="paralelo">
                 <p> Paralelo: </p>
@@ -45,6 +35,16 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="tipoactividad">
+                <p> Tipo de Actividad: </p>
+                <select name="tipoactividad" size="1" id="tipoacti_selec" >
+                    <?php foreach ($tipactividad as $tipoact): ?>
+                        <option>
+                            <?php echo $tipoact->getNombre(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>            
             <div class="actividad">
                 <p> Actividad: </p>
                 <select name="actividad" size="1" id="acti_selec" >
@@ -65,17 +65,18 @@
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
                 <thead>
-                    <tr>
-                        <?php //
-                       // if ($literal = 1) {
-                       //     echo "<td>Estudiantes</td>";
-                       // } else {
-                       //     echo "<td>Grupos</td>";
-                        //}
-                        ?>
-                   
+                    <tr> 
                         
-                        <td>Grupos</td>
+                        <?php
+                            if (($esgrupal->getEsGrupal()) == 1) {
+                                    echo "<td>" . "Grupos" . "</td>";
+                                } else {
+                                    if (($esgrupal->getEsGrupal()) == 0) {
+                                        echo "<td>" . "Estudiantes" . "</td>";
+                                    }
+                                }
+                        ?>
+                        
                         <?php
                         if (isset($literal)) {
                             $i=1;
@@ -90,23 +91,38 @@
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
-                    if (isset($usuario)) {
-                        echo $usuario->count();
-                        foreach ($usuario as $us) {
-                            echo "<tr>";
-                            echo "<td>" . $us->getNombre() . "</td>";
-                            if (isset($literal)) {
-                                foreach ($literal as $lit) {
-                                    echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                    if (($esgrupal->getEsGrupal())== 0) {
+                        if (isset($usuario)) {
+                            foreach ($usuario as $us) {
+                                echo "<tr>";
+                                echo "<td>" . $us->getNombre() . "</td>";
+                                if (isset($literal)) {
+                                    foreach ($literal as $lit) {
+                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                    }
                                 }
-                            }
-                            echo "<td>10</td>";
-                            echo "</tr>";
-                          
-                          //echo "<td>" . "Literal (" . $lit->getValorPonderacion() . ")" . "</td>";
+                                echo "<td>10</td>";
+                                echo "</tr>";
                             }
                         }
-//                        ?>
+                    }
+                       
+                    if (($esgrupal->getEsGrupal())== 1) {
+                        if (isset($grupos)) {
+                            foreach ($grupos as $g) {
+                                echo "<tr>";
+                                echo "<td>" . $g->getNombre() . "</td>";
+                                if (isset($literal)) {
+                                    foreach ($literal as $lit) {
+                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                    }
+                                }
+                                echo "<td>10</td>";
+                                echo "</tr>";
+                            }
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

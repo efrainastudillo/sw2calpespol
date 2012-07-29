@@ -84,7 +84,7 @@ class InicioActions extends sfActions
           if(is_bool($estado) && $estado){//actualiza los datos en la base
               $this->getUser()->setUserEspol($user); 
              // $this->getUser()->setRol($this->getUser()->getUserDB()->getUsuarioCurso()->item(0)->getRolUsuario());
-               $this->getUser()->addCredential("Estudiante");
+               $this->getUser()->addCredentials("Estudiante","Profesor");
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");
           }else{

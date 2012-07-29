@@ -20,7 +20,7 @@ class Literal extends BaseLiteral
 //    }
     
     
-        public static function getLiterales()
+    public static function getLiterales()
     {
         $q = Doctrine_Query::create()
         ->select('*')   
@@ -39,11 +39,11 @@ class Literal extends BaseLiteral
         return $q->execute();
     }
     
-    public function grabarEstudiante(sfWebRequest $request){
+    public function grabarLiteral(sfWebRequest $request){
          $literal_actividad = new Literal();
          $literal_actividad ->setNombreLiteral($request->getParameter("detalle"));
          $literal_actividad ->setValorPonderacion($request->getParameter("puntos"));
-         $literal_actividad ->setIdActividad("10");//Falta por modificar
+         $literal_actividad ->setIdActividad($request->getParameter("actividad"));
          $literal_actividad -> save();
     }
 }
