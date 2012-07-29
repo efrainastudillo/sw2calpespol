@@ -83,7 +83,6 @@ class ActividadActions extends sfActions{
       
       //Obteniendo datos de la DB
       $this->c = Doctrine_Query::create()
-              ->select('c.idcurso')
               ->from('Curso c')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
@@ -112,7 +111,7 @@ class ActividadActions extends sfActions{
         $newtipoacti ->setTieneFactor1(0);
         $newtipoacti ->setTieneFactor2(0);
         $newtipoacti->save();   
-        $this->redirect("Actividad/index");
+       // $this->redirect("Actividad/index");
         
   }
  

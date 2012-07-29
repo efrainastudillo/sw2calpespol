@@ -10,8 +10,9 @@
  *
  * @author Patu
  */
-class processSuccess {
-    //put your code here
-}
 
 ?>
+<h1>Prueba</h1>
+<?php foreach ($c as $value) {
+    echo $value->getParalelo();
+}?>
