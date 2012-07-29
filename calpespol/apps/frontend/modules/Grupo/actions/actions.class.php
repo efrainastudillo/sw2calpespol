@@ -52,6 +52,7 @@ class GrupoActions extends sfActions {
      * Nos permite crear un nuevo grupo con los datos enviados por request
      */
     public function executeCreate(sfWebRequest $request) {
+        if($request->getGetParameters()==$request->getParameter("size")+2){
 		// Obtengo los parametros
 		$n_estudiantes = $request->getParameter("size");
 		$lista = array();
@@ -78,34 +79,43 @@ class GrupoActions extends sfActions {
 				->createQuery('uc')
 				->whereIn('uc.id_usuario_curso', $lista)
 				->execute();
-                        $this->mensaje = $n_grupo+1;
-                    try{
-                        // Se crea un nuevo grupo
-                        $grupo = new Grupo();
-                        $grupo->setNumero($n_grupo+1);
-                        $grupo->setNombre('Grupo '.($n_grupo+1));
-                        $grupo->save();
+                    if(sizeof($estudiantes)==sizeof($lista)){
                         try{
-                            // A cada estudiante lo vinculo con dicho grupo que recién se creó.
-                            foreach($estudiantes as $objeto){
-                                // Se crea una relación entre cada UsuarioCurso y el Grupo
-                                $eg = new EstudianteGrupo();
-                                $eg->setIdGrupo($grupo->getIdGrupo());
-                                $eg->setIdEstudiante($objeto->getIdUsuarioCurso());
-                                $eg->save();
+                            // Se crea un nuevo grupo
+                            $grupo = new Grupo();
+                            $grupo->setNumero($n_grupo+1);
+                            $grupo->setNombre('Grupo '.($n_grupo+1));
+                            $grupo->save();
+                            try{
+                                // A cada estudiante lo vinculo con dicho grupo que recién se creó.
+                                foreach($estudiantes as $objeto){
+                                    // Se crea una relación entre cada UsuarioCurso y el Grupo
+                                    $eg = new EstudianteGrupo();
+                                    $eg->setIdGrupo($grupo->getIdGrupo());
+                                    $eg->setIdEstudiante($objeto->getIdUsuarioCurso());
+                                    $eg->save();
+                                }
+                                $this->mensaje = "El Grupo ".($n_grupo+1)." ha sido creado.";
+                            }catch(Exception $e2){
+                                $this->mensaje = "Error al añadir a los estudiantes a los grupos";
                             }
-                            $this->mensaje = "El Grupo ".($n_grupo+1)." ha sido creado.";
-                        }catch(Exception $e2){
-                            $this->mensaje = "Error al añadir a los estudiantes a los grupos";
-                        }
-                    }catch(Exception $e){
+                        }catch(Exception $e){
                             $this->mensaje = "Error al crear el grupo";
-                    }
+                        }
+                    }else
+                        $this->redirect('Grupo/index');
 		}else
 			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
+        }else
+            $this->redirect('Grupo/index');
     }
 
     public function executeEdit(sfWebRequest $request) {
+        if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
+            
+        }else{
+            $this->redirect('Inicio/index');
+        }
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -125,15 +135,6 @@ class GrupoActions extends sfActions {
         $grupo->delete();
 
         $this->redirect('Grupo/index');
-    }
-
-    protected function processForm(sfWebRequest $request, sfForm $form) {
-        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-        if ($form->isValid()) {
-            $grupo = $form->save();
-
-            $this->redirect('Grupo/edit?id=' . $grupo->getId());
-        }
     }
 
     /**
