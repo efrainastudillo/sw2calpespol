@@ -29,3 +29,19 @@ NewSuccess:
   
   has_layout:     true
   layout:         layout
+  
+editSuccess:
+  stylesheets: [modulo/grupo/grupo.css,modulo/grupo/demo_table.css,modulo/grupo/jquery.alerts.css]
+  
+  javascripts:    [grupo.js,jquery.dataTables.js,jquery.alerts.js]
+  
+  has_layout:     true
+  layout:         layout
+  
+EditSuccess:
+  stylesheets: [modulo/grupo/grupo.css,modulo/grupo/demo_table.css,modulo/grupo/jquery.alerts.css]
+  
+  javascripts:    [grupo.js,jquery.dataTables.js,jquery.alerts.js]
+  
+  has_layout:     true
+  layout:         layout

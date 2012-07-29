@@ -18,7 +18,6 @@
 </script>
 <input id="grupo_button_new" type="button" value="      Nuevo" onClick="window.open('new','_self')" style="float: right"/>
 <?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input id=\"grupo_button_edit\" type=\"button\" value=\"      Editar\" onClick=\"window.open('edit')\" style=\"float: right\"/>" ?>
-<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input id=\"grupo_button_delete\" type=\"button\" value=\"      Eliminar\" onClick=\"window.open('delete')\" style=\"float: right\"/>" ?>
 <div style="clear: both;height:10px;"></div>
 <input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>" />
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">

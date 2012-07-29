@@ -52,14 +52,12 @@ class GrupoActions extends sfActions {
      * Nos permite crear un nuevo grupo con los datos enviados por request
      */
     public function executeCreate(sfWebRequest $request) {
-        if($request->getGetParameters()==$request->getParameter("size")+2){
 		// Obtengo los parametros
 		$n_estudiantes = $request->getParameter("size");
 		$lista = array();
 		for($i=0;$i<$n_estudiantes;$i++)
 			array_push($lista,$request->getParameter('param'.$i));
 		$id_curso = $request->getParameter('curso');
-                $this->mensaje = sizeof($lista);
 		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
 		$bandera = true;
 		foreach($lista as $objeto)
@@ -69,16 +67,21 @@ class GrupoActions extends sfActions {
 		if($bandera){
                     // Obtengo el número de grupos que existen en el curso
                     $q = Doctrine_Query::create()
-				->select('count(distinct(eg.idgrupo)) as numero')
-				->from('EstudianteGrupo eg')
-				->innerJoin('eg.UsuarioCurso uc')
-				->where('uc.id_curso = ?', $id_curso);
+                        ->select('max(eg.idgrupo) as id')
+                        ->from('EstudianteGrupo eg')
+                        ->innerJoin('eg.UsuarioCurso uc')
+                        ->where('uc.id_curso = ?', $id_curso);
                     $tmp = $q->fetchArray();
-                    $n_grupo = $tmp[0]['numero'];
+                    $id_grupo = $tmp[0]['id'];
+                    $grupo = Doctrine_Core::getTable('Grupo')
+                        ->createQuery('g')
+                        ->whereIn('g.idgrupo', $id_grupo)
+                        ->execute();
+                    $n_grupo = $grupo[0]->getNumero();
                     $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
-				->createQuery('uc')
-				->whereIn('uc.id_usuario_curso', $lista)
-				->execute();
+                        ->createQuery('uc')
+                        ->whereIn('uc.id_usuario_curso', $lista)
+                        ->execute();
                     if(sizeof($estudiantes)==sizeof($lista)){
                         try{
                             // Se crea un nuevo grupo
@@ -106,13 +109,20 @@ class GrupoActions extends sfActions {
                         $this->redirect('Grupo/index');
 		}else
 			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
-        }else
-            $this->redirect('Grupo/index');
+        
     }
 
     public function executeEdit(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
-            
+            $id_rol = $this->getIDRol("Estudiante");
+            $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+            $this->lista = Doctrine_Core::getTable('Grupo')
+                    ->createQuery('g')
+                    ->innerJoin('g.Estudiantegrupo eg')
+                    ->innerJoin('eg.UsuarioCurso uc')
+                    ->where('uc.id_curso = ?',$id_curso)
+                    ->andWhere('uc.id_rol = ?', $id_rol)
+                    ->execute();
         }else{
             $this->redirect('Inicio/index');
         }
