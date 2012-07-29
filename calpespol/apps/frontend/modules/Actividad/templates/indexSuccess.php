@@ -94,7 +94,7 @@
                 <?php foreach ($a as $acti): ?>
                     <tr>
                         <!--Flecha indicadora si esta visible o no los literales de una actividad-->
-                        <td style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo sha1($acti->getIdActividad())?> ></td>
+                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo sha1($acti->getIdActividad())?> ></td>
                         <!--Nombre de la actividades-->
                         <td><?php echo $acti->getNombre(); ?></td>
                         <!--Nombre del tipo de la actividad-->
@@ -154,8 +154,7 @@
                 
             </div>
 
-        <?php endforeach;?>     
-
+        <?php endforeach;?>  
 
         <?php echo 
             "<script>

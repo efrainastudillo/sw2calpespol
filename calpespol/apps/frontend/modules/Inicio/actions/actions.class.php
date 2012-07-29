@@ -16,9 +16,9 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      $handler = new WSDLHandler();
-      $handler->initWSSAACHandler();
-//      $this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
+      //$handler = new WSDLHandler();
+      //$handler->initWSSAACHandler();
+      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
      // $handler = new WSDLHandler();
      // $handler->initWSSAACHandler();
       //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");

@@ -1,0 +1,7 @@
+indexSuccess:
+  stylesheets: [modulo/grupo/grupo.css,modulo/grupo/demo_table.css]
+  
+  javascripts:    [grupo.js,jquery.dataTables.js]
+  
+  has_layout:     true
+  layout:         layout
