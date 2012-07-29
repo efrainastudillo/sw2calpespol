@@ -23,7 +23,8 @@ function ajaxFunction(){
 }
 
 /**
- * 
+ * Envía una petición al servidor para crear un grupo con aquellos estudiantes 
+ * que han sido seleccionados.
  */
 function crearGrupo(){
 	var tabla = document.getElementById('grupo_tabla');
@@ -56,7 +57,8 @@ function crearGrupo(){
 }
 
 /**
- * 
+ * Envia una petición al servidor para eliminar a cierto estudiante de cierto
+ * grupo.
  */
 function eliminarGrupo(id_grupo,id_estudiante){
     var ajax = ajaxFunction();
@@ -71,4 +73,12 @@ function eliminarGrupo(id_grupo,id_estudiante){
     }
     ajax.open("GET","erase?grupo="+id_grupo+"&estudiante="+id_estudiante,true);
     ajax.send();
+}
+
+/**
+ * Envía la petición al servidor para agregar los estudiantes seleccionados al 
+ * grupo.
+ */
+function agregarEstudianteAGrupo(idgrupo){
+    
 }

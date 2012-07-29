@@ -6,12 +6,13 @@
         Purpose of the stylesheet follows.
 */
 
-#grupo_button_new, #grupo_button_edit, .boton_eliminar {
+.grupo_boton_nuevo, .grupo_boton_editar, .grupo_boton_eliminar {
     margin-left: 5px;
 	cursor:pointer;
 	font-size: 14px;
 	color: #123d54;
 	padding: 2px;
+	padding-left: 0px;
 	padding-right: 5px;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
@@ -31,17 +32,17 @@
 		0px 1px 0px rgba(255,255,255,0.3);
 }
 
-#grupo_button_new{
+.grupo_boton_nuevo{
     background-image: url(../../../images/new.png);
 	background-repeat:no-repeat;
 }
 
-#grupo_button_edit{
+.grupo_boton_editar{
     background-image: url(../../../images/edit.png);
 	background-repeat:no-repeat;
 }
 
-.boton_eliminar{
+.grupo_boton_eliminar{
     background-image: url(../../../images/delete.png);
 	background-repeat:no-repeat;
 }

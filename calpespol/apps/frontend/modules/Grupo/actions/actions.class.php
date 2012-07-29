@@ -168,6 +168,26 @@ class GrupoActions extends sfActions {
         }
     }
 
+    public function executeAgregar(sfWebRequest $request){
+        if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
+            $this->grupo = $request->getParameter('grupo');
+            $id_rol = $this->getIDRol("Estudiante");
+            $this->id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+            $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
+                    ->createQuery('uc')
+                    ->where('uc.id_curso = ?',$this->id_curso)
+                    ->andWhere('uc.id_rol = ?', $id_rol)
+                    ->execute();
+            $this->lista = array();
+            foreach ($estudiantes as $objeto)
+                if(Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
+                    array_push ($this->lista, $objeto);
+            $this->rol = $this->getActualRol()->getNombre();
+        }else{
+            $this->redirect('Inicio/index');
+        }
+    }
+    
     /**
      * Dado el nombre de un rol en forma de string devuelve
      * el id del mismo en caso que no exista retornará -1
