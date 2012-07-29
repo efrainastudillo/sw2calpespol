@@ -12,7 +12,7 @@ indexSuccess:
 newViewSuccess:
 
   stylesheets:    [modulo/actividad/actividad.css]
-  javascripts:    [jquery.ui.core.min.js,jquery.ui.widget.min.js,jquery.ui.datepicker.min.js,asistencia.js]
+  javascripts:    [actividad.js,jquery.ui.core.min.js,jquery.ui.widget.min.js,jquery.ui.datepicker.min.js,asistencia.js]
   has_layout:     true
   layout:         layout
   
