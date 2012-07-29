@@ -23,7 +23,8 @@ function ajaxFunction(){
 }
 
 /**
- * 
+ * Envía una petición al servidor para crear un grupo con aquellos estudiantes 
+ * que han sido seleccionados.
  */
 function crearGrupo(){
 	var tabla = document.getElementById('grupo_tabla');
@@ -56,7 +57,8 @@ function crearGrupo(){
 }
 
 /**
- * 
+ * Envia una petición al servidor para eliminar a cierto estudiante de cierto
+ * grupo.
  */
 function eliminarGrupo(id_grupo,id_estudiante){
     var ajax = ajaxFunction();
@@ -71,4 +73,39 @@ function eliminarGrupo(id_grupo,id_estudiante){
     }
     ajax.open("GET","erase?grupo="+id_grupo+"&estudiante="+id_estudiante,true);
     ajax.send();
+}
+
+/**
+ * Envía la petición al servidor para agregar los estudiantes seleccionados al 
+ * grupo.
+ */
+function agregarEstudianteAGrupo(idgrupo){
+	var tabla = document.getElementById('grupo_tabla');
+	var rows = tabla.getElementsByTagName('tbody').item(0).getElementsByTagName('tr');
+	var lista = Array(0);
+	for (var i = 0; i<rows.length;i++)
+            if(rows.item(i).getElementsByTagName('input').item(0).checked)
+		lista.push(rows.item(i).getElementsByTagName('input').item(0));
+	if(lista.length==0)
+		jAlert('No se puede crear grupo vacío, seleccione al menos un estudiante.', 'CALPESPOL');
+	else{
+		var ajax = ajaxFunction();
+		var txt = "size="+lista.length;
+		txt = txt + "&grupo="+idgrupo;
+		var curso = document.getElementById('grupo_var_curso').value;
+		txt = txt + "&curso="+curso;
+		for(var j=0;j<lista.length;j++)
+			txt = txt + "&param"+j+"="+lista[j].getAttribute("name");
+		ajax.onreadystatechange = function(){
+			if(ajax.readyState == 4 && ajax.status==200){
+                            var mensaje = ajax.responseText;
+                            mensaje = mensaje.substring(mensaje.indexOf("div_contenedor_template"), mensaje.length)
+                            mensaje = mensaje.substring(mensaje.indexOf(">")+1, mensaje.indexOf("</div>"))
+                            jAlert(mensaje, 'CALPESPOL');
+                            //window.open('index','_self');
+			}
+		}
+		ajax.open("GET","add?"+txt,true);
+		ajax.send();
+	}
 }

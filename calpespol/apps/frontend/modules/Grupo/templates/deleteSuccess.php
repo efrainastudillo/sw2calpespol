@@ -2,7 +2,7 @@
     <?php echo image_tag('/images/grupo.png', 'alt_title=Grupos') ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
-    <?php echo "Editar Grupo" ?>
+    <?php echo "Eliminar - Grupo" ?>
 <?php end_slot(); ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -13,9 +13,13 @@
 			"bScrollCollapse": true,
 			"bLengthChange": false,
 			"bFilter": false,
-			"bSort": false,
+			"bSort": true,
 			"bInfo": false,
-			"bAutoWidth": false
+			"bAutoWidth": false,
+                        "aoColumnDefs": [
+                            { "bSortable": false, "aTargets": [ 2 ] }
+                        ],
+                        "aaSorting": [[0, 'asc'],[1, 'asc']]
 		});
 	} );
 </script>
@@ -28,7 +32,7 @@
                 <tr class="gradeA">
                     <td style="text-align: center"><?php echo $objeto->getNumero() ?></td>
                     <td><?php echo $elemento->getUsuarioCurso()->getUsuario()->getApellido()." ".$elemento->getUsuarioCurso()->getUsuario()->getNombre() ?></td>
-                    <td style="text-align: right"><input class="boton_eliminar" type="button" value="      Eliminar" onClick="eliminarGrupo('<?php echo $elemento->getIdGrupo() ?>','<?php echo $elemento->getIdEstudiante() ?>');"/></td>
+                    <td style="text-align: right"><input class="grupo_boton_eliminar" type="button" value="      Eliminar" onClick="eliminarGrupo('<?php echo $elemento->getIdGrupo() ?>','<?php echo $elemento->getIdEstudiante() ?>');"/></td>
                 </tr>
             <?php endforeach; ?>
         <?php endforeach; ?>

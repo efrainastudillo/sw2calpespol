@@ -2,7 +2,7 @@
     <?php echo image_tag('/images/grupo.png', 'alt_title=Grupos') ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
-    <?php echo "Grupos" ?>
+    <?php echo "Consultar - Grupos" ?>
 <?php end_slot(); ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -20,9 +20,9 @@
 		});
 	} );
 </script>
-<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input class=\"boton_eliminar\" type=\"button\" value=\"      Eliminar\" onClick=\"window.open('delete','_self')\" style=\"float: right\"/>" ?>
-<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input id=\"grupo_button_edit\" type=\"button\" value=\"      Editar\" onClick=\"window.open('edit','_self')\" style=\"float: right\"/>" ?>
-<input id="grupo_button_new" type="button" value="      Nuevo" onClick="window.open('new','_self')" style="float: right"/>
+<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input class=\"grupo_boton_eliminar\" type=\"button\" value=\"      Eliminar\" onClick=\"window.open('delete','_self')\" style=\"float: right\"/>" ?>
+<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input class=\"grupo_boton_editar\" type=\"button\" value=\"      Editar\" onClick=\"window.open('edit','_self')\" style=\"float: right\"/>" ?>
+<input class="grupo_boton_nuevo" type="button" value="      Nuevo" onClick="window.open('new','_self')" style="float: right"/>
 <div style="clear: both;height:10px;"></div>
 <input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>" />
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">

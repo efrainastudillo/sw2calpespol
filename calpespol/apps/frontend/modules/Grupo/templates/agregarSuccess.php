@@ -2,7 +2,7 @@
     <?php echo image_tag('/images/grupo.png', 'alt_title=Grupos') ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
-    <?php echo "Crear - Grupo" ?>
+    <?php echo "Agregar - Grupo" ?>
 <?php end_slot(); ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -24,7 +24,7 @@
 	} );
 </script>
 <input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>"/>
-<?php if(sizeof($lista)>0){echo '<input class="grupo_boton_nuevo" type="button" value="      Crear" onClick="crearGrupo();" style="float: right"/>';} ?>
+<input class="grupo_boton_nuevo" type="button" value="      Agregar" onClick="agregarEstudianteAGrupo('<?php echo $grupo ?>');" style="float: right"/>
 
 <div style="clear: both;height:10px;"></div>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">
