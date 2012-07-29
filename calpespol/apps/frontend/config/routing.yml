@@ -7,14 +7,6 @@ homepage:
   url:   /
   param: { module: default, action: index }
 
-default_module:
-  url:    /:module
-  param:  { module: :module , action: index }
-# generic rules
-# please, remove them by adding more specific rules
-#default_index:
-#  url:   /Estudiantes
-#  param: { module: Estudiantes, action: index }
 
 default:
   url:   /:module/:action/*
@@ -24,7 +16,3 @@ login:
   
 logout:
   url:   Inicio/logout
-#
-#inicio:
-#  url:   /Inicio
-#  param: { module: Inicio, action: index }

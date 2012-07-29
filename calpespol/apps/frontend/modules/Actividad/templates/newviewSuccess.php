@@ -1,4 +1,4 @@
-<!-- Reporte del Modulo Actividad -->
+<!-- Modulo Actividad, para crear la nueva Actividad -->
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
 <?php end_slot(); ?>
@@ -24,7 +24,7 @@
             </div>
         </div>
     <div style="clear: both;visibility: hidden"></div>
-    <!--Body para crear una actividad    -->
+    <!-- Body para crear una actividad -->
     <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="new">
         <label>Tipo de Actividad: </label>
         <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5em">
@@ -34,29 +34,36 @@
                 </option>
             <?php endforeach; ?>
         </select><span id="option">Tiene desahabilitado el JavaScript</span>
+        <div class="boton_new">
+            <a href="<?php echo url_for("Actividad/actividad")?>" class="button rounded black" id="new" style="margin-top: -1em; margin-left: -35em">
+                <img src="../images/add.png" width="15" height="15" />
+            </a> 
+        </div>
+        
         <br/>
-        <!--DESCRIPCION DE LA ACTIVIDAD-->
+        <!-- DESCRIPCION DE LA ACTIVIDAD -->
         <label>Descripcion de la actividad: </label>
         <input id="descrip" type="text" name="descripcion" value="" />
         <span id="req-descripcion">Tiene desahabilitado el JavaScript</span><br/>
-        <!--FECHA DE ENTRADA-->
+        <!-- FECHA DE ENTRADA -->
         <label> Fecha de entrega: </label>        
         <input id="date" name="fecha" type="date" id="fecha" style="margin-left: 4.7em"/>
         <span id="req-fecha">Tiene desahabilitado el JavaScript</span><br/>
-        <!--INGRESO DE LA NOTA-->
+        <!-- INGRESO DE LA NOTA -->
         <label> Nota: </label>
         <input id="grade" type="text" name="nota" value="" style="margin-left: 11.7em"/>
-        <!--Prueba para que aparezca o desaparezca el mensaje de validacion-->
+        <!--Prueba para que aparezca o desaparezca el mensaje de validacion -->
         <span id="req-nota">Tiene desahabilitado el JavaScript</span><br/>
-        <!--Boton que crea la actividad-->
-        <div id="grabar_actividad" style="margin-left: 15em; margin-top: 1em">
+        <!-- Boton que crea la actividad -->
+        <div id="grabar_actividad" style="margin-left: 5em; margin-top: 1em">
             <a href="#" class="button rounded black" >
                 <img src="../images/new.png" width="15" height="15" /> Crear Actividad
             </a> 
         </div>
-        <div class="boton_new">
-            <a href="Actividad/actividad" class="button rounded black" id="new" style="margin-top: -2.9em; margin-left: -30em">
-                <img src="../images/new.png" width="15" height="15" /> Crear Tipo Actividad
+        <!-- Boton que cancela la creaacion de la actividad -->
+        <div style="margin-top: -1.9em; margin-left: 17em">
+            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" >
+                <img src="../images/new.png" width="15" height="15" /> Cancelar
             </a> 
         </div>
     </form>

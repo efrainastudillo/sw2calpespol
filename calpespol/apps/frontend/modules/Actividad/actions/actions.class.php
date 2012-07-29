@@ -107,9 +107,10 @@ class ActividadActions extends sfActions{
             $newtipoacti ->setEsExtra(1);
         else
             $newtipoacti ->setEsExtra(0);
-        
+        //Ingresando datos por default
         $newtipoacti ->setTieneFactor1(0);
         $newtipoacti ->setTieneFactor2(0);
+        //Guardando el tipo actividad en la DB
         $newtipoacti->save();   
        // $this->redirect("Actividad/index");
         
@@ -150,6 +151,7 @@ class ActividadActions extends sfActions{
 
   public function executeCreate(sfWebRequest $request)
   {
+      
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
     $this->form = new ActividadForm();

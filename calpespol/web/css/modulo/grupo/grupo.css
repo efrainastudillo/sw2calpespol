@@ -6,11 +6,12 @@
         Purpose of the stylesheet follows.
 */
 
-#grupo_button_new, #grupo_button_edit, #grupo_button_delete {
+#grupo_button_new, #grupo_button_edit, .boton_eliminar {
+    margin-left: 5px;
 	cursor:pointer;
 	font-size: 14px;
 	color: #123d54;
-	padding: 3px;
+	padding: 2px;
 	padding-right: 5px;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
@@ -40,7 +41,7 @@
 	background-repeat:no-repeat;
 }
 
-#grupo_button_delete{
+.boton_eliminar{
     background-image: url(../../../images/delete.png);
 	background-repeat:no-repeat;
 }

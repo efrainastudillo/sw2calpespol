@@ -1,1 +1,0 @@
-#Seleccione una materia#<?php foreach ($materias as $materia): ?><?php echo $materia->getNombre() ?>#<?php endforeach; ?>#

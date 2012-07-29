@@ -153,8 +153,8 @@ table.display thead th {
 	padding: 3px 18px 3px 10px;
 	border-bottom: 1px solid black;
 	font-weight: bold;
-	cursor: pointer;
-	* cursor: hand;
+	background-color:#690;
+	color:#FFF;
 }
 
 table.display tfoot th {

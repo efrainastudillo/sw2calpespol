@@ -1,4 +1,4 @@
-<!-- Reporte del Modulo Actividad -->
+<!-- Modulo Actividad, para crear Tipo Actividad -->
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
 <?php end_slot(); ?>
@@ -52,12 +52,18 @@
         <input id="ponde" type="text" name="ponderacion" value="" style="margin-left: 9.7em"/>
         <span id="req-pond">Tiene desahabilitado el JavaScript</span><br/>
         <!--Boton que crea el tipo actividad-->
-        <div id="grabar_actividad" style="margin-left: 20em; margin-top: 1.5em; margin-left: 10em">
+        <div id="grabar_actividad" style="margin-left: 10em; margin-top: 1.5em;" >
             <a href="#" class="button rounded black" >
                 <img src="../images/new.png" width="15" height="15" /> Guardar
             </a> 
         </div>
+        <div style="margin-top: -1.9em; margin-left: 17em">
+            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" >
+                <img src="../images/new.png" width="15" height="15" /> Cancelar
+            </a> 
+        </div>
     </form>
+
 </div>
 
 
