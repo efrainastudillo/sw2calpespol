@@ -10,14 +10,18 @@
 		$('#grupo_tabla').dataTable( {
 			"bLengthChange": false,
 			"bFilter": true,
-			"bSort": false,
+			"bSort": true,
 			"bInfo": true,
-			"bAutoWidth": false
+			"bAutoWidth": false,
+                        "aoColumnDefs": [
+                            { "bSortable": false, "aTargets": [ 1 , 3 ] }
+                        ],
+                        "aaSorting": [[2, 'asc'],[0,'asc']]
 		});
 	} );
 </script>
-<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input class=\"boton_eliminar\" type=\"button\" value=\"      Eliminar\" onClick=\"window.open('delete')\" style=\"float: right\"/>" ?>
-<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input id=\"grupo_button_edit\" type=\"button\" value=\"      Editar\" onClick=\"window.open('edit')\" style=\"float: right\"/>" ?>
+<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input class=\"boton_eliminar\" type=\"button\" value=\"      Eliminar\" onClick=\"window.open('delete','_self')\" style=\"float: right\"/>" ?>
+<?php if (strcasecmp($rol,"Ayudante")||strcasecmp($rol,"Profesor")) echo "<input id=\"grupo_button_edit\" type=\"button\" value=\"      Editar\" onClick=\"window.open('edit','_self')\" style=\"float: right\"/>" ?>
 <input id="grupo_button_new" type="button" value="      Nuevo" onClick="window.open('new','_self')" style="float: right"/>
 <div style="clear: both;height:10px;"></div>
 <input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>" />

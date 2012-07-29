@@ -153,7 +153,19 @@ class GrupoActions extends sfActions {
     }
 
     public function executeEdit(sfWebRequest $request) {
-        
+        if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
+            $id_rol = $this->getIDRol("Estudiante");
+            $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+            $this->lista = Doctrine_Core::getTable('Grupo')
+                    ->createQuery('g')
+                    ->innerJoin('g.Estudiantegrupo eg')
+                    ->innerJoin('eg.UsuarioCurso uc')
+                    ->where('uc.id_curso = ?',$id_curso)
+                    ->andWhere('uc.id_rol = ?', $id_rol)
+                    ->execute();
+        }else{
+            $this->redirect('Inicio/index');
+        }
     }
 
     /**
