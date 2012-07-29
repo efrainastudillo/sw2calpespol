@@ -27,9 +27,10 @@ $(document).ready(function() {
     var loadingImage = '';		//Use relative path from this page
 
     //This method initialises the modal popup 
-    $(".nuevo_literal").on("click", function() {
-        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, 'Actividad/newLiteral?idActividad='+$(this).attr("id"), loadingImage);
-    });
+    $("a.nuevo_literal").on("click", function() {
+        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, "newLiteral?idActividad="+$(this).attr("id"), loadingImage);
+       // 'Actividad/newview?idActividad='+$(this).attr("id")
+});
 
     //This method hides the popup when the escape key is pressed
     $(document).keyup(function(e) {

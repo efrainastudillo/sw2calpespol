@@ -23,58 +23,12 @@
             <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
     </div>
-    <!--Body para mostrar actividades    -->
+    <!-- Body para mostrar actividades -->
     <div class="body_panel">
         <div class="titulo_body_panel">
-            <!--div que contiene al comboBox de paralelos    -->
-<!--            <div class="item_1">
-               <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
-               <select name="paralelo" size="1" id="parale_selec" >
-                    <?php // foreach ($q as $para): ?>
-                    <option>
-                        <?php // echo $para->getParalelo(); ?>
-                    </option>
-                    <?php // endforeach; ?>
-                </select>
-           </div>-->
-            
-           <!--div que contiene al comboBox de materias    -->
-<!--           <div class="item_2">
-               <p> <label class="labelsForm" for="paralelo"> Materia: </label> </p>
-               <select name="materia" size="1" id="materia_selecionada" >
-                    <?php // foreach ($m as $mat): ?>
-                    <option>
-                        <?php // echo $mat->getNombre(); ?>
-                    </option>
-                    <?php // endforeach; ?>
-                </select>
-           </div>-->
-           <!--div que contiene al comboBox de termino    -->
-<!--           <div class="item_3">
-               <p> <label class="labelsForm" for="paralelo"> Termino: </label> </p>
-               <select name="termino" size="1" id="termino_seleccionado" >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-           </div> -->
-           
-<!--        </div>-->
-        
-        <!--div que contiene el boton de consultar actividad    -->
-<!--        <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
-            <a href="#" class="button rounded black" id="new">
-                <img src="../images/find.png" width="15" height="15" /> Consultar
-            </a> 
-        </div>-->
-        
-        <!--div que divide la consulta de la tabla de datos    -->
-<!--        <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>-->
-          
-        <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin-right: 1em; ">
-            <a href="Actividad/NewView" class="button rounded black" id="new" title="Crear actividad">
-                <img src="../images/new.png" width="15" height="15" /> Nueva Actividad
+            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" id="new" title="Crear actividad">
+                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad
             </a> 
         </div>
         
@@ -92,36 +46,34 @@
                 </tr>
             </thead>
             <tbody>
-                <!--Aqui va la tabla que muestra todas las actividades-->
+                <!-- Aqui va la tabla que muestra todas las actividades -->
                 <?php foreach ($a as $acti): ?>
                     <tr>
-                        <!--Flecha indicadora si esta visible o no los literales de una actividad-->
-                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo $acti->getIdActividad()?> ></td>
-                        <!--Nombre de la actividades-->
+                        <!-- Flecha indicadora si esta visible o no los literales de una actividad -->
+                        <td  class="actividad" style="padding: 0em;"> <?php echo image_tag('/images/arrow-right-3.png', array('size'=>'18x18','class'=>'flecha_literal','id'=>$acti->getIdActividad()))?> </td>
+                        <!-- Nombre de la actividades -->
                         <td><?php echo $acti->getNombre(); ?></td>
-                        <!--Nombre del tipo de la actividad-->
+                        <!-- Nombre del tipo de la actividad -->
                         <td><?php echo $acti->getTipoactividad()->getNombre(); ?></td>
-                        <!--Si es grupal o individual-->
+                        <!-- Si es grupal o individual -->
                         <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
-                        <!--Valor del tipo actividad, ponderacion-->
+                        <!-- Valor del tipo actividad, ponderacion -->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
                         <td>
                             <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
-<<<<<<< HEAD
-                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
-=======
-                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
-                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getIdActividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
->>>>>>> 244b2bf2f9b689d1c2b8b47778f36329ed498dd7
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
+                            
+                           <a href="javascript:void(0);" class="nuevo_literal" title="Nuevo Literal" id=<?php echo $acti->getIdActividad()?> ><?php echo image_tag('/images/add.png', 'size=18x18')?></a>
+
                         </td>
                     </tr>  
                 <?php endforeach; ?>
             </tbody>
         </table>
         
-        <!--Aquí van las tablas que muestran los literales de cada actividad-->
+        <!-- Aquí van las tablas que muestran los literales de cada actividad -->
         <?php foreach($a as $acti): ?>
             <?php $total = 0;?> 
             <div>
