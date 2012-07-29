@@ -15,7 +15,8 @@ class Actividad extends BaseActividad
     public static function getActividades(){
         $a = Doctrine_Query::create()
         ->from('Actividad a');
-        return $a->execute();
+        return $a->execute(); 
+        
     }
     public function listaActividad(sfWebRequest $request){ 
         $this->actividad = Doctrine::getTable('Actividad')

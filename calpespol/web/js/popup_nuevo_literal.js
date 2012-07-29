@@ -11,25 +11,24 @@
 
 $(document).ready(function() {
 
-            //Change these values to style your modal popup
-            var align = 'center';									//Valid values; left, right, center
-            var top = 250; 											//Use an integer (in pixels)
-            var width = 500; 
-            var padding = 10;										//Use an integer (in pixels)
-            var backgroundColor = '#ececc6'; 						//Use any hex code
-            var source = 'Actividad/newLiteral'; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
-            var borderColor = '#333'; 							//Use any hex code
-            var borderWeight = 5; 									//Use an integer (in pixels)
-            var borderRadius = 2; 									//Use an integer (in pixels)
-            var fadeOutTime = 100; 									//Use any integer, 0 = no fade
-            var disableColor = '#666'; 							//Use any hex code
-            var disableOpacity = 40; 								//Valid range 0-100
-            var loadingImage = '';		//Use relative path from this page
+    //Change these values to style your modal popup
+    var align = 'center';									//Valid values; left, right, center
+    var top = 250; 											//Use an integer (in pixels)
+    var width = 500; 
+    var padding = 10;										//Use an integer (in pixels)
+    var backgroundColor = '#ececc6'; 						//Use any hex code
+    var source = 'Actividad/newLiteral'; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+    var borderColor = '#333'; 							//Use any hex code
+    var borderWeight = 5; 									//Use an integer (in pixels)
+    var borderRadius = 2; 									//Use an integer (in pixels)
+    var fadeOutTime = 100; 									//Use any integer, 0 = no fade
+    var disableColor = '#666'; 							//Use any hex code
+    var disableOpacity = 40; 								//Valid range 0-100
+    var loadingImage = '';		//Use relative path from this page
 
-            //This method initialises the modal popup
-    
-    $("#nuevo_literal").click(function() {
-        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, source, loadingImage);
+    //This method initialises the modal popup 
+    $(".nuevo_literal").on("click", function() {
+        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, 'Actividad/newLiteral?idActividad='+$(this).attr("id"), loadingImage);
     });
 
     //This method hides the popup when the escape key is pressed
@@ -37,6 +36,34 @@ $(document).ready(function() {
             if (e.keyCode == 27) {
                     closePopup(fadeOutTime);
             }
+    });
+    
+    //Declaracion de variables
+    var inputDescrip = $("#descrip");       
+    var reqDescript= $("#req-descripcion");
+    
+    var inputGrade = $("#grade");
+    var reqGrade = $("#req-nota");
+    
+    /*Eventos asignados a los texfied y se ejecutan cuando pierden el foco
+    entonces llaman a las respectivas funciones*/
+    inputDescrip.blur(function(){
+        validarCaracteres(inputDescrip,reqDescript);
+    });
+    
+    //evento asignado al texfied y se ejecuta cuando pierde el foco
+    //llama a la respectiva funcion
+    inputGrade.blur(function(){
+        validarNumero(inputGrade,reqGrade);
+    });
+    
+    //Funcion que ejecuta la accion guardar
+    $("div#grabar_actividad").click(function(){
+        if(validarNumero(inputGrade,reqGrade)&&validarCaracteres(inputDescrip,reqDescript)){
+            $("#formulario").submit();//en esta linea envia el formulario
+        }
+        else
+            alert("Llene bien el formulario");
     });
     
     /**

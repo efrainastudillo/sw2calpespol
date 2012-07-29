@@ -227,13 +227,23 @@ class ActividadActions extends sfActions{
   }
   
     /* LITERALES */ 
-  public function executeNewLiteral(sfWebRequest $request){     
+  public function executeNewLiteral(sfWebRequest $request){  
+      $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
   
   public function executeSaveLiteral(sfWebRequest $request)
   {
       $item = new Literal();
-      $item -> grabarEstudiante($request);
+      $item -> grabarLiteral($request);
       $this -> redirect('Actividad/index');
+  }
+  
+  public function executeDeleteLiteral(sfWebRequest $request)
+  {
+      $id = $request->getParameter('id');
+      $this->forward404Unless($literal = Doctrine_Core::getTable('Literal')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
+      $literal -> delete(); 
+      $this->getUser() -> setFlash('mensaje', 'Literal Eliminado Correctamente');
+      $this->redirect('Actividad/index');
   }
 }

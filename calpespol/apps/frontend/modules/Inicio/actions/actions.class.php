@@ -16,9 +16,9 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-//      $handler = new WSDLHandler();
-//      $handler->initWSSAACHandler();
-//      $this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
+      //$handler = new WSDLHandler();
+      //$handler->initWSSAACHandler();
+      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
      // $handler = new WSDLHandler();
      // $handler->initWSSAACHandler();
       //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
@@ -37,20 +37,7 @@ class InicioActions extends sfActions
 //        $result=Utility::fechaEstaEnRango($primera, $segunda, $tercera);
 //        if($result){
            // $this->variable=$request->getOptions();
-            //$this->getUser()->setMateriaActual($this->variable);
-            
-//            $modulo=sfContext::getInstance()->getModuleName();
-//      $action=sfContext::getInstance()->getActionName();
-      //$materia=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
-      //$this->getUser()->setMateriaActual($materia);
-//      $this->redirect($modulo."/".$action);
-//        else if(!$result){
-//             $this->variable="NO Esta en el rango";
-//        }
-//        else{
-//            $this->variable="ERROR";
-//        }
-            
+            //$this->getUser()->setMateriaActual($this->variable);           
   }
   
   public function executeAdminlogin(sfWebRequest $request){
@@ -97,7 +84,7 @@ class InicioActions extends sfActions
           if(is_bool($estado) && $estado){//actualiza los datos en la base
               $this->getUser()->setUserEspol($user); 
              // $this->getUser()->setRol($this->getUser()->getUserDB()->getUsuarioCurso()->item(0)->getRolUsuario());
-               $this->getUser()->addCredentials("Estudiante");
+               $this->getUser()->addCredentials("Estudiante","Profesor");
               $this->getUser()->setAuthenticated(true);
               $this->redirect("Inicio/index");
           }else{
