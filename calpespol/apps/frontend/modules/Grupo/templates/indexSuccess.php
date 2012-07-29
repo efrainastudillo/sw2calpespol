@@ -2,7 +2,7 @@
     <?php echo image_tag('/images/grupo.png', 'alt_title=Grupos') ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
-    <?php echo "Consultar - Grupos" ?>
+    <?php echo "Grupos" ?>
 <?php end_slot(); ?>
 
 <script type="text/javascript" charset="utf-8">

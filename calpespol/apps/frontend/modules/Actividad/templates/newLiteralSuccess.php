@@ -2,7 +2,7 @@
 <?php use_stylesheet('modulo/boton.css') ?>
 <?php use_javascript('literal.js')?>
 
-<form class="formulario" action="actividad/SaveLiteral"  method="POST">
+<form class="formulario" action="<?php echo url_for("Actividad/saveLiteral")?>"  method="POST">
     <legend>Nuevo Literal</legend>
     <div id="div_linea_bajo_menu"></div>
     <label for="descripcion">Descripción</label>
