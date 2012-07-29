@@ -1956,8 +1956,8 @@
 			
 			var sSearchStr = oSettings.oLanguage.sSearch;
 			sSearchStr = (sSearchStr.indexOf('_INPUT_') !== -1) ?
-			  sSearchStr.replace('_INPUT_', '<input type="text" />') :
-			  sSearchStr==="" ? '<input type="text" />' : sSearchStr+' <input type="text" />';
+			  sSearchStr.replace('_INPUT_', '<input type="text" /><br/><br/>') :
+			  sSearchStr==="" ? '<input type="text" /><br/><br/>' : sSearchStr+' <input type="text" /><br/><br/>';
 			
 			var nFilter = document.createElement( 'div' );
 			nFilter.className = oSettings.oClasses.sFilter;
@@ -9075,7 +9075,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "No existen datos disponibles.",
 		
 		
 			/**
@@ -9096,7 +9096,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ registros.",
 		
 		
 			/**
@@ -9115,7 +9115,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Mostrando 0 registros",
 		
 		
 			/**
@@ -9135,7 +9135,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(Filtrando de un total de _MAX_ registros)",
 		
 		
 			/**
@@ -9238,7 +9238,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "Cargando...",
 		
 		
 			/**
@@ -9257,7 +9257,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "Procesando...",
 		
 		
 			/**
@@ -9290,7 +9290,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Buscar:",
 		
 		
 			/**
@@ -9333,7 +9333,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "No existen registros que mostrar."
 		},
 	
 	

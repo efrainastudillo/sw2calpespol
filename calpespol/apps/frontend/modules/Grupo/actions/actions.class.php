@@ -43,7 +43,66 @@ class GrupoActions extends sfActions {
                 if(Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
                     array_push ($this->lista, $objeto);
             $this->rol = $this->getActualRol()->getNombre();
+        }else{
+            $this->redirect('Inicio/index');
         }
+    }
+
+    /**
+     * Nos permite crear un nuevo grupo con los datos enviados por request
+     */
+    public function executeCreate(sfWebRequest $request) {
+		// Obtengo los parametros
+		$n_estudiantes = $request->getParameter("size");
+		$lista = array();
+		for($i=0;$i<$n_estudiantes;$i++)
+			array_push($lista,$request->getParameter('param'.$i));
+		$id_curso = $request->getParameter('curso');
+                $this->mensaje = sizeof($lista);
+		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
+		$bandera = true;
+		foreach($lista as $objeto)
+			if(Estudiantegrupo::getGrupoDeEstudiante($objeto)!=null)
+				$bandera = false;
+		// Ejecuto las siguientes sentencias solo en caso de que ninguno tenga grupo
+		if($bandera){
+                    // Obtengo el número de grupos que existen en el curso
+                    $q = Doctrine_Query::create()
+				->select('count(distinct(eg.idgrupo)) as numero')
+				->from('EstudianteGrupo eg')
+				->innerJoin('eg.UsuarioCurso uc')
+				->where('uc.id_curso = ?', $id_curso);
+                    $tmp = $q->fetchArray();
+                    $n_grupo = $tmp[0]['numero'];
+                    $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
+				->createQuery('uc')
+				->whereIn('uc.id_usuario_curso', $lista)
+				->execute();
+                        $this->mensaje = $n_grupo+1;
+                    try{
+                        // Se crea un nuevo grupo
+                        $grupo = new Grupo();
+                        $grupo->setNumero($n_grupo+1);
+                        $grupo->setNombre('Grupo '.($n_grupo+1));
+                        $grupo->save();
+                        try{
+                            // A cada estudiante lo vinculo con dicho grupo que recién se creó.
+                            foreach($estudiantes as $objeto){
+                                // Se crea una relación entre cada UsuarioCurso y el Grupo
+                                $eg = new EstudianteGrupo();
+                                $eg->setIdGrupo($grupo->getIdGrupo());
+                                $eg->setIdEstudiante($objeto->getIdUsuarioCurso());
+                                $eg->save();
+                            }
+                            $this->mensaje = "El Grupo ".($n_grupo+1)." ha sido creado.";
+                        }catch(Exception $e2){
+                            $this->mensaje = "Error al añadir a los estudiantes a los grupos";
+                        }
+                    }catch(Exception $e){
+                            $this->mensaje = "Error al crear el grupo";
+                    }
+		}else
+			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
     }
 
     public function executeEdit(sfWebRequest $request) {

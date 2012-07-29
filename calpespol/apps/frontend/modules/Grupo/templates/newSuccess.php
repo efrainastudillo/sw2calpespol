@@ -2,20 +2,37 @@
     <?php echo image_tag('/images/grupo.png', 'alt_title=Grupos') ?>
 <?php end_slot(); ?>
 <?php slot('title') ?>
-    <?php echo "Grupos" ?>
+    <?php echo "Nuevo Grupo" ?>
 <?php end_slot(); ?>
 
-<input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>" />
-<table id="grupo_consulta">
-    <tr><th></th><th>Apellidos</th><th>Nombres</th><th>Correo</th></tr>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('#grupo_tabla').dataTable( {
+			"sScrollY": "400px",
+			"bPaginate": false,
+			"bScrollCollapse": true,
+			"bLengthChange": false,
+			"bFilter": false,
+			"bSort": false,
+			"bInfo": false,
+			"bAutoWidth": false
+		});
+	} );
+</script>
+<input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>"/>
+<?php if(sizeof($lista)>0){echo '<input id="grupo_button_new" type="button" value="      Crear" onClick="crearGrupo();" style="float: right"/>';} ?>
+
+<div style="clear: both;height:10px;"></div>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">
+    <thead><tr><th></th><th>Apellidos</th><th>Nombres</th><th>Correo</th></tr></thead>
+    <tbody>
     <?php foreach ($lista as $objeto): ?>
-    <tr>
-        <td><input type="checkbox" /></td>
+    <tr class="gradeA">
+        <td><input type="checkbox" name="<?php echo $objeto->getIdUsuarioCurso() ?>" title="Seleccionar" /></td>
         <td><?php echo $objeto->getUsuario()->getApellido() ?></td>
         <td><?php echo $objeto->getUsuario()->getNombre() ?></td>
         <td><?php echo $objeto->getUsuario()->getMail() ?></td>
     </tr>
     <?php endforeach; ?>
+    </tbody>
 </table>
-<input id="grupo_button_new" type="button" value="      Crear" onClick="window.open('Grupo/create','_self')" style="float: right"/>
-<div style="clear: both"></div>
