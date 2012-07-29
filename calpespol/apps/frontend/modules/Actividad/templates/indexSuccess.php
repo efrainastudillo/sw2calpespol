@@ -107,10 +107,14 @@
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
                         <td>
                             <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
-                                        $acti->getIdactividad(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
+                                        $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
+<<<<<<< HEAD
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
+=======
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
                             <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getIdActividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
+>>>>>>> 244b2bf2f9b689d1c2b8b47778f36329ed498dd7
                         </td>
                     </tr>  
                 <?php endforeach; ?>

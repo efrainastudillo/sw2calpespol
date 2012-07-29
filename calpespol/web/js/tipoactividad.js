@@ -51,6 +51,7 @@ $(document).ready(function(){
     $("div#grabar_actividad").click(function(){       
         if(validarCaracteres(inputTipoacti,reqTipoacti)&&validarNumero(inputPond,reqPond)&&(validarSeleccion(inpureal,reqreal)&& (validarSeleccion(inputextra,reqextra)) && (validarSeleccion(inputparcial,reqparcial)) )){
             $("#formulario").submit();//en esta linea envia el formulario
+            alert("Tipo de actividad Guardada");
         }
         else
             alert("Llene bien el formulario");
@@ -154,7 +155,7 @@ $(document).ready(function(){
 =======
     
     function validarSeleccion(input,output){
-        if (input != undefined && input.value != "" ){
+        if (input.value == "" ){
             output.text(" * Escoja una opcion");// mensaje de error
             output.css("visibility", "visible");
             return false;

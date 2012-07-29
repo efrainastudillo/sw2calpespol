@@ -37,6 +37,7 @@ $(document).ready(function(){
     $("div#grabar_actividad").click(function(){
         if((validarCaracteres(inputDescrip,reqDescrip) && validarNumero(inputNota,reqNota) && (validarSeleccion(inputipoacti,reqtipoacti))) == true){
             $("#formulario").submit();//en esta linea envia el formulario
+            alert("Actividad Registrada");
         }
         else
             alert("Llene bien el formulario");
@@ -127,7 +128,7 @@ $(document).ready(function(){
     *  validarSeleccion(input,output) script que valida entradas de un formulario
     */
     function validarSeleccion(input,output){
-        if (input != undefined && input.value != "" ){
+        if (input.value == "" ){
             output.text(" * Escoja una opcion");// mensaje de error
             output.css("visibility", "visible");
             return false;
