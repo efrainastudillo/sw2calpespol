@@ -3,11 +3,17 @@ newLiteralSuccess:
   
   has_layout:     true
   layout:         layout_popup
+newliteralSuccess:
+  
+  has_layout:     true
+  layout:         layout_popup
 
 indexSuccess:
  
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [actividad.js]
+  has_layout:     true
+  layout:         layout
 
 newViewSuccess:
 
@@ -19,3 +25,5 @@ newViewSuccess:
 actividadSuccess:
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [tipoactividad.js]
+  has_layout:     true
+  layout:         layout

@@ -50,7 +50,7 @@
                 <?php foreach ($a as $acti): ?>
                     <tr>
                         <!-- Flecha indicadora si esta visible o no los literales de una actividad -->
-                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo $acti->getIdActividad()?> /></td>
+                        <td  class="actividad" style="padding: 0em;"> <?php echo image_tag('/images/arrow-right-3.png', array('size'=>'18x18','class'=>'flecha_literal','id'=>$acti->getIdActividad()))?> </td>
                         <!-- Nombre de la actividades -->
                         <td><?php echo $acti->getNombre(); ?></td>
                         <!-- Nombre del tipo de la actividad -->
@@ -64,7 +64,8 @@
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
-                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getIdActividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
+                            
+                           <a href="javascript:void(0);" class="nuevo_literal" title="Nuevo Literal" id=<?php echo $acti->getIdActividad()?> ><?php echo image_tag('/images/add.png', 'size=18x18')?></a>
 
                         </td>
                     </tr>  
