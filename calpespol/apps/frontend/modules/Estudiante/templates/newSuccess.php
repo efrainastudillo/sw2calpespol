@@ -9,8 +9,6 @@
     <?php echo "selected" ?>
 <?php end_slot(); ?>
 
-<?php include_stylesheets() ?>
-<?php include_javascripts() ?>
 
 <div class="panel">
     <div class="head_panel">

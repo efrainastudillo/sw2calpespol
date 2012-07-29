@@ -6,6 +6,7 @@
 
 $(document).ready(function(){
     //Declaracion de variables
+    
     var inputNota = $("#grade");       
     var reqNota= $("#req-nota");
     
@@ -14,7 +15,6 @@ $(document).ready(function(){
     
     var inputipoacti = $("#tipo_acti");
     var reqtipoacti = $("#option");
-    
     //Elimina el scrollbar del template
     $("#div_contenedor_template").css("overflow","hidden");
     
