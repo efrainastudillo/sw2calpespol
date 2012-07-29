@@ -24,7 +24,7 @@
 	} );
 </script>
 <input type="hidden" id="grupo_var_curso" value="<?php echo $id_curso ?>"/>
-<input class="grupo_boton_nuevo" type="button" value="      Agregar" onClick="agregarEstudianteAGrupo('<?php echo $id_curso ?>');" style="float: right"/>
+<input class="grupo_boton_nuevo" type="button" value="      Agregar" onClick="agregarEstudianteAGrupo('<?php echo $grupo ?>');" style="float: right"/>
 
 <div style="clear: both;height:10px;"></div>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">

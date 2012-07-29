@@ -109,7 +109,6 @@ class GrupoActions extends sfActions {
                         $this->redirect('Grupo/index');
 		}else
 			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
-        
     }
 
     public function executeDelete(sfWebRequest $request) {
@@ -186,6 +185,43 @@ class GrupoActions extends sfActions {
         }else{
             $this->redirect('Inicio/index');
         }
+    }
+    
+    public function executeAdd(sfWebRequest $request){
+		// Obtengo los parametros
+		$n_estudiantes = $request->getParameter("size");
+		$lista = array();
+		for($i=0;$i<$n_estudiantes;$i++)
+			array_push($lista,$request->getParameter('param'.$i));
+		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
+		$bandera = true;
+		foreach($lista as $objeto)
+			if(Estudiantegrupo::getGrupoDeEstudiante($objeto)!=null)
+				$bandera = false;
+		// Ejecuto las siguientes sentencias solo en caso de que ninguno tenga grupo
+		if($bandera){
+                    $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
+                        ->createQuery('uc')
+                        ->whereIn('uc.id_usuario_curso', $lista)
+                        ->execute();
+                    if(sizeof($estudiantes)==sizeof($lista)){
+                        try{
+                            // A cada estudiante lo vinculo con dicho grupo que recién se creó.
+                            foreach($estudiantes as $objeto){
+                                // Se crea una relación entre cada UsuarioCurso y el Grupo
+                                $eg = new EstudianteGrupo();
+                                $eg->setIdGrupo($request->getParameter('grupo'));
+                                $eg->setIdEstudiante($objeto->getIdUsuarioCurso());
+                                $eg->save();
+                            }
+                            $this->mensaje = "El estudiante a sido añadido al grupo.";
+                        }catch(Exception $e){
+                            $this->mensaje = "Error al añadir a los estudiantes a los grupos.".$e->getMessage();
+                        }
+                    }else
+                        $this->redirect('Grupo/index');
+		}else
+			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
     }
     
     /**
