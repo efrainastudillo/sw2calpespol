@@ -13,7 +13,7 @@ class EstudianteActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
       try {
-           $this->estudiantes = Usuario::getEstudiantesByParaleloAndMateria('1', $this->getUser()->getMateriaActual());
+           $this->estudiantes = Usuario::getEstudiantesByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
       } catch (Exception $exc) {
           //
       }

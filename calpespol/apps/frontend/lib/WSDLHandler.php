@@ -67,7 +67,12 @@ class WSDLHandler {
         //return $results['any'];
         return $this->cleanUserDataResult($results['any']);
     }
-    
+    /**
+     *
+     * @param type $codigo
+     * @param type $es_matricula
+     * @return type 
+     */
     public function getDataUser($codigo,$es_matricula){
         
         
@@ -139,16 +144,41 @@ class WSDLHandler {
     for ($i = 0; $i < $elements->length; $i++) {
         $node = $elements->item($i);
         $idcurso = $node->getElementsByTagName("IDCURSO")->length!=0 ? $node->getElementsByTagName("IDCURSO")->item(0)->nodeValue : "";
-        if($idcurso == $paralelo->codigoparalelo) {
-            $profesor = $node->getElementsByTagName("PROFESOR")->length!=0 ? $node->getElementsByTagName("PROFESOR")->item(0)->nodeValue : "";
-            $materia = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue : "";
-            $paralelo = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue : "";
+        if($idcurso     == $paralelo->codigoparalelo) {
+            $profesor   = $node->getElementsByTagName("PROFESOR")->length!=0 ? $node->getElementsByTagName("PROFESOR")->item(0)->nodeValue : "";
+            $materia    = $node->getElementsByTagName("NOMBREMATERIA")->length!=0 ? $node->getElementsByTagName("NOMBREMATERIA")->item(0)->nodeValue : "";
+            $paralelo   = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue : "";
             $cod_materia = $node->getElementsByTagName("CODIGOMATERIA")->length!=0 ? $node->getElementsByTagName("CODIGOMATERIA")->item(0)->nodeValue : "";
         }
     }        
   }
-  
-  public function getInfoProfesor($elementosProfesor,$codigoMateria,$paralelo){
+  public function  getDataProfesorWebService($cedula){
+        $results = (array) $this->client->CargoPersonaEspol(array("identificacion" => $cedula));
+        $results = (array)($results['CargoPersonaEspolResult']);
+        $results = $this->cleanWSPlanificacion($results['any']);
+        $doc = new DOMDocument('1.0', 'utf-8');
+        $doc->loadXML($results);        
+        $elements = $doc->getElementsByTagName("V_CARGO_PERSONA");
+        for ($i = 0; $i < $elements->length; $i++) {
+            $node       = $elements->item($i);
+            $nombres    = $node->getElementsByTagName("NOMBRES")->length!=0 ? $node->getElementsByTagName("NOMBRES")->item(0)->nodeValue : "";
+            $apellidos  = $node->getElementsByTagName("APELLIDOS")->length!=0 ? $node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue : "";
+            $cargo      = $node->getElementsByTagName("NOMBRECARGO")->length!=0 ? $node->getElementsByTagName("NOMBRECARGO")->item(0)->nodeValue : "";
+            $usuario=new Usuario();
+            $usuario->setNombre($nombres);
+            $usuario->setApellido($apellidos);
+            $usuario->setMail("correo@espol.edu.ec");
+            $usuario->setMatricula("000000000");
+            $usuario->setUsuarioEspol("user_temp");
+            $usuario->setCedula($cedula);
+            $usuario->save();
+            return $usuario;
+//          return $results;
+        }
+  }
+
+
+  public function getInfoProfesor($elementosProfesor,$codigoMateria,$paraleloMateria){
       
       for ($i = 0; $i < $elementosProfesor->length; $i++) {
         $node = $elementosProfesor->item($i);
@@ -157,8 +187,10 @@ class WSDLHandler {
         $paralelo       = $node->getElementsByTagName("PARALELO")->length!=0 ? $node->getElementsByTagName("PARALELO")->item(0)->nodeValue: "";
         $codigo_materia = trim($codigo_materia);
         $paralelo       = trim($paralelo);
-        $identificacion = trim($identificacion);
-        
+        $identificacion = trim($identificacion);  
+        if((strcasecmp($codigoMateria, $codigo_materia)==0) && (strcasecmp($paralelo, $paraleloMateria)==0)){
+            return $this->getDataProfesorWebService($identificacion);
+        }
       }
   }
   
@@ -170,7 +202,7 @@ class WSDLHandler {
      * @return <type>
      */
     public function cargarPlanificacion($superuser, $anio,$termino) {
-        ini_set('max_execution_time', 1800); //300 seconds = 5 minutes
+      //  ini_set('max_execution_time', 900); //300 seconds = 5 minutes
 
             $results = (array) ($this->client->InformacionPlanficacion(array("anio" => $anio, "termino" => $termino)));
             $results = (array) ($results['InformacionPlanficacionResult']);            
@@ -198,7 +230,12 @@ class WSDLHandler {
                         $curso->setTermino(Utility::getTermino());
                         $curso->setMateria(Materia::getMateriaByCodigo(($codigo_materia)));
                         $curso->setParalelo($paralelo);
-                        $curso->save();                    
+                        $curso->save();
+                        $profe_curso=new UsuarioCurso();
+                        $profe_curso->setCurso($curso);
+                        $profe_curso->setUsuario($this->getInfoProfesor($elements_paralelo_profesor, $codigo_materia, $paralelo));
+                        $profe_curso->setRolusuario(Rolusuario::getRolUsuario("Profesor"));
+                        $profe_curso->save();
                         for($j=0; $j < $elements_paralelo_estudiante->length ; $j++){
                             $nodo_p_e = $elements_paralelo_estudiante->item($j);    
                             
@@ -238,14 +275,6 @@ class WSDLHandler {
     
      private function cleanWSPlanificacion($xmlstr){        
         $results = "<?xml version='1.0' encoding='utf-8'?>" . $xmlstr;
-//        $results = str_replace('<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet"><xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"><xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded"><xs:element name="MATERIA_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="EXAMENPARCIAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENFINAL" type="xs:dateTime" minOccurs="0"/><xs:element name="EXAMENMEJORAMIENTO" type="xs:dateTime" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODUNIDAD" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_PROFESOR"><xs:complexType><xs:sequence><xs:element name="IDENTIFICACION" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="PARALELO_ESTUDIANTE"><xs:complexType><xs:sequence><xs:element name="MATRICULA" type="xs:string" minOccurs="0"/><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="HORARIO_PARALELO"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="PARALELO" type="xs:string" minOccurs="0"/><xs:element name="NUMDIA" type="xs:string" minOccurs="0"/><xs:element name="HI" type="xs:duration" minOccurs="0"/><xs:element name="HF" type="xs:duration" minOccurs="0"/></xs:sequence></xs:complexType></xs:element><xs:element name="REQUISITOS_MATERIA"><xs:complexType><xs:sequence><xs:element name="CODIGOMATERIA" type="xs:string" minOccurs="0"/><xs:element name="NUMCREDITOS" type="xs:short" minOccurs="0"/><xs:element name="CODIGOMATREQ" type="xs:string" minOccurs="0"/><xs:element name="NOMBREMATREQ" type="xs:string" minOccurs="0"/><xs:element name="TIPO" type="xs:string" minOccurs="0"/></xs:sequence></xs:complexType></xs:element></xs:choice></xs:complexType></xs:element></xs:schema><diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1"><NewDataSet xmlns="">', "<NewDataSet>", $results);
-//        $results = str_replace('</diffgr:diffgram>', "", $results);
-//        $results = str_replace('</InformacionPlanficacionResult>', "", $results);
-//        $results = str_replace('</InformacionPlanficacionResponse>', "", $results);
-//        $results = str_replace('</soap:Body>', "", $results);
-//        $results = str_replace('</soap:Envelope>', "", $results);
-//        $results = str_replace('msdata:', "", $results);
-//        $results = str_replace('diffgr:', "", $results);
         return $results;
     }
       

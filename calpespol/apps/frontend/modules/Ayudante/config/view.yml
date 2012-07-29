@@ -1,0 +1,17 @@
+## YAML Template.
+---
+indexSuccess:
+  stylesheets:    []
+  
+  javascripts:    []
+  
+  has_layout:     true
+  layout:         layout
+  
+newSuccess:
+  stylesheets:    [modulo/estudiante/estudiante.css,estilo.css]
+  
+  javascripts:    [editEstudiante.js]
+  
+  has_layout:     true
+  layout:         layout

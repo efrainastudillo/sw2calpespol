@@ -14,7 +14,10 @@ $(document).ready(function(){
     
     var inputipoacti = $("#tipo_acti");
     var reqtipoacti = $("#option");
-      
+    
+    //Elimina el scrollbar del template
+    $("#div_contenedor_template").css("overflow","hidden");
+    
     /*Eventos asignados a los texfied y se ejecutan cuando pierden el foco
     entonces llaman a las respectivas funciones*/
     inputNota.blur(function(){

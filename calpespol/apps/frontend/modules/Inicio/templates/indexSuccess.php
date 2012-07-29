@@ -19,7 +19,7 @@
         </div>
         
         <div class="extra_head_panel">
-            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual().$sf_user->getParaleloActual()."</p>"; ?>
         </div>
         <div style="margin-right:200px;color: red;"  class="extra_head_panel">
            <?php if ($sf_user->hasFlash('mensaje')): ?>
@@ -58,7 +58,7 @@
                     
                     <?php 
                     if(isset ($estudiantes)){
-                        foreach ($estudiantes as $$asist){
+                        foreach ($estudiantes as $asist){
                             echo "<tr>";
                                 echo "<td>".$$asist->getNombre()."</td>";
                                 echo "<td>".$$asist->getApellido()."</td>";
@@ -113,6 +113,6 @@
     <div class="foot_panel">
         <a class="button rounded black" href="#"> Volver a Actividades </a>
     </div>
-
+<?php echo ""?>
 </div>
  

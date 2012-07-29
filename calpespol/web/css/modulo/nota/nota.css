@@ -6,11 +6,11 @@
         Purpose of the stylesheet follows.
 */
 
-.materia{
+.paralelo{
     float: left;
     display: inline;
 }
-.paralelo{
+.tipoactividad{
     margin-left: 3em;
     float: left;
 }

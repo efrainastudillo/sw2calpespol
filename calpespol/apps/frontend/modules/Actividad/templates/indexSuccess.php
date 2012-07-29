@@ -27,56 +27,58 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
             <!--div que contiene al comboBox de paralelos    -->
-            <div class="item_1">
+<!--            <div class="item_1">
                <p> <label class="labelsForm" for="paralelo"> Paralelo: </label> </p>
                <select name="paralelo" size="1" id="parale_selec" >
-                    <?php foreach ($q as $para): ?>
+                    <?php // foreach ($q as $para): ?>
                     <option>
-                        <?php echo $para->getParalelo(); ?>
+                        <?php // echo $para->getParalelo(); ?>
                     </option>
-                    <?php endforeach; ?>
+                    <?php // endforeach; ?>
                 </select>
-           </div>
+           </div>-->
             
            <!--div que contiene al comboBox de materias    -->
-           <div class="item_2">
+<!--           <div class="item_2">
                <p> <label class="labelsForm" for="paralelo"> Materia: </label> </p>
                <select name="materia" size="1" id="materia_selecionada" >
-                    <?php foreach ($m as $mat): ?>
+                    <?php // foreach ($m as $mat): ?>
                     <option>
-                        <?php echo $mat->getNombre(); ?>
+                        <?php // echo $mat->getNombre(); ?>
                     </option>
-                    <?php endforeach; ?>
+                    <?php // endforeach; ?>
                 </select>
-           </div>
+           </div>-->
            <!--div que contiene al comboBox de termino    -->
-           <div class="item_3">
+<!--           <div class="item_3">
                <p> <label class="labelsForm" for="paralelo"> Termino: </label> </p>
                <select name="termino" size="1" id="termino_seleccionado" >
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                 </select>
-           </div> 
+           </div> -->
            
-        </div>
+<!--        </div>-->
         
-        <!--div que contiene el boton de Crear nueva actividad    -->
-        <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
+        <!--div que contiene el boton de consultar actividad    -->
+<!--        <div class="boton_new" style="margin: 0.5em; margin-right: 0em;">
             <a href="#" class="button rounded black" id="new">
                 <img src="../images/find.png" width="15" height="15" /> Consultar
             </a> 
-        </div>
+        </div>-->
         
         <!--div que divide la consulta de la tabla de datos    -->
-        <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>
+<!--        <div id="div_linea_bajo_menu" style="margin-top: 0.5em;"></div>-->
           
         <!--div que contiene el boton de Crear nueva actividad    -->
         <div class="boton_new" style="margin-right: 1em; ">
-            <a href="Actividad/NewView" class="button rounded black" id="new">
+            <a href="Actividad/NewView" class="button rounded black" id="new" title="Crear actividad">
                 <img src="../images/new.png" width="15" height="15" /> Nueva Actividad
             </a> 
         </div>
+        
+        <div style="clear: both;visibility: hidden"></div>
         
         <table class="tabla">
             <thead>
@@ -94,7 +96,7 @@
                 <?php foreach ($a as $acti): ?>
                     <tr>
                         <!--Flecha indicadora si esta visible o no los literales de una actividad-->
-                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo sha1($acti->getIdActividad())?> ></td>
+                        <td  class="actividad" style="padding: 0em;"><img src="../images/arrow-right-3.png" class="flecha_literal" id=<?php echo $acti->getIdActividad()?> ></td>
                         <!--Nombre de la actividades-->
                         <td><?php echo $acti->getNombre(); ?></td>
                         <!--Nombre del tipo de la actividad-->
@@ -107,7 +109,12 @@
                             <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
+<<<<<<< HEAD
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>
+=======
+                                        $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
+                            <a href="javascript:void(0);" class="nuevo_literal" id=<?php echo $acti->getIdActividad()?> ><img src="../images/add.png" width="18" height="18" title="Nuevo Literal" /></a>
+>>>>>>> 244b2bf2f9b689d1c2b8b47778f36329ed498dd7
                         </td>
                     </tr>  
                 <?php endforeach; ?>
@@ -118,7 +125,7 @@
         <?php foreach($a as $acti): ?>
             <?php $total = 0;?> 
             <div>
-                <table class="tabla2 <?php echo sha1($acti->getIdActividad())?>">
+                <table class="tabla2 <?php echo $acti->getIdActividad()?>">
                     
                     <thead style="background-color: #d7d78c;">
                         <tr>
@@ -134,9 +141,8 @@
                             <td><?php echo $lit->getNombreLiteral();?></td>
                             <td><?php echo $lit->getValorPonderacion();?></td>
                             <td>
-                                <a href="<?php echo url_for('Actividad/newLiteral/?actividad='.(sha1($acti->getIdActividad())).'&literal='.(sha1($lit->getIdLiteral()))) ?>" >
-                                    <img src="../images/delete_2.png" width="15" height="15" />
-                                </a>
+                                <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/DeleteLiteral?id='.
+                                        $lit->getIdLiteral(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Literal')); ?>             
                             </td>
                         </tr>
                         <?php $total = $total + $lit->getValorPonderacion();?>
@@ -160,8 +166,8 @@
             "<script>
                 jQuery(document).ready(function($)
                 {
-                    $('.tabla').tableScroll({width:950, height:150, containerClass:'tabla_actividad'});
-                    $('.tabla2').tableScroll({width:950, height:75, containerClass:'tabla_literal'});
+                    $('.tabla').tableScroll({width:950, height:170, containerClass:'tabla_actividad'});
+                    $('.tabla2').tableScroll({width:950, height:100, containerClass:'tabla_literal'});
                 });
             </script>"
         ?>
