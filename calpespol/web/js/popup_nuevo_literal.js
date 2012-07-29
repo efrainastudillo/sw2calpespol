@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     //This method initialises the modal popup 
     $("a.nuevo_literal").on("click", function() {
-        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, "newLiteral?idActividad="+$(this).attr("id"), loadingImage);
+        modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, "Actividad/newliteral?idActividad="+$(this).attr("id"), loadingImage);
        // 'Actividad/newview?idActividad='+$(this).attr("id")
 });
 

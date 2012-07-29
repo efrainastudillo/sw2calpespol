@@ -10,61 +10,89 @@
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_javascript('actividad.js') ?>
-<?php use_stylesheet("modulo/actividad/actividad.css")?>
 
 <div class="panel">
-
-        <div class="head_panel">
-            <div class="titulo_head_panel">
-                <p>Registro de Actividad</p>
-            </div>
-            <div class="extra_head_panel">
-                <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
-            </div>
-        </div>
-    <div style="clear: both;visibility: hidden"></div>
-    <!-- Body para crear una actividad -->
-    <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="new">
-        <label>Tipo de Actividad: </label>
-        <select name="tipoactivid" size="1" id="tipo_acti" style="margin-left: 5em">
-            <?php foreach ($ta as $tipoact): ?>
-                <option >
-                    <?php echo $tipoact->getNombre(); ?>
-                </option>
-            <?php endforeach; ?>
-        </select><span id="option">Tiene desahabilitado el JavaScript</span>
-        <div class="boton_new">
-            <a href="<?php echo url_for("Actividad/actividad")?>" class="button rounded black" id="new" style="margin-top: -1em; margin-left: -35em">
-                <img src="../images/add.png" width="15" height="15" />
-            </a> 
+    <div class="head_panel">
+        
+        <div class="titulo_head_panel">
+            <p>Registro de Actividad</p>
         </div>
         
-        <br/>
-        <!-- DESCRIPCION DE LA ACTIVIDAD -->
-        <label>Descripcion de la actividad: </label>
-        <input id="descrip" type="text" name="descripcion" value="" />
-        <span id="req-descripcion">Tiene desahabilitado el JavaScript</span><br/>
-        <!-- FECHA DE ENTRADA -->
-        <label> Fecha de entrega: </label>        
-        <input id="date" name="fecha" type="date" id="fecha" style="margin-left: 4.7em"/>
-        <span id="req-fecha">Tiene desahabilitado el JavaScript</span><br/>
-        <!-- INGRESO DE LA NOTA -->
-        <label> Nota: </label>
-        <input id="grade" type="text" name="nota" value="" style="margin-left: 11.7em"/>
-        <!--Prueba para que aparezca o desaparezca el mensaje de validacion -->
-        <span id="req-nota">Tiene desahabilitado el JavaScript</span><br/>
-        <!-- Boton que crea la actividad -->
-        <div id="grabar_actividad" style="margin-left: 5em; margin-top: 1em">
-            <a href="#" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Crear Actividad
-            </a> 
+        <div class="extra_head_panel">
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
         </div>
-        <!-- Boton que cancela la creaacion de la actividad -->
-        <div style="margin-top: -1.9em; margin-left: 17em">
-            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Cancelar
-            </a> 
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
+        </div> 
+        
+    </div>
+
+    <div class="body_panel">
+        
+        <div class="titulo_body_panel">
+            <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+               <?php if ($sf_user->hasFlash('mensaje')): ?>
+                  <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+                <?php endif ?>
+            </div>
         </div>
-    </form>
+        
+        <div id="regresar_lista" class="boton_new">
+            <a href="<?php echo url_for("Actividad/index")?>" class="button rounded black" >
+                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Actividades
+            </a>
+        </div>
+        <div style="clear: both;visibility: hidden"></div>
+        <div>
+            <form id="form_new_actividad" action="<?php echo url_for('Actividad/create') ?>" method="POST">
+              <table>
+                  <tr style="display: none">
+                      <th>Id:</th>
+                      <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
+                  </tr>
+                  <tr>
+                      <th>Tipo:</th>
+                      <td><select name="tipo">
+                              <?php //$usuario=$sf_user->getUserDB();
+                                  //$par=Curso::getParalelosOfUsuarioByMateria($sf_user->getMateriaActual(),$usuario->getIdUsuario());
+                                  foreach ($ta as $p){
+                                    echo '<option value="'.$p->getIdtipoactividad().'">'.$p->getNombre().'</option>' ;
+                                  }
+                              ?>
+                          </select>
+                      </td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <th>Descipción:</th>
+                      <td><input id="descripcion" name="descripcion" type="text" placeholder="Decripcion de la Actividad" value=""/></td>
+                      <td><span id="req-descripcion" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Fecha de entrega:</th>
+                      <td><input id="fecha" name="fecha" type="text"  value=""/></td>
+                      <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                  <tr>
+                      <th>Nota:</th>
+                      <td><input id="nota" name="nota" type="text" placeholder="Nota" value=""/></td>
+                      <td><span id="req-nota" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div id="grabar_actividad" class="boton_new">
+                            <a href="#" class="button rounded black" >
+                                <img src="../images/new.png" width="15" height="15" /> Grabar Actividad
+                            </a>
+                        </div>
+                      </td>
+                    </tr>
+              </table>
+            </form>
+        </div>
+        <div class="mensaje_ayuda"><p>Verifique que el Estudiante que quiere Ingresar al Sistema Corresponda al Paralelo y Materia Actual</p></div>
+    </div> 
+    
 </div>
+    

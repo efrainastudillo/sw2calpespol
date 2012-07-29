@@ -1,5 +1,5 @@
 ## YAML Template.
-newLiteralSuccess:
+newliteralSuccess:
   
   has_layout:     true
   layout:         layout_popup
@@ -15,10 +15,10 @@ indexSuccess:
   has_layout:     true
   layout:         layout
 
-newViewSuccess:
+newviewSuccess:
 
-  stylesheets:    [modulo/actividad/actividad.css]
-  javascripts:    [actividad.js,jquery.ui.core.min.js,jquery.ui.widget.min.js,jquery.ui.datepicker.min.js,asistencia.js]
+  stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
+  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newview.js]
   has_layout:     true
   layout:         layout
   

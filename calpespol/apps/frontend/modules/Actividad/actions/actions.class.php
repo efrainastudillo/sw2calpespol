@@ -57,20 +57,22 @@ class ActividadActions extends sfActions{
             ->execute();    
   }
   
-  public function executeNewView(sfWebRequest $request){
-     
-      $termino = Utility::getTermino();  
+  public function executeNewview(sfWebRequest $request){
       $this->ta=  Doctrine_Query::create()
-              ->select('ta.nombre')
               ->from('Tipoactividad ta')
               ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+              ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
               ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+              ->andWhere('c.termino=?',Utility::getTermino())
+              ->andWhere('c.anio=?',  Utility::getAnio())
+              ->andWhere('m.nombre=?',  $this->getUser()->getMateriaActual())
+              ->andWhere('c.paralelo=?',  $this->getUser()->getParaleloActual())
               ->execute();
   }
   
-  public function executeActividad(sfWebRequest $request){}
+  public function executeNewtipoactividad(sfWebRequest $request){}
   
   public function executeProcess(sfWebRequest $request){
       //Obteniedo parametros del form
@@ -145,20 +147,28 @@ class ActividadActions extends sfActions{
     $newact ->setFechaEntrega($date);
     $newact ->setNota($grade);
     $newact->save();
-    $this->getUser()->setFlash('mensaje', 'Actividad Guardada Exitosamente');
+    $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
     $this->redirect("Actividad/index");
   }
 
   public function executeCreate(sfWebRequest $request)
   {
-      
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new ActividadForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+      $tipo=$request->getParameter("tipo");
+      $descripcion=$request->getParameter("descripcion");
+      $fecha_entrega=$request->getParameter("fecha");
+      $nota=$request->getParameter("nota");
+      $t=Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
+              ->from('Tipoactividad ta')           
+              ->where('ta.idtipoactividad=?',$tipo)              
+              ->fetchOne();
+      $actividad=new Actividad();
+      $actividad->setTipoactividad($t);
+      $actividad->setNombre($descripcion);
+      $actividad->setFechaEntrega($fecha_entrega);
+      $actividad->setNota($nota);
+      $actividad->save();
+       $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
+      $this->redirect("Actividad/index");
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -228,7 +238,7 @@ class ActividadActions extends sfActions{
   }
   
     /* LITERALES */ 
-  public function executeNewLiteral(sfWebRequest $request){  
+  public function executeNewliteral(sfWebRequest $request){  
       $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
   

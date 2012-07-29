@@ -27,10 +27,13 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
         <div class="boton_new" style="margin-right: 1em; ">
-            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" id="new" title="Crear actividad">
-                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad
+            <a href="<?php echo url_for("Actividad/newview")?>" class="button rounded black" id="new" title="Crear actividad">
+                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
             </a> 
         </div>
+        <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
+              <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
+        <?php endif ?>
         
         <div style="clear: both;visibility: hidden"></div>
         
