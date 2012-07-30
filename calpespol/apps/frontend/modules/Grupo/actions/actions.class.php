@@ -11,7 +11,12 @@
 class GrupoActions extends sfActions {
 
     /**
-     * 
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de estudiantes
+     * y grupos, que pertenecen al curso almacenado en sesión.
+     * Escenarios Fallidos:
+     *  - Si no se ha seleccionado la materia o el paralelo del cual se desea consultar
+     *    se lo redirecciona a la página principal de la aplicación.
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
      * @param sfWebRequest $request
      */
     public function executeIndex(sfWebRequest $request) {
@@ -29,6 +34,15 @@ class GrupoActions extends sfActions {
             
     }
 
+    /**
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de estudiantes
+     * que no pertenecen a ningún grupo.
+     * Escenarios Fallidos:
+     *  - Si no se ha seleccionado la materia o el paralelo del cual se desea consultar
+     *    se lo redirecciona a la página principal de la aplicación.
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     * @param sfWebRequest $request
+     */
     public function executeNew(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             $id_rol = $this->getIDRol("Estudiante");
@@ -48,9 +62,19 @@ class GrupoActions extends sfActions {
     }
 
     /**
-     * Nos permite crear un nuevo grupo con los datos enviados por request
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de estudiantes
+     * que no pertenecen a ningún grupo.
+     * Escenarios Fallidos:
+     *  - Si no se han enviado todos los parametros -> Se muestra un mensaje.
+     *  - Si no se encuetra autenticado -> lo redirecciona al Login.
+     *  - Si alguno de los estudiantes ya pertenece a algún grupo -> Muestra respectivo mensaje
+     *  - Si el usuario que crea el grupo es de rol estudiante y no pertenece al grupo que está
+     *  creando -> No se crea el grupo y se muestra respectivo mensaje.
+     * @param sfWebRequest $request
      */
     public function executeCreate(sfWebRequest $request) {
+        if($this->getUser()->getUsuario()!=null){
+            try{
 		// Obtengo los parametros
 		$n_estudiantes = $request->getParameter("size");
 		$lista = array();
@@ -118,8 +142,23 @@ class GrupoActions extends sfActions {
                         $this->mensaje = "Usted debe pertenecer al grupo";
 		}else
 			$this->mensaje = "Uno de los estudiantes seleccionados ya pertenece a algún grupo";
+            }catch(Exception $e){
+                $this->mensaje = "Faltan parámetros en la petición";
+            }
+        }else{
+            $this->redirect('Inicio/index');
+        }
     }
 
+    /**
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de estudiantes
+     * que pertenecen al curso actual y que también pertenezcan a algún grupo.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado -> lo redirecciona al Login.
+     *  - Si el usuario no tiene rol de Ayudante o Profesor para dicho curso ->  Se lo redirecciona
+     *  a la consulta de grupos.
+     * @param sfWebRequest $request
+     */
     public function executeDelete(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
@@ -139,6 +178,14 @@ class GrupoActions extends sfActions {
         }
     }
     
+    /**
+     * Descripción: Función que me permite conectarme a la base y eliminar del grupo al estudiante
+     * cuya id sea enviada por parámetro.
+     * Escenarios Fallidos:
+     *  - Si el usuario no tiene rol de Ayudante o Profesor para dicho curso ->  Se le muestra
+     *  un mensaje indicando que no tiene los permisos.
+     * @param sfWebRequest $request
+     */
     public function executeErase(sfWebRequest $request){
         if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
             try{
@@ -156,6 +203,15 @@ class GrupoActions extends sfActions {
             $this->mensaje = $this->getMensajeNoAutorizado();
     }
 
+    /**
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de grupos
+     * que pertenecen al curso actual.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado -> lo redirecciona al Login.
+     *  - Si el usuario no tiene rol de Ayudante o Profesor para dicho curso ->  Se lo redirecciona
+     *  a la consulta de grupos.
+     * @param sfWebRequest $request
+     */
     public function executeEdit(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
@@ -175,6 +231,15 @@ class GrupoActions extends sfActions {
         }
     }
 
+    /**
+     * Descripción: Función que me permite conectarme a la base y obtener la lista estudiantes del
+     * curso actual que no pertenecen a ningún grupo.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado -> lo redirecciona al Login.
+     *  - Si el usuario no tiene rol de Ayudante o Profesor para dicho curso ->  Se lo redirecciona
+     *  a la consulta de grupos.
+     * @param sfWebRequest $request
+     */
     public function executeAgregar(sfWebRequest $request){
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
@@ -198,6 +263,15 @@ class GrupoActions extends sfActions {
         }
     }
     
+    /**
+     * Descripción: Función que me permite conectarme a la base y agregar estudiantes a un grupo
+     * específico.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado -> lo redirecciona al Login.
+     *  - Si el usuario no tiene rol de Ayudante o Profesor para dicho curso ->  Se muestra un
+     *  mensaje indicando que no posee los permisos.
+     * @param sfWebRequest $request
+     */
     public function executeAdd(sfWebRequest $request){
         if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
 		// Obtengo los parametros
@@ -257,7 +331,7 @@ class GrupoActions extends sfActions {
     }
     
     /**
-     * 
+     * Función que permite obtener el rol del usuario en el curso actual.
      * @return Rolusuario
      */
     private function getActualRol(){
@@ -271,6 +345,11 @@ class GrupoActions extends sfActions {
         return $temp[0]->getRolusuario();
     }
     
+    /**
+     * Función que retorna un mensaje por defecto cuando se accede a un evento y no
+     * se posee los roles adecuados.
+     * @return string
+     */
     private function getMensajeNoAutorizado(){
         return "Usted no tiene permisos para realizar esta acción";
     }
