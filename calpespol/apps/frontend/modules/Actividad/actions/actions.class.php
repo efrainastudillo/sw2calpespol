@@ -15,7 +15,13 @@ class ActividadActions extends sfActions{
                 ->createQuery('m')
                 ->execute();
     } 
-    
+  
+  /**
+    * Descripcion 
+    *   -   Action de la ventana principal del modulo actividad
+    *   @param input referencia al $request
+    *   @param output lista de actividades del usuario y de materias
+    */  
   public function executeIndex(sfWebRequest $request){
       
       //Me da el termino actual
