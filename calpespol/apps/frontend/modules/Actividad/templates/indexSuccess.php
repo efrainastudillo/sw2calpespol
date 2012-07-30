@@ -33,7 +33,7 @@
         <div class="boton_new" style="margin-right: 1em; ">
 
         <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
-            <?php echo image_tag('/images/add.png', 'size=15x15')?> Nueva Actividad 
+            <?php echo image_tag('add.png', 'size=15x15')?> Nueva Actividad 
         </a> 
 
         </div>
@@ -59,7 +59,10 @@
                 <?php foreach ($a as $acti): ?>
                     <tr>
                         <!-- Flecha indicadora si esta visible o no los literales de una actividad -->
-                        <td  class="actividad" style="padding: 0em;"> <?php echo image_tag('/images/arrow-right-3.png', array('size'=>'18x18','class'=>'flecha_literal','id'=>$acti->getIdActividad()))?> </td>
+                        <td  class="actividad" style="padding: 0em;"> 
+<!--                            <img src="./images/arrow-right-3.png">-->
+                            <?php echo image_tag('arrow-right-3.png', array('size'=>'18x18','class'=>'flecha_literal','id'=>$acti->getIdActividad()))?> 
+                        </td>
                         <!-- Nombre de la actividades -->
                         <td><?php echo $acti->getNombre(); ?></td>
                         <!-- Nombre del tipo de la actividad -->
