@@ -61,8 +61,13 @@
                                   }
                               ?>
                           </select>
+                          <?php echo link_to(image_tag('/images/add.png', 'size=18x18'), 'Actividad/newtipoactividad'
+                                  , array('post=true','confirm' => 'Esta seguro que quiere crear \n un nuevo Tipo de Actividad?','align'=>'top','title'=>'Crear Tipo de Actividad'));
+                          ?>
                       </td>
-                      <td></td>
+                      <td>
+                          
+                      </td>
                   </tr>
                   <tr>
                       <th>Descipción:</th>

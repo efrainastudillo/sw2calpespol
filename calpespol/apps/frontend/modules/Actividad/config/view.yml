@@ -18,7 +18,14 @@ indexSuccess:
 newactividadSuccess:
 
   stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
-  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newview.js]
+  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newactividad.js]
+  has_layout:     true
+  layout:         layout
+  
+editSuccess:
+
+  stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
+  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newactividad.js]
   has_layout:     true
   layout:         layout
   

@@ -56,7 +56,7 @@ class GrupoActions extends sfActions {
 		$n_estudiantes = $request->getParameter("size");
 		$lista = array();
 		for($i=0;$i<$n_estudiantes;$i++)
-			array_push($lista,$request->getParameter('param'.$i));
+			array_push($lista,$request->getParameter('param'.$i));//estos son los id de los estudiantes?? simon dejame corregir algo
 		$id_curso = $request->getParameter('curso');
 		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
 		$bandera = true;
@@ -92,7 +92,7 @@ class GrupoActions extends sfActions {
                             try{
                                 // A cada estudiante lo vinculo con dicho grupo que recién se creó.
                                 foreach($estudiantes as $objeto){
-                                    // Se crea una relación entre cada UsuarioCurso y el Grupo
+                                    // Se crea una relación entre cada UsuarioCurso entoncy el Grupo
                                     $eg = new EstudianteGrupo();
                                     $eg->setIdGrupo($grupo->getIdGrupo());
                                     $eg->setIdEstudiante($objeto->getIdUsuarioCurso());

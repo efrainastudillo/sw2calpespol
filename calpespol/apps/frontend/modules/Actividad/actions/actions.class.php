@@ -58,18 +58,9 @@ class ActividadActions extends sfActions{
   }
   
   public function executeNewactividad(sfWebRequest $request){
-      $this->ta=  Doctrine_Query::create()
-              ->from('Tipoactividad ta')
-              ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
-              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-              ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
-              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-              ->andWhere('c.termino=?',Utility::getTermino())
-              ->andWhere('c.anio=?',  Utility::getAnio())
-              ->andWhere('m.nombre=?',  $this->getUser()->getMateriaActual())
-              ->andWhere('c.paralelo=?',  $this->getUser()->getParaleloActual())
-              ->execute();
+      $this->ta=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+              ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());  
+              
   }
   
   public function executeNewtipoactividad(sfWebRequest $request){}
@@ -118,7 +109,10 @@ class ActividadActions extends sfActions{
         
   }
  
-
+  /**
+   *
+   * @param sfWebRequest $request 
+   */
   public function executeNew(sfWebRequest $request){
     //Obteniendo parametros del form
     $this->form = new ActividadForm();
@@ -156,15 +150,16 @@ class ActividadActions extends sfActions{
       $tipo=$request->getParameter("tipo");
       $descripcion=$request->getParameter("descripcion");
       $fecha_entrega=$request->getParameter("fecha");
+     // $this->f=( $fecha_entrega);
       $nota=$request->getParameter("nota");
-      $t=Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
-              ->from('Tipoactividad ta')           
-              ->where('ta.idtipoactividad=?',$tipo)              
+      $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+              ->from('Tipoactividad ta')
+              ->where('ta.idtipoactividad=?',$tipo)
               ->fetchOne();
       $actividad=new Actividad();
       $actividad->setTipoactividad($t);
       $actividad->setNombre($descripcion);
-      $actividad->setFechaEntrega($fecha_entrega);
+      $actividad->setFechaEntrega($f);
       $actividad->setNota($nota);
       $actividad->save();
        $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
@@ -174,46 +169,39 @@ class ActividadActions extends sfActions{
   public function executeEdit(sfWebRequest $request)
   {
     $this->actividad = Doctrine_Query::create()
-            ->select("*")
             ->from('Actividad a')
             ->where('a.idactividad = ?', $request->getParameter("id"))
-            ->execute();
-    
-    $this->ta = Doctrine_Query::create()
-          ->select('ta.nombre')
-          ->from('TipoActividad ta')
-          ->innerjoin('ta.Actividad a ON ta.idtipoactividad = a.id_tipo_actividad')
-          ->where('a.idactividad=?',$request->getParameter("id"))
-          ->execute();
-    
+            ->fetchOne();
+    $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+              ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
+
     $this->forward404Unless($this->actividad);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
       $id=$request->getParameter("id");
-      $ta = Doctrine_Query::create()
-              ->select('ta.nombre')
-              ->from('TipoActividad ta')
-              ->innerjoin('ta.Actividad a ON ta.idtipoactividad = a.id_tipo_actividad')
+      $tipo=$request->getParameter("tipo");
+      $descripcion=$request->getParameter("descripcion");
+      $fecha_entrega=$request->getParameter("fecha");
+     // $this->f=( $fecha_entrega);
+      $nota=$request->getParameter("nota");
+      $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+              ->from('Tipoactividad ta')
+              ->where('ta.idtipoactividad=?',$tipo)
+              ->fetchOne();
+      $actividad=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+              ->from('Actividad a')
               ->where('a.idactividad=?',$id)
-              ->execute();
+              ->fetchOne();
       
-      $descrip=$request->getParameter("descripcion");
-      $date=$request->getParameter("fecha");
-      $grade=$request->getParameter("nota");
-      
-      $actividad = Doctrine_Query::create()
-            ->select("*")
-            ->from('Actividad a')
-            ->where('a.idactividad = ?', $id)
-            ->execute();
-      $actividad->setNombre($ta);
-      $actividad->setApellido($descrip);
-      $actividad->setMail($date);
-      $actividad->setMatricula($grade);
+      $actividad->setNombre($descripcion);     
+      $actividad->setTipoactividad($t);
+      $actividad->setFechaEntrega($fecha_entrega);
+      $actividad->setNota($nota);
       $actividad->save();
-      $this->getUser()->setFlash('mensaje', 'Actividad Actualizado Exitosamente');
+      
+      $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');
       $this->redirect("Actividad/index");
   }
 
@@ -222,7 +210,7 @@ class ActividadActions extends sfActions{
       $id=$request->getParameter('id');
       $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
       $actividad->delete();
-      $this->getUser()->setFlash('mensaje', 'Actividad Eliminada Correctamente');
+      $this->getUser()->setFlash('actividad_grabada', 'Actividad Eliminada Correctamente');
       $this->redirect('Actividad/index');
   }
 
