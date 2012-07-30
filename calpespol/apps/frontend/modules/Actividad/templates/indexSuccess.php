@@ -20,16 +20,26 @@
             <p>Consulta de Actividad</p>
         </div>
         <div class="extra_head_panel">
-            <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
     </div>
     <!-- Body para mostrar actividades -->
     <div class="body_panel">
         <div class="titulo_body_panel">
         <div class="boton_new" style="margin-right: 1em; ">
+<<<<<<< .mine
         <a href="<?php echo url_for("Actividad/newview")?>" class="button rounded black" id="new" title="Crear actividad">
             <?php echo image_tag('add.png', 'size=15x15') ?>Nueva Actividad
         </a>
+=======
+            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
+                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
+            </a> 
+>>>>>>> .theirs
         </div>
         <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
               <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>

@@ -11,7 +11,7 @@ indexSuccess:
   has_layout:     true
   layout:         layout
 
-newviewSuccess:
+newactividadSuccess:
 
   stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
   javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newview.js]

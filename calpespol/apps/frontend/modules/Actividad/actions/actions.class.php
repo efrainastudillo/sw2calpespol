@@ -57,7 +57,7 @@ class ActividadActions extends sfActions{
             ->execute();    
   }
   
-  public function executeNewview(sfWebRequest $request){
+  public function executeNewactividad(sfWebRequest $request){
       $this->ta=  Doctrine_Query::create()
               ->from('Tipoactividad ta')
               ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
