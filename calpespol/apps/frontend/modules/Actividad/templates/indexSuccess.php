@@ -31,15 +31,11 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
         <div class="boton_new" style="margin-right: 1em; ">
-<<<<<<< .mine
-        <a href="<?php echo url_for("Actividad/newview")?>" class="button rounded black" id="new" title="Crear actividad">
-            <?php echo image_tag('add.png', 'size=15x15') ?>Nueva Actividad
-        </a>
-=======
-            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
-                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
-            </a> 
->>>>>>> .theirs
+
+        <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
+            <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
+        </a> 
+
         </div>
         <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
               <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
