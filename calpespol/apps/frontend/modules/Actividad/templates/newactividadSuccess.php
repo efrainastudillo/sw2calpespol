@@ -91,7 +91,7 @@
               </table>
             </form>
         </div>
-        <div class="mensaje_ayuda"><p>Verifique que el Estudiante que quiere Ingresar al Sistema Corresponda al Paralelo y Materia Actual</p></div>
+        <div class="mensaje_ayuda"><p>Verifique que la Actividad que quiere Ingresar Corresponda al Paralelo y Materia Actual</p></div>
     </div> 
     
 </div>

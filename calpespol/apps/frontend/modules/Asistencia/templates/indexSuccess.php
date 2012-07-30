@@ -46,7 +46,7 @@
         
         <div class="boton_new" title="Crear Nuevo Estudiante">
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
-                <img src="../images/new.png" width="15" height="15"/> Registrar Asistencia
+                 <?php echo image_tag('add.png', 'size=15x15') ?> Registrar Asistencia
             </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
