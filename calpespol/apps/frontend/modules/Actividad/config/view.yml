@@ -18,6 +18,14 @@ newactividadSuccess:
   has_layout:     true
   layout:         layout
   
+newtipoactividadSuccess:
+  stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css]
+  
+  javascripts:    [tipoactividad.js]
+  
+  has_layout:     true
+  layout:         layout
+  
 editSuccess:
 
   stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]

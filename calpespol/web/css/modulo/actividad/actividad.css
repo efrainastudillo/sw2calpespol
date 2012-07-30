@@ -25,7 +25,7 @@
     margin-top: 0.2em;
 }
 
-#req-descripcion, #req-nota, #req-fecha, #req-tipacti, #req-pond, #option, #req-selec1, #req-selec2, #req-selec3, #req-Descrip, #req-Punto{
+#req-descripcion, #req-nota, #req-fecha, #req-tipactividad,#req-nombre, #req-ponderacion, #option, #req-selec1, #req-selec2, #req-selec3, #req-Descrip, #req-Punto{
     color: red;
     visibility: hidden;
     font-size: 11px;

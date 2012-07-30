@@ -4,68 +4,110 @@
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Tipo Actividades" ?>
+    <?php echo "Actividades" ?>
 <?php end_slot(); ?>
 
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_javascript('tipoactividad.js') ?>
-<?php use_stylesheet("modulo/actividad/actividad.css")?>
-
 <div class="panel">
+    <div class="head_panel">
+        
+        <div class="titulo_head_panel">
+            <p>Registro de Tipo de Actividad</p>
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
+        </div> 
+        
+    </div>
 
-        <div class="head_panel">
-            <div class="titulo_head_panel">
-                <p>Registro de Tipo de Actividad</p>
+    <div class="body_panel">
+        
+        <div class="titulo_body_panel">
+            <div style="margin-right:200px;color: red;"  class="extra_head_panel">
+               <?php if ($sf_user->hasFlash('mensaje')): ?>
+                  <div><?php echo $sf_user->getFlash('mensaje') ?></div>
+                <?php endif ?>
             </div>
-            <div class="extra_head_panel">
-                <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
-            </div>
         </div>
-    <!--Body para crear una actividad    -->
-    <form id="formulario" style="margin-left: 13em; margin-top: 2em" action="process">
-        <label>Nombre del tipo actividad: </label>
-        <input id="tipo_acti" type="text" name="tipoactividad" value="" style="margin-left: 3.1em" />
-        <span id="req-tipacti">Tiene desahabilitado el JavaScript</span><br/>
         
-        <label>Tipo de Realizacion: </label>
-        <select name="tiporealizacion" size="1" id="tipo_reali" style="margin-left: 6em">
-            <option>Individual</option>
-            <option>Grupal</option>
-        </select><span id="req-selec1">Tiene desahabilitado el JavaScript</span><br/>
-        
-        <label>Tipo de la actividad: </label>
-        <select name="extra" size="1" id="extra" style="margin-left: 6.1em">
-            <option>Ordinaria</option>
-            <option>Extra</option>
-        </select><span id="req-selec2">Tiene desahabilitado el JavaScript</span><br/>
-        
-        <label>Parcial: </label>
-        <select name="parcial" size="1" id="parcial" style="margin-left: 12.8em">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-        </select><span id="req-selec3">Tiene desahabilitado el JavaScript</span><br/>
-        
-        <label>Ponderacion: </label>
-        <input id="ponde" type="text" name="ponderacion" value="" style="margin-left: 9.7em"/>
-        <span id="req-pond">Tiene desahabilitado el JavaScript</span><br/>
-        <!--Boton que crea el tipo actividad-->
-        <div id="grabar_actividad" style="margin-left: 10em; margin-top: 1.5em;" >
-            <a href="#" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Guardar
-            </a> 
+        <div id="regresar_lista" class="boton_new">
+            <a href="<?php echo url_for("Actividad/index")?>" class="button" >
+                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Actividades
+            </a>
         </div>
-        <div style="margin-top: -1.9em; margin-left: 17em">
-            <a href="<?php echo url_for("Actividad/NewView")?>" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Cancelar
-            </a> 
+        <div id="crear_actividad" class="boton_new">
+            <a href="<?php echo url_for("Actividad/index")?>" class="button" >
+                <img src="../images/new.png" width="15" height="15" /> Crear Actividad
+            </a>
         </div>
-    </form>
-
+        <div style="clear: both;visibility: hidden"></div>
+        <div>
+            <form id="form_new_actividad" action="<?php echo url_for('Actividad/create') ?>" method="POST">
+              <table>
+                  <tr style="display: none">
+                      <th>Id:</th>
+                      <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
+                  </tr>
+                  <tr>
+                      <th>Nombre del Tipo de Actividad:</th>
+                      <td><input id="nombre" name="nombre" type="text" placeholder="Decripcion de la Actividad" value=""/></td>
+                      <td><span id="req-nombre" class="requisites">Tiene deshabilitado Javascript</span></td>                      
+                  </tr>
+                  <tr>
+                      <th>Realización:</th>
+                      <td>
+                          <select name="tipo_realizacion">
+                              <option value="Individual">Individual</option>
+                              <option value="Grupal">Grupal</option>
+                          </select>
+                      </td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <th>Tipo:</th>
+                      <td>
+                          <select name="tipo_actividad">
+                              <option value="Ordinaria">Ordinaria</option>
+                              <option value="Extraordinaria">Extraordinaria</option>
+                          </select>
+                      </td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <th>Parcial:</th>
+                      <td><select name="parcial">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                          </select></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <th>Ponderación:</th>
+                      <td><input id="ponderacion" name="ponderacion" type="text" placeholder="Nota" value=""/></td>
+                      <td><span id="req-ponderacion" class="requisites">Tiene deshabilitado Javascript</span></td>
+                  </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div id="grabar_actividad" class="boton_new">
+                            <a href="#" class="button rounded black" >
+                                <img src="../images/new.png" width="15" height="15" /> Guardar
+                            </a>
+                        </div>
+                      </td>
+                    </tr>
+              </table>
+            </form>
+        </div>
+        <div class="mensaje_ayuda"><p>Verifique que el Tipo de Actividad que quiere Ingresar Corresponda al Paralelo y Materia Actual</p></div>
+    </div> 
+    
 </div>
-
-
-
-
+    
