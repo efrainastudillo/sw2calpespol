@@ -34,9 +34,9 @@ class InicioActions extends sfActions
    * @param sfWebRequest $request 
    */
   public function executeSincronizar(sfWebRequest $request){
-      //$handler = new WSDLHandler();
-        //$handler->initWSSAACHandler();
-        //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
+        $handler = new WSDLHandler();
+        $handler->initWSSAACHandler();
+        $this->variable=$handler->cargarPlanificacion("null", Utility::getAnio(), Utility::getTermino()."S");
         $this->redirect("Inicio/index");
   }
 
@@ -135,10 +135,26 @@ class InicioActions extends sfActions
             $doc->loadXML($results);
             $elements = $doc->getElementsByTagName("DATOS_USUARIO");
             $node = $elements->item(0);
-            $matricula=$node->getElementsByTagName("MATRICULA")->item(0)->nodeValue ;
-            $nombres=$node->getElementsByTagName("NOMBRES")->item(0)->nodeValue ;
-            $apellidos=$node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue ;
-            $mail=$node->getElementsByTagName("CORREO")->item(0)->nodeValue ;
+            $matricula=$node->getElementsByTagName("MATRICULA") ->length!=0 ?  $node->getElementsByTagName("MATRICULA")->item(0)->nodeValue:"" ;
+            $nombres=$node->getElementsByTagName("NOMBRES") ->length!=0 ?  $node->getElementsByTagName("NOMBRES")->item(0)->nodeValue:"" ;
+            $apellidos=$node->getElementsByTagName("APELLIDOS")->length!=0 ?   $node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue:"" ;
+            $mail=$node->getElementsByTagName("CORREO")  ->length!=0 ? $node->getElementsByTagName("CORREO")->item(0)->nodeValue:"" ;
+            $cedula=$node->getElementsByTagName("CEDULA") ->length!=0 ?  $node->getElementsByTagName("CEDULA")->item(0)->nodeValue:"" ;
+            if(Usuario::existeUsuario($cedula)){
+                if(Usuario::existeUsuario($user)){
+                    //ya esta actulizado sus datos
+                }else{
+                    $usuario_temp=Usuario::getUsuarioByCedula($cedula);
+                    $usuario_temp->setNombre($nombres);
+                    $usuario_temp->setApellido($apellidos);
+                    $usuario_temp->setUsuarioEspol($user);
+                    $usuario_temp->setMail($mail);
+                    $usuario_temp->setCedula($cedula);
+                    $usuario_temp->setMatricula($matricula);
+                    $usuario_temp->save();
+                    return true;
+                }
+            }
             $userEspol=$user;
             //$u=  
             $results = $handler2->scheduler($matricula);

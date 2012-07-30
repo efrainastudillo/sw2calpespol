@@ -122,7 +122,7 @@
                             
                         </li>
                         <li class="<?php if (!include_slot('materia-css')): ?>deselected<?php endif; ?>" name="materias">
-                            <p><a href="#">Materias</a></p>
+                            <p><a href="<?php echo url_for('Materia/index') ?>">Materias</a></p>
                         </li>
                         <?php if(!$sf_user->isAdmin()):?>
                         <li class="<?php if (!include_slot('ayudantia-css')): ?>deselected<?php endif; ?>" name="grupos">

@@ -1,6 +1,9 @@
 ## YAML Template.
+
 newliteralSuccess:
   
+  stylesheets:    [modulo/form.css,modulo/actividad/actividad.css]
+  javascripts:    [jquery-1.7.2.min.js,literal.js]
   has_layout:     true
   layout:         layout_popup
 

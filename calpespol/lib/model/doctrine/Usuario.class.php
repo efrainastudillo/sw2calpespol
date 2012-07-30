@@ -23,6 +23,7 @@ class Usuario extends BaseUsuario
         ->from('Usuario u')
         ->where("u.matricula=?",$matricula)
         ->orWhere("u.usuario_espol=?",$matricula)
+        ->orWhere("u.cedula=?",$matricula)
         ->execute();
         
         if($user->count()==0){
@@ -44,7 +45,19 @@ class Usuario extends BaseUsuario
         ->fetchOne();
         return $user;
     }
-    
+    /**
+     *  Obtiene el Usuario por la cedula
+     * @param String cedula
+     * @return Usuario 
+     */
+    public static function getUsuarioByCedula($cedula){
+        $user = Doctrine_Query::create()
+        ->select("*")
+        ->from('Usuario u')
+        ->where("u.cedula=?",$cedula)
+        ->fetchOne();
+        return $user;
+    }
     /**
      * Obtengo los Estudiantes del Curso
      * @param String $paralelo
