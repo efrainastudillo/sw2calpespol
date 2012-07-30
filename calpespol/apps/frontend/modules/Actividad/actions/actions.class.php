@@ -5,7 +5,7 @@
  *
  * @package    CALPESPOL
  * @subpackage Actividad
- * @author     Andrea Cáceres
+ * @author     Andrea Cáceres y Jefferson Rubio
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class ActividadActions extends sfActions{
@@ -237,7 +237,8 @@ class ActividadActions extends sfActions{
     }
   }
   
-    /* LITERALES */ 
+    /*                      LITERALES                 */ 
+  
   public function executeNewliteral(sfWebRequest $request){  
       $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
@@ -245,7 +246,11 @@ class ActividadActions extends sfActions{
   public function executeSaveLiteral(sfWebRequest $request)
   {
       $item = new Literal();
-      $item -> grabarLiteral($request);
+      $detalle = $request->getParameter('detalle');
+      $puntos = $request->getParameter('puntos');
+      if($detalle!="" && $puntos!="" && is_string($detalle) && is_int($puntos)){
+          $item -> grabarLiteral($request);
+      }
       $this -> redirect('Actividad/index');
   }
   
