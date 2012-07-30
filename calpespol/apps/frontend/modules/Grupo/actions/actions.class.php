@@ -73,12 +73,14 @@ class GrupoActions extends sfActions {
                         ->where('uc.id_curso = ?', $id_curso);
                     $tmp = $q->fetchArray();
                     $id_grupo = $tmp[0]['id'];
-                    $grupo = Doctrine_Core::getTable('Grupo')
-                        ->createQuery('g')
-                        ->whereIn('g.idgrupo', $id_grupo)
-                        ->execute();
-                    $n_grupo = $grupo[0]->getNumero();
-                    $n_grupo = ($n_grupo==null)?0:$n_grupo;
+                    if($id_grupo!=null){
+                        $grupo = Doctrine_Core::getTable('Grupo')
+                            ->createQuery('g')
+                            ->whereIn('g.idgrupo', $id_grupo)
+                            ->execute();
+                        $n_grupo = $grupo[0]->getNumero();
+                    }else
+                        $n_grupo = 0;
                     $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
                         ->createQuery('uc')
                         ->whereIn('uc.id_usuario_curso', $lista)
