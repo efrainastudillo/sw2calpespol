@@ -73,7 +73,7 @@ class GrupoActions extends sfActions {
      * @param sfWebRequest $request
      */
     public function executeCreate(sfWebRequest $request) {
-        if($this->getUser()->getUsuario()!=null){
+        if($this->getUser()->getUsuarioDB()!=null){
             try{
 		// Obtengo los parametros
 		$n_estudiantes = $request->getParameter("size");
@@ -146,7 +146,7 @@ class GrupoActions extends sfActions {
                 $this->mensaje = "Faltan parámetros en la petición";
             }
         }else{
-            $this->redirect('Inicio/index');
+            $this->mensaje = "Usted no esta autenticado.";
         }
     }
 
