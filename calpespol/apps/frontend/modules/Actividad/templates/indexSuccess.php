@@ -27,9 +27,9 @@
     <div class="body_panel">
         <div class="titulo_body_panel">
         <div class="boton_new" style="margin-right: 1em; ">
-            <a href="<?php echo url_for("Actividad/newview")?>" class="button rounded black" id="new" title="Crear actividad">
-                <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
-            </a> 
+        <a href="<?php echo url_for("Actividad/newview")?>" class="button rounded black" id="new" title="Crear actividad">
+            <?php echo image_tag('add.png', 'size=15x15') ?>Nueva Actividad
+        </a>
         </div>
         <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
               <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
@@ -63,13 +63,13 @@
                         <!-- Valor del tipo actividad, ponderacion -->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
                         <td>
-                            <?php echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
+                            <?php echo link_to(image_tag('edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
-                            <?php echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
+                            <?php echo link_to(image_tag('delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
                             
-                           <a href="javascript:void(0);" class="nuevo_literal" title="Nuevo Literal" id=<?php echo $acti->getIdActividad()?> ><?php echo image_tag('/images/add.png', 'size=18x18')?></a>
-
+                           <a href="javascript:void(0);" class="nuevo_literal" title="Nuevo Literal" id=<?php echo $acti->getIdActividad()?> ><?php echo image_tag('add.png', 'size=18x18')?></a>
+                            
                         </td>
                     </tr>  
                 <?php endforeach; ?>

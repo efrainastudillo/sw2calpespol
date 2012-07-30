@@ -59,7 +59,7 @@
         
         <div class="boton_new">
             <a href="Actividad/new" class="button rounded black" id="new">
-                <img src="../images/new.png" width="15" height="15" /> Cargar Información
+                 <?php echo image_tag('add.png', 'size=15x15') ?> Cargar Información
             </a> 
         </div>
         <div class="tableScroll">

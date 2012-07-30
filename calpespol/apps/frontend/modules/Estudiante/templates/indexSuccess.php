@@ -40,7 +40,7 @@
         
         <div class="boton_new" title="Crear Nuevo Estudiante">
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
-                <img src="../images/new.png" width="15" height="15"/> Nuevo Estudiante
+                 <?php echo image_tag('add.png', 'size=15x15') ?> Nuevo Estudiante
             </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
