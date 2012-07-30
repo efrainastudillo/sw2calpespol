@@ -33,7 +33,7 @@
         <div class="boton_new" style="margin-right: 1em; ">
 
         <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
-            <img src="/images/new.png" width="15" height="15" /> Nueva Actividad 
+            <?php echo image_tag('/images/add.png', 'size=15x15')?> Nueva Actividad 
         </a> 
 
         </div>
