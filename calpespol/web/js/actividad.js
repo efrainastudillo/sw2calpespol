@@ -139,6 +139,37 @@ $(document).ready(function(){
         }
     }
     
+   
+   /*                        Sección Literales                            */
+   
+    /*
+     * Método que muestra los literales de una actividad
+     */
+    $(".flecha_literal").on("click", function() {
+        
+        $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
+        //Cambia el color del tr de la actividad escogida, para reconocer a que actividad 
+        //pertenecen los literales mostrados.
+        $(this).parent().css("background-color","#D3E2C2");
+        $(this).parent().nextAll().css("background-color","#D3E2C2");
+        //Div tabla_literal que tiene la tabla con el id de la actividad clickeada.
+        var tabla_literal = $("."+$(this).attr("id")).parent().parent();
+        //Escondo todos los literales que no pertecen a la actividad escogida.
+        $(".tabla_literal").css("display","none");
+        //Diseño: pregunta si el estado de la flecha indicadora para que 
+        //retroalimente al usuario que literales de que actividad se estan viendo.
+        if($(this).attr("src")=="/sw2calpespol/calpespol/web/images/arrow-right-3.png"){
+            $(".flecha_literal").attr("src","/sw2calpespol/calpespol/web/images/arrow-right-3.png");
+            $(this).attr("src","/sw2calpespol/calpespol/web/images/arrow-down-3.png");
+            tabla_literal.css("visibility","visible");
+            tabla_literal.css("display","block");
+        }else{
+            $(this).attr("src","/sw2calpespol/calpespol/web/images/arrow-right-3.png");
+            $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
+        }  
+    });
+});
+
 
 //    function validarFecha(input,output){
 //        var actual = new Date();
@@ -176,33 +207,3 @@ $(document).ready(function(){
 //            return true;
 //        }
 //    }
-   
-   /*                        Sección Literales                            */
-   
-    /*
-     * Método que muestra los literales de una actividad
-     */
-    $(".flecha_literal").on("click", function() {
-        
-        $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
-        //Cambia el color del tr de la actividad escogida, para reconocer a que actividad 
-        //pertenecen los literales mostrados.
-        $(this).parent().css("background-color","#D3E2C2");
-        $(this).parent().nextAll().css("background-color","#D3E2C2");
-        //Div tabla_literal que tiene la tabla con el id de la actividad clickeada.
-        var tabla_literal = $("."+$(this).attr("id")).parent().parent();
-        //Escondo todos los literales que no pertecen a la actividad escogida.
-        $(".tabla_literal").css("display","none");
-        //Diseño: pregunta si el estado de la flecha indicadora para que 
-        //retroalimente al usuario que literales de que actividad se estan viendo.
-        if($(this).attr("src")=="../images/arrow-right-3.png"){
-            $(".flecha_literal").attr("src","../images/arrow-right-3.png");
-            $(this).attr("src","../images/arrow-down-3.png");
-            tabla_literal.css("visibility","visible");
-            tabla_literal.css("display","block");
-        }else{
-            $(this).attr("src","../images/arrow-right-3.png");
-            $(".tablescroll_body").find("td").css("background-color","#EDEDCB");
-        }  
-    });
-});
