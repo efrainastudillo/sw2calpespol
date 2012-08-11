@@ -205,8 +205,26 @@ class ActividadActions extends sfActions{
       $this->redirect("Actividad/index");
   }
 
-  public function executeDelete(sfWebRequest $request)
-  {
+  public function executeGuardarPdf(sfWebRequest $request){
+    //accedemos al parametro html
+    $html = $request->getPostParameter('html');
+    $mpdf = new mPDF('es_ES','Letter','','',25,25,15,25,16,13);
+    $mpdf->useOnlyCoreFonts = true;
+
+    // load a stylesheet
+    //$stylesheet = file_get_contents(sfConfig::get('sf_web_dir').'/css/factura_style.css');
+
+    // el parámetro 1 indica que sólo es css y no contenido html.
+    //$mpdf->WriteHTML($stylesheet,1); 
+
+    $mpdf->WriteHTML($html,2);
+
+    //Parametro “D” indica que se va a descargar.
+    $mpdf->Output('Reporte_Actividades.pdf','D');
+    throw new sfStopException();
+}
+
+  public function executeDelete(sfWebRequest $request){
       $id=$request->getParameter('id');
       $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
       $actividad->delete();
