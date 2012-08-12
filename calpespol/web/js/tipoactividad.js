@@ -39,7 +39,6 @@ $(document).ready(function(){
     //Funcion que ejecuta la accion guardar
     $("div#grabar_tipo_actividad").click(function(){
         $("#formulario").submit();//en esta linea envia el formulario
-        alert("Tipo Actividad Registrada");
     });
     
     /**
