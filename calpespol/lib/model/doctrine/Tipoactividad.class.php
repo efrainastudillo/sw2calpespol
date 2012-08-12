@@ -12,5 +12,23 @@
  */
 class Tipoactividad extends BaseTipoactividad
 {
-
+    /**
+     * Obtengo los tipos de actividades que tiene el Curso pro la materia y el paralelo
+     * @param String $materia
+     * @param String $paralelo 
+     */
+    public static function getTipoActividadbyMateriaAndParalelo($materia,$paralelo){
+        $q=Doctrine_Query::create()
+              ->from('Tipoactividad ta')
+              ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+              ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
+              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+              ->andWhere('c.termino=?',Utility::getTermino())
+              ->andWhere('c.anio=?',  Utility::getAnio())
+              ->andWhere('m.nombre=?',  $materia)
+              ->andWhere('c.paralelo=?',  $paralelo)
+              ->execute();        
+        return $q;
+    }
 }

@@ -1,6 +1,9 @@
 ## YAML Template.
+
 newliteralSuccess:
   
+  stylesheets:    [modulo/form.css,modulo/actividad/actividad.css]
+  javascripts:    [jquery-1.7.2.min.js,literal.js]
   has_layout:     true
   layout:         layout_popup
 
@@ -14,7 +17,22 @@ indexSuccess:
 newactividadSuccess:
 
   stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
-  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newview.js]
+  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newactividad.js]
+  has_layout:     true
+  layout:         layout
+  
+newtipoactividadSuccess:
+  stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css]
+  
+  javascripts:    [tipoactividad.js]
+  
+  has_layout:     true
+  layout:         layout
+  
+editSuccess:
+
+  stylesheets:    [modulo/actividad/actividad.css,modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
+  javascripts:    [jquery.ui.core.min.js ,jquery.ui.widget.min.js ,jquery.ui.datepicker.min.js ,newactividad.js]
   has_layout:     true
   layout:         layout
   

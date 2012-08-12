@@ -10,7 +10,6 @@
 */
 
 $(document).ready(function() {
-
     //Change these values to style your modal popup
     var align = 'center';									//Valid values; left, right, center
     var top = 250; 											//Use an integer (in pixels)

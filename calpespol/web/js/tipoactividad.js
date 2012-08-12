@@ -6,94 +6,64 @@
 
 $(document).ready(function(){
     //Declaracion de variables
-    var inputTipoacti = $("#tipo_acti");       
-    var reqTipoacti= $("#req-tipacti");
+    var inputNombre = $("#nombre");       
+    var reqNombre= $("#req-nombre");
     
-    var inputPond = $("#ponde");
-    var reqPond = $("#req-pond");
+    var inputTipoactividad = $("#tipo_actividad");       
+    var reqTipoactividad= $("#req-tipoactividad");
     
-    var inpureal = $("#tipo_reali");
-    var reqreal = $("#req-selec1");
+    var inputPonderacion = $("#ponderacion");
+    var reqPonderacion = $("#req-ponderacion");
     
-    var inputextra = $("#extra");
-    var reqextra = $("#req-selec2");
+    var inpuRealizacion = $("#tipo_realizacion");
+    var reqRealizacion = $("#req-realizacion");
     
-    var inputparcial = $("#parcial");
-    var reqparcial = $("#req-selec3");
+    var inputExtra = $("#extra");
+    var reqExtra = $("#req-extra");
+    
+    var inputParcial = $("#parcial");
+    var reqParcial = $("#req-parcial");
     
     /*Eventos asignados a los texfied y se ejecutan cuando pierden el foco
     entonces llaman a las respectivas funciones*/
-    inputTipoacti.blur(function(){
-        validarCaracteres(inputTipoacti,reqTipoacti);
+    inputNombre.blur(function(){
+        validarCaracteres(inputNombre,reqNombre);
     });
+    
     //evento asignado al texfied y se ejecuta cuando pierde el foco
     //llama a la respectiva funcion
-    inputPond.blur(function(){
-        validarNumero(inputPond,reqPond);
-    });
-        //evento asignado al texfied y se ejecuta cuando pierde el foco
-    //llama a la respectiva funcion
-    inpureal.blur(function(){
-        validarSeleccion(inpureal,reqreal);
-    });
-        //evento asignado al texfied y se ejecuta cuando pierde el foco
-    //llama a la respectiva funcion
-    inputextra.blur(function(){
-        validarSeleccion(inputextra,reqextra);
-    });
-        //evento asignado al texfied y se ejecuta cuando pierde el foco
-    //llama a la respectiva funcion
-    inputparcial.blur(function(){
-        validarSeleccion(inputparcial,reqparcial);
+    inputPonderacion.blur(function(){
+        validarNumero(inputPonderacion,reqPonderacion);
     });
     
-    //Funcion que ejecuta la accion guardar
-    $("div#grabar_actividad").click(function(){       
-        if(validarCaracteres(inputTipoacti,reqTipoacti)&&validarNumero(inputPond,reqPond)&&(validarSeleccion(inpureal,reqreal)&& (validarSeleccion(inputextra,reqextra)) && (validarSeleccion(inputparcial,reqparcial)) )){
-            $("#formulario").submit();//en esta linea envia el formulario
-            alert("Tipo de actividad Guardada");
-        }
-        else
-            alert("Llene bien el formulario");
-    });
-      
-   $("#materia_select").change(function(){
-        jQuery.post('Actividad/prueba', 
-        {query:$("#materia_select option:selected").text()
-        }, function(xml){
-            //$("#prueba").empty();
-            addMaterias(xml);
-        });
-        //alert("Hola");
-    });
-    
-   function addMaterias(xml){
-       if($("status",xml).text() == "2") 
-         return;
+    /**
+    * Valida 
+    *   -   si el campo input no han ingresado nada (Campo requerido)
+    *   -   Si los caracteres ingresados son diferentes de alguna letra del abcdario
+    *   @param input referencia del texfield
+    *   @param output referencia al span en donde se agregara el texto de error a mostrar
+    */
+    function validarCaracteres(input,output){  
+        //NO cumple longitud minima  
+        if(input.val().length == 0){
+            output.text(" * Campo Requerido");// mensaje de error
+            output.css("visibility", "visible"); 
+            return false;  
+        }  
+        //SI longitud pero caracteres diferentes de A-z  
+        else if(!input.val().match(/^[a-zA-Z]+$/)){
+            output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
+            output.css("visibility", "visible");
+            return false;  
+        }  
+        // SI longitud, SI caracteres A-z  hace oculto el tag que muestra el mensaje
+        else{  
+           output.css("visibility", "hidden");
+            return true;  
+        }  
+    }
      
-        $("materia",xml).each(function(id) {
-              materia = $("materia",xml).get(id);
-              $("#prueba").prepend("<b>"+$("author",materia).text()+
-                             "</b>: "+$("text",message).text()+
-                             "<br />");
-     });
-   }
-   
-   /**
-     *  getMessage() obtiene el xml generado por el servidor que es un mensaje
-     *  formateado por el usuario si esta todo bien
-     */
-   function getMessage(xml){
-       if($("status",xml).text() == "2") 
-         return;
-     
-        $("mensaje",xml).each(function(id) {
-              mensaje = $("mensaje",xml).get(id);
-              $("#flash_notice").text($("valor",mensaje).text());
-     });
-   }
-   
-   /**
+    /**
     * Valida 
     *   -   si el campo input no han ingresado nada (Campo requerido)
     *   -   Si los caracteres ingresados no son digitos
@@ -113,8 +83,8 @@ $(document).ready(function(){
             output.css("visibility", "visible");//hace visible el tag del mensaje
             return false;  
         }
-        else if (input.val().length >3){
-            output.text(" * Numero no valido, hay mas de tres digitos");//mensaje de error
+        else if (parseInt(input.val())>100){
+            output.text(" * Numero no valido, Nota mayor de 100");//mensaje de error
             output.css("visibility","visible");
             return false;
         }
@@ -124,47 +94,5 @@ $(document).ready(function(){
             return true;  
         }  
    }
-   
-   /**
-    * Valida 
-    *   -   si el campo input no han ingresado nada (Campo requerido)
-    *   -   Si los caracteres ingresados son diferentes de alguna letra del abcdario
-    *   @param input referencia del texfield
-    *   @param output referencia al span en donde se agregara el texto de error a mostrar
-    */
-    function validarCaracteres(input,output){  
-        //NO cumple longitud minima  
-        if(input.val().length == 0){
-            output.text(" * Campo Requerido");// mensaje de error
-            output.css("visibility", "visible"); 
-            return false;  
-        }
-        //SI longitud pero caracteres diferentes de A-z  
-        else if(!input.val().match(/^[a-zA-Z]+$/)){
-            output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
-            output.css("visibility", "visible");
-            return false;
-        }
-        // SI longitud, SI caracteres A-z  hace oculto el tag que muestra el mensaje
-        else{
-           output.css("visibility", "hidden");
-            return true;  
-        }
-    }
-<<<<<<< HEAD
-=======
     
-    function validarSeleccion(input,output){
-        if (input.value == "" ){
-            output.text(" * Escoja una opcion");// mensaje de error
-            output.css("visibility", "visible");
-            return false;
-        }
-        else{
-            output.css("visibility", "hidden");
-            return true;
-        }
-    }
-    
->>>>>>> 3f89d5aff95c8f749dd9db6d15db22fa3aa3da98
 });

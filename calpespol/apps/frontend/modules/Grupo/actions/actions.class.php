@@ -55,7 +55,7 @@ class GrupoActions extends sfActions {
 		$n_estudiantes = $request->getParameter("size");
 		$lista = array();
 		for($i=0;$i<$n_estudiantes;$i++)
-			array_push($lista,$request->getParameter('param'.$i));
+			array_push($lista,$request->getParameter('param'.$i));//estos son los id de los estudiantes?? simon dejame corregir algo
 		$id_curso = $request->getParameter('curso');
 		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
 		$bandera = true;

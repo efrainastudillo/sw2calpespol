@@ -51,6 +51,7 @@
                     <td>Tipo de Actividad</td>
                     <td>Tipo de Realizacion</td>
                     <td>Valor Ponderacion</td>
+                    <td>Fecha de Entrega</td>
                     <td>Acciones</td>
                 </tr>
             </thead>
@@ -71,6 +72,7 @@
                         <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
                         <!-- Valor del tipo actividad, ponderacion -->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
+                        <td><?php echo $acti->getFechaEntrega()?></td>
                         <td>
                             <?php echo link_to(image_tag('edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp

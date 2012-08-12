@@ -23,7 +23,7 @@ table td{
     
 }
 
-#req-user_espol, #req-nombres, #req-apellidos,#req-cedula,#req-matricula,#req-correo{
+#req-user_espol, #req-nombres, #req-apellidos,#req-cedula,#req-matricula,#req-correo,#req-codigo{
     color: red;
     visibility: hidden;
     font-size: 11px;

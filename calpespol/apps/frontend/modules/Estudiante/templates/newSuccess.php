@@ -39,7 +39,7 @@
         
         <div id="regresar_lista" class="boton_new">
             <a href="<?php echo url_for("Estudiante/index")?>" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Ayudantes
+                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Estudiantes
             </a>
         </div>
         <div style="clear: both;visibility: hidden"></div>

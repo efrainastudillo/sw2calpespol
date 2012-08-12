@@ -22,13 +22,3 @@ Rolusuario:
     nombre: Ayudante
   Rolusuario_3:
     nombre: Profesor
-Materia:
-  Materia_1:
-    nombre: 'LENGUAJES DE PROGRAMACIÓN'
-    codigo_materia: FIEC01552
-  Materia_2:
-    nombre: 'INGENIERÍA DE SOFTWARE II'
-    codigo_materia: FIEC03053
-  Materia_3:
-    nombre: 'SEÑALES Y SISTEMAS'
-    codigo_materia: FIEC04382

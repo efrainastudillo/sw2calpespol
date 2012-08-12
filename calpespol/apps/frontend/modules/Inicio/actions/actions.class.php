@@ -16,21 +16,10 @@ class InicioActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      //$handler = new WSDLHandler();
-      //$handler->initWSSAACHandler();
-      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
-     // $handler = new WSDLHandler();
-     // $handler->initWSSAACHandler();
-      //$this->variable=$handler->cargarPlanificacion("null", "2012", "1S");
-//      $primera=date("13/01/2013");
-      $this->fecha=  Doctrine_Query::create()
-            ->select('m.*')
-            ->from('Materia m')
-            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
-            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-            ->innerjoin('uc.Usuario u ON u.idusuario = uc.id_usuario')            
-            ->where('u.usuario_espol=?',"gianvall")
-            ->execute();
+      if($this->getUser()->isAdmin()){
+        
+      }
+
      // $this->processForm($request, $this->fecha);
 //      $segunda="18/10/2012";
 //      $tercera="14/01/2013";
@@ -40,6 +29,21 @@ class InicioActions extends sfActions
             //$this->getUser()->setMateriaActual($this->variable);           
   }
   
+  /**
+   * Ejecuta la sincronizacion de la Aplicacion
+   * @param sfWebRequest $request 
+   */
+  public function executeSincronizar(sfWebRequest $request){
+        $handler = new WSDLHandler();
+        $handler->initWSSAACHandler();
+        $this->variable=$handler->cargarPlanificacion("null", Utility::getAnio(), Utility::getTermino()."S");
+        $this->redirect("Inicio/index");
+  }
+
+ /**
+  * Realiza el Login del Administrador
+  * @param sfWebRequest $request 
+  */
   public function executeAdminlogin(sfWebRequest $request){
       $user = $request->getParameter("userID");
       $password = $request->getParameter("userPASS");
@@ -131,12 +135,28 @@ class InicioActions extends sfActions
             $doc->loadXML($results);
             $elements = $doc->getElementsByTagName("DATOS_USUARIO");
             $node = $elements->item(0);
-            $matricula=$node->getElementsByTagName("MATRICULA")->item(0)->nodeValue ;
-            $nombres=$node->getElementsByTagName("NOMBRES")->item(0)->nodeValue ;
-            $apellidos=$node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue ;
-            $mail=$node->getElementsByTagName("CORREO")->item(0)->nodeValue ;
+            $matricula=$node->getElementsByTagName("MATRICULA") ->length!=0 ?  $node->getElementsByTagName("MATRICULA")->item(0)->nodeValue:"" ;
+            $nombres=$node->getElementsByTagName("NOMBRES") ->length!=0 ?  $node->getElementsByTagName("NOMBRES")->item(0)->nodeValue:"" ;
+            $apellidos=$node->getElementsByTagName("APELLIDOS")->length!=0 ?   $node->getElementsByTagName("APELLIDOS")->item(0)->nodeValue:"" ;
+            $mail=$node->getElementsByTagName("CORREO")  ->length!=0 ? $node->getElementsByTagName("CORREO")->item(0)->nodeValue:"" ;
+            $cedula=$node->getElementsByTagName("CEDULA") ->length!=0 ?  $node->getElementsByTagName("CEDULA")->item(0)->nodeValue:"" ;
+            if(Usuario::existeUsuario($cedula)){
+                if(Usuario::existeUsuario($user)){
+                    //ya esta actulizado sus datos
+                }else{
+                    $usuario_temp=Usuario::getUsuarioByCedula($cedula);
+                    $usuario_temp->setNombre($nombres);
+                    $usuario_temp->setApellido($apellidos);
+                    $usuario_temp->setUsuarioEspol($user);
+                    $usuario_temp->setMail($mail);
+                    $usuario_temp->setCedula($cedula);
+                    $usuario_temp->setMatricula($matricula);
+                    $usuario_temp->save();
+                    return true;
+                }
+            }
             $userEspol=$user;
-            
+            //$u=  
             $results = $handler2->scheduler($matricula);
             $doc = new DOMDocument('1.0', 'utf-8');
             $doc->loadXML($results);
@@ -151,37 +171,7 @@ class InicioActions extends sfActions
                 $temp_materia=Utility::getMateria($cod_materia);
                 if($temp_materia->count()==0){
                     continue;
-                }else{
-                    //agrego todos los datos correspondientes                    
-                    //$u=  Utility::getUsuario($userEspol);
-                    //significa que el usuario no se encuentra registrado en la base
-                    //pero tiene todos los requisitos de estarlo
-//                    if( $u->count()==0){
-//                        $u[0]=new Usuario();
-//                        $u[0]->setNombre($nombres);
-//                        $u[0]->setApellido($apellidos);
-//                        $u[0]->setMail($mail);
-//                        $u[0]->setUsuarioEspol($userEspol);
-//                        $u[0]->setMatricula($matricula);
-//                        $u[0]->save();
-//                     }else{
-//                         //
-//                        $termino=Utility::getTermino();
-//                        $anio=  Utility::getAnio();
-//                        $curso=new Curso();
-//                        $curso->setAnio($anio);
-//                        $curso->setParalelo($paralelo);
-//                        $curso->setTermino($termino);
-//                        $curso->setMateria($temp_materia[0]);
-//                        $curso->save();
-//                        $r=new UsuarioCurso();
-//                        $rol=Rolusuario::getRolUsuario("Estudiante");
-//                        $r->setRolusuario($rol);
-//                        $this->getUser()->setRol($rol->getNombre());
-//                        $r->setCurso($curso);
-//                        $r->setUsuario($u[0]);
-//                        $r->save();                     
-//                    }  
+                }else{                   
                     return true;
                 }
                 
