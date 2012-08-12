@@ -37,7 +37,6 @@ $(document).ready(function(){
     $("div#grabar_actividad").click(function(){
         if((validarCaracteres(inputDescrip,reqDescrip) && validarNumero(inputNota,reqNota) && (validarSeleccion(inputipoacti,reqtipoacti))) == true){
             $("#formulario").submit();//en esta linea envia el formulario
-            alert("Actividad Registrada");
         }
         else
             alert("Llene bien el formulario");

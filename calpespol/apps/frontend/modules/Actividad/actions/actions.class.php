@@ -124,7 +124,7 @@ class ActividadActions extends sfActions{
       $actividad->setFechaEntrega($nueva_fecha_entrega);
       $actividad->setNota($nota);
       $actividad->save();
-       $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
+      $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
       $this->redirect("Actividad/index");
   }
 
@@ -134,6 +134,7 @@ class ActividadActions extends sfActions{
             ->from('Actividad a')
             ->where('a.idactividad = ?', $request->getParameter("id"))
             ->fetchOne();
+    
     $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
               ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
 

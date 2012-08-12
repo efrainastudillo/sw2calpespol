@@ -57,7 +57,7 @@
                   </tr>
                   <tr>
                       <th>Nombre del Tipo de Actividad:</th>
-                      <td><input id="nombre" name="nombre" type="text" placeholder="Decripcion del Tipo Actividad" value=""/></td>
+                      <td><input id="nombre" name="nombre" type="text" placeholder="Descripcion del Tipo Actividad" value=""/></td>
                       <td><span id="req-nombre" class="requisites">Tiene deshabilitado Javascript</span></td>                      
                   </tr>
                   <tr>
