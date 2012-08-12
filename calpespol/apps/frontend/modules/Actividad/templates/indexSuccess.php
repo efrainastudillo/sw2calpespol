@@ -30,17 +30,26 @@
     <!-- Body para mostrar actividades -->
     <div class="body_panel">
         <div class="titulo_body_panel">
-        <div class="boton_new" style="margin-right: 1em; ">
+            <div class="boton_new" style="margin-right: 1em; ">
 
-        <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad">
-            <?php echo image_tag('add.png', 'size=15x15')?> Nueva Actividad 
-        </a> 
+            <!-- Boton crear nueva actividad -->
+            <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
+                <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
+            </a> 
 
+            <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
+                <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
+            <?php endif ?>
+                
+            <!-- Boton para guardar en PDF -->
+            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
+                <?php echo image_tag('add.png', 'size=15x15')?> Nueva Actividad 
+            </a>
+    <!--        <input class="" type="button" value="Guardar como PDF" id="pdf" >-->
+
+            </div>
+            
         </div>
-        <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
-              <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
-        <?php endif ?>
-        
         <div style="clear: both;visibility: hidden"></div>
         
         <table class="tabla" id="info">
@@ -86,9 +95,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        
-        <!-- Boton para guardar en PDF -->
-        <input class="" type="button" value="Guardar como PDF" id="pdf" >
          
         <!-- Aquí van las tablas que muestran los literales de cada actividad -->
         <?php foreach($a as $acti): ?>
@@ -116,7 +122,7 @@
                         </tr>
                         <?php $total = $total + $lit->getValorPonderacion();?>
                         <?php endforeach;?>
-                    </tbody>
+                    </tbody> 
                     
                     <tfoot>
                         <tr>
@@ -136,7 +142,7 @@
                 jQuery(document).ready(function($)
                 {
                     $('.tabla').tableScroll({width:950, height:170, containerClass:'tabla_actividad'});
-                    $('.tabla2').tableScroll({width:950, height:100, containerClass:'tabla_literal'});
+                    $('.tabla2').tableScroll({width:950, height:55, containerClass:'tabla_literal'});
                 });
             </script>"
         ?>
@@ -172,4 +178,6 @@
         </script> 
 
     </div>
+
 </div>
+    
