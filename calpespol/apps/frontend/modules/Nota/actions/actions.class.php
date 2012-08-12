@@ -57,12 +57,12 @@ class NotaActions extends sfActions
     
    $this->esgrupal = Doctrine_Query::create()
             ->from('tipoActividad ta')
-            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
-            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+            ->innerJoin('ta.Curso c ON ta.id_curso = c.idCurso')
+            ->innerJoin('c.Materia m ON c.id_materia = m.idMateria')
             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
             ->execute();
     
-    $this->literal = Literal::getLiterales();
+//    $this->literal = Literal::getLiteralesXActividad("166");//una actividad de prueba
     
 
             
