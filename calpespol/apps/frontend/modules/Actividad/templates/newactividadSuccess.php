@@ -76,7 +76,7 @@
                   </tr>
                   <tr>
                       <th>Fecha de entrega:</th>
-                      <td><input id="fecha" name="fecha" type="text"  value=""/></td>
+                      <td><input id="fecha" name="fecha" type="date"  value=""/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                   <tr>
