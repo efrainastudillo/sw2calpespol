@@ -153,10 +153,16 @@ class ActividadActions extends sfActions{
 
   public function executeCreate(sfWebRequest $request)
   {
-      $tipo=$request->getParameter("tipo");
-      $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega=$request->getParameter("fecha");
-     // $this->f=( $fecha_entrega);
+      $tipo = $request->getParameter("tipo");
+      $descripcion = $request->getParameter("descripcion");
+      $fecha_entrega = explode("/",$request->getParameter("fecha"));
+     
+      //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
+      $mes_fecha_entrega = $fecha_entrega[0];
+      $dia_fecha_entrega = $fecha_entrega[1];
+      $anio_fecha_entrega = $fecha_entrega[2];
+      $nueva_fecha_entrega = $anio_fecha_entrega.'/'.$mes_fecha_entrega.'/'.$dia_fecha_entrega;
+      
       $nota=$request->getParameter("nota");
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
@@ -165,7 +171,7 @@ class ActividadActions extends sfActions{
       $actividad=new Actividad();
       $actividad->setTipoactividad($t);
       $actividad->setNombre($descripcion);
-      $actividad->setFechaEntrega($f);
+      $actividad->setFechaEntrega($nueva_fecha_entrega);
       $actividad->setNota($nota);
       $actividad->save();
        $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');

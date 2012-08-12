@@ -81,7 +81,9 @@
                         <td><?php if ($acti->getTipoactividad()->getEsGrupal()) echo "Grupal"; else echo "Individual"; ?></td>
                         <!-- Valor del tipo actividad, ponderacion -->
                         <td><?php echo $acti->getTipoactividad()->getValorPonderacion(); ?></td>
-                        <td><?php echo $acti->getFechaEntrega()?></td>
+                        <!-- Elimina el formato de hora y muestra el formato de fecha unicamente      -->
+                        <?php $fecha = explode("-",str_replace('00:00:00', '', $acti->getFechaEntrega()));?>
+                        <td><?php echo $fecha[0].'-'.$fecha[1].'-'.$fecha[2]?></td>
                         <td>
                             <?php echo link_to(image_tag('edit_2.png', 'size=18x18'), 'Actividad/edit?id='.
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
@@ -142,7 +144,7 @@
                 jQuery(document).ready(function($)
                 {
                     $('.tabla').tableScroll({width:950, height:170, containerClass:'tabla_actividad'});
-                    $('.tabla2').tableScroll({width:950, height:55, containerClass:'tabla_literal'});
+                    $('.tabla2').tableScroll({width:950, height:85, containerClass:'tabla_literal'});
                 });
             </script>"
         ?>
