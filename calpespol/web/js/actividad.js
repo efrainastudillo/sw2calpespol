@@ -7,10 +7,10 @@
 $(document).ready(function(){
     //Declaracion de variables
     
-    var inputNota = $("#grade");       
+    var inputNota = $("#nota");       
     var reqNota= $("#req-nota");
     
-    var inputDescrip = $("#descrip");
+    var inputDescrip = $("#descripcion");
     var reqDescrip = $("#req-descripcion");
     
     var inputipoacti = $("#tipo_acti");
