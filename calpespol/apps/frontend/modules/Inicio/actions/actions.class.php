@@ -156,7 +156,6 @@ class InicioActions extends sfActions
                 }
             }
             $userEspol=$user;
-            //$u=  
             $results = $handler2->scheduler($matricula);
             $doc = new DOMDocument('1.0', 'utf-8');
             $doc->loadXML($results);
