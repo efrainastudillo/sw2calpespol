@@ -260,8 +260,10 @@ class ActividadActions extends sfActions{
       $item = new Literal();
       $detalle = $request->getParameter('detalle');
       $puntos = $request->getParameter('puntos');
-      if($detalle!="" && $puntos!="" && is_string($detalle) && is_int($puntos)){
-          $item -> grabarLiteral($request);
+      if($detalle!="" && $puntos!=""){
+          if(is_string($detalle) && is_numeric($puntos)){
+              $item -> grabarLiteral($request);
+          }
       }
       $this -> redirect('Actividad/index');
   }
