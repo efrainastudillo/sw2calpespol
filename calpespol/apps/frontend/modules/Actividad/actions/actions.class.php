@@ -15,7 +15,13 @@ class ActividadActions extends sfActions{
                 ->createQuery('m')
                 ->execute();
     } 
-    
+  
+  /**
+    * Descripcion 
+    *   -   Action de la ventana principal del modulo actividad
+    *   @param input referencia al $request
+    *   @param output lista de actividades del usuario y de materias
+    */  
   public function executeIndex(sfWebRequest $request){
       
       //Me da el termino actual
@@ -116,10 +122,16 @@ class ActividadActions extends sfActions{
 
   public function executeCreate(sfWebRequest $request)
   {
-      $tipo=$request->getParameter("tipo");
-      $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega=$request->getParameter("fecha");
-     // $this->f=( $fecha_entrega);
+      $tipo = $request->getParameter("tipo");
+      $descripcion = $request->getParameter("descripcion");
+      $fecha_entrega = explode("/",$request->getParameter("fecha"));
+     
+      //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
+      $mes_fecha_entrega = $fecha_entrega[0];
+      $dia_fecha_entrega = $fecha_entrega[1];
+      $anio_fecha_entrega = $fecha_entrega[2];
+      $nueva_fecha_entrega = $anio_fecha_entrega.'/'.$mes_fecha_entrega.'/'.$dia_fecha_entrega;
+      
       $nota=$request->getParameter("nota");
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
@@ -128,7 +140,7 @@ class ActividadActions extends sfActions{
       $actividad=new Actividad();
       $actividad->setTipoactividad($t);
       $actividad->setNombre($descripcion);
-      $actividad->setFechaEntrega($f);
+      $actividad->setFechaEntrega($nueva_fecha_entrega);
       $actividad->setNota($nota);
       $actividad->save();
        $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
@@ -220,8 +232,10 @@ public function executeNuevoTipo(sfWebRequest $request){}
       $item = new Literal();
       $detalle = $request->getParameter('detalle');
       $puntos = $request->getParameter('puntos');
-      if($detalle!="" && $puntos!="" && is_string($detalle) && is_int($puntos)){
-          $item -> grabarLiteral($request);
+      if($detalle!="" && $puntos!=""){
+          if(is_string($detalle) && is_numeric($puntos)){
+              $item -> grabarLiteral($request);
+          }
       }
       $this -> redirect('Actividad/index');
   }

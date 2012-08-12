@@ -1,122 +1,122 @@
 Actividad:
   Actividad_1:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-15 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_1
   Actividad_2:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-10 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_2
   Actividad_3:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-23 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_2
   Actividad_4:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-04 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_3
   Actividad_5:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-19 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_3
   Actividad_6:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-01 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_4
   Actividad_7:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-20 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_4
   Actividad_8:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-07 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_5
   Actividad_9:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-26 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_6
   Actividad_10:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-11 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_7
   Actividad_11:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-16 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_7
   Actividad_12:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-29 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_8
   Actividad_13:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-26 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_8
   Actividad_14:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-15 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_9
   Actividad_15:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-03-09 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_9
   Actividad_16:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-25 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_10
   Actividad_17:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-30 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_11
   Actividad_18:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-18 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_12
   Actividad_19:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-02 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_12
   Actividad_20:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-02 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_13
   Actividad_21:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-14 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_13
   Actividad_22:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-21 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_14
   Actividad_23:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-09 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_14
   Actividad_24:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-27 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_15
 Asistencia:
