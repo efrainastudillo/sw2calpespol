@@ -45,7 +45,7 @@
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="form_new_actividad" action="<?php echo url_for('Actividad/create') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/create') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
