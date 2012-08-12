@@ -104,7 +104,8 @@ $(document).ready(function(){
     /**
     *  validarCaracteres(input,output) script que valida entradas de un formulario
     */
-    function validarCaracteres(input,output){  
+    function validarCaracteres(input,output){ 
+        var alphaExp = /^[a-zA-Z\s]+$/;
         //NO cumple longitud minima  
         if(input.val().length == 0){
             output.text(" * Campo Requerido");// mensaje de error
@@ -112,7 +113,7 @@ $(document).ready(function(){
             return false;  
         }  
         //SI longitud pero caracteres diferentes de A-z  
-        else if(!input.val().match(/^[a-zA-Z]+$/)){
+        else if(!input.val().match(alphaExp)){///^[a-zA-Z]+$/
             output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
             output.css("visibility", "visible");
             return false;  

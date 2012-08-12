@@ -72,7 +72,6 @@
                   <tr>
                       <th>Descripción:</th>
                       <td><input id="descripcion" name="descripcion" type="text" placeholder="Decripcion de la Actividad" value=""/></td>
-                      <td><input id="descripcion" name="descripcion" type="text" placeholder="Descripción de la Actividad" value=""/></td>
                       <td><span id="req-descripcion" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                   <tr>
