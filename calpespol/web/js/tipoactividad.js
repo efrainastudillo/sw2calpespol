@@ -36,6 +36,12 @@ $(document).ready(function(){
         validarNumero(inputPonderacion,reqPonderacion);
     });
     
+    //Funcion que ejecuta la accion guardar
+    $("div#grabar_tipo_actividad").click(function(){
+        $("#formulario").submit();//en esta linea envia el formulario
+        alert("Tipo Actividad Registrada");
+    });
+    
     /**
     * Valida 
     *   -   si el campo input no han ingresado nada (Campo requerido)

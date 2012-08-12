@@ -43,13 +43,13 @@
             </a>
         </div>
         <div id="crear_actividad" class="boton_new">
-            <a href="<?php echo url_for("Actividad/index")?>" class="button" >
+            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button" >
                 <img src="../images/new.png" width="15" height="15" /> Crear Actividad
             </a>
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="form_new_actividad" action="<?php echo url_for('Actividad/create') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/process') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
@@ -63,7 +63,7 @@
                   <tr>
                       <th>Realización:</th>
                       <td>
-                          <select name="tipo_realizacion">
+                          <select id="realizacion" name="tipo_realizacion">
                               <option value="Individual">Individual</option>
                               <option value="Grupal">Grupal</option>
                           </select>
@@ -73,7 +73,7 @@
                   <tr>
                       <th>Tipo:</th>
                       <td>
-                          <select name="tipo_actividad">
+                          <select id="tipo" name="tipo_actividad">
                               <option value="Ordinaria">Ordinaria</option>
                               <option value="Extraordinaria">Extraordinaria</option>
                           </select>
@@ -82,7 +82,7 @@
                   </tr>
                   <tr>
                       <th>Parcial:</th>
-                      <td><select name="parcial">
+                      <td><select id="parcial" name="parcial">
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -96,7 +96,7 @@
                   </tr>
                     <tr>
                       <td colspan="2">
-                        <div id="grabar_actividad" class="boton_new">
+                        <div id="grabar_tipo_actividad" class="boton_new">
                             <a href="#" class="button rounded black" >
                                 <img src="../images/new.png" width="15" height="15" /> Guardar
                             </a>

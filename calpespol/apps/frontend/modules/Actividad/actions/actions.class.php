@@ -66,16 +66,15 @@ class ActividadActions extends sfActions{
   public function executeNewtipoactividad(sfWebRequest $request){}
   
   public function executeProcess(sfWebRequest $request){
-      //Obteniedo parametros del form
-      $this->form = new TipoactividadForm();
-      $tiact = $request->getParameter('tipoactividad');
-      $tireal = $request->getParameter('tiporealizacion');
-      $extra= $request->getParameter('extra');
-      $parcial=$request->getParameter('parcial');
-      $grade = $request->getParameter('ponderacion');
       
-      //Obteniendo datos de la DB
-      $this->c = Doctrine_Query::create()
+    $tiact = $request->getParameter('nombre');
+    $tireal = $request->getParameter('realizacion');
+    $extra= $request->getParameter('tipo');
+    $parcial=$request->getParameter('parcial');
+    $grade = $request->getParameter('ponderacion');
+      
+    //Obteniendo datos de la DB
+    $this->c = Doctrine_Query::create()
               ->from('Curso c')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
@@ -84,66 +83,36 @@ class ActividadActions extends sfActions{
               ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
               ->execute();
      
-        //Ingresando los datos a la base
-        $newtipoacti = new Tipoactividad();
-        $newtipoacti ->setCurso($this->c[0]);
-        $newtipoacti ->setNombre($tiact);
-        $newtipoacti ->setValorPonderacion($grade);
-        $newtipoacti ->setParcial($parcial);
-        //Ingresando 0 si es individual o 1 si es grupal
-        if (strcmp($tireal, 'Individual'))
-            $newtipoacti ->setEsGrupal(1);
-        else
-            $newtipoacti ->setEsGrupal(0);       
-        //Ingresando 0 si es Ordinaria o 1 si es Extra
-        if (strcmp($tireal, 'Extra'))
-            $newtipoacti ->setEsExtra(1);
-        else
-            $newtipoacti ->setEsExtra(0);
-        //Ingresando datos por default
-        $newtipoacti ->setTieneFactor1(0);
-        $newtipoacti ->setTieneFactor2(0);
-        //Guardando el tipo actividad en la DB
-        $newtipoacti->save();   
-       // $this->redirect("Actividad/index");
-        
+    //Ingresando los datos a la base
+    $newtipoacti = new Tipoactividad();
+    $newtipoacti ->setCurso($this->c[0]);
+    $newtipoacti ->setNombre($tiact);
+    $newtipoacti ->setValorPonderacion($grade);
+    $newtipoacti ->setParcial($parcial);
+    //Ingresando 0 si es individual o 1 si es grupal
+    if (strcmp($tireal, 'Individual'))
+        $newtipoacti ->setEsGrupal(1);
+    else
+        $newtipoacti ->setEsGrupal(0);       
+    //Ingresando 0 si es Ordinaria o 1 si es Extra
+    if (strcmp($tireal, 'Extraordinaria'))
+       $newtipoacti ->setEsExtra(1);
+    else
+       $newtipoacti ->setEsExtra(0);
+    //Ingresando datos por default //Preguntar
+    /*$newtipoacti ->setTieneFactor1(0);
+    $newtipoacti ->setTieneFactor2(0);*/
+    //Guardando el tipo actividad en la DB
+    $newtipoacti->save();
+    $this->getUser()->setFlash('actividad_grabada', 'Tipo Actividad Guardada Exitosamente');
+    $this->redirect("Actividad/newactividad");
   }
  
   /**
    *
    * @param sfWebRequest $request 
    */
-  public function executeNew(sfWebRequest $request){
-    //Obteniendo parametros del form
-    $this->form = new ActividadForm();
-    $idact = $request->getParameter('tipoactivid');
-    $nombre = $request->getParameter('descripcion');
-    $date = $request->getParameter('fecha');
-    $grade = $request->getParameter('nota');
-    
-    $termino = Utility::getTermino();
-    $this->ta=  Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
-              ->select('ta.idtipoactividad')
-              ->from('Tipoactividad ta')
-              ->innerjoin ('ta.Curso c ON ta.id_curso = idcurso')
-              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('ta.nombre =?',$idact)
-              ->andWhere('u.usuario_espol=?',$this->getUser()->getUserEspol())
-              ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-              ->execute();
-    
-    //Ingresando los datos a la base
-    $newact = new Actividad();
-    $newact ->setNombre($nombre);
-    $newact->setTipoactividad($this->ta[0]);
-    $newact ->setFechaEntrega($date);
-    $newact ->setNota($grade);
-    $newact->save();
-    $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
-    $this->redirect("Actividad/index");
-  }
+  public function executeNew(sfWebRequest $request){}
 
   public function executeCreate(sfWebRequest $request)
   {
@@ -211,11 +180,6 @@ class ActividadActions extends sfActions{
     $mpdf = new mPDF('es_ES','Letter','','',25,25,15,25,16,13);
     $mpdf->useOnlyCoreFonts = true;
 
-    // load a stylesheet
-    //$stylesheet = file_get_contents(sfConfig::get('sf_web_dir').'/css/factura_style.css');
-
-    // el parámetro 1 indica que sólo es css y no contenido html.
-    //$mpdf->WriteHTML($stylesheet,1); 
 
     $mpdf->WriteHTML($html,2);
 
@@ -223,6 +187,8 @@ class ActividadActions extends sfActions{
     $mpdf->Output('Reporte_Actividades.pdf','D');
     throw new sfStopException();
 }
+
+public function executeNuevoTipo(sfWebRequest $request){}
 
   public function executeDelete(sfWebRequest $request){
       $id=$request->getParameter('id');
