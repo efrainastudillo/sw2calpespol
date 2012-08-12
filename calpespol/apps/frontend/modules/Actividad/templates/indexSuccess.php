@@ -4,7 +4,7 @@
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Actividades" ?>
+    <div id="prueba"><?php echo "Actividades" ?></div>
 <?php end_slot(); ?>
 
 <?php slot('actividad-css') ?>
@@ -19,11 +19,11 @@
         <div class="titulo_head_panel">
             <p>Consulta de Actividad</p>
         </div>
-        <div class="extra_head_panel">
+        <div class="extra_head_panel" id="info_paralelo">
             <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
         </div>
         
-        <div class="extra_head_panel">
+        <div class="extra_head_panel" id="info_materia">
             <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
     </div>
@@ -43,8 +43,8 @@
         
         <div style="clear: both;visibility: hidden"></div>
         
-        <table class="tabla">
-            <thead>
+        <table class="tabla" id="info">
+            <thead id="titulos">
                 <tr>
                     <td>&nbsp </td>
                     <td>Descripcion</td>
@@ -86,6 +86,9 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        
+        <!-- Boton para guardar en PDF -->
+        <input class="" type="button" value="Guardar como PDF" id="pdf" >
          
         <!-- Aquí van las tablas que muestran los literales de cada actividad -->
         <?php foreach($a as $acti): ?>
@@ -137,6 +140,36 @@
                 });
             </script>"
         ?>
+        
+        <!-- Script para guardar las consultas en pdf -->
+        <script type="text/javascript">
+            $().ready(function() {
+
+                //seteamos el evento click al boton, usamos un form oculto para enviar el requirimiento al servidor.
+                $('#pdf').click(function(){
+                var f = document.createElement('form');
+                f.style.display = 'none';
+                this.parentNode.appendChild(f);
+                f.method = 'post';
+                //colocamos el action que se va a invocar cuando se haga click
+                f.action = '<?php echo url_for('Actividad/guardarPdf',array('target'=>'_blank'))?>';
+                //en la variable m se guarda el “html” de las secciones de la página que se van a guardar como pdf.      
+                var m = document.createElement('input');
+                var info_paralelo = $('#info_paralelo').html();
+                var info_materia = $('#info_materia').html();
+                var titulos = $('#titulos').html();
+                var a1 = $('#info').html();
+                var prueba = $('#prueba').html();
+                m.setAttribute('type', 'hidden');
+                m.setAttribute('name', 'html');
+                m.setAttribute('value',prueba+info_paralelo+info_materia+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
+                f.appendChild(m);      
+                f.submit();
+                
+                return false;
+                });
+              });
+        </script> 
 
     </div>
 </div>
