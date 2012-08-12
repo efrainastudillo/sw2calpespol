@@ -68,13 +68,13 @@
                     <tr> 
                         
                         <?php
-                            if (($esgrupal->getEsGrupal()) == 1) {
-                                    echo "<td>" . "Grupos" . "</td>";
-                                } else {
-                                    if (($esgrupal->getEsGrupal()) == 0) {
+                           // if (($esgrupal->getEsGrupal()) == 1) {
+                                  //  echo "<td>" . "Grupos" . "</td>";
+                               // } else {
+                                  //  if (($esgrupal->getEsGrupal()) == 0) {
                                         echo "<td>" . "Estudiantes" . "</td>";
-                                    }
-                                }
+                                  //  }
+                              //  }
                         ?>
                         
                         <?php
@@ -91,11 +91,11 @@
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
-                    if (($esgrupal->getEsGrupal())== 0) {
+                   // if (($esgrupal->getEsGrupal())== 0) {
                         if (isset($usuario)) {
-                            foreach ($usuario as $us) {
+                           foreach ($usuario as $us) {
                                 echo "<tr>";
-                                echo "<td>" . $us->getNombre() . "</td>";
+                                echo "<td>" . $us->getNombre() ." ". $us->getApellido() . "</td>";
                                 if (isset($literal)) {
                                     foreach ($literal as $lit) {
                                         echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
@@ -103,25 +103,25 @@
                                 }
                                 echo "<td>10</td>";
                                 echo "</tr>";
-                            }
+                           }
                         }
-                    }
-                       
-                    if (($esgrupal->getEsGrupal())== 1) {
-                        if (isset($grupos)) {
-                            foreach ($grupos as $g) {
-                                echo "<tr>";
-                                echo "<td>" . $g->getNombre() . "</td>";
-                                if (isset($literal)) {
-                                    foreach ($literal as $lit) {
-                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
-                                    }
-                                }
-                                echo "<td>10</td>";
-                                echo "</tr>";
-                            }
-                        }
-                    }
+                  //  }
+//                       
+//                    if (($esgrupal->getEsGrupal())== 1) {
+//                        if (isset($grupos)) {
+//                            foreach ($grupos as $g) {
+//                                echo "<tr>";
+//                                echo "<td>" . $us->getNombre() ." ". $us->getApellido() . "</td>";
+//                                if (isset($literal)) {
+//                                    foreach ($literal as $lit) {
+//                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+//                                    }
+//                                }
+//                                echo "<td>10</td>";
+//                                echo "</tr>";
+//                            }
+//                        }
+//                    }
                     ?>
                 </tbody>
             </table>
