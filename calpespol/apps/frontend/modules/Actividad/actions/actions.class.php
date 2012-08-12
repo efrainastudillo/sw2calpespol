@@ -26,42 +26,21 @@ class ActividadActions extends sfActions{
       
       //Me da el termino actual
       $termino = Utility::getTermino();  
-      //Me devuelve la lista de paralelos del usuario de acuerdo a la materia
-      //seleccionada <?php echo "<p>".$sf_user->getMateriaActual()."</p>";
-
-      $this->q=  Doctrine_Query::create()
-          ->select('c.paralelo')
-          ->from('Curso c')
-          ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-          ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-          ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-          ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol $this->getUser()->getUserEspol()
-          ->andWhere('c.termino =?',$termino)
-          ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-          ->execute();
       
     //Me devuelve la lista de las actividades del usuario
-    $this->a = Doctrine_Query::create()
+      $this->a = Doctrine_Query::create()
             ->select('a.idactividad')
             ->from('Actividad a')
             ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
             ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+            ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+            ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+            ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
+            ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
             ->execute();
-    
-    //Me devuelve la lista de materia del usuario
-    $this->m=Doctrine_Query::create()
-            ->select('m.idmateria')
-            ->from('Materia m')
-            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
-            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-            ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-            ->andwhere('c.termino=?',$termino)
-            ->execute();    
-  }
+}
   
   public function executeNewactividad(sfWebRequest $request){
       $this->ta=Tipoactividad::getTipoActividadbyMateriaAndParalelo
@@ -81,11 +60,13 @@ class ActividadActions extends sfActions{
       
     //Obteniendo datos de la DB
     $this->c = Doctrine_Query::create()
+              ->select ('c.idcurso')
               ->from('Curso c')
               ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
               ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
               ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
               ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+              ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
               ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
               ->execute();
      

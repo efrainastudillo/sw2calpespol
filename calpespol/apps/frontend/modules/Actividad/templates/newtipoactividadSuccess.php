@@ -57,7 +57,7 @@
                   </tr>
                   <tr>
                       <th>Nombre del Tipo de Actividad:</th>
-                      <td><input id="nombre" name="nombre" type="text" placeholder="Decripcion de la Actividad" value=""/></td>
+                      <td><input id="nombre" name="nombre" type="text" placeholder="Decripcion del Tipo Actividad" value=""/></td>
                       <td><span id="req-nombre" class="requisites">Tiene deshabilitado Javascript</span></td>                      
                   </tr>
                   <tr>
@@ -91,7 +91,7 @@
                   </tr>
                   <tr>
                       <th>Ponderación:</th>
-                      <td><input id="ponderacion" name="ponderacion" type="text" placeholder="Nota" value=""/></td>
+                      <td><input id="ponderacion" name="ponderacion" type="text" placeholder="Ponderacion" value=""/></td>
                       <td><span id="req-ponderacion" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                     <tr>
