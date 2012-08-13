@@ -272,4 +272,21 @@ class ActividadActions extends sfActions{
       $this->getUser() -> setFlash('mensaje', 'Literal Eliminado Correctamente');
       $this->redirect('Actividad/index');
   }
+  
+  /**
+     * Descripción: Función que me permite editar e ingresar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeEditar(sfWebRequest $request){
+         
+        $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+                  ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
+
+        $this->forward404Unless($this->actividad);
+     }
+
 }
