@@ -26,7 +26,7 @@
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
 		$('#grupo_tabla').dataTable( {
-			"sScrollY": "400px",
+			"sScrollY": "350px",
 			"bPaginate": false,
 			"bScrollCollapse": true,
 			"bLengthChange": false,
