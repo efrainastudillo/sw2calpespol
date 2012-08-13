@@ -12,6 +12,7 @@
 <?php end_slot(); ?>
 <?php use_stylesheet('/css/modulo/nota/nota.css');?>
 <?php use_javascript('/js/rubrica.js')?>
+
 <div class="panel">
     <div class="head_panel">
             <div class="titulo_head_panel">
@@ -73,9 +74,6 @@
                             } else {
                                 echo "<td>" . "Estudiantes" . "</td>";
                             }
-
-
-
                         ?>
                         <?php
                             if (isset($literal)) {
@@ -136,8 +134,6 @@
 //                            }
 //                        }
 //                    }
-
-                   
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($grupos)) {
                                 foreach ($grupos as $g) {
@@ -153,45 +149,44 @@
                                 }
                             }
                         }
-
-
                     ?>
                 </tbody>
             </table>
         </div>
- </div>       
         
-        <div class="tableScroll" style="margin-top: 1em">
-        <table class="tabla" cellspacing="0">
-            <thead>
-                <tr>
-                    <td>Literales</td>
-                    <td>Descripción</td>
-                </tr>
-            </thead>
-            <tbody>
-                 <?php 
-                    if(isset ($literal)){
-                        $i=1;
-                        foreach ($literal as $lit){
-                            echo "<tr>";
-                                echo "<td>" . "Literal ". $i++ ." (" . $lit->getValorPonderacion() . ")" . "</td>";
-                                echo "<td>".$lit->getNombreLiteral()."</td>";
-                            echo "</tr>";
-                        }
-                    }
-                ?>
-            </tbody>
-        </table>
     </div>
+    
+    <div class="tableScroll" style="margin-top: 1em">
+            <table class="tabla" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Literales</td>
+                        <td>Descripción</td>
+                    </tr>
+                </thead>
+                <tbody>
+                     <?php 
+                        if(isset ($literal)){
+                            $i=1;
+                            foreach ($literal as $lit){
+                                echo "<tr>";
+                                    echo "<td>" . "Literal ". $i++ ." (" . $lit->getValorPonderacion() . ")" . "</td>";
+                                    echo "<td>".$lit->getNombreLiteral()."</td>";
+                                echo "</tr>";
+                            }
+                        }
+                    ?>
+                </tbody>    
+            </table>
+        </div>
 
-    <?php echo 
-        "<script>
-            jQuery(document).ready(function($)
-            {
-                $('.tabla').tableScroll({width:950, height:200});
+        <?php echo 
+            "<script>
+                jQuery(document).ready(function($)
+                {
+                    $('.tabla').tableScroll({width:950, height:200});
 
-            });
-        </script>"
-    ?>
- </div>   
+                });
+            </script>"
+        ?>
+</div>
