@@ -7,10 +7,10 @@
 $(document).ready(function(){
     //Declaracion de variables
     
-    var inputNota = $("#grade");       
+    var inputNota = $("#nota");       
     var reqNota= $("#req-nota");
     
-    var inputDescrip = $("#descrip");
+    var inputDescrip = $("#descripcion");
     var reqDescrip = $("#req-descripcion");
     
     var inputipoacti = $("#tipo_acti");
@@ -37,7 +37,6 @@ $(document).ready(function(){
     $("div#grabar_actividad").click(function(){
         if((validarCaracteres(inputDescrip,reqDescrip) && validarNumero(inputNota,reqNota) && (validarSeleccion(inputipoacti,reqtipoacti))) == true){
             $("#formulario").submit();//en esta linea envia el formulario
-            alert("Actividad Registrada");
         }
         else
             alert("Llene bien el formulario");
@@ -104,7 +103,8 @@ $(document).ready(function(){
     /**
     *  validarCaracteres(input,output) script que valida entradas de un formulario
     */
-    function validarCaracteres(input,output){  
+    function validarCaracteres(input,output){ 
+        var alphaExp = /^[0-9a-zA-Z\s]+$/;
         //NO cumple longitud minima  
         if(input.val().length == 0){
             output.text(" * Campo Requerido");// mensaje de error
@@ -112,7 +112,7 @@ $(document).ready(function(){
             return false;  
         }  
         //SI longitud pero caracteres diferentes de A-z  
-        else if(!input.val().match(/^[a-zA-Z\s]+$/i)){
+        else if(!input.val().match(alphaExp)){
             output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
             output.css("visibility", "visible");
             return false;  

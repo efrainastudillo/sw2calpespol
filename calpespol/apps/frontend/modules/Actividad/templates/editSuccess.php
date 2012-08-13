@@ -10,7 +10,7 @@
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_javascript('editactividad.js') ?>
+<?php use_javascript('actividad.js') ?>
 <?php use_stylesheet("modulo/actividad/actividad.css")?>
 
 <div class="panel">
@@ -47,7 +47,7 @@
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="form_new_actividad" action="<?php echo url_for('Actividad/update') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/update') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
@@ -63,9 +63,9 @@
                                   }
                               ?>
                           </select>
-                          <?php echo link_to(image_tag('/images/add.png', 'size=18x18'), 'Actividad/newtipoactividad'
+                          <!--?php echo link_to(image_tag('/images/add.png', 'size=18x18'), 'Actividad/newtipoactividad'
                                   , array('post=true','confirm' => 'Esta seguro que quiere crear \n un nuevo Tipo de Actividad?','align'=>'top','title'=>'Crear Tipo de Actividad'));
-                          ?>
+                          ?-->
                       </td>
                       <td>
                           

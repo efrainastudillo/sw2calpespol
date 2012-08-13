@@ -1,122 +1,122 @@
 Actividad:
   Actividad_1:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-15 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_1
   Actividad_2:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-10 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_2
   Actividad_3:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-23 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_2
   Actividad_4:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-04 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_3
   Actividad_5:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-19 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_3
   Actividad_6:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-01 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_4
   Actividad_7:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-20 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_4
   Actividad_8:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-07 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_5
   Actividad_9:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-26 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_6
   Actividad_10:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-11 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_7
   Actividad_11:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-16 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_7
   Actividad_12:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-29 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_8
   Actividad_13:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-26 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_8
   Actividad_14:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-10-15 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_9
   Actividad_15:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-03-09 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_9
   Actividad_16:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-25 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_10
   Actividad_17:
     nombre: 'Examen Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-30 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_11
   Actividad_18:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-18 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_12
   Actividad_19:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-02 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_12
   Actividad_20:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-02 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_13
   Actividad_21:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-09-14 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_13
   Actividad_22:
     nombre: Capitulo1
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-21 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_14
   Actividad_23:
     nombre: Capitulo2
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-09 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_14
   Actividad_24:
     nombre: 'Proyecto Primer Parcial'
-    fecha_entrega: '0000-00-00 00:00:00'
+    fecha_entrega: '2012-08-27 00:00:00'
     nota: '0'
     Tipoactividad: Tipoactividad_15
 Asistencia:
@@ -236,143 +236,6 @@ Curso:
     anio: '2012'
     termino: '1'
     Materia: Materia_4
-Estudiantegrupo:
-  Estudiantegrupo_1_1:
-    Grupo: Grupo_1
-    UsuarioCurso: UsuarioCurso_1
-  Estudiantegrupo_1_2:
-    Grupo: Grupo_1
-    UsuarioCurso: UsuarioCurso_2
-  Estudiantegrupo_2_3:
-    Grupo: Grupo_2
-    UsuarioCurso: UsuarioCurso_3
-  Estudiantegrupo_2_4:
-    Grupo: Grupo_2
-    UsuarioCurso: UsuarioCurso_4
-  Estudiantegrupo_3_5:
-    Grupo: Grupo_3
-    UsuarioCurso: UsuarioCurso_5
-  Estudiantegrupo_3_6:
-    Grupo: Grupo_3
-    UsuarioCurso: UsuarioCurso_6
-  Estudiantegrupo_4_7:
-    Grupo: Grupo_4
-    UsuarioCurso: UsuarioCurso_7
-  Estudiantegrupo_4_8:
-    Grupo: Grupo_4
-    UsuarioCurso: UsuarioCurso_8
-  Estudiantegrupo_5_9:
-    Grupo: Grupo_5
-    UsuarioCurso: UsuarioCurso_9
-  Estudiantegrupo_5_10:
-    Grupo: Grupo_5
-    UsuarioCurso: UsuarioCurso_10
-  Estudiantegrupo_6_11:
-    Grupo: Grupo_6
-    UsuarioCurso: UsuarioCurso_11
-  Estudiantegrupo_6_12:
-    Grupo: Grupo_6
-    UsuarioCurso: UsuarioCurso_12
-  Estudiantegrupo_7_13:
-    Grupo: Grupo_7
-    UsuarioCurso: UsuarioCurso_13
-  Estudiantegrupo_7_14:
-    Grupo: Grupo_7
-    UsuarioCurso: UsuarioCurso_14
-  Estudiantegrupo_8_15:
-    Grupo: Grupo_8
-    UsuarioCurso: UsuarioCurso_15
-  Estudiantegrupo_8_16:
-    Grupo: Grupo_8
-    UsuarioCurso: UsuarioCurso_16
-  Estudiantegrupo_9_17:
-    Grupo: Grupo_9
-    UsuarioCurso: UsuarioCurso_17
-  Estudiantegrupo_9_18:
-    Grupo: Grupo_9
-    UsuarioCurso: UsuarioCurso_18
-  Estudiantegrupo_10_19:
-    Grupo: Grupo_10
-    UsuarioCurso: UsuarioCurso_19
-  Estudiantegrupo_10_20:
-    Grupo: Grupo_10
-    UsuarioCurso: UsuarioCurso_20
-  Estudiantegrupo_11_21:
-    Grupo: Grupo_11
-    UsuarioCurso: UsuarioCurso_21
-  Estudiantegrupo_11_22:
-    Grupo: Grupo_11
-    UsuarioCurso: UsuarioCurso_22
-  Estudiantegrupo_12_23:
-    Grupo: Grupo_12
-    UsuarioCurso: UsuarioCurso_23
-  Estudiantegrupo_12_24:
-    Grupo: Grupo_12
-    UsuarioCurso: UsuarioCurso_24
-  Estudiantegrupo_13_25:
-    Grupo: Grupo_13
-    UsuarioCurso: UsuarioCurso_25
-  Estudiantegrupo_13_26:
-    Grupo: Grupo_13
-    UsuarioCurso: UsuarioCurso_26
-  Estudiantegrupo_14_27:
-    Grupo: Grupo_14
-    UsuarioCurso: UsuarioCurso_27
-  Estudiantegrupo_14_28:
-    Grupo: Grupo_14
-    UsuarioCurso: UsuarioCurso_28
-  Estudiantegrupo_15_29:
-    Grupo: Grupo_15
-    UsuarioCurso: UsuarioCurso_29
-  Estudiantegrupo_15_30:
-    Grupo: Grupo_15
-    UsuarioCurso: UsuarioCurso_30
-Grupo:
-  Grupo_1:
-    numero: '1'
-    nombre: Grupo1
-  Grupo_2:
-    numero: '2'
-    nombre: Grupo2
-  Grupo_3:
-    numero: '3'
-    nombre: Grupo3
-  Grupo_4:
-    numero: '4'
-    nombre: Grupo4
-  Grupo_5:
-    numero: '5'
-    nombre: Grupo5
-  Grupo_6:
-    numero: '6'
-    nombre: Grupo6
-  Grupo_7:
-    numero: '7'
-    nombre: Grupo7
-  Grupo_8:
-    numero: '8'
-    nombre: Grupo8
-  Grupo_9:
-    numero: '9'
-    nombre: Grupo9
-  Grupo_10:
-    numero: '10'
-    nombre: Grupo10
-  Grupo_11:
-    numero: '11'
-    nombre: Grupo11
-  Grupo_12:
-    numero: '12'
-    nombre: Grupo12
-  Grupo_13:
-    numero: '13'
-    nombre: Grupo13
-  Grupo_14:
-    numero: '14'
-    nombre: Grupo14
-  Grupo_15:
-    numero: '15'
-    nombre: Grupo15
 Literal:
   Literal_1:
     nombre_literal: 'DIAGRAMA DE BLOQUES TCA785 (PAG 2 DATASHEET)'

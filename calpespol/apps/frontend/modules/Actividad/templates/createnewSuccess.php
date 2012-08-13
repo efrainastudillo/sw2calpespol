@@ -1,7 +1,3 @@
-<!--<h1 style="text-align: center">Nueva Actividad</h1-->
-
-<!--?php include_partial('form', array('form' => $form)) ?>-->
-
 <!-- Reporte del Modulo Actividad -->
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
@@ -40,18 +36,18 @@
             <br/>
 <!--            <input type="text" name="tipoactividad" value="" style="margin-left: 5.1em" name="tipoactividad" /><br/>-->
             <label>Descripcion: </label>
-            <input type="text" name="descripcion" value="" style="margin-left: 8em" name="descripcion"/><br/>
+            <input type="text" name="descripcion" value="" style="margin-left: 8em"/><br/>
             <label>Tipo de Realizacion: </label>
-            <select name="periodos" size="1" id="periodo_selec" style="margin-left: 3.9em" name="opcion">
+            <select name="periodos" size="1" id="periodo_selec" style="margin-left: 3.9em">
                             <option>Individual</option>
                             <option>Grupal</option>
             </select><br/>
             <label> Fecha de entrega: </label>
-            <input name="fecha" type="date" id="fecha" style="margin-left: 4.8em" name="fecha"/><br/>
+            <input name="fecha" type="date" id="fecha" style="margin-left: 4.8em"/><br/>
             <label> Ponderacion: </label>
-            <input type="text" name="ponderacion" value="" style="margin-left: 7.5em" name="ponderacion"/><br/>
+            <input type="text" name="ponderacion" value="" style="margin-left: 7.5em"/><br/>
             <label> Paralelo: </label>
-            <input type="text" name="paralelo" value="" style="margin-left: 9.9em" name="paralelo"/><br/>
+            <input type="text" name="paralelo" value="" style="margin-left: 9.9em"/><br/>
             <!--Boton que crea la actividad-->
             <div style="margin-left: 20em; margin-top: 1em">
                 <a href="Actividad/new" class="button rounded black" id="new">

@@ -122,6 +122,7 @@ div.titulo_body_panel{
     display: inline-table;                  /* Poner los elementos juntos*/
     margin: 0.5em;                           /*espaciado externo*/    
     margin-left: 0em;
+    width: 61.5em;
 }
 
 /*
@@ -148,7 +149,7 @@ div.titulo_body_panel p:last-child{
                     un boton.
 */
 div.boton_new{
-    float: right;                           /* Posicionamiento a la derecha*/
+/*    float: right;                            Posicionamiento a la derecha*/
     margin-top: 0.5em;
     margin-bottom: 1em;
 }
