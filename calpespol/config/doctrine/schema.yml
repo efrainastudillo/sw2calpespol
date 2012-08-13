@@ -161,7 +161,7 @@ Estudiantegrupo:
     Usuariocurso:
       onDelete: CASCADE
       local: id_estudiante
-      foreign: id_usuario_curso
+      foreign: id_usuario
 Estudianteliteral:
   connection: doctrine
   tableName: estudianteliteral
