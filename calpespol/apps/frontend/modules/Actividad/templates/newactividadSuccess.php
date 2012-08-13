@@ -40,7 +40,7 @@
         
         <div id="regresar_lista" class="boton_new">
             <a href="<?php echo url_for("Actividad/index")?>" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Actividades
+                <?php echo image_tag('add.png', 'size=15x15')?> Regresar a Lista de Actividades
             </a>
         </div>
         <div style="clear: both;visibility: hidden"></div>
@@ -88,7 +88,7 @@
                       <td colspan="2">
                         <div id="grabar_actividad" class="boton_new">
                             <a href="#" class="button rounded black" >
-                                <img src="../images/new.png" width="15" height="15" /> Grabar Actividad
+                                <?php echo image_tag('save.png', 'size=15x15')?> Grabar Actividad
                             </a>
                         </div>
                       </td>
