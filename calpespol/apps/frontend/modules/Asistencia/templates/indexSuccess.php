@@ -65,9 +65,9 @@ end_slot();
             <a href="<?php echo url_for("Asistencia/newasistencia")?>" class="button rounded black" id="">
                  <?php echo image_tag('add.png', 'size=15x15') ?> Registrar Asistencia
             </a> 
-            <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
+            <!--a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
                 <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
-            </a> 
+            </a--> 
         </div>
         
         <div style="clear: both;visibility: hidden"></div>
