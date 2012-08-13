@@ -59,7 +59,7 @@
                 <thead>
                     <tr> 
                         <?php
-<<<<<<< .mine
+
                            // if (($esgrupal->getEsGrupal()) == 1) {
                                   //  echo "<td>" . "Grupos" . "</td>";
                                // } else {
@@ -67,7 +67,7 @@
                                         echo "<td>" . "Estudiantes" . "</td>";
                                   //  }
                               //  }
-=======
+                                        
                             if ($esgrupal[0]->getEsGrupal()) {
                                 echo "<td>" . "Grupos" . "</td>";
                             } else {
@@ -75,7 +75,7 @@
                             }
 
 
->>>>>>> .theirs
+
                         ?>
                         <?php
                             if (isset($literal)) {
@@ -91,7 +91,7 @@
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
-<<<<<<< .mine
+
                    // if (($esgrupal->getEsGrupal())== 0) {
                         if (isset($usuario)) {
                            foreach ($usuario as $us) {
@@ -101,7 +101,7 @@
                                     foreach ($literal as $lit) {
                                         echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
 
-=======
+
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($usuario)) {
                                 foreach ($usuario as $us) {
@@ -111,14 +111,14 @@
                                         foreach ($literal as $lit) {
                                             echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
                                         }
->>>>>>> .theirs
+
                                     }
                                     echo "<td>10</td>";
                                     echo "</tr>";
                                 }
                            }
                         }
-<<<<<<< .mine
+
                   //  }
 //                       
 //                    if (($esgrupal->getEsGrupal())== 1) {
@@ -136,7 +136,7 @@
 //                            }
 //                        }
 //                    }
-=======
+
                    
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($grupos)) {
@@ -154,7 +154,7 @@
                             }
                         }
 
->>>>>>> .theirs
+
                     ?>
                 </tbody>
             </table>
@@ -194,5 +194,4 @@
             });
         </script>"
     ?>
-    
-</div>
+ </div>   
