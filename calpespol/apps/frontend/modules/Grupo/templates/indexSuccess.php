@@ -32,7 +32,7 @@
     <tr class="gradeA">
         <td><?php echo $objeto->getUsuario()->getApellido() ?></td>
         <td><?php echo $objeto->getUsuario()->getNombre() ?></td>
-        <td style="text-align: center"><?php echo (Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)?"No tiene grupo":Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())->getGrupo()->getNumero() ?></td>
+        <td style="text-align: center"><?php echo (Grupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)?"No tiene grupo":Grupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso()) ?></td>
         <td><?php echo $objeto->getUsuario()->getMail() ?></td>
     </tr>
     <?php endforeach; ?>
