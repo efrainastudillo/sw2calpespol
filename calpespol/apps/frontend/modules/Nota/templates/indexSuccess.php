@@ -24,18 +24,8 @@
     <!--Body para mostrar actividades    -->
     <div class="body_panel">
         <div class="titulo_body_panel">
-            <?php // echo $_POST['materias']; ?>
-            <div class="paralelo">
-                <p> Paralelo: </p>
-                <select name="paralelo" size="1" id="paralelo_selec" >
-                    <?php foreach ($curso as $cur): ?>
-                        <option>
-                            <?php echo $cur->getParalelo(); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="tipoactividad">
+
+            <div class="titulo_head_panel" id="tipo_actividad">
                 <p> Tipo de Actividad: </p>
                 <select name="tipoactividad" size="1" id="tipoacti_selec" >
                     <?php foreach ($tipactividad as $tipoact): ?>
@@ -44,8 +34,9 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
-            </div>            
-            <div class="actividad">
+            </div>         
+            
+            <div class="extra_head_panel" id="actividad" style="float:left;">
                 <p> Actividad: </p>
                 <select name="actividad" size="1" id="acti_selec" >
                     <?php foreach ($actividad as $act): ?>
@@ -56,18 +47,19 @@
                 </select>
             </div>
         </div>
-        
-        <div class="boton_new">
-            <a href="Actividad/new" class="button rounded black" id="new">
-                 <?php echo image_tag('add.png', 'size=15x15') ?> Cargar Información
-            </a> 
+
+        <div class="boton_new" style="float:left;">
+            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
+                <?php echo image_tag('add.png', 'size=15x15')?> Cargar información
+            </a>
         </div>
+        
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
                 <thead>
                     <tr> 
-                        
                         <?php
+<<<<<<< .mine
                            // if (($esgrupal->getEsGrupal()) == 1) {
                                   //  echo "<td>" . "Grupos" . "</td>";
                                // } else {
@@ -75,15 +67,23 @@
                                         echo "<td>" . "Estudiantes" . "</td>";
                                   //  }
                               //  }
-                        ?>
-                        
-                        <?php
-                        if (isset($literal)) {
-                            $i=1;
-                            foreach ($literal as $lit) {
-                                echo "<td>" . "Literal ". $i++ ." (" .$lit-> getValorPonderacion().")"  . "</td>";
+=======
+                            if ($esgrupal[0]->getEsGrupal()) {
+                                echo "<td>" . "Grupos" . "</td>";
+                            } else {
+                                echo "<td>" . "Estudiantes" . "</td>";
                             }
-                        }
+
+
+>>>>>>> .theirs
+                        ?>
+                        <?php
+                            if (isset($literal)) {
+                                $i=1;
+                                foreach ($literal as $lit) {
+                                    echo "<td>" . "Literal ". $i++ ." (" .$lit-> getValorPonderacion().")"  . "</td>";
+                                }
+                            }
                         ?>
                         <td>Total</td> 
                     </tr>
@@ -91,6 +91,7 @@
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
+<<<<<<< .mine
                    // if (($esgrupal->getEsGrupal())== 0) {
                         if (isset($usuario)) {
                            foreach ($usuario as $us) {
@@ -99,12 +100,25 @@
                                 if (isset($literal)) {
                                     foreach ($literal as $lit) {
                                         echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+
+=======
+                        if ($esgrupal[0]->getEsGrupal()) {
+                            if (isset($usuario)) {
+                                foreach ($usuario as $us) {
+                                    echo "<tr>";
+                                    echo "<td>" . $us->getNombre() . "</td>";
+                                    if (isset($literal)) {
+                                        foreach ($literal as $lit) {
+                                            echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                        }
+>>>>>>> .theirs
                                     }
+                                    echo "<td>10</td>";
+                                    echo "</tr>";
                                 }
-                                echo "<td>10</td>";
-                                echo "</tr>";
                            }
                         }
+<<<<<<< .mine
                   //  }
 //                       
 //                    if (($esgrupal->getEsGrupal())== 1) {
@@ -122,6 +136,25 @@
 //                            }
 //                        }
 //                    }
+=======
+                   
+                        if ($esgrupal[0]->getEsGrupal()) {
+                            if (isset($grupos)) {
+                                foreach ($grupos as $g) {
+                                    echo "<tr>";
+                                    echo "<td>" . $g->getNombre() . "</td>";
+                                    if (isset($literal)) {
+                                        foreach ($literal as $lit) {
+                                            echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                        }
+                                    }
+                                    echo "<td>10</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                        }
+
+>>>>>>> .theirs
                     ?>
                 </tbody>
             </table>
@@ -147,7 +180,7 @@
                             echo "</tr>";
                         }
                     }
-                    ?>
+                ?>
             </tbody>
         </table>
     </div>

@@ -19,7 +19,6 @@ class Rolusuario extends BaseRolusuario
       */
      public static function getRolUsuario($rol){
          $rol=Doctrine_Query::create()
-                 ->select("*")
                  ->from("Rolusuario u")
                  ->where("u.nombre=?",$rol)
                  ->fetchOne();

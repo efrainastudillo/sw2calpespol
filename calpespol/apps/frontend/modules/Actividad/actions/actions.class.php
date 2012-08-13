@@ -10,80 +10,72 @@
  */
 class ActividadActions extends sfActions{
     
-   public function executeMateria(sfWebRequest $request) {
-        $this->materia= Doctrine_Core::getTable('Materia')
-                ->createQuery('m')
+    /**
+     * Descripción: Función que me permite conectarme a la base y obtener la lista de actividades
+     * que pertenecen al curso almacenado en sesión.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     * @param sfWebRequest $request
+     */
+      public function executeIndex(sfWebRequest $request){
+          
+          //Me da el termino actual
+          $termino = Utility::getTermino();  
+          //Me devuelve la lista de las actividades del usuario
+          $this->a = Doctrine_Query::create()
+                ->select('a.idactividad')
+                ->from('Actividad a')
+                ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
+                ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+                ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
+                ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+                ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+                ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+                ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
+                ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
                 ->execute();
-    } 
-    
-  public function executeIndex(sfWebRequest $request){
+      }
       
-      //Me da el termino actual
-      $termino = Utility::getTermino();  
-      //Me devuelve la lista de paralelos del usuario de acuerdo a la materia
-      //seleccionada <?php echo "<p>".$sf_user->getMateriaActual()."</p>";
-
-      $this->q=  Doctrine_Query::create()
-          ->select('c.paralelo')
-          ->from('Curso c')
-          ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-          ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-          ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-          ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())//este es el usuario espol $this->getUser()->getUserEspol()
-          ->andWhere('c.termino =?',$termino)
-          ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-          ->execute();
+    /**
+     * Descripción: Función que me permite obtener
+     * y grupos, que pertenecen al curso almacenado en sesión.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     * @param sfWebRequest $request
+     */
+     public function executeNewactividad(sfWebRequest $request){
+        $this->ta=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+            ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());    
+     }
+  
+     public function executeNewtipoactividad(sfWebRequest $request){}
+  
+    /**
+     * Descripción: Función que me permite ingresar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeProcess(sfWebRequest $request){
       
-    //Me devuelve la lista de las actividades del usuario
-    $this->a = Doctrine_Query::create()
-            ->select('a.idactividad')
-            ->from('Actividad a')
-            ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad = ta.idtipoactividad')
-            ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+        $tiact = $request->getParameter('nombre');
+        $tireal = $request->getParameter('realizacion');
+        $extra= $request->getParameter('tipo');
+        $parcial=$request->getParameter('parcial');
+        $grade = $request->getParameter('ponderacion');
+        //Obteniendo datos de la DB
+        $this->c = Doctrine_Query::create()
+            ->select ('c.idcurso')
+            ->from('Curso c')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+            ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
             ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+            ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+            ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
+            ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
             ->execute();
-    
-    //Me devuelve la lista de materia del usuario
-    $this->m=Doctrine_Query::create()
-            ->select('m.idmateria')
-            ->from('Materia m')
-            ->innerjoin('m.Curso c ON m.idmateria = c.id_materia')
-            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-            ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-            ->andwhere('c.termino=?',$termino)
-            ->execute();    
-  }
-  
-  public function executeNewactividad(sfWebRequest $request){
-      $this->ta=Tipoactividad::getTipoActividadbyMateriaAndParalelo
-              ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());  
-              
-  }
-  
-  public function executeNewtipoactividad(sfWebRequest $request){}
-  
-  public function executeProcess(sfWebRequest $request){
-      //Obteniedo parametros del form
-      $this->form = new TipoactividadForm();
-      $tiact = $request->getParameter('tipoactividad');
-      $tireal = $request->getParameter('tiporealizacion');
-      $extra= $request->getParameter('extra');
-      $parcial=$request->getParameter('parcial');
-      $grade = $request->getParameter('ponderacion');
-      
-      //Obteniendo datos de la DB
-      $this->c = Doctrine_Query::create()
-              ->from('Curso c')
-              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-              ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-              ->execute();
-     
         //Ingresando los datos a la base
         $newtipoacti = new Tipoactividad();
         $newtipoacti ->setCurso($this->c[0]);
@@ -96,91 +88,83 @@ class ActividadActions extends sfActions{
         else
             $newtipoacti ->setEsGrupal(0);       
         //Ingresando 0 si es Ordinaria o 1 si es Extra
-        if (strcmp($tireal, 'Extra'))
+        if (strcmp($tireal, 'Extraordinaria'))
             $newtipoacti ->setEsExtra(1);
         else
             $newtipoacti ->setEsExtra(0);
-        //Ingresando datos por default
-        $newtipoacti ->setTieneFactor1(0);
-        $newtipoacti ->setTieneFactor2(0);
+        //Ingresando datos por default //Preguntar
+        /*$newtipoacti ->setTieneFactor1(0);
+        $newtipoacti ->setTieneFactor2(0);*/
         //Guardando el tipo actividad en la DB
-        $newtipoacti->save();   
-       // $this->redirect("Actividad/index");
-        
-  }
+        $newtipoacti->save();
+        $this->getUser()->setFlash('actividad_grabada', 'Tipo Actividad Guardada Exitosamente');
+        $this->redirect("Actividad/newactividad");
+      }
  
   /**
    *
    * @param sfWebRequest $request 
    */
-  public function executeNew(sfWebRequest $request){
-    //Obteniendo parametros del form
-    $this->form = new ActividadForm();
-    $idact = $request->getParameter('tipoactivid');
-    $nombre = $request->getParameter('descripcion');
-    $date = $request->getParameter('fecha');
-    $grade = $request->getParameter('nota');
-    
-    $termino = Utility::getTermino();
-    $this->ta=  Doctrine_Query::create()//esto te devuelve objetos de TIpoActividad
-              ->select('ta.idtipoactividad')
-              ->from('Tipoactividad ta')
-              ->innerjoin ('ta.Curso c ON ta.id_curso = idcurso')
-              ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-              ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-              ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-              ->where('ta.nombre =?',$idact)
-              ->andWhere('u.usuario_espol=?',$this->getUser()->getUserEspol())
-              ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-              ->execute();
-    
-    //Ingresando los datos a la base
-    $newact = new Actividad();
-    $newact ->setNombre($nombre);
-    $newact->setTipoactividad($this->ta[0]);
-    $newact ->setFechaEntrega($date);
-    $newact ->setNota($grade);
-    $newact->save();
-    $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
-    $this->redirect("Actividad/index");
-  }
+  public function executeNew(sfWebRequest $request){}
+  
+    /**
+     * Descripción: Función que me permite ingresar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeCreate(sfWebRequest $request){
+        $tipo = $request->getParameter("tipo");
+        $descripcion = $request->getParameter("descripcion");
+        $fecha_entrega = explode("-",$request->getParameter("fecha"));
 
-  public function executeCreate(sfWebRequest $request)
-  {
-      $tipo=$request->getParameter("tipo");
-      $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega=$request->getParameter("fecha");
-     // $this->f=( $fecha_entrega);
-      $nota=$request->getParameter("nota");
-      $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+        //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
+        $anio_fecha_entrega = $fecha_entrega[0];
+        $mes_fecha_entrega = $fecha_entrega[1];
+        $dia_fecha_entrega = $fecha_entrega[2];
+        $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
+
+        $nota=$request->getParameter("nota");
+        $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
               ->where('ta.idtipoactividad=?',$tipo)
               ->fetchOne();
-      $actividad=new Actividad();
-      $actividad->setTipoactividad($t);
-      $actividad->setNombre($descripcion);
-      $actividad->setFechaEntrega($f);
-      $actividad->setNota($nota);
-      $actividad->save();
-       $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
-      $this->redirect("Actividad/index");
-  }
+        $actividad=new Actividad();
+        $actividad->setTipoactividad($t);
+        $actividad->setNombre($descripcion);
+        $actividad->setFechaEntrega($nueva_fecha_entrega);
+        $actividad->setNota($nota);
+        $actividad->save();
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->actividad = Doctrine_Query::create()
-            ->from('Actividad a')
-            ->where('a.idactividad = ?', $request->getParameter("id"))
-            ->fetchOne();
-    $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
-              ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
+        $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
 
-    $this->forward404Unless($this->actividad);
-  }
+        $this->redirect("Actividad/index");
+      }
+      
+    /**
+     * Descripción: Función que me permite editar e ingresar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeEdit(sfWebRequest $request){
+        $this->actividad = Doctrine_Query::create()
+                ->from('Actividad a')
+                ->where('a.idactividad = ?', $request->getParameter("id"))
+                ->fetchOne();
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-      $id=$request->getParameter("id");
+        $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+                  ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
+
+        $this->forward404Unless($this->actividad);
+     }
+
+  public function executeUpdate(sfWebRequest $request){
+      /*$id=$request->getParameter("id");
       $tipo=$request->getParameter("tipo");
       $descripcion=$request->getParameter("descripcion");
       $fecha_entrega=$request->getParameter("fecha");
@@ -202,35 +186,46 @@ class ActividadActions extends sfActions{
       $actividad->save();
       
       $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');
-      $this->redirect("Actividad/index");
+      $this->redirect("Actividad/index");*/
   }
+  
+    /**
+     * Descripción: Función que me permite crear PDF
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     * @param sfWebRequest $request
+     */
+     public function executeGuardarPdf(sfWebRequest $request){
+        //accedemos al parametro html
+        $html = $request->getPostParameter('html');
+        $mpdf = new mPDF('es_ES','Letter','','',25,25,15,25,16,13);
+        $mpdf->useOnlyCoreFonts = true;
 
-  public function executeGuardarPdf(sfWebRequest $request){
-    //accedemos al parametro html
-    $html = $request->getPostParameter('html');
-    $mpdf = new mPDF('es_ES','Letter','','',25,25,15,25,16,13);
-    $mpdf->useOnlyCoreFonts = true;
 
-    // load a stylesheet
-    //$stylesheet = file_get_contents(sfConfig::get('sf_web_dir').'/css/factura_style.css');
+        $mpdf->WriteHTML($html,2);
 
-    // el parámetro 1 indica que sólo es css y no contenido html.
-    //$mpdf->WriteHTML($stylesheet,1); 
+        //Parametro “D” indica que se va a descargar.
+        $mpdf->Output('Reporte_Actividades.pdf','D');
+        throw new sfStopException();
+     }
 
-    $mpdf->WriteHTML($html,2);
+    public function executeNuevoTipo(sfWebRequest $request){}
 
-    //Parametro “D” indica que se va a descargar.
-    $mpdf->Output('Reporte_Actividades.pdf','D');
-    throw new sfStopException();
-}
-
-  public function executeDelete(sfWebRequest $request){
-      $id=$request->getParameter('id');
-      $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
-      $actividad->delete();
-      $this->getUser()->setFlash('actividad_grabada', 'Actividad Eliminada Correctamente');
-      $this->redirect('Actividad/index');
-  }
+    /**
+     * Descripción: Función que me permite borrar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeDelete(sfWebRequest $request){
+        $id=$request->getParameter('id');
+        $this->forward404Unless($actividad = Doctrine_Core::getTable('Actividad')->find(array($request->getParameter('id'))), sprintf('Object actividad does not exist (%s).', $request->getParameter('id')));
+        $actividad->delete();
+        $this->getUser()->setFlash('actividad_grabada', 'Actividad Eliminada Correctamente');
+        $this->redirect('Actividad/index');
+     }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
@@ -254,8 +249,10 @@ class ActividadActions extends sfActions{
       $item = new Literal();
       $detalle = $request->getParameter('detalle');
       $puntos = $request->getParameter('puntos');
-      if($detalle!="" && $puntos!="" && is_string($detalle) && is_int($puntos)){
-          $item -> grabarLiteral($request);
+      if($detalle!="" && $puntos!=""){
+          if(is_string($detalle) && is_numeric($puntos)){
+              $item -> grabarLiteral($request);
+          }
       }
       $this -> redirect('Actividad/index');
   }

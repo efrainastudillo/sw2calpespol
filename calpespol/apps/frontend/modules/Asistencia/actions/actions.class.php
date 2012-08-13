@@ -28,4 +28,8 @@ class AsistenciaActions extends sfActions
           $this->getUser()->setFlash('mensaje','');
       }
   }
+  
+  public function executeNewasistencia(sfWebRequest $request){
+      $this->estudiantes=Usuario::getEstudiantesByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+  }
 }

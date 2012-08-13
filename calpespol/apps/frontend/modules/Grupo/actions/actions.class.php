@@ -73,7 +73,7 @@ class GrupoActions extends sfActions {
      * @param sfWebRequest $request
      */
     public function executeCreate(sfWebRequest $request) {
-        if($this->getUser()->getUsuarioDB()!=null){
+        if($this->getUser()->getUserEspol()!=null){
             try{
 		// Obtengo los parametros
 		$n_estudiantes = $request->getParameter("size");
@@ -90,7 +90,7 @@ class GrupoActions extends sfActions {
 		if($bandera){
                     // Obtengo el número de grupos que existen en el curso
                     $q = Doctrine_Query::create()
-                        ->select('max(eg.idgrupo) as id')
+                        ->select('ifnull(max(eg.idgrupo),0) as id')
                         ->from('EstudianteGrupo eg')
                         ->innerJoin('eg.UsuarioCurso uc')
                         ->where('uc.id_curso = ?', $id_curso);

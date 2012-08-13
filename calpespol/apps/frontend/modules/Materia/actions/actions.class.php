@@ -17,9 +17,32 @@ class MateriaActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      $this->materias=Doctrine_Query::create()
-              ->from("Materia m")
+      if($this->getUser()->getUserEspol()!=null){
+        $this->consulta = Doctrine_Query::create()
+          ->select('c.idcurso as idcurso, m.nombre as nombre, c.paralelo as paralelo, r.nombre as rol')
+          ->from('UsuarioCurso uc')
+          ->innerJoin('uc.Usuario u')
+          ->innerJoin('uc.Curso c')
+          ->innerJoin('uc.Rolusuario r')
+          ->innerJoin('c.Materia m')
+          ->where('u.usuario_espol = ?', $this->getUser()->getUserEspol())
+          ->execute();
+        /*if(sizeof($this->consulta)!=0){
+            $cursos = array();
+            for($i=0;$i<sizeof($this->consulta);$i++)
+                array_push($cursos, $this->consulta[$i]->idcurso);
+            $this->profesores = Doctrine_Query::create()
+              ->select('CONCAT(u.nombre," ",u.apellido) as profesor')
+              ->from('UsuarioCurso uc')
+              ->addFrom('uc.Usuario u')
+              ->addFrom('uc.Rolusuario r')
+              ->where('r.nombre = ?', 'Profesor')
+              ->andWhereIn('uc.id_curso', $cursos)
               ->execute();
+        }*/
+      }else
+        $this->redirect('Inicio/index');
+        
   }
   
   public function executeNew(sfWebRequest $request)
@@ -52,4 +75,21 @@ class MateriaActions extends sfActions
     
        $this->redirect("Materia/index");
   }
+  
+  
+    
+    /**
+     * Función que permite obtener el rol del usuario en el curso actual.
+     * @return Rolusuario
+     */
+    private function getActualRol(){
+        $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+        $id_usuario = $this->getUser()->getUserDB()->getIdusuario();
+        $temp =  Doctrine_Core::getTable('UsuarioCurso')
+                ->createQuery('uc')
+                ->where('uc.id_curso = ?', $id_curso)
+                ->andWhere('uc.id_usuario = ?', $id_usuario)
+                ->execute();
+        return $temp[0]->getRolusuario();
+    }
 }

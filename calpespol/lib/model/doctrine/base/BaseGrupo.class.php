@@ -64,6 +64,7 @@ abstract class BaseGrupo extends sfDoctrineRecord
         parent::setUp();
         $this->hasMany('Estudiantegrupo', array(
              'local' => 'idgrupo',
-             'foreign' => 'idgrupo'));
+             'foreign' => 'idgrupo',
+             'onDelete' => 'CASCADE'));
     }
 }
