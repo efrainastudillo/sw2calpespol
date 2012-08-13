@@ -53,14 +53,10 @@
                             <?php
                             if(isset ($materias)){
                                 foreach ($materias as $value) {
-<<<<<<< HEAD
                                     if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
                                         echo "<option select='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
-                                        
-=======
                                     if($value->getNombre()==$sf_user->getMateriaActual()){
                                         echo "<option  selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
->>>>>>> 1f5a50fc092cf394c5bc193259514be622a169b5
                                     }else{
                                         if(strcasecmp($sf_user->getMateriaActual(), "")==0){
                                             $sf_user->setMateriaActual($value->getNombre());
