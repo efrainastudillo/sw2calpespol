@@ -24,7 +24,6 @@
 	} );
 </script>
 <div style="clear: both;height:10px;"></div>
-<?php echo sizeof($lista) ?>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="grupo_tabla">
     <thead><tr><th>Grupo</th><th>Nombre Completo</th><th>Acciones</th></tr></thead>
     <tbody>

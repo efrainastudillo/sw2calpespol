@@ -13,7 +13,7 @@
     <?php echo stylesheet_tag('favicon.png',array('type'=>'image/png','rel'=>'shortcut icon')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos();?>
+    <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos(); ?>
   </head>
   <body>
       
@@ -53,8 +53,8 @@
                             <?php
                             if(isset ($materias)){
                                 foreach ($materias as $value) {
-                                    if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
-                                        echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    if($value->getNombre()==$sf_user->getMateriaActual()){
+                                        echo "<option  selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }else{
                                         if(strcasecmp($sf_user->getMateriaActual(), "")==0){
                                             $sf_user->setMateriaActual($value->getNombre());
