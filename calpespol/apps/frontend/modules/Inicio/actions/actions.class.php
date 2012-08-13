@@ -63,6 +63,7 @@ class InicioActions extends sfActions
    * @param sfWebRequest $request 
    */
   public function executeMateria(sfWebRequest $request){
+      
       $this->variable=(isset($_POST['lista_materias'])) ? $_POST['lista_materias'] : '';
       $this->getUser()->setMateriaActual($this->variable);
       
@@ -170,10 +171,9 @@ class InicioActions extends sfActions
                 $temp_materia=Utility::getMateria($cod_materia);
                 if($temp_materia->count()==0){
                     continue;
-                }else{                   
+                }else{
                     return true;
                 }
-                
             }
             $this->getUser()->setFlash('notice', 'Sus Datos son Correctos pero NO se encuentra Registrado en alguna Materia del Sistema');
             return false;

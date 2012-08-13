@@ -141,17 +141,23 @@ Estudiantegrupo:
   connection: doctrine
   tableName: estudiantegrupo
   columns:
-    idgrupo:
+    idestudiantegrupo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
+      autoincrement: true
+    idgrupo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
       autoincrement: false
     id_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
+      primary: false
       autoincrement: false
   relations:
     Grupo:
@@ -161,7 +167,7 @@ Estudiantegrupo:
     Usuariocurso:
       onDelete: CASCADE
       local: id_estudiante
-      foreign: id_usuario
+      foreign: id_usuario_curso
 Estudianteliteral:
   connection: doctrine
   tableName: estudianteliteral
@@ -242,6 +248,7 @@ Grupo:
       autoincrement: false
   relations:
     Estudiantegrupo:
+      onDelete: CASCADE
       local: idgrupo
       foreign: idgrupo
       type: many
@@ -475,6 +482,7 @@ Usuario:
       autoincrement: false
   relations:
     Usuariocurso:
+      onDelete: CASCADE
       local: idusuario
       foreign: id_usuario
       type: many

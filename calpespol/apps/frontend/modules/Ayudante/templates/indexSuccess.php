@@ -40,7 +40,7 @@
          <?php if ($sf_user->isEstudiante()): ?>
         <div class="boton_new" title="Crear Nuevo Ayudante">
             <a href="<?php echo url_for("Ayudante/new")?>" class="button rounded black" id="">
-                <img src="../images/new.png" width="15" height="15"/> Nuevo Ayudante
+                <?php echo image_tag('add.png', 'size=15x15')?> Nuevo Ayudante
             </a> 
         </div>
         <?php endif ?>

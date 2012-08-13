@@ -40,12 +40,12 @@
         
         <div id="regresar_lista" class="boton_new">
             <a href="<?php echo url_for("Actividad/index")?>" class="button rounded black" >
-                <img src="../images/new.png" width="15" height="15" /> Regresar a Lista de Actividades
+                <?php echo image_tag('add.png', 'size=15x15')?> Regresar a Lista de Actividades
             </a>
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="form_new_actividad" action="<?php echo url_for('Actividad/create') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/create') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
@@ -71,12 +71,12 @@
                   </tr>
                   <tr>
                       <th>Descripción:</th>
-                      <td><input id="descripcion" name="descripcion" type="text" placeholder="Descripción de la Actividad" value=""/></td>
+                      <td><input id="descripcion" name="descripcion" type="text" placeholder="Descripcion de la Actividad" value=""/></td>
                       <td><span id="req-descripcion" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                   <tr>
                       <th>Fecha de entrega:</th>
-                      <td><input id="fecha" name="fecha" type="text"  value=""/></td>
+                      <td><input id="fecha" name="fecha" type="date"  value=""/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                   <tr>
@@ -88,7 +88,7 @@
                       <td colspan="2">
                         <div id="grabar_actividad" class="boton_new">
                             <a href="#" class="button rounded black" >
-                                <img src="../images/new.png" width="15" height="15" /> Grabar Actividad
+                                <?php echo image_tag('save.png', 'size=15x15')?> Grabar Actividad
                             </a>
                         </div>
                       </td>

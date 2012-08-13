@@ -62,7 +62,7 @@ $(document).ready(function(){
             data: ({sfUserId: user,sfPass: pass}),
             dataType: "json",
             beforeSend: function()
-            {             
+            {
               $("#mensaje_error").text('Cargando Datos...');
                $("#mensaje_error").css("visibility", "visible");
             },

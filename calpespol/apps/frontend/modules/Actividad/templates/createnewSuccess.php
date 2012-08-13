@@ -1,7 +1,3 @@
-<!--<h1 style="text-align: center">Nueva Actividad</h1-->
-
-<!--?php include_partial('form', array('form' => $form)) ?>-->
-
 <!-- Reporte del Modulo Actividad -->
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
