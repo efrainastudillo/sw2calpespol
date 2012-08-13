@@ -28,4 +28,24 @@ class AsistenciaActions extends sfActions
           $this->getUser()->setFlash('mensaje','');
       }
   }
+  
+  /**
+     * Descripción: Función que me permite crear PDF
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     * @param sfWebRequest $request
+     */
+     public function executeGuardarPdf(sfWebRequest $request){
+        //accedemos al parametro html
+        $html = $request->getPostParameter('html');
+        $mpdf = new mPDF('es_ES','Letter','','',25,25,15,25,16,13);
+        $mpdf->useOnlyCoreFonts = true;
+
+
+        $mpdf->WriteHTML($html,2);
+
+        //Parametro “D” indica que se va a descargar.
+        $mpdf->Output('Reporte_Asistencia.pdf','D');
+        throw new sfStopException();
+     }
 }

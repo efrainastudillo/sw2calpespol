@@ -3,7 +3,7 @@
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Asistencia" ?>
+    <div id="prueba"><?php echo "Asistencia" ?></div>
 <?php end_slot(); ?>
 
 <?php slot('asistencia-css') ?>
@@ -21,11 +21,11 @@
             
         </div>
         
-        <div class="extra_head_panel">
+        <div id="info_paralelo" class="extra_head_panel">
             <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
         </div>
         
-        <div class="extra_head_panel">
+        <div id="info_materia" class="extra_head_panel">
             <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
         </div>
         
@@ -48,13 +48,17 @@
             <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
                  <?php echo image_tag('add.png', 'size=15x15') ?> Registrar Asistencia
             </a> 
+            <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
+                <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
+            </a> 
         </div>
+        
         <div style="clear: both;visibility: hidden"></div>
         <div class="tableScroll">
             
             <table class="tabla" cellspacing="0">
 
-                <thead>
+                <thead id="titulos">
                     <tr>
                         <td>Nombres</td>
                         <td>Apellidos</td>
@@ -64,7 +68,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="info">
                     
                     <?php
                     if(isset ($asistencias)){
@@ -111,6 +115,36 @@
             });
         </script>"
         ?>
+        
+         <!-- Script para guardar las consultas en pdf -->
+        <script type="text/javascript">
+            $().ready(function() {
+
+                //seteamos el evento click al boton, usamos un form oculto para enviar el requirimiento al servidor.
+                $('#pdf').click(function(){
+                var f = document.createElement('form');
+                f.style.display = 'none';
+                this.parentNode.appendChild(f);
+                f.method = 'post';
+                //colocamos el action que se va a invocar cuando se haga click
+                f.action = '<?php echo url_for('Asistencia/guardarPdf',array('target'=>'_blank'))?>';
+                //en la variable m se guarda el “html” de las secciones de la página que se van a guardar como pdf.      
+                var m = document.createElement('input');
+                var info_paralelo = $('#info_paralelo').html();
+                var info_materia = $('#info_materia').html();
+                var titulos = $('#titulos').html();
+                var a1 = $('#info').html();
+                var prueba = $('#prueba').html();
+                m.setAttribute('type', 'hidden');
+                m.setAttribute('name', 'html');
+                m.setAttribute('value',prueba+info_paralelo+info_materia+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
+                f.appendChild(m);      
+                f.submit();
+                
+                return false;
+                });
+              });
+        </script> 
         
     </div>
 
