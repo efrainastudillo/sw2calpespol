@@ -1,7 +1,7 @@
 CREATE TABLE actividad (idactividad INT AUTO_INCREMENT, nombre VARCHAR(70) DEFAULT 'Actividad sin Nombre' NOT NULL, fecha_entrega DATETIME NOT NULL, nota BIGINT, id_tipo_actividad INT NOT NULL, INDEX id_tipo_actividad_idx (id_tipo_actividad), PRIMARY KEY(idactividad)) ENGINE = INNODB;
 CREATE TABLE asistencia (idasistencia INT AUTO_INCREMENT, fecha DATETIME NOT NULL, id_tipo_asistencia INT NOT NULL, id_estudiante INT NOT NULL, INDEX id_tipo_asistencia_idx (id_tipo_asistencia), INDEX id_estudiante_idx (id_estudiante), PRIMARY KEY(idasistencia)) ENGINE = INNODB;
 CREATE TABLE curso (idcurso INT AUTO_INCREMENT, paralelo INT NOT NULL, anio BIGINT NOT NULL, termino INT NOT NULL, id_materia INT NOT NULL, INDEX id_materia_idx (id_materia), PRIMARY KEY(idcurso)) ENGINE = INNODB;
-CREATE TABLE estudiantegrupo (idestudiantegrupo INT AUTO_INCREMENT, idgrupo INT, id_estudiante INT, INDEX idgrupo_idx (idgrupo), INDEX id_estudiante_idx (id_estudiante), PRIMARY KEY(idestudiantegrupo)) ENGINE = INNODB;
+CREATE TABLE estudiantegrupo (idgrupo INT, id_estudiante INT, PRIMARY KEY(idgrupo, id_estudiante)) ENGINE = INNODB;
 CREATE TABLE estudianteliteral (id_estudiante INT, idliteral INT, nota_literal INT DEFAULT '0', id_calificador VARCHAR(45) DEFAULT NULL, fecha DATETIME NOT NULL, comentario VARCHAR(45) DEFAULT NULL, PRIMARY KEY(id_estudiante, idliteral)) ENGINE = INNODB;
 CREATE TABLE grupo (idgrupo INT AUTO_INCREMENT, numero INT, nombre VARCHAR(45) DEFAULT 'Grupo Anonimo' NOT NULL, PRIMARY KEY(idgrupo)) ENGINE = INNODB;
 CREATE TABLE literal (idliteral INT AUTO_INCREMENT, nombre_literal VARCHAR(70) NOT NULL, valor_ponderacion DECIMAL(10, 2) NOT NULL, id_actividad INT NOT NULL, INDEX id_actividad_idx (id_actividad), PRIMARY KEY(idliteral)) ENGINE = INNODB;
