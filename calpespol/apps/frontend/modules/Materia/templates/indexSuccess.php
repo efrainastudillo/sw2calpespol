@@ -51,12 +51,12 @@
                     
                     <?php foreach ($consulta as $row): ?>
                             <tr>
-                                <td><?php echo $row->nombre; ?></td>
-                                <td><?php echo $row->paralelo; ?></td>
-                                <td><?php echo $row->rol; ?></td>                          
+                                <td><?php echo $row->getCurso()->getMateria()->getNombre(); ?></td>
+                                <td><?php echo $row->getCurso()->getParalelo(); ?></td>
+                                <td><?php echo $row->getRolusuario()->getNombre();?></td>                          
                               <td>
                               <?php
-                              if($row->rol=="Profesor"){
+                              if($row->getRolusuario()->getNombre()=="Profesor"){
                                 echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Curso/edit?id='.
                                         $row->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
                                 echo '&nbsp &nbsp' ;
