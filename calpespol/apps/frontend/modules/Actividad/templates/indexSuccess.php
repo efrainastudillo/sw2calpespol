@@ -1,4 +1,11 @@
-<!-- IndexSucces del Modulo Actividad -->
+<? php 
+/*
+ * Autor:       Andrea Cáceres y Jefferon Rubio
+ * Descripcion: Muestra la lista de actividades
+ * Modulo:      Actividad
+ * Fecha:       8 de Agosto de 2012
+ */?>
+
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
 <?php end_slot(); ?>
