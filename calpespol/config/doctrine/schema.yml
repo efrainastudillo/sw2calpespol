@@ -141,23 +141,17 @@ Estudiantegrupo:
   connection: doctrine
   tableName: estudiantegrupo
   columns:
-    idestudiantegrupo:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
     idgrupo:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: false
+      primary: true
       autoincrement: false
     id_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: false
+      primary: true
       autoincrement: false
   relations:
     Grupo:

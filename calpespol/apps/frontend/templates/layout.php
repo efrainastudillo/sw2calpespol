@@ -52,15 +52,14 @@
                         <select id="materia_selecionada" style="width:200px;" name="lista_materias">
                             <?php
                             if(isset ($materias)){
-                                $temp=$sf_user->getMateriaActual();
                                 foreach ($materias as $value) {
-                                    if(strcasecmp($value->getNombre(), $temp)==0){
-                                        echo "<option selected='selected' value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                    if(strcasecmp($value->getNombre(), $sf_user->getMateriaActual())==0){
+                                        echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }else{
-                                        if(strcasecmp($temp, "")==0){
+                                        if(strcasecmp($sf_user->getMateriaActual(), "")==0){
                                             $sf_user->setMateriaActual($value->getNombre());
                                         }
-                                        echo "<option  value='".$value->getNombre()."' >".$value->getNombre()."</option>";
+                                        echo "<option value='".$value->getNombre()."' >".$value->getNombre()."</option>";
                                     }
                                 }
                             }?>

@@ -149,7 +149,7 @@ div.titulo_body_panel p:last-child{
                     un boton.
 */
 div.boton_new{
-/*    float: right;                            Posicionamiento a la derecha*/
+    float: right;                           /* Posicionamiento a la derecha*/
     margin-top: 0.5em;
     margin-bottom: 1em;
 }

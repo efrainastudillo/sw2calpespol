@@ -36,18 +36,20 @@
     <div class="body_panel">
         
         <div class="titulo_body_panel">
-            <form id="formulario_fecha" method="POST" action="<?php echo url_for("Asistencia/grabar")?>">
-                <label for="usuario" >Seleccione la fecha:</label>                    
-                <input id="fecha" name="fecha" type="text" style="width: 50px;"/>
-            </form>
-           <?php if ($sf_user->hasFlash('mensaje')): ?>
-              <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('mensaje') ?></span>
+            <h4>Fecha de Asistencia: <?php $fecha= date("d-F-Y"); echo $fecha; ?></h4>
+           <?php if ($sf_user->hasFlash('graba_asistencia')): ?>
+              <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('graba_asistencia') ?></span>
             <?php endif ?>
         </div>
         
         <div class="boton_new" title="Grabar Asistencia">
-            <a href="<?php echo url_for("Asistencia/newasistencia")?>" class="button rounded black" id="">
+            <a href="<?php echo url_for("Asistencia/newasistencia")?>" class="button" id="">
                  <?php echo image_tag('save.png', 'size=15x15') ?> Grabar
+            </a> 
+        </div>
+        <div class="boton_new" title="Volver Asistencia">
+            <a href="<?php echo url_for("Asistencia/index")?>" class="button rounded black" id="">
+                 <?php echo image_tag('back.png', 'size=15x15') ?> Volver a Asistencias
             </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
@@ -62,7 +64,6 @@
                         <td>Asistencia</td>                      
                     </tr>
                 </thead>
-
                 <tbody>     
                     
                     <?php

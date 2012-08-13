@@ -17,7 +17,7 @@ class MateriaActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-      if($this->getActualRol()->getNombre()=="Administrador")
+      //if($this->getActualRol()->getNombre()=="Administrador")
       $this->materias=Doctrine_Query::create()
               ->from("Materia m")
               ->execute();
