@@ -41,6 +41,7 @@
                     <tr>
                         <td>Materia</td>
                         <td>Paralelo</td>
+                        <td>Profesor</td>
                         <td>Rol</td>
                         <td>Acciones</td>
                     </tr>
@@ -48,24 +49,23 @@
 
                 <tbody>
                     
-                    <?php foreach ($consulta as $row): ?>
-                            <tr>
-                                <td><?php echo $row->getCurso()->getMateria()->getNombre(); ?></td>
-                                <td><?php echo $row->getCurso()->getParalelo(); ?></td>
-                                <td><?php echo $row->getRolusuario()->getNombre();?></td>                          
-                              <td>
-                              <?php
-                              if($row->getRolusuario()->getNombre()=="Profesor"){
+                    <?php for ($i = 0; $i<sizeof($consulta); $i++){
+                            echo "<tr>";
+                                echo "<td>".$consulta[$i]->getCurso()->getMateria()->getNombre()."</td>";
+                                echo "<td>".$consulta[$i]->getCurso()->getParalelo()."</td>";
+                                echo "<td>".$profesores[$i]."</td>";  
+                                echo "<td>".$consulta[$i]->getRolusuario()->getNombre()."</td>";                        
+                                echo "<td>";
+                              if($consulta[$i]->getRolusuario()->getNombre()=="Profesor"){
                                 echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Curso/edit?id='.
-                                        $row->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
+                                        $consulta[$i]->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
                                 echo '&nbsp &nbsp' ;
                                 echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Curso/delete?id='.
-                                        $row->getCurso()->getIdcurso(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Materia'));              
+                                        $consulta[$i]->getCurso()->getIdcurso(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Materia'));              
                               }
-                              ?>
-                              </td>
-                            </tr>
-                    <?php endforeach; ?>
+                                echo "</td>";
+                            echo "</tr>";
+                     } ?>
                 
                 </tbody>
                 

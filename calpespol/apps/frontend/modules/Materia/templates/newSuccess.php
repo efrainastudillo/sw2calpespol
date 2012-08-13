@@ -22,14 +22,6 @@
             <p>Nueva Materia</p>            
         </div>
         
-        <div class="extra_head_panel">
-            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
-        </div>
-        
-        <div class="extra_head_panel">
-            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
-        </div> 
-        
     </div>
 
     <div class="body_panel">

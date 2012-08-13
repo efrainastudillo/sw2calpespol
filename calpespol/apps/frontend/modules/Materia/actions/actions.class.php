@@ -19,7 +19,6 @@ class MateriaActions extends sfActions
   {
       if($this->getUser()->getUserEspol()!=null){
         $this->consulta = Doctrine_Query::create()
-//          ->select('c.idcurso as idcurso, m.nombre as nombre, c.paralelo as paralelo, r.nombre as rol')
           ->from('UsuarioCurso uc')
           ->innerJoin('uc.Usuario u')
           ->innerJoin('uc.Curso c')
@@ -27,19 +26,19 @@ class MateriaActions extends sfActions
           ->innerJoin('c.Materia m')
           ->where('u.usuario_espol = ?', $this->getUser()->getUserEspol())
           ->execute();
-        /*if(sizeof($this->consulta)!=0){
-            $cursos = array();
-            for($i=0;$i<sizeof($this->consulta);$i++)
-                array_push($cursos, $this->consulta[$i]->idcurso);
-            $this->profesores = Doctrine_Query::create()
-              ->select('CONCAT(u.nombre," ",u.apellido) as profesor')
-              ->from('UsuarioCurso uc')
-              ->addFrom('uc.Usuario u')
-              ->addFrom('uc.Rolusuario r')
-              ->where('r.nombre = ?', 'Profesor')
-              ->andWhereIn('uc.id_curso', $cursos)
-              ->execute();
-        }*/
+        if(sizeof($this->consulta)!=0){
+            $this->profesores = array();
+            foreach($this->consulta as $row){
+                $tmp = Doctrine_Query::create()
+                  ->from('UsuarioCurso uc')
+                  ->addFrom('uc.Usuario u')
+                  ->addFrom('uc.Rolusuario r')
+                  ->where('r.nombre = ?', 'Profesor')
+                  ->andWhere('uc.id_curso = ?', $row->getCurso()->getIdcurso())
+                  ->execute();
+                array_push($this->profesores, ($tmp==null)?"":$tmp[0]->getUsuario()->getNombre()." ".$tmp[0]->getUsuario()->getApellido());
+            }
+        }
       }else
         $this->redirect('Inicio/index');
         
@@ -49,6 +48,7 @@ class MateriaActions extends sfActions
   {
       
   }
+  
   public function executeCreate(sfWebRequest $request)
   {
       $nombre=$request->getParameter("nombres");
@@ -60,20 +60,6 @@ class MateriaActions extends sfActions
       $materia->save();
       $this->getUser()->setFlash('materia_creada','Materia Creada Exitosamente');
       $this->redirect("Materia/index");
-  }
-  public function executeDelete(sfWebRequest $request)
-  {
-       $id=$request->getParameter("id");
-       $m=Doctrine_Query::create()
-               ->from("Materia m")
-               ->where('m.idmateria=?',$id)
-               ->fetchOne();
-      
-      
-           $m->delete();
-           $this->getUser()->setFlash('materia_creada','Materia Eliminada Exitosamente');
-    
-       $this->redirect("Materia/index");
   }
   
   
