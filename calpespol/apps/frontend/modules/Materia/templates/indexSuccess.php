@@ -33,7 +33,6 @@
             </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
-        <?php echo sizeof($consulta) ?>
         <div class="tableScroll">
             
             <table class="tabla" cellspacing="0">

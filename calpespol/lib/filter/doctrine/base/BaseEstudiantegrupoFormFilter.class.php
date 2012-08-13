@@ -13,13 +13,9 @@ abstract class BaseEstudiantegrupoFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'idgrupo'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Grupo'), 'add_empty' => true)),
-      'id_estudiante'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UsuarioCurso'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'idgrupo'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Grupo'), 'column' => 'idgrupo')),
-      'id_estudiante'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('UsuarioCurso'), 'column' => 'id_usuario_curso')),
     ));
 
     $this->widgetSchema->setNameFormat('estudiantegrupo_filters[%s]');
@@ -39,9 +35,8 @@ abstract class BaseEstudiantegrupoFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'idestudiantegrupo' => 'Number',
-      'idgrupo'           => 'ForeignKey',
-      'id_estudiante'     => 'ForeignKey',
+      'idgrupo'       => 'Number',
+      'id_estudiante' => 'Number',
     );
   }
 }

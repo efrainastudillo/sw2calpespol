@@ -144,7 +144,7 @@ class myUser extends sfBasicSecurityUser
             ->innerjoin('uc.Usuario u ON u.idusuario = uc.id_usuario')            
             ->where('u.usuario_espol=?',  $this->getUserEspol())
             ->execute();
-        if(isset($materias[0]))
+        if($this->getAttribute("materia")==null)
             $this->setMateriaActual($materias[0]->getNombre());
         return $materias;
     }
