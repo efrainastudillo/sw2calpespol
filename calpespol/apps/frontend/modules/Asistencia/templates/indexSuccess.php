@@ -1,6 +1,20 @@
-<?php slot('logo') ?>
-    <?php echo image_tag('/images/asistencias.png', 'alt_title=Asistencias') ?>
-<?php end_slot(); ?>
+<?php 
+/*
+ * Autor:       Efrain Astudillo
+ * Descripcion: muestra la lista de asistencias de los estudiantes
+ * Modulo:      Asistencia
+ * Fecha:       8 de Agosto de 2012
+ */
+slot('logo'); 
+    echo image_tag('/images/asistencias.png', 'alt_title=Asistencias') ;
+end_slot();
+slot('title') ;
+    echo "Asistencia" ;
+end_slot(); 
+slot('asistencia-css') ;
+    echo "selected";
+end_slot();
+?>
 
 <?php slot('title') ?>
     <div id="prueba"><?php echo "Asistencia" ?></div>
@@ -12,6 +26,9 @@
 
 <?php include_stylesheets() ?>
 <?php include_javascripts() ?>
+<?php include_stylesheets(); ?>
+<?php include_javascripts(); ?>
+
 
 <div class="panel">
     <div class="head_panel">
@@ -44,8 +61,8 @@
             <?php endif ?>
         </div>
         
-        <div class="boton_new" title="Crear Nuevo Estudiante">
-            <a href="<?php echo url_for("Estudiante/new")?>" class="button rounded black" id="">
+        <div class="boton_new" title="Crear Nueva Asistencia">
+            <a href="<?php echo url_for("Asistencia/newasistencia")?>" class="button rounded black" id="">
                  <?php echo image_tag('add.png', 'size=15x15') ?> Registrar Asistencia
             </a> 
             <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">

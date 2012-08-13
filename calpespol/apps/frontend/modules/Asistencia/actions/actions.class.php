@@ -28,7 +28,7 @@ class AsistenciaActions extends sfActions
           $this->getUser()->setFlash('mensaje','');
       }
   }
-  
+
   /**
      * Descripción: Función que me permite crear PDF
      * Escenarios Fallidos:
@@ -48,4 +48,9 @@ class AsistenciaActions extends sfActions
         $mpdf->Output('Reporte_Asistencia.pdf','D');
         throw new sfStopException();
      }
+
+  public function executeNewasistencia(sfWebRequest $request){
+      $this->estudiantes=Usuario::getEstudiantesByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+  }
+
 }

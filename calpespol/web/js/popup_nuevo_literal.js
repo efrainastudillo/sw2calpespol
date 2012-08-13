@@ -16,7 +16,7 @@ $(document).ready(function() {
     var width = 500; 
     var padding = 10;										//Use an integer (in pixels)
     var backgroundColor = '#ececc6'; 						//Use any hex code
-    var source = 'Actividad/newLiteral'; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+    var source = ''; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
     var borderColor = '#333'; 							//Use any hex code
     var borderWeight = 5; 									//Use an integer (in pixels)
     var borderRadius = 2; 									//Use an integer (in pixels)
