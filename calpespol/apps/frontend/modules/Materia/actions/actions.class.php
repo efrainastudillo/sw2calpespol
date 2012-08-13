@@ -19,7 +19,7 @@ class MateriaActions extends sfActions
   {
       if($this->getUser()->getUserEspol()!=null){
         $this->consulta = Doctrine_Query::create()
-          ->select('c.idcurso as idcurso, m.nombre as nombre, c.paralelo as paralelo, r.nombre as rol')
+//          ->select('c.idcurso as idcurso, m.nombre as nombre, c.paralelo as paralelo, r.nombre as rol')
           ->from('UsuarioCurso uc')
           ->innerJoin('uc.Usuario u')
           ->innerJoin('uc.Curso c')
