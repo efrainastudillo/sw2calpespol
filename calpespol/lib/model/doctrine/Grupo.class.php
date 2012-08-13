@@ -13,4 +13,26 @@
 class Grupo extends BaseGrupo
 {
 
+    public static function getGrupoDeEstudiante($id_estudiante){
+        $q=Doctrine_Query::create()
+                ->select('g.numero as numero')
+                ->from('Estudiantegrupo e')
+                ->innerJoin('e.Grupo g')
+                ->where('e.id_estudiante = ?',  $id_estudiante)
+                ->execute();
+        return (sizeof($q)==0)?null:$q[0]->numero;
+    }
+    
+    public static function getIdCursoByParaleloAndMateria($paralelo,$materia){
+        $q=Doctrine_Query::create()
+                ->select('c.idcurso as idcurso')
+                ->from('Curso c')
+                ->innerJoin('c.Materia m')
+                ->where('m.nombre = ?',$materia)
+                ->andWhere('c.paralelo = ?',$paralelo)
+                ->execute();
+        return (sizeof($q)==0)?null:$q[0]->idcurso;
+    }
+    
+    
 }

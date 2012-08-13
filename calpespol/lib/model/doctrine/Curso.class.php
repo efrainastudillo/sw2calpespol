@@ -37,4 +37,5 @@ class Curso extends BaseCurso
             ->fetchOne();
         return $q;
     }
+    
 }

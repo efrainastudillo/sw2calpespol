@@ -22,7 +22,7 @@ class GrupoActions extends sfActions {
     public function executeIndex(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             $id_rol = $this->getIDRol("Estudiante");
-            $this->id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+            $this->id_curso = Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
             $this->lista = Doctrine_Core::getTable('UsuarioCurso')
                     ->createQuery('uc')
                     ->where('uc.id_curso = ?',$this->id_curso)
@@ -46,7 +46,7 @@ class GrupoActions extends sfActions {
     public function executeNew(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             $id_rol = $this->getIDRol("Estudiante");
-            $this->id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+            $this->id_curso = Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
             $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
                     ->createQuery('uc')
                     ->where('uc.id_curso = ?',$this->id_curso)
@@ -54,7 +54,7 @@ class GrupoActions extends sfActions {
                     ->execute();
             $this->lista = array();
             foreach ($estudiantes as $objeto)
-                if(Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
+                if(Grupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
                     array_push ($this->lista, $objeto);
         }else{
             $this->redirect('Inicio/index');
@@ -84,7 +84,7 @@ class GrupoActions extends sfActions {
 		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
 		$bandera = true;
 		foreach($lista as $objeto)
-			if(Estudiantegrupo::getGrupoDeEstudiante($objeto)!=null)
+			if(Grupo::getGrupoDeEstudiante($objeto)!=null)
 				$bandera = false;
 		// Ejecuto las siguientes sentencias solo en caso de que ninguno tenga grupo
 		if($bandera){
@@ -162,15 +162,13 @@ class GrupoActions extends sfActions {
     public function executeDelete(sfWebRequest $request) {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
-                $id_rol = $this->getIDRol("Estudiante");
-                $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
                 $this->lista = Doctrine_Core::getTable('Grupo')
-                        ->createQuery('g')
-                        ->innerJoin('g.Estudiantegrupo eg')
-                        ->innerJoin('eg.UsuarioCurso uc')
-                        ->where('uc.id_curso = ?',$id_curso)
-                        ->andWhere('uc.id_rol = ?', $id_rol)
-                        ->execute();
+                ->createQuery('g')
+                ->innerJoin('g.Estudiantegrupo eg')
+                ->innerJoin('eg.UsuarioCurso uc')
+                ->where('uc.id_curso = ?', Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual()))
+                ->andWhere('uc.id_rol = ?', $this->getIDRol("Estudiante"))
+                ->execute();
             }else
                 $this->redirect('Grupo/index');
         }else{
@@ -216,7 +214,7 @@ class GrupoActions extends sfActions {
         if($this->getUser()->hasMateriaActual()&&$this->getUser()->hasParaleloActual()){
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
                 $id_rol = $this->getIDRol("Estudiante");
-                $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+                $id_curso = Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
                 $this->lista = Doctrine_Core::getTable('Grupo')
                         ->createQuery('g')
                         ->innerJoin('g.Estudiantegrupo eg')
@@ -245,7 +243,7 @@ class GrupoActions extends sfActions {
             if($this->getActualRol()->getNombre()=="Profesor"||$this->getActualRol()->getNombre()=="Ayudante"){
                 $this->grupo = $request->getParameter('grupo');
                 $id_rol = $this->getIDRol("Estudiante");
-                $this->id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+                $this->id_curso = Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
                 $estudiantes = Doctrine_Core::getTable('UsuarioCurso')
                         ->createQuery('uc')
                         ->where('uc.id_curso = ?',$this->id_curso)
@@ -253,7 +251,7 @@ class GrupoActions extends sfActions {
                         ->execute();
                 $this->lista = array();
                 foreach ($estudiantes as $objeto)
-                    if(Estudiantegrupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
+                    if(Grupo::getGrupoDeEstudiante($objeto->getIdUsuarioCurso())==null)
                         array_push ($this->lista, $objeto);
                 $this->rol = $this->getActualRol()->getNombre();
             }else
@@ -282,7 +280,7 @@ class GrupoActions extends sfActions {
 		// Verifico que ninguno de los estudiantes seleccionados pertenezca ya a algún grupo
 		$bandera = true;
 		foreach($lista as $objeto)
-			if(Estudiantegrupo::getGrupoDeEstudiante($objeto)!=null)
+			if(Grupo::getGrupoDeEstudiante($objeto)!=null)
 				$bandera = false;
 		// Ejecuto las siguientes sentencias solo en caso de que ninguno tenga grupo
 		if($bandera){
@@ -335,7 +333,7 @@ class GrupoActions extends sfActions {
      * @return Rolusuario
      */
     private function getActualRol(){
-        $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
+        $id_curso = Grupo::getIdCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
         $id_usuario = $this->getUser()->getUserDB()->getIdusuario();
         $temp =  Doctrine_Core::getTable('UsuarioCurso')
                 ->createQuery('uc')
