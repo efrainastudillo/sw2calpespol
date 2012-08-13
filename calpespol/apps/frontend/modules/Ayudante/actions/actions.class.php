@@ -52,7 +52,7 @@ class AyudanteActions extends sfActions
       $estudiante->setMatricula($matricula);
       $estudiante->setCedula($cedula);
       $estudiante->setUsuarioEspol($userespol);
-      $estudiante->save();
+     // $estudiante->save();
       $curso= Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
       $usuarioCurso=new UsuarioCurso();
       $usuarioCurso->setUsuario($estudiante);

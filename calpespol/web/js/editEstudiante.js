@@ -163,7 +163,7 @@ $(document).ready(function(){
             return false;  
         }  
         // SI escrito, NO VALIDO email  
-        else if(!input.val().match(/^[a-zA-Z ñ Ñ á Á éÉ íÍ óÓ úÚ]+$/i)){
+        else if(!input.val().match(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/i)){
             output.text(" * Campo No Válido");  
             output.css("visibility", "visible");  
             return false;  

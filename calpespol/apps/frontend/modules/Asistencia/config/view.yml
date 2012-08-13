@@ -7,3 +7,11 @@ indexSuccess:
   
   has_layout:     true
   layout:         layout
+  
+newasistenciaSuccess:
+  stylesheets:    [modulo/estudiante/estudiante.css,overcast/jquery-ui-1.8.22.custom.css]
+  
+  javascripts:    [jquery.ui.core.min.js,jquery.ui.widget.min.js,jquery.ui.datepicker.min.js,asistencia.js,sorttable.js]
+  
+  has_layout:     true
+  layout:         layout

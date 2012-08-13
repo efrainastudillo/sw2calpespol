@@ -112,7 +112,7 @@ $(document).ready(function(){
             return false;  
         }  
         //SI longitud pero caracteres diferentes de A-z  
-        else if(!input.val().match(/^[a-zA-Z]+$/)){
+        else if(!input.val().match(/^[a-zA-Z\s]+$/i)){
             output.text(" * No se permiten caracteres diferentes de [a-zA-Z]");// mensaje de error
             output.css("visibility", "visible");
             return false;  

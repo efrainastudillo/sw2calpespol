@@ -99,7 +99,7 @@
         "<script type='text/javascript'>
             jQuery(document).ready(function($)
             {
-                $('.tabla').tableScroll({width:950, height:200});
+                $('.tabla').tableScroll({width:950, height:330});
             });
         </script>"
         ?>
