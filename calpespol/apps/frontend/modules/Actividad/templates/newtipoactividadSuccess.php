@@ -1,4 +1,10 @@
-<!-- Modulo Actividad, para crear Tipo Actividad -->
+<? php 
+/*
+ * Autor:       Andrea Cáceres y Jefferon Rubio
+ * Descripcion: Registra los nuevo tipos de actividades
+ * Modulo:      Actividad
+ * Fecha:       8 de Agosto de 2012
+ */?>
 <?php slot('logo') ?>
     <?php echo image_tag('/images/actividades.png', 'alt_title=Actividades') ?>
 <?php end_slot(); ?>
