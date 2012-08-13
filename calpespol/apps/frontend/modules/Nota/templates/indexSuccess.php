@@ -98,8 +98,10 @@
                                 if (isset($literal)) {
                                     foreach ($literal as $lit) {
                                         echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
-
-
+                                    }
+                                }
+                           }
+                        }
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($usuario)) {
                                 foreach ($usuario as $us) {
