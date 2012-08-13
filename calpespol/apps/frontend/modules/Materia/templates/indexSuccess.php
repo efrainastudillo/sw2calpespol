@@ -16,15 +16,7 @@
         <div class="titulo_head_panel">
             <p>Materias</p>  
             
-        </div>
-        
-        <div class="extra_head_panel">
-            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
-        </div>
-        
-        <div class="extra_head_panel">
-            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
-        </div>   
+        </div> 
     </div>
 
     <div class="body_panel">
@@ -35,51 +27,52 @@
             <?php endif ?>
         </div>
         
-        <div class="boton_new" title="Crear Nuevo Materia">
+        <div class="boton_new" title="Crear Nueva Materia">
             <a href="<?php echo url_for("Materia/new")?>" class="button rounded black" id="">
                  <?php echo image_tag('add.png', 'size=15x15') ?> Nuevo Materia
             </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
+        <?php echo sizeof($consulta) ?>
         <div class="tableScroll">
             
             <table class="tabla" cellspacing="0">
 
                 <thead>
                     <tr>
-                        <td>Id</td>
-                        <td>Nombre</td>
-                        <td>Codigo</td> 
+                        <td>Materia</td>
+                        <td>Paralelo</td>
+                        <td>Rol</td>
                         <td>Acciones</td>
                     </tr>
                 </thead>
 
                 <tbody>
                     
-                    <?php 
-                    if(isset ($materias)){
-                        foreach ($materias as $asist){
-                            echo "<tr>";
-                                echo "<td>".$asist->getIdMateria()."</td>";
-                                echo "<td>".$asist->getNombre()."</td>";
-                                echo "<td>".$asist->getCodigoMateria()."</td>";                            
-                              echo "<td>";
-                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Materia/edit?id='.
-                                        $asist->getIdMateria(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
+                    <?php foreach ($consulta as $row): ?>
+                            <tr>
+                                <td><?php echo $row->nombre; ?></td>
+                                <td><?php echo $row->paralelo; ?></td>
+                                <td><?php echo $row->rol; ?></td>                          
+                              <td>
+                              <?php
+                              if($row->rol=="Profesor"){
+                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Curso/edit?id='.
+                                        $row->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
                                 echo '&nbsp &nbsp' ;
-                                echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Materia/delete?id='.
-                                        $asist->getIdMateria(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Materia'));              
-                                echo "</td>";
-                            echo "</tr>";
-                        }
-                    }
-                    ?>
+                                echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Curso/delete?id='.
+                                        $row->getCurso()->getIdcurso(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Materia'));              
+                              }
+                              ?>
+                              </td>
+                            </tr>
+                    <?php endforeach; ?>
                 
                 </tbody>
                 
             </table>
             
-	</div>
+	</div> 
 
         <?php echo 
         "<script type='text/javascript'>
