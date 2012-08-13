@@ -61,21 +61,4 @@ class MateriaActions extends sfActions
       $this->getUser()->setFlash('materia_creada','Materia Creada Exitosamente');
       $this->redirect("Materia/index");
   }
-  
-  
-    
-    /**
-     * Función que permite obtener el rol del usuario en el curso actual.
-     * @return Rolusuario
-     */
-    private function getActualRol(){
-        $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
-        $id_usuario = $this->getUser()->getUserDB()->getIdusuario();
-        $temp =  Doctrine_Core::getTable('UsuarioCurso')
-                ->createQuery('uc')
-                ->where('uc.id_curso = ?', $id_curso)
-                ->andWhere('uc.id_usuario = ?', $id_usuario)
-                ->execute();
-        return $temp[0]->getRolusuario();
-    }
 }
