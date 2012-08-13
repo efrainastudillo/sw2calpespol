@@ -66,7 +66,9 @@ class ActividadActions extends sfActions{
         $parcial=$request->getParameter('parcial');
         $grade = $request->getParameter('ponderacion');
         //Obteniendo datos de la DB
-        $this->c = Doctrine_Query::create()
+        $this->c=Curso::getCursoByParaleloAndMateria
+            ($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+        /*$this->c = Doctrine_Query::create()
             ->select ('c.idcurso')
             ->from('Curso c')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
@@ -75,10 +77,10 @@ class ActividadActions extends sfActions{
             ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
             ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->execute();
+            ->execute();*/
         //Ingresando los datos a la base
         $newtipoacti = new Tipoactividad();
-        $newtipoacti ->setCurso($this->c[0]);
+        $newtipoacti ->setCurso($this->c);
         $newtipoacti ->setNombre($tiact);
         $newtipoacti ->setValorPonderacion($grade);
         $newtipoacti ->setParcial($parcial);
