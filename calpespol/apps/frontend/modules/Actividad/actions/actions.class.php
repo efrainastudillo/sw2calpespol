@@ -281,12 +281,51 @@ class ActividadActions extends sfActions{
      *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
      * @param sfWebRequest $request
      */
-     public function executeEditar(sfWebRequest $request){
-         
+     public function executeEditarTipoActividad(sfWebRequest $request){
+     
         $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
                   ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
 
         $this->forward404Unless($this->actividad);
      }
+     
+     public function executeActualizarTipoActividad(sfWebRequest $request){
+        $id=$request->getParameter("id");
+        $tiact = $request->getParameter('nombre');
+        $tireal = $request->getParameter('realizacion');
+        $extra= $request->getParameter('tipo');
+        $parcial=$request->getParameter('parcial');
+        $grade = $request->getParameter('ponderacion');
+        //Obteniendo datos de la DB
+        $this->c=Curso::getCursoByParaleloAndMateria
+            ($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+        //Obteniendo el id para modificar solo ese tipo de actividad
+        $newtipoacti=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+              ->from('Tipoactividad ta')
+              ->where('ta.idactividad=?',$id)
+              ->fetchOne();
+        //Ingresando los datos a la base
+        $newtipoacti ->setCurso($this->c);
+        $newtipoacti ->setNombre($tiact);
+        $newtipoacti ->setValorPonderacion($grade);
+        $newtipoacti ->setParcial($parcial);
+        //Ingresando 0 si es individual o 1 si es grupal
+        if (strcmp($tireal, 'Individual'))
+            $newtipoacti ->setEsGrupal(1);
+        else
+            $newtipoacti ->setEsGrupal(0);       
+        //Ingresando 0 si es Ordinaria o 1 si es Extra
+        if (strcmp($tireal, 'Extraordinaria'))
+            $newtipoacti ->setEsExtra(1);
+        else
+            $newtipoacti ->setEsExtra(0);
+        //Ingresando datos por default //Preguntar
+        /*$newtipoacti ->setTieneFactor1(0);
+        $newtipoacti ->setTieneFactor2(0);*/
+        //Guardando el tipo actividad en la DB
+        $newtipoacti->save();
+        $this->getUser()->setFlash('actividad_grabada', 'Tipo Actividad Guardada Exitosamente');
+        $this->redirect("Actividad/newactividad");
+  }
 
 }
