@@ -13,4 +13,9 @@ $(document).ready(function(){
    $("#tipo_seleccionado").change(function(){
        $("form#form_tipos").submit();
    });
+   
+   $("#actividad_seleccionada").change(function(){
+       $("form#form_actividad").submit();
+   });
+   
 });

@@ -32,17 +32,17 @@
             <div class="titulo_head_panel" id="tipo_actividad">
                 
                 <form id="form_tipos" method="POST" action="<?php echo url_for("Nota/Tiposactividad");?>">
-                    <label for="tipo_seleccionado" >Tipos de Actividad:</label>                    
+                    <label for="tipo_seleccionado" >Tipos de Actividad: </label>                    
                     <select id="tipo_seleccionado" style="width:200px;" name="lista_tipos">
                         <?php
                         if(isset ($tipo_actividad)){
                             foreach ($tipo_actividad as $tipo) {
-                                if($tipo->getNombre()==$sf_user->getNombreTipoActividadActual()){
+                                if($tipo->getNombre()==$sf_user->getTipoActividadActual()){
                                     echo "<option  selected='selected' value='".$tipo->getNombre()."' >".$tipo->getNombre()."</option>";
                                         
                                 }else{
-                                    if(strcasecmp($sf_user->getNombreTipoActividadActual(), "")==0){
-                                        $sf_user->setNombreTipoActividadActual($tipo->getNombre());                                         
+                                    if(strcasecmp($sf_user->getTipoActividadActual(), "")==0){
+                                        $sf_user->setTipoActividadActual($tipo->getNombre());                                         
                                     }
                                     echo "<option value='".$tipo->getNombre()."' >".$tipo->getNombre()."</option>";
                                     
@@ -59,20 +59,36 @@
             </div>         
             
             <div class="extra_head_panel" id="actividad" style="float:left;">
-                <p> Actividad: </p>
-                <select name="actividad" size="1" id="acti_selec" >
-                    <?php foreach ($actividad as $act): ?>
-                        <option>
-                            <?php echo $act->getNombre(); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                <form id="form_actividad" method="POST" action="<?php echo url_for("Nota/actividad");?>">
+                    <label for="actividad_seleccionada" >Actividad: </label>                    
+                    <select id="actividad_seleccionada" style="width:200px;" name="lista_actividades">
+                        <?php
+                        if(isset ($actividad)){
+                            foreach ($actividad as $acti) {
+                                if($acti->getNombre()==$sf_user->getActividadActual()){
+                                    echo "<option  selected='selected' value='".$acti->getNombre()."' >".$acti->getNombre()."</option>";
+                                        
+                                }else{
+                                    if(strcasecmp($sf_user->getActividadActual(), "")==0){
+                                        $sf_user->setActividadActual($acti->getNombre());                                         
+                                    }
+                                    echo "<option value='".$acti->getNombre()."' >".$acti->getNombre()."</option>";
+                                    
+                                }
+                            }
+                            
+                        }?>
+                        
+                        <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
+                        <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
+                    </select>
+                </form>
             </div>
         </div>
 
 <!--        <div class="boton_new" style="float:left;">
-            <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
-                <?php echo image_tag('add.png', 'size=15x15')?> Cargar información
+            <a href="<?php //echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
+                <?php //echo image_tag('add.png', 'size=15x15')?> Cargar información
             </a>
         </div>-->
         

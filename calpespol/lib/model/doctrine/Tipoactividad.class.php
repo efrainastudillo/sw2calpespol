@@ -32,10 +32,13 @@ class Tipoactividad extends BaseTipoactividad
         return $q;
     }
     
-    public static function getIdTipoActividadByName($name){
+    public static function getIdTipoActividadByName($materia, $name){
         $a = Doctrine_Query::create()      
         ->from('Tipoactividad ta')
-        ->where('ta.nombre=?',$name);
+        ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+        ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
+        ->where('ta.nombre=?',$name)
+        ->andWhere('m.nombre=?',$materia);
         return $a->execute();
     }
 }

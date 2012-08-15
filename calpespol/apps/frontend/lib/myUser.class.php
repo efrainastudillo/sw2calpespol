@@ -206,33 +206,31 @@ class myUser extends sfBasicSecurityUser
      * Retorna el nombre tipo de actividad actual seleccionada
      * @return String  
      */
-    public function getNombreTipoActividadActual(){
-        return $this->getAttribute("nombreTipoActividad");
+    public function getTipoActividadActual(){
+        return $this->getAttribute("tipoActividad");
     }
     /**
      * Guarda el nombre tipo de actividad en la sesion
      * @param String Nombre del tipo de actividad a ser Almacenada en la sesion 
      */
-    public function setNombreTipoActividadActual($nombreTipoActividad){
-        $this->setAttribute("nombreTipoActividad",$nombreTipoActividad);
+    public function setTipoActividadActual($tipoActividad){
+        $this->setAttribute("tipoActividad",$tipoActividad);
     }
-    
-    
+
     /**
-     * Retorna el id de tipo de actividad actual seleccionada
+     * Retorna el nombre de la actividad actual seleccionada
      * @return String  
      */
-    public function getIdTipoActividadActual(){
-        return $this->getAttribute("idTipoActividad");
+    public function getActividadActual(){
+        return $this->getAttribute("actividad");
     }
     /**
-     * Guarda el tipo de actividad seleccionada en la sesion
-     * @param String el id del tipo de actividad a ser Almacenada en la sesion 
+     * Guarda el nombre de la actividad en la sesion
+     * @param String Nombre de la actividad a ser Almacenada en la sesion 
      */
-    public function setIdTipoActividadActual($idTipoActividad){
-        $this->setAttribute("idTipoActividad",$idTipoActividad);
+    public function setActividadActual($actividad){
+        $this->setAttribute("actividad",$actividad);
     }
-    
     
     
   /**

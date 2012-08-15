@@ -47,19 +47,9 @@ class NotaActions extends sfActions
              ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
             ->execute();           
     
-    $this->id_tipo_actividad = Tipoactividad::getIdTipoActividadByName($this->getUser()->getNombreTipoActividadActual());
-    
-//    $this->actividad = Doctrine_Query::create()
-//                ->from('Actividad a')
-//                ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
-//                ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
-//                ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-//                ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-//                ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-//                ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-//                ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
-//                ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-//                ->execute();
+    $this->id_tipo_actividad = 
+    Tipoactividad::getIdTipoActividadByName($this->getUser()->getMateriaActual(),
+                                            $this->getUser()->getTipoActividadActual());
     
     $this->actividad = Doctrine_Query::create()
             ->from('Actividad a')
@@ -76,15 +66,26 @@ class NotaActions extends sfActions
             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
             ->execute();
     
-    $this->literal = Literal::getLiteralesXActividad($this->actividad[0]->getIdactividad());
-    
-
-            
+    $this->literal = 
+    Literal::getLiteralesXTipoActividadMateria(
+            $this->id_tipo_actividad[0]->getIdTipoActividad(),
+            $this->getUser()->getActividadActual(),
+            $this->getUser()->getMateriaActual());
+         
   }
 
   public function executeTiposactividad(sfWebRequest $request){
       $this->variable=(isset($_POST['lista_tipos'])) ? $_POST['lista_tipos'] : '';
-      $this->getUser()->setNombreTipoActividadActual($this->variable);
+      $this->getUser()->setTipoActividadActual($this->variable);
+      
+      $modulo=$_POST['modulo'];
+      $action=$_POST['accion'];
+      $this->redirect($modulo."/".$action);
+  }
+  
+  public function executeActividad(sfWebRequest $request){
+      $this->variable1=(isset($_POST['lista_actividades'])) ? $_POST['lista_actividades'] : '';
+      $this->getUser()->setActividadActual($this->variable1);
       
       $modulo=$_POST['modulo'];
       $action=$_POST['accion'];
