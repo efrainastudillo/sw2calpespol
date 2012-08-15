@@ -112,7 +112,7 @@
                                 }
                             }
                         ?>
-                        <td>Total</td> 
+                        <td>Total(<?php echo $total?>)</td> 
                     </tr>
                 </thead>
                 <tbody id="estudiante">
@@ -132,7 +132,7 @@
                                             
                                         }
                                     }
-                                    echo "<td>".$total."</td>";
+                                    echo "<td>"."0"."</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -151,7 +151,7 @@
                                         }
 
                                     }
-                                    echo "<td>".$total."</td>";
+                                    echo "<td>"."0"."</td>";
                                     echo "</tr>";
                                 }
                            }
@@ -180,7 +180,7 @@
                             foreach ($literal as $lit){
                                 echo "<tr>";
                                     echo "<td>" . "Literal ". $i++ ." (" . $lit->getValorPonderacion() . ")" . "</td>";
-                                    echo "<td>".$lit->getNombreLiteral()."</td>";
+                                    echo "<td>".$lit->getNombre_literal()."</td>";
                                 echo "</tr>";
                             }
                         }
@@ -189,6 +189,11 @@
             </table>
         </div>
 
+        <!-- Boton para guardar las notas -->
+        <a href="" class="button rounded black" id="pdf" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
+            <?php echo image_tag('save.png', 'size=15x15')?> Guardar Notas
+        </a>
+    
         <?php echo 
             "<script>
                 jQuery(document).ready(function($)
