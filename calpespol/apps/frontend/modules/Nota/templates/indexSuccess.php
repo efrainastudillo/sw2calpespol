@@ -92,7 +92,7 @@
         
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
-                <thead>
+                <thead id="titulos2">
                     <tr> 
                         <?php          
                             if ($esgrupal[0]->getEsGrupal()) {
@@ -115,7 +115,7 @@
                         <td>Total</td> 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="estudiante">
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
                         if ($esgrupal[0]->getEsGrupal()) {
@@ -213,11 +213,13 @@
                 var info_paralelo = $('#info_paralelo').html();
                 var info_materia = $('#info_materia').html();
                 var titulos = $('#titulos').html();
+                var titulos2 = $('#titulos2').html();
+                var estudiante = $('#estudiante').html();
                 var a1 = $('#info').html();
                 var prueba = $('#prueba').html();
                 m.setAttribute('type', 'hidden');
                 m.setAttribute('name', 'html');
-                m.setAttribute('value',prueba+info_materia+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
+                m.setAttribute('value',prueba+info_materia+'<table border="1">'+titulos2+'<br/>'+estudiante+'<br/>'+'</table>'+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
                 f.appendChild(m);      
                 f.submit();
                 
