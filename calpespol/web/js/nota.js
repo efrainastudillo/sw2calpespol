@@ -46,5 +46,24 @@ $(document).ready(function(){
             return true;  
         }  
    }
-      
+     
+   $("#guardar_notas").click(function(){
+       alert($(".estudiante").size());
+       
+//       for(i=0; i<$(".nota_literal").size();i++){
+//           for(j=0; j<($(".nota_literal").size()/$(".estudiante").size()); j++){
+//               alert(i+","+j);
+//           }
+//       }
+//           if(validarCaracteres(inputUsername,reqUsername) && validarEmail(inputEmail, reqEmail) && validarNumero(inputIdUser, reqIdUser)){
+//                jQuery.post('process',
+//                {id: inputIdUser.val(),
+//                    nombre:inputUsername.val(),
+//                    email: inputEmail.val()
+//                }, function(xml){
+//                    getMessage(xml);
+//                });
+
+    });
+   
 });

@@ -85,7 +85,7 @@
                 
             </div>
             <!-- Boton crear nueva actividad -->
-                <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF" style="margin-left:7em">
+                <a href="" class="button rounded black"s id="pdf" title="Guardar actividades como PDF" style="margin-left:7em">
                     <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
                 </a>   
         </div>
@@ -122,11 +122,11 @@
                             if (isset($grupos)) {
                                 foreach ($grupos as $g) {
                                     echo "<tr>";
-                                    echo "<td>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
+                                    echo "<td class='estudiante'>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
-                                                      <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
+                                            echo "<td><input type='text' class='nota_literal_grupo' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                                      <input type='hidden' name='valor_literal_grupo' value='".$lit->getValorPonderacion()."'>  
                                                   </td>";
                                             
                                             
@@ -190,7 +190,7 @@
         </div>
 
         <!-- Boton para guardar las notas -->
-        <a href="" class="button rounded black" id="pdf" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
+        <a href="" class="button rounded black" id="guardar_notas" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
             <?php echo image_tag('save.png', 'size=15x15')?> Guardar Notas
         </a>
     

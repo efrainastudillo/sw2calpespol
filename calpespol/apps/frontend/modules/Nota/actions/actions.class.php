@@ -179,4 +179,8 @@ class NotaActions extends sfActions
         $mpdf->Output('Reporte_Notas.pdf','D');
         throw new sfStopException();
      }
+     
+     public function executeGuardarNotas(sfWebRequest $request){
+
+     }
 }
