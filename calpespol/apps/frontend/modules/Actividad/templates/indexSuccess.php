@@ -42,13 +42,12 @@
             <!-- Boton crear nueva actividad -->
             <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
                 <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
-            </a> 
+            </a>
 
             <?php if ($sf_user->hasFlash('actividad_grabada')): ?>
                 <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('actividad_grabada') ?></span>
             <?php endif ?>
-                
-            <!-- Boton para guardar en PDF -->
+            
             <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
                 <?php echo image_tag('add.png', 'size=15x15')?> Nueva Actividad 
             </a>
