@@ -34,6 +34,13 @@ class ActividadActions extends sfActions{
                 ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
                 ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
                 ->execute();
+//          $this->a = Doctrine_Query::create()
+//            ->from('Actividad a')
+//            ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad = ta.idtipoactividad')
+//            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
+//            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+//            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+//            ->execute();
       }
       
     /**
@@ -247,10 +254,21 @@ class ActividadActions extends sfActions{
   
     /*                      LITERALES                 */ 
   
+  /**
+     * Descripción: Función que me permite ir al popup nuevo literal
+     * @param sfWebRequest $request
+     */
   public function executeNewliteral(sfWebRequest $request){  
       $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
   
+  /**
+     * Descripción: Función que me permite guardar un literal
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se ingresa los valores correctos los datos no se guardan en base.
+     * @param sfWebRequest $request
+     */
   public function executeSaveLiteral(sfWebRequest $request)
   {
       $item = new Literal();
@@ -264,6 +282,10 @@ class ActividadActions extends sfActions{
       $this -> redirect('Actividad/index');
   }
   
+  /**
+     * Descripción: Función que me permite eliminar un literal de la base de datos
+     * @param sfWebRequest $request
+     */
   public function executeDeleteLiteral(sfWebRequest $request)
   {
       $id = $request->getParameter('id');

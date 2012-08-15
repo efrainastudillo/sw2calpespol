@@ -105,6 +105,7 @@
             </tbody>
         </table>
          
+        <?php echo $sf_user->getMateriaActual()?>
         <!-- Aquí van las tablas que muestran los literales de cada actividad -->
         <?php foreach($a as $acti): ?>
             <?php $total = 0;?> 

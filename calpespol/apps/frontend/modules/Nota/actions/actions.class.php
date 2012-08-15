@@ -49,6 +49,18 @@ class NotaActions extends sfActions
     
     $this->id_tipo_actividad = Tipoactividad::getIdTipoActividadByName($this->getUser()->getNombreTipoActividadActual());
     
+//    $this->actividad = Doctrine_Query::create()
+//                ->from('Actividad a')
+//                ->innerjoin('a.Tipoactividad ta ON a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
+//                ->innerjoin('ta.Curso c ON ta.id_curso = c.idcurso')
+//                ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
+//                ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
+//                ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
+//                ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
+//                ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
+//                ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
+//                ->execute();
+    
     $this->actividad = Doctrine_Query::create()
             ->from('Actividad a')
             ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
@@ -64,7 +76,7 @@ class NotaActions extends sfActions
             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
             ->execute();
     
-//    $this->literal = Literal::getLiteralesXActividad("166");//una actividad de prueba
+    $this->literal = Literal::getLiteralesXActividad($this->actividad[0]->getIdactividad());
     
 
             

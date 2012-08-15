@@ -56,8 +56,6 @@
                     </select>
                 </form>
                 
-            <?php //echo "a:".$sf_user->getNombreTipoActividadActual();?>
-            <?php //echo "b:".$id_tipo_actividad[0]->getIdTipoActividad();?>
             </div>         
             
             <div class="extra_head_panel" id="actividad" style="float:left;">
@@ -72,26 +70,17 @@
             </div>
         </div>
 
-        <div class="boton_new" style="float:left;">
+<!--        <div class="boton_new" style="float:left;">
             <a href="<?php echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
                 <?php echo image_tag('add.png', 'size=15x15')?> Cargar información
             </a>
-        </div>
+        </div>-->
         
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
                 <thead>
                     <tr> 
-                        <?php
-
-                           // if (($esgrupal->getEsGrupal()) == 1) {
-                                  //  echo "<td>" . "Grupos" . "</td>";
-                               // } else {
-                                  //  if (($esgrupal->getEsGrupal()) == 0) {
-                                        echo "<td>" . "Estudiantes" . "</td>";
-                                  //  }
-                              //  }
-                                        
+                        <?php          
                             if ($esgrupal[0]->getEsGrupal()) {
                                 echo "<td>" . "Grupos" . "</td>";
                             } else {
@@ -112,24 +101,11 @@
                 <tbody>
                     <!--Aqui va la tabla que muestra todas las actividades-->
                     <?php
-
-                   // if (($esgrupal->getEsGrupal())== 0) {
-                        if (isset($usuario)) {
-                           foreach ($usuario as $us) {
-                                echo "<tr>";
-                                echo "<td>" . $us->getNombre() ." ". $us->getApellido() . "</td>";
-                                if (isset($literal)) {
-                                    foreach ($literal as $lit) {
-                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
-                                    }
-                                }
-                           }
-                        }
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($usuario)) {
                                 foreach ($usuario as $us) {
                                     echo "<tr>";
-                                    echo "<td>" . $us->getNombre() . "</td>";
+                                    echo "<td>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
                                             echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
@@ -141,29 +117,11 @@
                                 }
                            }
                         }
-
-                  //  }
-//                       
-//                    if (($esgrupal->getEsGrupal())== 1) {
-//                        if (isset($grupos)) {
-//                            foreach ($grupos as $g) {
-//                                echo "<tr>";
-//                                echo "<td>" . $us->getNombre() ." ". $us->getApellido() . "</td>";
-//                                if (isset($literal)) {
-//                                    foreach ($literal as $lit) {
-//                                        echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
-//                                    }
-//                                }
-//                                echo "<td>10</td>";
-//                                echo "</tr>";
-//                            }
-//                        }
-//                    }
                         if ($esgrupal[0]->getEsGrupal()) {
                             if (isset($grupos)) {
                                 foreach ($grupos as $g) {
                                     echo "<tr>";
-                                    echo "<td>" . $g->getNombre() . "</td>";
+                                    echo "<td>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
                                             echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";

@@ -238,27 +238,27 @@ Curso:
     Materia: Materia_4
 Literal:
   Literal_1:
-    nombre_literal: 'DIAGRAMA DE BLOQUES TCA785 (PAG 2 DATASHEET)'
+    nombre_literal: 'DIAGRAMA DE BLOQUES TCA123 (PAG 2 DATASHEET)'
     valor_ponderacion: '5.00'
     Actividad: Actividad_1
   Literal_2:
-    nombre_literal: 'INTERPRETAR SEÑALES EN EL TIEMPO DEL TCA 785 DEL DATASHEET (PAG 3 DATA'
+    nombre_literal: 'INTERPRETAR SEÑALES EN EL TIEMPO DEL TCA 123 DEL DATASHEET (PAG 3 DATA'
     valor_ponderacion: '5.00'
     Actividad: Actividad_1
   Literal_3:
-    nombre_literal: 'IDENTIFICAR BLOQUES DE 1 CIRCUITO DE APLICACIÓN INCLUIDO EN EL DATASHE'
+    nombre_literal: 'IDENTIFICAR BLOQUES DE 2 CIRCUITO DE APLICACIÓN INCLUIDO EN EL DATASHE'
     valor_ponderacion: '10.00'
     Actividad: Actividad_2
   Literal_4:
-    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 1'
     valor_ponderacion: '10.00'
     Actividad: Actividad_2
   Literal_5:
-    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 5 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
+    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 4 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
     valor_ponderacion: '5.00'
     Actividad: Actividad_3
   Literal_6:
-    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2005 DE 2 ARCHIVOS .M DE MATLAB'
     valor_ponderacion: '5.00'
     Actividad: Actividad_3
   Literal_7:
@@ -270,15 +270,15 @@ Literal:
     valor_ponderacion: '10.00'
     Actividad: Actividad_4
   Literal_9:
-    nombre_literal: 'PROBLEMAS 10.3 Y 10.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    nombre_literal: 'PROBLEMAS 11.3 Y 11.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
     valor_ponderacion: '10.00'
     Actividad: Actividad_5
   Literal_10:
-    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2003 DE 2 ARCHIVOS .M DE MATLAB'
+    nombre_literal: 'DIAGRAMA EN MICROSOFT VISIO 2005 DE 2 ARCHIVOS .M DE MATLAB'
     valor_ponderacion: '10.00'
     Actividad: Actividad_5
   Literal_11:
-    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO 2'
     valor_ponderacion: '10.00'
     Actividad: Actividad_6
   Literal_12:
@@ -310,11 +310,11 @@ Literal:
     valor_ponderacion: '10.00'
     Actividad: Actividad_10
   Literal_19:
-    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 3'
     valor_ponderacion: '10.00'
     Actividad: Actividad_10
   Literal_20:
-    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 5 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
+    nombre_literal: 'COMENTARIOS SPICE: AL MENOS 7 LINEAS POR CADA GRAFICA MOSTRADA. MOSTRA'
     valor_ponderacion: '5.00'
     Actividad: Actividad_11
   Literal_21:
@@ -322,15 +322,15 @@ Literal:
     valor_ponderacion: '5.00'
     Actividad: Actividad_11
   Literal_22:
-    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO 3'
     valor_ponderacion: '10.00'
     Actividad: Actividad_12
   Literal_23:
-    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 2'
+    nombre_literal: 'SIMULACIONES SPICE: CANTIDAD 4'
     valor_ponderacion: '10.00'
     Actividad: Actividad_12
   Literal_24:
-    nombre_literal: 'PROBLEMAS 10.3 Y 10.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    nombre_literal: 'PROBLEMAS 20.3 Y 20.4 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
     valor_ponderacion: '10.00'
     Actividad: Actividad_13
   Literal_25:
@@ -338,23 +338,23 @@ Literal:
     valor_ponderacion: '10.00'
     Actividad: Actividad_13
   Literal_26:
-    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO'
+    nombre_literal: 'EXPLICAR EN EL DIAGRAMA DE VISIO CADA BLOQUE DEL DIAGRAMA DE FLUJO 5'
     valor_ponderacion: '10.00'
     Actividad: Actividad_14
   Literal_27:
-    nombre_literal: 'PROBLEMAS 3.16 Y 3.17 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
+    nombre_literal: 'PROBLEMAS 13.16 Y 13.17 RASHID 3era edición---LIBRO EN EL BLOG (ayudante'
     valor_ponderacion: '10.00'
     Actividad: Actividad_14
   Literal_28:
-    nombre_literal: 'APLICACIÓN AL CONTROL DE MOTORES DC.- CAPÍTULO 8.- FIGURA 8.1.- DESCRI'
+    nombre_literal: 'APLICACIÓN AL CONTROL DE MOTORES AC.- CAPÍTULO 8.- FIGURA 8.1.- DESCRI'
     valor_ponderacion: '10.00'
     Actividad: Actividad_15
   Literal_29:
-    nombre_literal: 'SIMPOWERSYSTEMS.- BLOQUE "Synchronized 6-Pulse Generator": CLIC DERECH'
+    nombre_literal: 'SIMPOWERSYSTEMS.- BLOQUE "Synchronized 4-Pulse Generator": CLIC DERECH'
     valor_ponderacion: '10.00'
     Actividad: Actividad_15
   Literal_30:
-    nombre_literal: 'DISEÑAR EN SPICE UN CIRCUITO QUE VARÍE EL ANGULO DE DISPARO ENTRE 0-18'
+    nombre_literal: 'DISEÑAR EN SPICE UN CIRCUITO QUE VARÍE EL ANGULO DE DISPARO ENTRE 0-20'
     valor_ponderacion: '10.00'
     Actividad: Actividad_16
 Materia:
