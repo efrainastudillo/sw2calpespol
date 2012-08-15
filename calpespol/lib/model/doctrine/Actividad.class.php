@@ -28,6 +28,6 @@ class Actividad extends BaseActividad
         ->from('Actividad a');
         return $a->execute();
     }
-
+    
 
 }
