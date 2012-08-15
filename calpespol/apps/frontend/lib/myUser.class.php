@@ -201,6 +201,21 @@ class myUser extends sfBasicSecurityUser
             return false;
         }
     }
+    
+    /**
+     * Retorna el tipo de actividad actual seleccionada
+     * @return String  
+     */
+    public function getTipoActividadActual(){
+        return $this->getAttribute("tipoActividad");
+    }
+    /**
+     * Guarda la materia seleccionada en la sesion
+     * @param String Nombre de la Materia a ser Almacenada en la sesion 
+     */
+    public function setTipoActividadActual($tipoActividad){
+        $this->setAttribute("tipoActividad",$tipoActividad);
+    }
   /**
    * Cierra la sesion elimina los datos de la sesion
    */

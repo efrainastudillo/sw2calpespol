@@ -11,7 +11,7 @@
     <?php echo "selected" ?>
 <?php end_slot(); ?>
 <?php use_stylesheet('/css/modulo/nota/nota.css');?>
-<?php use_javascript('/js/rubrica.js')?>
+<?php use_javascript('/js/nota.js')?>
 
 <div class="panel">
     <div class="head_panel">
@@ -27,14 +27,26 @@
         <div class="titulo_body_panel">
 
             <div class="titulo_head_panel" id="tipo_actividad">
-                <p> Tipo de Actividad: </p>
-                <select name="tipoactividad" size="1" id="tipoacti_selec" >
-                    <?php foreach ($tipactividad as $tipoact): ?>
-                        <option>
-                            <?php echo $tipoact->getNombre(); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                <form id="form_tipos" method="POST" action="<?php echo url_for("Nota/Tiposactividad");?>">
+                    <label for="tipo_seleccionado" >Tipos de Actividad:</label>                    
+                    <select id="tipo_seleccionado" style="width:200px;" name="lista_tipos">
+                        <?php
+                        if(isset ($tipo_actividad)){
+                            foreach ($tipo_actividad as $tipo) {
+                                if($tipo->getNombre()==$sf_user->getTipoActividadActual()){
+                                    echo "<option  selected='selected' value='".$tipo->getNombre()."' >".$tipo->getNombre()."</option>";
+                                }else{
+                                    if(strcasecmp($sf_user->getTipoActividadActual(), "")==0){
+                                        $sf_user->setTipoActividadActual($tipo->getNombre());
+                                    }
+                                    echo "<option value='".$tipo->getNombre()."' >".$tipo->getNombre()."</option>";
+                                }
+                            }
+                        }?>
+                        <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
+                        <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
+                    </select>
+                </form>
             </div>         
             
             <div class="extra_head_panel" id="actividad" style="float:left;">
