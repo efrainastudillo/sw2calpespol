@@ -95,3 +95,158 @@ $(document).ready(function(){
     }
   
 });
+    
+    function materiasRefreshFromList(){
+        var selected = document.getElementById('materia_lista_tipo').options[document.getElementById('materia_lista_tipo').selectedIndex].text;
+        if(selected=="Materia ESPOL"){
+            document.getElementById('materia_inner_div').style.display="block";
+            document.getElementById('materia_nombre').style.display="none";
+            document.getElementById('materia_codigo').style.display="block";
+            document.getElementById('materia_codigo').value="";
+            document.getElementById('materia_nombre').value="";
+            document.getElementById('materia_userEspol').value="";
+            document.getElementById('materia_tipo').value="Codigo";
+        }else if(selected == "Otra"){
+            document.getElementById('materia_inner_div').style.display="block";
+            document.getElementById('materia_nombre').style.display="block";
+            document.getElementById('materia_codigo').style.display="none";
+            document.getElementById('materia_codigo').value="";
+            document.getElementById('materia_nombre').value="";
+            document.getElementById('materia_userEspol').value="";
+            document.getElementById('materia_tipo').value="Nombre";
+        }else
+            document.getElementById('materia_inner_div').style.display="none";
+            document.getElementById('materia_codigo').value="";
+            document.getElementById('materia_nombre').value="";
+            document.getElementById('materia_userEspol').value="";
+            document.getElementById('materia_tipo').value="";
+    }
+
+function soloNumerosSinEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Predefinir como valido
+    var respuesta = true;
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 48 && charCode <= 57) && charCode!=8)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        respuesta = false;
+    }
+ 
+    //Regresar la respuesta
+    return respuesta;
+}
+
+function soloNumerosConEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Predefinir como valido
+    var respuesta = true;
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 48 && charCode <= 57) && charCode!=8 && charCode!=32)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        respuesta = false;
+    }
+ 
+    //Regresar la respuesta
+    return respuesta;
+}
+
+function soloLetrasSinEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Predefinir como valido
+    var respuesta = true;
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 65 && charCode <= 90) && !(charCode >= 97 && charCode <= 122) && charCode!=8)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        respuesta = false;
+    }
+ 
+    //Regresar la respuesta
+    return respuesta;
+}
+
+function soloLetrasConEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Predefinir como valido
+    var respuesta = true;
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 65 && charCode <= 90) && !(charCode >= 97 && charCode <= 122) && charCode!=8 && charCode!=32)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        respuesta = false;
+    }
+ 
+    //Regresar la respuesta
+    return respuesta;
+}
+
+function soloAlfanumericoSinEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 65 && charCode <= 90) && !(charCode >= 97 && charCode <= 122) && !(charCode >= 48 && charCode <= 57) && charCode!=8)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        return false;
+    }
+ 
+    //Regresar la respuesta
+    return true;
+}
+
+function soloAlfanumericoConEspacio(evt)
+{
+    //Validar la existencia del objeto event
+    evt = (evt) ? evt : event;
+ 
+    //Extraer el codigo del caracter de uno de los diferentes grupos de codigos
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
+ 
+    //Predefinir como valido
+    var respuesta = true;
+ 
+    //Validar si el codigo corresponde a los NO aceptables
+    if (!(charCode >= 65 && charCode <= 90) && !(charCode >= 97 && charCode <= 122) && !(charCode >= 48 && charCode <= 57) && charCode!=8 && charCode!=32)
+    {
+        //Asignar FALSE a la respuesta si es de los NO aceptables
+        respuesta = false;
+    }
+ 
+    //Regresar la respuesta
+    return respuesta;
+}

@@ -51,13 +51,18 @@ class MateriaActions extends sfActions
   
   public function executeCreate(sfWebRequest $request)
   {
-      $nombre=$request->getParameter("nombres");
+      $nombre=$request->getParameter("nombre");
       $codigo=$request->getParameter("codigo");
-      
-      $materia=new Materia();
-      $materia->setNombre($nombre);
-      $materia->setCodigoMateria($codigo);
-      $materia->save();
+      $profesor=$request->getParameter("profesor");
+      $tipo=$request->getParameter("tipo");
+      if(tipo=="Nombre"){
+        $materia=new Materia();
+        $materia->setNombre($nombre);
+        $materia->setCodigoMateria($nombre);
+        $curso=new Curso();
+        $curso->setMateria($materia);
+        $materia->save();
+      }
       $this->getUser()->setFlash('materia_creada','Materia Creada Exitosamente');
       $this->redirect("Materia/index");
   }

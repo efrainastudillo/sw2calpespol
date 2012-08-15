@@ -42,33 +42,36 @@
         <div style="clear: both;visibility: hidden"></div>
         <div>
             <form id="form_materia" action="<?php echo url_for('Materia/create') ?>" method="POST">
-              <table>
-                  <tr style="display: none">
-                      <th>Id:</th>
-                      <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
-                  </tr>
-                 
-                  <tr>
-                      <th>Nombre:</th>
-                      <td><input id="nombres" name="nombres" type="text" placeholder="Nombre de Materia" value=""/></td>
-                      <td><span id="req-nombres" class="requisites">Tiene deshabilitado Javascript</span></td>
-                  </tr>
-                  <tr>
-                      <th>Código:</th>
-                      <td><input id="codigo" name="codigo" type="text" placeholder="Codigo de Materia" value=""/></td>
-                      <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
-                  </tr>
-                  <tr>
-                  <td colspan="2">
-                    <div id="grabar_materia" class="boton_new">
-                        <a href="#" class="button rounded black" >
-                            <img src="../images/new.png" width="15" height="15" /> Grabar
-                        </a>
-                    </div>
-
-                  </td>
-                </tr>
-              </table>
+                <input id="materia_tipo" name="tipo" type="hidden" value=""/>
+                <select id="materia_lista_tipo" onchange="materiasRefreshFromList();">
+                    <option selected="selected">Seleccione un tipo de materia</option>
+                    <option>Materia ESPOL</option>
+                    <option>Otra</option>
+                </select>
+                <div id="materia_inner_div" style="display: none">
+                    <table>
+                        <tr id="materia_nombre">
+                            <th>Nombre:</th>
+                            <td><input id="nombres" name="nombre" type="text" placeholder="Nombre de Materia" value="" onkeypress="return soloLetrasConEspacio(event);"/></td>
+                            <td><span id="req-nombres" class="requisites">Tiene deshabilitado Javascript</span></td>
+                        </tr>
+                        <tr  id="materia_codigo">
+                            <th>Código:</th>
+                            <td><input id="codigo" name="codigo" type="text" placeholder="Codigo de Materia" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
+                            <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
+                        </tr>
+                        <tr  id="materia_userEspol">
+                            <th>Profesor:</th>
+                            <td><input id="codigo" name="profesor" type="text" placeholder="Usuario de ESPOL" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
+                            <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
+                        </tr>
+                        <tr>
+                        <td colspan="2">
+                            <input class="materia_boton_nuevo" type="submit" value="crear" />
+                        </td>
+                      </tr>
+                    </table>
+                </div>
             </form>
         </div>
         <div class="mensaje_ayuda"><p>Verifique que los Datos estén correctamente Ingresados</p></div>
