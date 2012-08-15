@@ -31,4 +31,11 @@ class Tipoactividad extends BaseTipoactividad
               ->execute();        
         return $q;
     }
+    
+    public static function getIdTipoActividadByName($name){
+        $a = Doctrine_Query::create()      
+        ->from('Tipoactividad ta')
+        ->where('ta.nombre=?',$name);
+        return $a->execute();
+    }
 }

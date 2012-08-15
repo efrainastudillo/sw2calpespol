@@ -47,9 +47,11 @@ class NotaActions extends sfActions
              ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
             ->execute();           
     
+    $this->id_tipo_actividad = Tipoactividad::getIdTipoActividadByName($this->getUser()->getNombreTipoActividadActual());
+    
     $this->actividad = Doctrine_Query::create()
             ->from('Actividad a')
-            ->innerJoin('a.Tipoactividad ta on ta.idTipoactividad = a.id_tipo_actividad')
+            ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
             ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
             ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
@@ -70,7 +72,7 @@ class NotaActions extends sfActions
 
   public function executeTiposactividad(sfWebRequest $request){
       $this->variable=(isset($_POST['lista_tipos'])) ? $_POST['lista_tipos'] : '';
-      $this->getUser()->setTipoActividadActual($this->variable);
+      $this->getUser()->setNombreTipoActividadActual($this->variable);
       
       $modulo=$_POST['modulo'];
       $action=$_POST['accion'];
