@@ -89,12 +89,6 @@
                     <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
                 </a>   
         </div>
-
-<!--        <div class="boton_new" style="float:left;">
-            <a href="<?php //echo url_for("Actividad/newactividad")?>" class="button rounded black" id="new" title="Crear actividad" style="float: right;">
-                <?php //echo image_tag('add.png', 'size=15x15')?> Cargar información
-            </a>
-        </div>-->
         
         <div class="tableScroll">
             <table class="tabla" cellspacing="0">
@@ -131,7 +125,7 @@
                                     echo "<td>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
                                         }
                                     }
                                     echo "<td>".$total."</td>";
@@ -147,7 +141,7 @@
                                     echo "<td>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
                                         }
 
                                     }

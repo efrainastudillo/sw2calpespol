@@ -10,7 +10,7 @@
 
 $(document).ready(function(){
     
-   var inputIdUser = $("#idUsuario");      //referencia del textfield a validar 
+//   var inputNota = $("#idUsuario");      //referencia del textfield a validar 
     
    $("#tipo_seleccionado").change(function(){
        $("form#form_tipos").submit();
@@ -20,4 +20,30 @@ $(document).ready(function(){
        $("form#form_actividad").submit();
    });
    
+   $(".nota_literal").on(
+   
+        "blur", function() {
+            if(!validarNumero($(this).val())){
+                alert("chao");
+                $(this).css("background-color","red");
+            }
+
+        }
+   );
+   
+   function validarNumero(input){
+       //NO cumple longitud minima  
+        if(input.length == 0){
+            return false;  
+        }  
+//        //no digitos de 0-9
+        else if(!input.match(/^[0-9]+$/)){ 
+            return false;  
+        }  
+//        // SI longitud, SI digitos 0-9  hace oculto el tag que muestra el mensaje
+        else{  
+            return true;  
+        }  
+   }
+      
 });
