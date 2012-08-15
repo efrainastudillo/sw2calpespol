@@ -80,12 +80,14 @@
                         <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
                         <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                     </select>
-                     <!-- Boton crear nueva actividad -->
-                    <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
-                        <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
-                    </a>
+                     
                 </form>
+                
             </div>
+            <!-- Boton crear nueva actividad -->
+                <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF" style="margin-left:7em">
+                    <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
+                </a>   
         </div>
 
 <!--        <div class="boton_new" style="float:left;">
