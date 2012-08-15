@@ -4,7 +4,7 @@
 <?php end_slot(); ?>
 
 <?php slot('title') ?>
-    <?php echo "Notas" ?>
+    <div id="prueba"><?php echo "Notas" ?></div>
 <?php end_slot(); ?>
 
 <?php slot('nota-css') ?>
@@ -18,7 +18,7 @@
             <div class="titulo_head_panel">
                 <p>Ingreso de Notas</p>
             </div>
-            <div class="extra_head_panel">
+            <div id="info_materia" class="extra_head_panel">
                <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
             </div>
     </div>
@@ -76,12 +76,14 @@
                                     
                                 }
                             }
-                            
                         }?>
-                        
                         <input name="modulo" type="text" value="<?php echo $sf_context->getModuleName() ?>" style="display: none" />
                         <input name="accion" type="text" value="<?php echo $sf_context->getActionName() ?>" style="display: none" />
                     </select>
+                     <!-- Boton crear nueva actividad -->
+                    <a href="" class="button rounded black" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
+                        <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
+                    </a>
                 </form>
             </div>
         </div>
@@ -157,13 +159,13 @@
     
     <div class="tableScroll" style="margin-top: 1em">
             <table class="tabla" cellspacing="0">
-                <thead>
+                <thead id="titulos">
                     <tr>
                         <td>Literales</td>
                         <td>Descripción</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="info">
                      <?php 
                         if(isset ($literal)){
                             $i=1;
@@ -188,4 +190,33 @@
                 });
             </script>"
         ?>
+     <!-- Script para guardar las consultas en pdf -->
+        <script type="text/javascript">
+            $().ready(function() {
+
+                //seteamos el evento click al boton, usamos un form oculto para enviar el requirimiento al servidor.
+                $('#pdf').click(function(){
+                var f = document.createElement('form');
+                f.style.display = 'none';
+                this.parentNode.appendChild(f);
+                f.method = 'post';
+                //colocamos el action que se va a invocar cuando se haga click
+                f.action = '<?php echo url_for('Nota/guardarPdf',array('target'=>'_blank'))?>';
+                //en la variable m se guarda el “html” de las secciones de la página que se van a guardar como pdf.      
+                var m = document.createElement('input');
+                var info_paralelo = $('#info_paralelo').html();
+                var info_materia = $('#info_materia').html();
+                var titulos = $('#titulos').html();
+                var a1 = $('#info').html();
+                var prueba = $('#prueba').html();
+                m.setAttribute('type', 'hidden');
+                m.setAttribute('name', 'html');
+                m.setAttribute('value',prueba+info_materia+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
+                f.appendChild(m);      
+                f.submit();
+                
+                return false;
+                });
+              });
+        </script> 
 </div>
