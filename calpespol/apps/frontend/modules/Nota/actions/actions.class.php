@@ -20,59 +20,68 @@ class NotaActions extends sfActions
     if(isset ($user) && $user)
         //$this->curso = Curso::getParalelosOfUsuarioByMateria($this->getUser()->getMateriaActual(), $user->getIdusuario());
         $this->curso =  $this->getUser ()->getParalelos();
-    $this->usuario = Doctrine_Query::create()
-            ->from('Usuario u')
-            ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
-            ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
-            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
-            ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario') 
-            ->where('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->andWhere('c.anio=?', '2012')
-            ->andWhere('c.termino=?', '1')
-            ->andWhere('ru.nombre=?', 'Estudiante')
-            ->execute();
-     $this->grupos = Doctrine_Query::create()
-            ->from('Grupo g')
-            ->innerJoin('g.Estudiantegrupo eg on eg.idgrupo=g.idgrupo')
-            ->innerJoin('eg.UsuarioCurso uc on eg.id_estudiante=uc.id_usuario_curso')
-            ->innerJoin('uc.Curso c on uc.id_curso = c.idCurso')
-            ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
-            ->where('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->execute();
-     
-    $this->tipo_actividad = Doctrine_Query::create()
-            ->from('TipoActividad ta')
-            ->innerJoin('ta.Curso c on c.idCurso = ta.id_curso')
-            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
-             ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
-            ->execute();           
-    
-    $this->id_tipo_actividad = 
-    Tipoactividad::getIdTipoActividadByName($this->getUser()->getMateriaActual(),
-                                            $this->getUser()->getTipoActividadActual());
-    
-    $this->actividad = Doctrine_Query::create()
-            ->from('Actividad a')
-            ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
-            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
-            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
-            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
-            ->execute();
-    
-   $this->esgrupal = Doctrine_Query::create()
-            ->from('tipoActividad ta')
-            ->innerJoin('ta.Curso c ON ta.id_curso = c.idCurso')
-            ->innerJoin('c.Materia m ON c.id_materia = m.idMateria')
-            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
-            ->execute();
-    
-    $this->literal = 
-    Literal::getLiteralesXTipoActividadMateria(
-            $this->id_tipo_actividad[0]->getIdTipoActividad(),
-            $this->getUser()->getActividadActual(),
-            $this->getUser()->getMateriaActual());
-         
-  }
+        $this->usuario = Doctrine_Query::create()
+                ->from('Usuario u')
+                ->innerJoin('u.UsuarioCurso uc on uc.id_usuario=u.idUsuario')
+                ->innerJoin('uc.Curso c on uc.id_curso=c.idCurso')
+                ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+                ->innerJoin('uc.Rolusuario ru on uc.id_rol=ru.idrolusuario') 
+                ->where('m.nombre=?',$this->getUser()->getMateriaActual())
+                ->andWhere('c.anio=?', '2012')
+                ->andWhere('c.termino=?', '1')
+                ->andWhere('ru.nombre=?', 'Estudiante')
+                ->execute();
+        
+        $this->grupos = Doctrine_Query::create()
+                ->from('Grupo g')
+                ->innerJoin('g.Estudiantegrupo eg on eg.idgrupo=g.idgrupo')
+                ->innerJoin('eg.UsuarioCurso uc on eg.id_estudiante=uc.id_usuario_curso')
+                ->innerJoin('uc.Curso c on uc.id_curso = c.idCurso')
+                ->innerJoin('c.Materia m on c.id_materia=m.idMateria')
+                ->where('m.nombre=?',$this->getUser()->getMateriaActual())
+                ->execute();
+
+        $this->tipo_actividad = Doctrine_Query::create()
+                ->from('TipoActividad ta')
+                ->innerJoin('ta.Curso c on c.idCurso = ta.id_curso')
+                ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+                ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+                ->execute();           
+
+        $this->id_tipo_actividad = 
+        Tipoactividad::getIdTipoActividadByName($this->getUser()->getMateriaActual(),
+                                                $this->getUser()->getTipoActividadActual());
+      
+        $this->actividad = Doctrine_Query::create()
+                ->from('Actividad a')
+                ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad ='.$this->id_tipo_actividad[0]->getIdTipoActividad())
+                ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
+                ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+                ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+                ->execute();
+
+        $this->esgrupal = Doctrine_Query::create()
+                ->from('tipoActividad ta')
+                ->innerJoin('ta.Curso c ON ta.id_curso = c.idCurso')
+                ->innerJoin('c.Materia m ON c.id_materia = m.idMateria')
+                ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+                ->execute();
+
+        if($this->actividad->count() < 2){
+            $this->literal = 
+                Literal::getLiteralesXTipoActividadMateria(
+                $this->id_tipo_actividad[0]->getIdTipoActividad(),
+                $this->actividad[0]->getNombre(), 
+                $this->getUser()->getMateriaActual());
+        }else{
+            $this->literal = 
+                Literal::getLiteralesXTipoActividadMateria(
+                $this->id_tipo_actividad[0]->getIdTipoActividad(),
+                $this->getUser()->getActividadActual(),
+                $this->getUser()->getMateriaActual());
+        }
+             
+    }
 
   public function executeTiposactividad(sfWebRequest $request){
       $this->variable=(isset($_POST['lista_tipos'])) ? $_POST['lista_tipos'] : '';

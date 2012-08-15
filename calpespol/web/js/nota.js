@@ -10,6 +10,8 @@
 
 $(document).ready(function(){
     
+   var inputIdUser = $("#idUsuario");      //referencia del textfield a validar 
+    
    $("#tipo_seleccionado").change(function(){
        $("form#form_tipos").submit();
    });
