@@ -125,7 +125,11 @@
                                     echo "<td>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                                      <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
+                                                  </td>";
+                                            
+                                            
                                         }
                                     }
                                     echo "<td>".$total."</td>";
@@ -141,7 +145,9 @@
                                     echo "<td>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'></td>";
+                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                                      <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
+                                                  </td>";
                                         }
 
                                     }
@@ -151,11 +157,7 @@
                            }
                             
                         }
-                        
-//                        if (!$esgrupal[0]->getEsGrupal()) {
-//                            
-//                        }
-                        
+                            
                     ?>
                 </tbody>
             </table>

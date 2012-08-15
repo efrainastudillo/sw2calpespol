@@ -23,11 +23,12 @@ $(document).ready(function(){
    $(".nota_literal").on(
    
         "blur", function() {
-            if(!validarNumero($(this).val())){
-                alert("chao");
+            if((!validarNumero($(this).val())) | ($(this).val() > parseInt($(this).next().val()))){
+                alert("Ingrese un valor de nota válido por favor");
                 $(this).css("background-color","red");
+            }else{
+                $(this).css("background-color","white");
             }
-
         }
    );
    
