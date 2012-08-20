@@ -53,17 +53,70 @@ class MateriaActions extends sfActions
   {
       $nombre=$request->getParameter("nombre");
       $codigo=$request->getParameter("codigo");
-      $profesor=$request->getParameter("profesor");
+      $user_profesor=$request->getParameter("profesor");
+      $paralelo=$request->getParameter("paralelo");
       $tipo=$request->getParameter("tipo");
-      if(tipo=="Nombre"){
-        $materia=new Materia();
-        $materia->setNombre($nombre);
-        $materia->setCodigoMateria($nombre);
-        $curso=new Curso();
-        $curso->setMateria($materia);
-        $materia->save();
+      $materia = null;
+      if("Nombre"==$tipo){
+        $materias = Doctrine_Query::create()
+          ->from('Materia m')
+          ->where('m.nombre = ?', $nombre)
+          ->execute();
+        $materia = $materias[0];
+      }else{
+        $materias = Doctrine_Query::create()
+          ->from('Materia m')
+          ->where('m.codigo_materia = ?', $codigo)
+          ->execute();
+        $materia = $materias[0];
       }
-      $this->getUser()->setFlash('materia_creada','Materia Creada Exitosamente');
+      if(null==$materia){
+        $materia = new Materia();
+        $materia->setNombre(($tipo=="Nombre")?$nombre:$this->getNombreFromCodigo($codigo));
+        $materia->setCodigoMateria(($tipo=="Nombre")?$nombre:$codigo);
+      }
+      $curso=new Curso();
+      $curso->setMateria($materia);
+      $curso->setAnio(Utility::getAnio());
+      $curso->setTermino(Utility::getTermino());
+      $curso->setParalelo($paralelo);
+      $profesores = Doctrine_Query::create()
+          ->from('Usuario u')
+          ->where('u.usuario_espol = ?', $user_profesor)
+          ->execute();
+      $profesor = $profesores[0];
+      if(null==$profesor){
+          $profesor = new Usuario();
+          $profesor->setUsuarioEspol($user_profesor);
+      }
+      $estudiante = new UsuarioCurso();
+      $estudiante->setCurso($curso);
+      $estudiante->setRolusuario($this->getIDRol("Profesor"));
+      $estudiante->setUsuario($profesor);
+      $estudiante->save();
+      $this->getUser()->setFlash('materia_creada','Curso Creado Exitosamente');
       $this->redirect("Materia/index");
   }
+  
+  private function getNombreFromCodigo($codigo){
+      
+  }
+    
+    /**
+     * Dado el nombre de un rol en forma de string devuelve
+     * el id del mismo en caso que no exista retornará -1
+     * @param string $nombre_rol Contiene el nombre del rol
+     * @return integer contiene el id del rol
+     */
+    private function getIDRol($nombre_rol){
+        try {
+            $roles = Doctrine_Core::getTable('Rolusuario')
+                    ->createQuery('r')
+                    ->where('r.nombre = ?',$nombre_rol)
+                    ->execute();
+            return $roles[0]->getIdrolusuario();
+        }  catch (Exception $e){
+            return -1;
+        }
+    }
 }
