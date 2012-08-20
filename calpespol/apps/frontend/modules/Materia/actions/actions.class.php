@@ -70,7 +70,7 @@ class MateriaActions extends sfActions
           ->execute();
         $materia = $materias[0];
       }
-      if(null==$materia){
+      if(null==$materia->getIdmateria()){
         $materia = new Materia();
         $materia->setNombre(($tipo=="Nombre")?$nombre:$this->getNombreFromCodigo($codigo));
         $materia->setCodigoMateria(($tipo=="Nombre")?"00000":$codigo);
@@ -80,16 +80,14 @@ class MateriaActions extends sfActions
       $curso->setAnio(Utility::getAnio());
       $curso->setTermino(Utility::getTermino());
       $curso->setParalelo($paralelo);
+      $profesor = new Usuario();
+      $profesor->setUsuarioEspol($user_profesor);
       $profesores = Doctrine_Query::create()
           ->from('Usuario u')
           ->where('u.usuario_espol = ?', $user_profesor)
           ->execute();
-      $profesor = $profesores[0];
-      if(null==$profesor){
-          $profesor = new Usuario();
-          $profesor->setUsuarioEspol($user_profesor);
-      }
-      $curso->setProfesor($profesor);
+      if(null!=$profesores[0]->getUsuarioEspol())
+          $profesor = $profesores[0];
       $estudiante = new UsuarioCurso();
       $estudiante->setCurso($curso);
       $estudiante->setIdRol($this->getIDRol("Profesor"));
@@ -97,6 +95,14 @@ class MateriaActions extends sfActions
       $estudiante->save();
       $this->getUser()->setFlash('materia_creada','Curso Creado Exitosamente');
       $this->redirect("Materia/index");
+  }
+  
+  public function executeEdit(sfWebRequest $request){
+      $tmp = Doctrine_Query::create()
+          ->from('Curso c')
+          ->where('c.idcurso = ?', $request->getParameter("id"))
+          ->execute();
+      $this->curso = $tmp[0];
   }
   
   private function getNombreFromCodigo($codigo){
