@@ -73,7 +73,7 @@ class MateriaActions extends sfActions
       if(null==$materia){
         $materia = new Materia();
         $materia->setNombre(($tipo=="Nombre")?$nombre:$this->getNombreFromCodigo($codigo));
-        $materia->setCodigoMateria(($tipo=="Nombre")?$nombre:$codigo);
+        $materia->setCodigoMateria(($tipo=="Nombre")?"00000":$codigo);
       }
       $curso=new Curso();
       $curso->setMateria($materia);
@@ -89,9 +89,10 @@ class MateriaActions extends sfActions
           $profesor = new Usuario();
           $profesor->setUsuarioEspol($user_profesor);
       }
+      $curso->setProfesor($profesor);
       $estudiante = new UsuarioCurso();
       $estudiante->setCurso($curso);
-      $estudiante->setRolusuario($this->getIDRol("Profesor"));
+      $estudiante->setIdRol($this->getIDRol("Profesor"));
       $estudiante->setUsuario($profesor);
       $estudiante->save();
       $this->getUser()->setFlash('materia_creada','Curso Creado Exitosamente');

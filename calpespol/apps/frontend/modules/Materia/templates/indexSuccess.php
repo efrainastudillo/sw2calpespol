@@ -57,11 +57,8 @@
                                 echo "<td>".$consulta[$i]->getRolusuario()->getNombre()."</td>";                        
                                 echo "<td>";
                               if($consulta[$i]->getRolusuario()->getNombre()=="Profesor"){
-                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Curso/edit?id='.
+                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Materia/edit?id='.
                                         $consulta[$i]->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
-                                echo '&nbsp &nbsp' ;
-                                echo link_to(image_tag('/images/delete_2.png', 'size=18x18'), 'Curso/delete?id='.
-                                        $consulta[$i]->getCurso()->getIdcurso(), array('post=true','method' => 'delete', 'confirm' => 'Esta seguro que quiere Eliminar?','title'=>'Eliminar Materia'));              
                               }
                                 echo "</td>";
                             echo "</tr>";
