@@ -180,7 +180,8 @@ class NotaActions extends sfActions
         throw new sfStopException();
      }
      
-     public function executeGuardarNotas(sfWebRequest $request){
+     public function executeGuardarNota(sfWebRequest $request){
 
+         $this -> redirect('Nota/index');
      }
 }
