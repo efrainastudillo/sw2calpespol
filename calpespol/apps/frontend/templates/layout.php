@@ -13,7 +13,7 @@
     <?php echo stylesheet_tag('favicon.png',array('type'=>'image/png','rel'=>'shortcut icon')) ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos();?>
+    <?php $materias = $sf_user->getMaterias(); $paralelos=$sf_user->getParalelos(); ?>
   </head>
   <body>
       

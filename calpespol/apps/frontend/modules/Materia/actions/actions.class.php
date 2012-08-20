@@ -19,7 +19,6 @@ class MateriaActions extends sfActions
   {
       if($this->getUser()->getUserEspol()!=null){
         $this->consulta = Doctrine_Query::create()
-//          ->select('c.idcurso as idcurso, m.nombre as nombre, c.paralelo as paralelo, r.nombre as rol')
           ->from('UsuarioCurso uc')
           ->innerJoin('uc.Usuario u')
           ->innerJoin('uc.Curso c')
@@ -27,19 +26,19 @@ class MateriaActions extends sfActions
           ->innerJoin('c.Materia m')
           ->where('u.usuario_espol = ?', $this->getUser()->getUserEspol())
           ->execute();
-        /*if(sizeof($this->consulta)!=0){
-            $cursos = array();
-            for($i=0;$i<sizeof($this->consulta);$i++)
-                array_push($cursos, $this->consulta[$i]->idcurso);
-            $this->profesores = Doctrine_Query::create()
-              ->select('CONCAT(u.nombre," ",u.apellido) as profesor')
-              ->from('UsuarioCurso uc')
-              ->addFrom('uc.Usuario u')
-              ->addFrom('uc.Rolusuario r')
-              ->where('r.nombre = ?', 'Profesor')
-              ->andWhereIn('uc.id_curso', $cursos)
-              ->execute();
-        }*/
+        if(sizeof($this->consulta)!=0){
+            $this->profesores = array();
+            foreach($this->consulta as $row){
+                $tmp = Doctrine_Query::create()
+                  ->from('UsuarioCurso uc')
+                  ->addFrom('uc.Usuario u')
+                  ->addFrom('uc.Rolusuario r')
+                  ->where('r.nombre = ?', 'Profesor')
+                  ->andWhere('uc.id_curso = ?', $row->getCurso()->getIdcurso())
+                  ->execute();
+                array_push($this->profesores, ($tmp==null)?"":$tmp[0]->getUsuario()->getNombre()." ".$tmp[0]->getUsuario()->getApellido());
+            }
+        }
       }else
         $this->redirect('Inicio/index');
         
@@ -49,47 +48,76 @@ class MateriaActions extends sfActions
   {
       
   }
+  
   public function executeCreate(sfWebRequest $request)
   {
-      $nombre=$request->getParameter("nombres");
+      $nombre=$request->getParameter("nombre");
       $codigo=$request->getParameter("codigo");
-      
-      $materia=new Materia();
-      $materia->setNombre($nombre);
-      $materia->setCodigoMateria($codigo);
-      $materia->save();
-      $this->getUser()->setFlash('materia_creada','Materia Creada Exitosamente');
+      $user_profesor=$request->getParameter("profesor");
+      $paralelo=$request->getParameter("paralelo");
+      $tipo=$request->getParameter("tipo");
+      $materia = null;
+      if("Nombre"==$tipo){
+        $materias = Doctrine_Query::create()
+          ->from('Materia m')
+          ->where('m.nombre = ?', $nombre)
+          ->execute();
+        $materia = $materias[0];
+      }else{
+        $materias = Doctrine_Query::create()
+          ->from('Materia m')
+          ->where('m.codigo_materia = ?', $codigo)
+          ->execute();
+        $materia = $materias[0];
+      }
+      if(null==$materia){
+        $materia = new Materia();
+        $materia->setNombre(($tipo=="Nombre")?$nombre:$this->getNombreFromCodigo($codigo));
+        $materia->setCodigoMateria(($tipo=="Nombre")?"00000":$codigo);
+      }
+      $curso=new Curso();
+      $curso->setMateria($materia);
+      $curso->setAnio(Utility::getAnio());
+      $curso->setTermino(Utility::getTermino());
+      $curso->setParalelo($paralelo);
+      $profesores = Doctrine_Query::create()
+          ->from('Usuario u')
+          ->where('u.usuario_espol = ?', $user_profesor)
+          ->execute();
+      $profesor = $profesores[0];
+      if(null==$profesor){
+          $profesor = new Usuario();
+          $profesor->setUsuarioEspol($user_profesor);
+      }
+      $curso->setProfesor($profesor);
+      $estudiante = new UsuarioCurso();
+      $estudiante->setCurso($curso);
+      $estudiante->setIdRol($this->getIDRol("Profesor"));
+      $estudiante->setUsuario($profesor);
+      $estudiante->save();
+      $this->getUser()->setFlash('materia_creada','Curso Creado Exitosamente');
       $this->redirect("Materia/index");
   }
-  public function executeDelete(sfWebRequest $request)
-  {
-       $id=$request->getParameter("id");
-       $m=Doctrine_Query::create()
-               ->from("Materia m")
-               ->where('m.idmateria=?',$id)
-               ->fetchOne();
+  
+  private function getNombreFromCodigo($codigo){
       
-      
-           $m->delete();
-           $this->getUser()->setFlash('materia_creada','Materia Eliminada Exitosamente');
-    
-       $this->redirect("Materia/index");
   }
-  
-  
     
     /**
-     * Función que permite obtener el rol del usuario en el curso actual.
-     * @return Rolusuario
+     * Dado el nombre de un rol en forma de string devuelve
+     * el id del mismo en caso que no exista retornará -1
+     * @param string $nombre_rol Contiene el nombre del rol
+     * @return integer contiene el id del rol
      */
-    private function getActualRol(){
-        $id_curso = Curso::getCursoByParaleloAndMateria($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual())->getIdcurso();
-        $id_usuario = $this->getUser()->getUserDB()->getIdusuario();
-        $temp =  Doctrine_Core::getTable('UsuarioCurso')
-                ->createQuery('uc')
-                ->where('uc.id_curso = ?', $id_curso)
-                ->andWhere('uc.id_usuario = ?', $id_usuario)
-                ->execute();
-        return $temp[0]->getRolusuario();
+    private function getIDRol($nombre_rol){
+        try {
+            $roles = Doctrine_Core::getTable('Rolusuario')
+                    ->createQuery('r')
+                    ->where('r.nombre = ?',$nombre_rol)
+                    ->execute();
+            return $roles[0]->getIdrolusuario();
+        }  catch (Exception $e){
+            return -1;
+        }
     }
 }

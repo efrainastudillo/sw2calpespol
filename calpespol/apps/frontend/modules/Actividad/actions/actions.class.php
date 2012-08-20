@@ -34,6 +34,13 @@ class ActividadActions extends sfActions{
                 ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
                 ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
                 ->execute();
+//          $this->a = Doctrine_Query::create()
+//            ->from('Actividad a')
+//            ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad = ta.idtipoactividad')
+//            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
+//            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
+//            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
+//            ->execute();
       }
       
     /**
@@ -66,7 +73,9 @@ class ActividadActions extends sfActions{
         $parcial=$request->getParameter('parcial');
         $grade = $request->getParameter('ponderacion');
         //Obteniendo datos de la DB
-        $this->c = Doctrine_Query::create()
+        $this->c=Curso::getCursoByParaleloAndMateria
+            ($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+        /*$this->c = Doctrine_Query::create()
             ->select ('c.idcurso')
             ->from('Curso c')
             ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
@@ -75,10 +84,10 @@ class ActividadActions extends sfActions{
             ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
             ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
             ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->execute();
+            ->execute();*/
         //Ingresando los datos a la base
         $newtipoacti = new Tipoactividad();
-        $newtipoacti ->setCurso($this->c[0]);
+        $newtipoacti ->setCurso($this->c);
         $newtipoacti ->setNombre($tiact);
         $newtipoacti ->setValorPonderacion($grade);
         $newtipoacti ->setParcial($parcial);
@@ -164,10 +173,10 @@ class ActividadActions extends sfActions{
      }
 
   public function executeUpdate(sfWebRequest $request){
-      /*$id=$request->getParameter("id");
+      $id=$request->getParameter("id");
       $tipo=$request->getParameter("tipo");
       $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega=$request->getParameter("fecha");
+      $fecha_entrega = explode("-",$request->getParameter("fecha"));
      // $this->f=( $fecha_entrega);
       $nota=$request->getParameter("nota");
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
@@ -178,15 +187,20 @@ class ActividadActions extends sfActions{
               ->from('Actividad a')
               ->where('a.idactividad=?',$id)
               ->fetchOne();
+      //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
+      $anio_fecha_entrega = $fecha_entrega[0];
+      $mes_fecha_entrega = $fecha_entrega[1];
+      $dia_fecha_entrega = $fecha_entrega[2];
+      $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
       
       $actividad->setNombre($descripcion);     
       $actividad->setTipoactividad($t);
-      $actividad->setFechaEntrega($fecha_entrega);
+      $actividad->setFechaEntrega($nueva_fecha_entrega);
       $actividad->setNota($nota);
       $actividad->save();
       
       $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');
-      $this->redirect("Actividad/index");*/
+      $this->redirect("Actividad/index");
   }
   
     /**
@@ -240,10 +254,21 @@ class ActividadActions extends sfActions{
   
     /*                      LITERALES                 */ 
   
+  /**
+     * Descripción: Función que me permite ir al popup nuevo literal
+     * @param sfWebRequest $request
+     */
   public function executeNewliteral(sfWebRequest $request){  
       $this -> id_actividad_literal = $request->getParameter('idActividad');
   }
   
+  /**
+     * Descripción: Función que me permite guardar un literal
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se ingresa los valores correctos los datos no se guardan en base.
+     * @param sfWebRequest $request
+     */
   public function executeSaveLiteral(sfWebRequest $request)
   {
       $item = new Literal();
@@ -257,6 +282,10 @@ class ActividadActions extends sfActions{
       $this -> redirect('Actividad/index');
   }
   
+  /**
+     * Descripción: Función que me permite eliminar un literal de la base de datos
+     * @param sfWebRequest $request
+     */
   public function executeDeleteLiteral(sfWebRequest $request)
   {
       $id = $request->getParameter('id');
@@ -265,4 +294,60 @@ class ActividadActions extends sfActions{
       $this->getUser() -> setFlash('mensaje', 'Literal Eliminado Correctamente');
       $this->redirect('Actividad/index');
   }
+  
+  /**
+     * Descripción: Función que me permite editar e ingresar los datos
+     * del form a la base da datos.
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
+     public function executeEditarTipoActividad(sfWebRequest $request){
+     
+        $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
+                  ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
+
+        $this->forward404Unless($this->actividad);
+     }
+     
+     public function executeActualizarTipoActividad(sfWebRequest $request){
+        $id=$request->getParameter("id");
+        $tiact = $request->getParameter('nombre');
+        $tireal = $request->getParameter('realizacion');
+        $extra= $request->getParameter('tipo');
+        $parcial=$request->getParameter('parcial');
+        $grade = $request->getParameter('ponderacion');
+        //Obteniendo datos de la DB
+        $this->c=Curso::getCursoByParaleloAndMateria
+            ($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
+        //Obteniendo el id para modificar solo ese tipo de actividad
+        $newtipoacti=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
+              ->from('Tipoactividad ta')
+              ->where('ta.idactividad=?',$id)
+              ->fetchOne();
+        //Ingresando los datos a la base
+        $newtipoacti ->setCurso($this->c);
+        $newtipoacti ->setNombre($tiact);
+        $newtipoacti ->setValorPonderacion($grade);
+        $newtipoacti ->setParcial($parcial);
+        //Ingresando 0 si es individual o 1 si es grupal
+        if (strcmp($tireal, 'Individual'))
+            $newtipoacti ->setEsGrupal(1);
+        else
+            $newtipoacti ->setEsGrupal(0);       
+        //Ingresando 0 si es Ordinaria o 1 si es Extra
+        if (strcmp($tireal, 'Extraordinaria'))
+            $newtipoacti ->setEsExtra(1);
+        else
+            $newtipoacti ->setEsExtra(0);
+        //Ingresando datos por default //Preguntar
+        /*$newtipoacti ->setTieneFactor1(0);
+        $newtipoacti ->setTieneFactor2(0);*/
+        //Guardando el tipo actividad en la DB
+        $newtipoacti->save();
+        $this->getUser()->setFlash('actividad_grabada', 'Tipo Actividad Guardada Exitosamente');
+        $this->redirect("Actividad/newactividad");
+  }
+
 }

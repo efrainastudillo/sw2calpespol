@@ -6,10 +6,6 @@
 homepage:
   url:   /
   param: { module: default, action: index }
-
-default_index:
-  url:    /:module
-  param: { module: :module, action: index }
   
 default:
   url:   /:module/:action/*

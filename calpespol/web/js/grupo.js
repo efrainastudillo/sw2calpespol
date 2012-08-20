@@ -101,8 +101,8 @@ function agregarEstudianteAGrupo(idgrupo){
                             var mensaje = ajax.responseText;
                             mensaje = mensaje.substring(mensaje.indexOf("div_contenedor_template"), mensaje.length)
                             mensaje = mensaje.substring(mensaje.indexOf(">")+1, mensaje.indexOf("</div>"))
+                            window.open('index','_self');
                             jAlert(mensaje, 'CALPESPOL');
-                            //window.open('index','_self');
 			}
 		}
 		ajax.open("GET","add?"+txt,true);

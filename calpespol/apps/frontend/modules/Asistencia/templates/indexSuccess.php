@@ -69,7 +69,7 @@ end_slot();
         <div class="boton_new" title="Crear Nueva Asistencia">           
             <a href="" class="button" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
                 <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
-            </a> 
+            </a--> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div class="tableScroll">

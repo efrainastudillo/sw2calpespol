@@ -4,7 +4,24 @@
 <?php slot('title') ?>
     <?php echo "Grupo" ?>
 <?php end_slot(); ?>
-
+<div class="panel">
+    <div class="head_panel">
+        
+        <div class="titulo_head_panel">
+            <p>Grupos</p>  
+            
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Paralelo: ".$sf_user->getParaleloActual()."</p>"; ?>
+        </div>
+        
+        <div class="extra_head_panel">
+            <?php echo "<p>Materia: ".$sf_user->getMateriaActual()."</p>"; ?>
+        </div>   
+    </div>
+    <br/>
+    <div class="body_panel">
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
 		$('#grupo_tabla').dataTable( {
@@ -40,3 +57,5 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+    </div>
+</div>

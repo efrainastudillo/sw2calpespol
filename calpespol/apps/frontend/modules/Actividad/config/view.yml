@@ -41,3 +41,9 @@ actividadSuccess:
   javascripts:    [tipoactividad.js]
   has_layout:     true
   layout:         layout
+  
+editartipoactividadSuccess:
+  stylesheets:    [modulo/actividad/actividad.css]
+  javascripts:    [tipoactividad.js]
+  has_layout:     true
+  layout:         layout

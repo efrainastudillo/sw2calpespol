@@ -27,7 +27,7 @@ class Curso extends BaseCurso
     }
     public static function getCursoByParaleloAndMateria($paralelo,$materia){
         $q=Doctrine_Query::create()
-                ->select("")
+                ->select('c.idcurso')//""
                 ->from('Curso c')
                 ->innerJoin('c.Materia m ON c.id_materia=m.idmateria')
                 ->where('c.anio=?',  Utility::getAnio())
