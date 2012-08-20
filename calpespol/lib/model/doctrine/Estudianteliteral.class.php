@@ -12,5 +12,5 @@
  */
 class Estudianteliteral extends BaseEstudianteliteral
 {
-
+    
 }

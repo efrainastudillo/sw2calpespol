@@ -122,7 +122,7 @@
                             if (isset($grupos)) {
                                 foreach ($grupos as $g) {
                                     echo "<tr>";
-                                    echo "<td class='estudiante'>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
+                                    echo "<td class='grupo_estudiante'>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
                                             echo "<td><input type='text' class='nota_literal_grupo' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
@@ -139,17 +139,15 @@
                         }else{
                             
                             if (isset($usuario)) {
-                    
                                 foreach ($usuario as $us) {
                                     echo "<tr>";
-                                    echo "<td>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
+                                    echo "<td class='estudiante'>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                            echo "<td><input type='text' name='nota_literal' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
                                                       <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
                                                   </td>";
                                         }
-
                                     }
                                     echo "<td>"."0"."</td>";
                                     echo "</tr>";
@@ -182,15 +180,15 @@
                                     echo "<td>" . "Literal ". $i++ ." (" . $lit->getValorPonderacion() . ")" . "</td>";
                                     echo "<td>".$lit->getNombre_literal()."</td>";
                                 echo "</tr>";
+                               
                             }
                         }
                     ?>
                 </tbody>    
             </table>
         </div>
-
         <!-- Boton para guardar las notas -->
-        <a href="" class="button rounded black" id="guardar_notas" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
+        <a href="<?php echo url_for('Nota/guardarNota',array('target'=>'_blank'))?>" class="button rounded black" id="guardar_notas" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
             <?php echo image_tag('save.png', 'size=15x15')?> Guardar Notas
         </a>
     
@@ -209,29 +207,30 @@
 
                 //seteamos el evento click al boton, usamos un form oculto para enviar el requirimiento al servidor.
                 $('#pdf').click(function(){
-                var f = document.createElement('form');
-                f.style.display = 'none';
-                this.parentNode.appendChild(f);
-                f.method = 'post';
-                //colocamos el action que se va a invocar cuando se haga click
-                f.action = '<?php echo url_for('Nota/guardarPdf',array('target'=>'_blank'))?>';
-                //en la variable m se guarda el “html” de las secciones de la página que se van a guardar como pdf.      
-                var m = document.createElement('input');
-                var info_paralelo = $('#info_paralelo').html();
-                var info_materia = $('#info_materia').html();
-                var titulos = $('#titulos').html();
-                var titulos2 = $('#titulos2').html();
-                var estudiante = $('#estudiante').html();
-                var a1 = $('#info').html();
-                var prueba = $('#prueba').html();
-                m.setAttribute('type', 'hidden');
-                m.setAttribute('name', 'html');
-                m.setAttribute('value',prueba+info_materia+'<table border="1">'+titulos2+'<br/>'+estudiante+'<br/>'+'</table>'+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
-                f.appendChild(m);      
-                f.submit();
-                
-                return false;
+                    var f = document.createElement('form');
+                    f.style.display = 'none';
+                    this.parentNode.appendChild(f);
+                    f.method = 'post';
+                    //colocamos el action que se va a invocar cuando se haga click
+                    f.action = '<?php echo url_for('Nota/guardarPdf',array('target'=>'_blank'))?>';
+                    //en la variable m se guarda el “html” de las secciones de la página que se van a guardar como pdf.      
+                    var m = document.createElement('input');
+                    var info_paralelo = $('#info_paralelo').html();
+                    var info_materia = $('#info_materia').html();
+                    var titulos = $('#titulos').html();
+                    var titulos2 = $('#titulos2').html();
+                    var estudiante = $('#estudiante').html();
+                    var a1 = $('#info').html();
+                    var prueba = $('#prueba').html();
+                    m.setAttribute('type', 'hidden');
+                    m.setAttribute('name', 'html');
+                    m.setAttribute('value',prueba+info_materia+'<table border="1">'+titulos2+'<br/>'+estudiante+'<br/>'+'</table>'+'<table border="1">'+titulos+'<br/>'+a1+'</table>');
+                    f.appendChild(m);      
+                    f.submit();
+
+                    return false;
                 });
+                
               });
         </script> 
 </div>
