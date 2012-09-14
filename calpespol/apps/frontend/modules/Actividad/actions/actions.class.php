@@ -167,7 +167,7 @@ class ActividadActions extends sfActions{
       $id=$request->getParameter("id");
       $tipo=$request->getParameter("tipo");
       $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega = explode("-",$request->getParameter("fecha"));
+      $fecha_entrega = explode("/",$request->getParameter("fecha"));
      // $this->f=( $fecha_entrega);
       $nota=$request->getParameter("nota");
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
@@ -179,9 +179,9 @@ class ActividadActions extends sfActions{
               ->where('a.idactividad=?',$id)
               ->fetchOne();
       //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
-      $anio_fecha_entrega = $fecha_entrega[0];
-      $mes_fecha_entrega = $fecha_entrega[1];
-      $dia_fecha_entrega = $fecha_entrega[2];
+      $anio_fecha_entrega = $fecha_entrega[2];
+      $mes_fecha_entrega = $fecha_entrega[0];
+      $dia_fecha_entrega = $fecha_entrega[1];
       $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
       
       $actividad->setNombre($descripcion);     
