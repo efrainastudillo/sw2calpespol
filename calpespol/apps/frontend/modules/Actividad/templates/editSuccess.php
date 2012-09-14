@@ -81,7 +81,7 @@
                   </tr>
                   <tr>
                       <th>Fecha de entrega:</th>
-                      <td><input id="fecha" name="fecha" type="text"  value="<?php echo $actividad->getFechaEntrega()?>"/></td>
+                      <td><input id="fecha" name="fecha" type="date"  value="<?php echo $actividad->getFechaEntrega()?>"/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                   <tr>
