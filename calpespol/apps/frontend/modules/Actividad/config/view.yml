@@ -37,12 +37,14 @@ editSuccess:
   layout:         layout
   
 actividadSuccess:
+  
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [tipoactividad.js]
   has_layout:     true
   layout:         layout
   
-editartipoactividadSuccess:
+editarSuccess:
+  
   stylesheets:    [modulo/actividad/actividad.css]
   javascripts:    [tipoactividad.js]
   has_layout:     true

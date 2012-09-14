@@ -16,7 +16,7 @@
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
-<?php use_javascript('actividad.js') ?>
+<?php use_javascript('tipoactividad.js') ?>
 <?php use_stylesheet("modulo/actividad/actividad.css")?>
 
 <div class="panel">
@@ -58,7 +58,7 @@
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="formulario" action="<?php echo url_for('Actividad/actualizartipoactividad') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/actualizartipo') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
