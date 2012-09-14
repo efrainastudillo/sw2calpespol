@@ -144,7 +144,8 @@ class ActividadActions extends sfActions{
         $actividad->setTipoactividad($t);
         $actividad->setNombre($descripcion);
         $actividad->setFechaEntrega($nueva_fecha_entrega);
-        $actividad->setNota($nota);
+        $actividad->setNota(0);
+        //$actividad->setNota($nota);
         $actividad->save();
 
         $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
@@ -172,6 +173,13 @@ class ActividadActions extends sfActions{
         $this->forward404Unless($this->actividad);
      }
 
+    /**
+     * Descripción: Función que me permite actualizar los datos de una actividad
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
   public function executeUpdate(sfWebRequest $request){
       $id=$request->getParameter("id");
       $tipo=$request->getParameter("tipo");
@@ -196,7 +204,8 @@ class ActividadActions extends sfActions{
       $actividad->setNombre($descripcion);     
       $actividad->setTipoactividad($t);
       $actividad->setFechaEntrega($nueva_fecha_entrega);
-      $actividad->setNota($nota);
+      $actividad->setNota(0);
+      //$actividad->setNota($nota);
       $actividad->save();
       
       $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');
@@ -303,8 +312,12 @@ class ActividadActions extends sfActions{
      *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
      * @param sfWebRequest $request
      */
-     public function executeEditarTipoActividad(sfWebRequest $request){
-     
+     public function executeEditar(sfWebRequest $request){
+        $this->actividad = Doctrine_Query::create()
+                ->from('Actividad a')
+                ->where('a.idactividad = ?', $request->getParameter("id"))
+                ->fetchOne();
+
         $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
                   ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
 

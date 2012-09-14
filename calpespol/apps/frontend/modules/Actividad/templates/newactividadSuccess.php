@@ -70,7 +70,7 @@
                           <?php echo link_to(image_tag('/images/add.png', 'size=18x18'), 'Actividad/newtipoactividad'
                                   , array('post=true','confirm' => 'Esta seguro que quiere crear \n un nuevo Tipo de Actividad?','align'=>'top','title'=>'Crear Tipo de Actividad'));
                           ?>
-                                                    
+                          
                       </td>
                       <td>
                           
@@ -86,11 +86,11 @@
                       <td><input id="fecha" name="fecha" type="date"  value=""/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
-                  <tr>
+                  <!--tr>
                       <th>Nota:</th>
                       <td><input id="nota" name="nota" type="text" placeholder="Nota" value=""/></td>
                       <td><span id="req-nota" class="requisites">Tiene deshabilitado Javascript</span></td>
-                  </tr>
+                  </tr-->
                     <tr>
                       <td colspan="2">
                         <div id="grabar_actividad" class="boton_new">
