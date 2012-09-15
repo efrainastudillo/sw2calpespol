@@ -24,11 +24,6 @@ end_slot();
     <?php echo "selected" ?>
 <?php end_slot(); ?>
 
-<?php include_stylesheets() ?>
-<?php include_javascripts() ?>
-<?php include_stylesheets(); ?>
-<?php include_javascripts(); ?>
-
 
 <div class="panel">
     <div class="head_panel">
@@ -69,7 +64,7 @@ end_slot();
         <div class="boton_new" title="Crear Nueva Asistencia">           
             <a href="" class="button" id="pdf" title="Guardar actividades como PDF"  style="float: left;">
                 <?php echo image_tag('document_save.png', 'size=15x15')?> Guardar como PDF 
-            </a--> 
+            </a> 
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div class="tableScroll">
