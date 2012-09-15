@@ -118,7 +118,7 @@ class ActividadActions extends sfActions{
         $dia_fecha_entrega = $fecha_entrega[2];
         $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
 
-        //$nota=$request->getParameter("nota");
+        $nota=$request->getParameter("nota");
         $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
               ->where('ta.idtipoactividad=?',$tipo)
@@ -127,8 +127,7 @@ class ActividadActions extends sfActions{
         $actividad->setTipoactividad($t);
         $actividad->setNombre($descripcion);
         $actividad->setFechaEntrega($nueva_fecha_entrega);
-        //$actividad->setNota(0);
-        $actividad->setNota(0);
+        $actividad->setNota($nota);
         $actividad->save();
 
         $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
@@ -169,7 +168,7 @@ class ActividadActions extends sfActions{
       $descripcion=$request->getParameter("descripcion");
       $fecha_entrega = explode("/",$request->getParameter("fecha"));
      // $this->f=( $fecha_entrega);
-      //$nota=$request->getParameter("nota");
+      $nota=$request->getParameter("nota");
       
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
@@ -188,7 +187,7 @@ class ActividadActions extends sfActions{
       $actividad->setNombre($descripcion);     
       $actividad->setTipoactividad($t);
       $actividad->setFechaEntrega($nueva_fecha_entrega);
-      $actividad->setNota(0);
+      $actividad->setNota($nota);
       $actividad->save();
       
       $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');

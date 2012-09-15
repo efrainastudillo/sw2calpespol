@@ -86,11 +86,11 @@
                       <td><input id="fecha" name="fecha" type="date"  value=""/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
-                  <!--tr>
+                  <tr>
                       <th>Nota:</th>
                       <td><input id="nota" name="nota" type="text" placeholder="Nota" value=""/></td>
                       <td><span id="req-nota" class="requisites">Tiene deshabilitado Javascript</span></td>
-                  </tr-->
+                  </tr>
                     <tr>
                       <td colspan="2">
                         <div id="grabar_actividad" class="boton_new">
