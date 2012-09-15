@@ -43,7 +43,7 @@
                         <td>Paralelo</td>
                         <td>Profesor</td>
                         <td>Rol</td>
-                        <td>Acciones</td>
+                        <!--<td>Acciones</td>-->
                     </tr>
                 </thead>
 
@@ -55,12 +55,12 @@
                                 echo "<td>".$consulta[$i]->getCurso()->getParalelo()."</td>";
                                 echo "<td>".$profesores[$i]."</td>";  
                                 echo "<td>".$consulta[$i]->getRolusuario()->getNombre()."</td>";                        
-                                echo "<td>";
-                              if($consulta[$i]->getRolusuario()->getNombre()=="Profesor"){
-                                echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Materia/edit?id='.
-                                        $consulta[$i]->getCurso()->getIdcurso(), array('post=true','confirm' => 'Esta seguro que quiere Editar?','title'=>'Editar Materia'));
-                              }
-                                echo "</td>";
+                                //echo "<td>";
+                              //if($consulta[$i]->getRolusuario()->getNombre()=="Profesor"){
+                                //echo link_to(image_tag('/images/edit_2.png', 'size=18x18'), 'Materia/edit?id='.
+                                 //       $consulta[$i]->getCurso()->getIdcurso(), null);
+                              //}
+                                //echo "</td>";
                             echo "</tr>";
                      } ?>
                 

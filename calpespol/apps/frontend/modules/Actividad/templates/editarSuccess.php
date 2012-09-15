@@ -16,6 +16,9 @@
 <?php slot('actividad-css') ?>
     <?php echo "selected" ?>
 <?php end_slot(); ?>
+<?php use_javascript('tipoactividad.js') ?>
+<?php use_stylesheet("modulo/actividad/actividad.css")?>
+
 <div class="panel">
     <div class="head_panel">
         
@@ -55,15 +58,15 @@
         </div>
         <div style="clear: both;visibility: hidden"></div>
         <div>
-            <form id="formulario" action="<?php echo url_for('Actividad/process') ?>" method="POST">
+            <form id="formulario" action="<?php echo url_for('Actividad/actualizartipo') ?>" method="POST">
               <table>
                   <tr style="display: none">
                       <th>Id:</th>
-                      <td><input id="idu" name="id" type="text" placeholder="id" value=""/></td>
+                      <td><input id="idu" name="id" type="text" placeholder="id" value="<?php echo $actividad->getIdTipoActividad()?>"/></td>
                   </tr>
                   <tr>
                       <th>Nombre del Tipo de Actividad:</th>
-                      <td><input id="nombre" name="nombre" type="text" placeholder="Descripcion del Tipo Actividad" value=""/></td>
+                      <td><input id="nombre" name="nombre" type="text" placeholder="Descripcion del Tipo Actividad" value="<?php echo $actividad->getTipoactividad()->getNombre()?>"/></td>
                       <td><span id="req-nombre" class="requisites">Tiene deshabilitado Javascript</span></td>                      
                   </tr>
                   <tr>
@@ -97,7 +100,7 @@
                   </tr>
                   <tr>
                       <th>Ponderación:</th>
-                      <td><input id="ponderacion" name="ponderacion" type="text" placeholder="Ponderacion" value=""/></td>
+                      <td><input id="ponderacion" name="ponderacion" type="text" placeholder="Ponderacion" value="<?php echo $actividad->getTipoactividad()->getValorPonderacion()?>"/></td>
                       <td><span id="req-ponderacion" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
                     <tr>

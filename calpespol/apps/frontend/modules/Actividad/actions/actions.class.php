@@ -34,13 +34,6 @@ class ActividadActions extends sfActions{
                 ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
                 ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
                 ->execute();
-//          $this->a = Doctrine_Query::create()
-//            ->from('Actividad a')
-//            ->innerJoin('a.Tipoactividad ta on a.id_tipo_actividad = ta.idtipoactividad')
-//            ->innerJoin('ta.Curso c on ta.id_curso = c.idCurso')
-//            ->innerJoin('c.Materia m on c.id_materia = m.idMateria')
-//            ->where('m.nombre=?',$this->getUser()->getMateriaActual())        
-//            ->execute();
       }
       
     /**
@@ -75,17 +68,7 @@ class ActividadActions extends sfActions{
         //Obteniendo datos de la DB
         $this->c=Curso::getCursoByParaleloAndMateria
             ($this->getUser()->getParaleloActual(), $this->getUser()->getMateriaActual());
-        /*$this->c = Doctrine_Query::create()
-            ->select ('c.idcurso')
-            ->from('Curso c')
-            ->innerjoin('c.UsuarioCurso uc ON c.idcurso = uc.id_curso')
-            ->innerjoin('c.Materia m ON c.id_materia = m.idmateria')
-            ->innerjoin('uc.Usuario u ON uc.id_usuario = u.idusuario')
-            ->Where('u.usuario_espol=?',$this->getUser()->getUserEspol())
-            ->andWhere('c.paralelo=?',$this->getUser()->getParaleloActual())
-            ->andWhere('m.nombre=?',$this->getUser()->getMateriaActual())
-            ->execute();*/
-        //Ingresando los datos a la base
+         //Ingresando los datos a la base
         $newtipoacti = new Tipoactividad();
         $newtipoacti ->setCurso($this->c);
         $newtipoacti ->setNombre($tiact);
@@ -135,7 +118,7 @@ class ActividadActions extends sfActions{
         $dia_fecha_entrega = $fecha_entrega[2];
         $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
 
-        $nota=$request->getParameter("nota");
+        //$nota=$request->getParameter("nota");
         $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
               ->where('ta.idtipoactividad=?',$tipo)
@@ -144,7 +127,8 @@ class ActividadActions extends sfActions{
         $actividad->setTipoactividad($t);
         $actividad->setNombre($descripcion);
         $actividad->setFechaEntrega($nueva_fecha_entrega);
-        $actividad->setNota($nota);
+        //$actividad->setNota(0);
+        $actividad->setNota(0);
         $actividad->save();
 
         $this->getUser()->setFlash('actividad_grabada', 'Actividad Guardada Exitosamente');
@@ -172,13 +156,21 @@ class ActividadActions extends sfActions{
         $this->forward404Unless($this->actividad);
      }
 
+    /**
+     * Descripción: Función que me permite actualizar los datos de una actividad
+     * Escenarios Fallidos:
+     *  - Si no se encuetra autenticado se lo redirecciona al Login.
+     *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
+     * @param sfWebRequest $request
+     */
   public function executeUpdate(sfWebRequest $request){
       $id=$request->getParameter("id");
       $tipo=$request->getParameter("tipo");
       $descripcion=$request->getParameter("descripcion");
-      $fecha_entrega = explode("-",$request->getParameter("fecha"));
+      $fecha_entrega = explode("/",$request->getParameter("fecha"));
      // $this->f=( $fecha_entrega);
-      $nota=$request->getParameter("nota");
+      //$nota=$request->getParameter("nota");
+      
       $t=Doctrine_Query::create()//esto te devuelve objetos de TipoActividad
               ->from('Tipoactividad ta')
               ->where('ta.idtipoactividad=?',$tipo)
@@ -188,15 +180,15 @@ class ActividadActions extends sfActions{
               ->where('a.idactividad=?',$id)
               ->fetchOne();
       //descomponer fecha_entrega en dia, mes y anio para cambiar al formato de la base
-      $anio_fecha_entrega = $fecha_entrega[0];
-      $mes_fecha_entrega = $fecha_entrega[1];
-      $dia_fecha_entrega = $fecha_entrega[2];
+      $anio_fecha_entrega = $fecha_entrega[2];
+      $mes_fecha_entrega = $fecha_entrega[0];
+      $dia_fecha_entrega = $fecha_entrega[1];
       $nueva_fecha_entrega = $anio_fecha_entrega.'-'.$mes_fecha_entrega.'-'.$dia_fecha_entrega;
       
       $actividad->setNombre($descripcion);     
       $actividad->setTipoactividad($t);
       $actividad->setFechaEntrega($nueva_fecha_entrega);
-      $actividad->setNota($nota);
+      $actividad->setNota(0);
       $actividad->save();
       
       $this->getUser()->setFlash('actividad_grabada', 'Actividad Actualizado Exitosamente');
@@ -303,15 +295,19 @@ class ActividadActions extends sfActions{
      *  - Si no ingresa correctamente los datos muestra mensaje de error correspondiente.
      * @param sfWebRequest $request
      */
-     public function executeEditarTipoActividad(sfWebRequest $request){
-     
+     public function executeEditar(sfWebRequest $request){
+        $this->actividad = Doctrine_Query::create()
+                ->from('Actividad a')
+                ->where('a.idactividad = ?', $request->getParameter("id"))
+                ->fetchOne();
+
         $this->tipo=Tipoactividad::getTipoActividadbyMateriaAndParalelo
                   ($this->getUser()->getMateriaActual(), $this->getUser()->getParaleloActual());
 
         $this->forward404Unless($this->actividad);
      }
      
-     public function executeActualizarTipoActividad(sfWebRequest $request){
+     public function executeActualizarTipo(sfWebRequest $request){
         $id=$request->getParameter("id");
         $tiact = $request->getParameter('nombre');
         $tireal = $request->getParameter('realizacion');
@@ -347,7 +343,7 @@ class ActividadActions extends sfActions{
         //Guardando el tipo actividad en la DB
         $newtipoacti->save();
         $this->getUser()->setFlash('actividad_grabada', 'Tipo Actividad Guardada Exitosamente');
-        $this->redirect("Actividad/newactividad");
+        $this->redirect("Actividad/index");
   }
 
 }

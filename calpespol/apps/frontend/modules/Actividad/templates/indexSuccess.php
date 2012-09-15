@@ -95,7 +95,9 @@
                                         $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere Editar?','title'=>'Editar Actividad')); ?>&nbsp &nbsp
                             <?php echo link_to(image_tag('delete_2.png', 'size=18x18'), 'Actividad/delete?id='.
                                         $acti->getIdactividad(), array('post=true','method' => 'delete', 'confirm' => '¿Esta seguro que quiere Eliminar?','title'=>'Eliminar Actividad')); ?>&nbsp &nbsp
-                            
+                            <!-- Segunda opcion para editar un tipo de actividad -->
+                              <?php echo link_to(image_tag('edit.png', 'size=18x18'), 'Actividad/editar?id='.
+                                        $acti->getIdactividad(), array('post=true','confirm' => '¿Esta seguro que quiere editar \n un nuevo Tipo de Actividad?','align'=>'top','title'=>'Editar Tipo de Actividad')); ?>&nbsp &nbsp
                            <a href="javascript:void(0);" class="nuevo_literal" title="Nuevo Literal" id=<?php echo $acti->getIdActividad()?> ><?php echo image_tag('add.png', 'size=18x18')?></a>
                             
                         </td>
@@ -174,6 +176,7 @@
                 var titulos = $('#titulos').html();
                 var a1 = $('#info').html();
                 var prueba = $('#prueba').html();
+                var literales = $('#literal').html();
                 m.setAttribute('type', 'hidden');
                 m.setAttribute('name', 'html');
                 m.setAttribute('value',prueba+info_paralelo+info_materia+'<table border="1">'+titulos+'<br/>'+a1+'</table>');

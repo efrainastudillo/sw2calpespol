@@ -75,7 +75,7 @@
                       </td>
                   </tr>
                   <tr>
-                      <th>Descipción:</th>
+                      <th>Descripción:</th>
                       <td><input id="descripcion" name="descripcion" type="text" placeholder="Decripcion de la Actividad" value="<?php echo $actividad->getNombre()?>"/></td>
                       <td><span id="req-descripcion" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
@@ -84,11 +84,11 @@
                       <td><input id="fecha" name="fecha" type="text"  value="<?php echo $actividad->getFechaEntrega()?>"/></td>
                       <td><span id="req-fecha" class="requisites">Tiene deshabilitado Javascript</span></td>
                   </tr>
-                  <tr>
+                  <!--tr>
                       <th>Nota:</th>
                       <td><input id="nota" name="nota" type="text" placeholder="Nota" value="<?php echo $actividad->getNota()?>"/></td>
                       <td><span id="req-nota" class="requisites">Tiene deshabilitado Javascript</span></td>
-                  </tr>
+                  </tr-->
                     <tr>
                       <td colspan="2">
                         <div id="grabar_actividad" class="boton_new">

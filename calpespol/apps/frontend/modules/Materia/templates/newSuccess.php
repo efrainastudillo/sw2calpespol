@@ -52,17 +52,22 @@
                     <table>
                         <tr id="materia_nombre">
                             <th>Nombre:</th>
-                            <td><input id="nombres" name="nombre" type="text" placeholder="Nombre de Materia" value="" onkeypress="return soloLetrasConEspacio(event);"/></td>
+                            <td><input id="new_materia_nombres" name="nombre" type="text" placeholder="Nombre de Materia" value="" onkeypress="return soloLetrasConEspacio(event);"/></td>
                             <td><span id="req-nombres" class="requisites">Tiene deshabilitado Javascript</span></td>
                         </tr>
                         <tr  id="materia_codigo">
                             <th>Código:</th>
-                            <td><input id="codigo" name="codigo" type="text" placeholder="Codigo de Materia" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
+                            <td><input id="new_materia_codigo" name="codigo" type="text" placeholder="Codigo de Materia" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
                             <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
                         </tr>
                         <tr  id="materia_userEspol">
                             <th>Profesor:</th>
-                            <td><input id="codigo" name="profesor" type="text" placeholder="Usuario de ESPOL" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
+                            <td><input id="new_materia_profesor" name="profesor" type="text" placeholder="Usuario de ESPOL" value="" onkeypress="return soloAlfanumericoSinEspacio(event);"/></td>
+                            <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
+                        </tr>
+                        <tr  id="materia_paralelo">
+                            <th>Paralelo:</th>
+                            <td><input id="new_materia_paralelo" name="paralelo" type="text" placeholder="Numero del Paralelo" value="" onkeypress="return soloNumerosSinEspacio(event);"/></td>
                             <td><span id="req-codigo" class="requisites">Tiene deshabilitado Javascript</span></td>
                         </tr>
                         <tr>
