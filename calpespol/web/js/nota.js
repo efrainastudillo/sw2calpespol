@@ -40,11 +40,18 @@ $(document).ready(function(){
       var arregloUsuarios = new Array();
       var arregloLiterales = new Array();
       
+      var i=0;
+      
       $('.nota_literal').each(function(i) {
         arregloNotas[i] = $(this).val();
         arregloLiterales[i] = $(this).attr('id');
-        if($(this).next().val() < $(this).val() || $(this).val() < 0){
+//        alert(arregloNotas[i]);
+//parseInt($(this).next().val()) < $(this).val() ||
+        if( parseInt($(this).next().val()) < $(this).val() || $(this).val() < 0){
             error++;
+//            alert($(this).next().val()+": "+$(this).val()+": "+error);
+        }else{
+            error;
         }
       });
       
@@ -52,14 +59,14 @@ $(document).ready(function(){
         arregloUsuarios[j] = $(this).val();
       });
       
-      if (error>0){
+      if (error==0){
         $.ajax({
             url: "GuardarNota",
             type: "GET",
             data: {notas: arregloNotas,
                 usuarios: arregloUsuarios,
                 literales: arregloLiterales},
-            async: false
+            async: true
         }); 
 //        error = 0;
       }else{

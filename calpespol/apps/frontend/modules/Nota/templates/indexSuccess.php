@@ -159,7 +159,7 @@
                                             $total = $total + $estudianteliteral[0]->getNotaLiteral() ;
                                         }
                                     }
-                                    echo "<td>".$total."</td>";
+                                    echo "<td id='total_usuario'>".$total."</td>";
                                     echo "</tr>";
                                     $total = 0;
                                 }

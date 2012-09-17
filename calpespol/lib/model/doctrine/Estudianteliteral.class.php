@@ -14,7 +14,16 @@ class Estudianteliteral extends BaseEstudianteliteral
 {
     
     public function grabarNota($estudiante, $literal, $calificacion, $calificador, $fecha){
+         
+        
          $nota = new Estudianteliteral();
+//        $nota = Doctrine_Query::create() 
+//        ->select('*')        
+//        ->from('Estudianteliteral el')
+//        ->where('el.idliteral=?',$literal) 
+//        ->andWhere('el.id_estudiante=?',$estudiante)
+//        ->fetchOne();
+        
          $nota ->setIdEstudiante($estudiante);
          $nota ->setIdliteral($literal);
          $nota ->setNotaLiteral($calificacion);
@@ -27,7 +36,8 @@ class Estudianteliteral extends BaseEstudianteliteral
     
     public static function getNotaXLiteralEstudiante($literal,$estudiante)
     {
-        $q = Doctrine_Query::create()        
+        $q = Doctrine_Query::create() 
+        ->select('*')        
         ->from('Estudianteliteral el')
         ->where('el.idliteral=?',$literal) 
         ->andWhere('el.id_estudiante=?',$estudiante);
