@@ -40,8 +40,6 @@ $(document).ready(function(){
       var arregloUsuarios = new Array();
       var arregloLiterales = new Array();
       
-      
-      
       $('.nota_literal').each(function(i) {
         arregloNotas[i] = $(this).val();
         arregloLiterales[i] = $(this).attr('id');
@@ -63,10 +61,10 @@ $(document).ready(function(){
                 literales: arregloLiterales},
             async: false
         }); 
-        
+//        error = 0;
       }else{
           alert("No ha ingresado valores o estan incorrectos. Revise por favor!!");
-          error = 0;
+          
       }
         
       

@@ -179,16 +179,16 @@ class NotaActions extends sfActions
      
      public function executeGuardarNota(sfWebRequest $request){
 
-//         if (!empty($_GET['notas'])){ 
+         if (!empty($_GET['notas'])){ 
              
             $usuarios = $_GET['usuarios'];
             $literales = $_GET['literales'];
             $notas = $_GET['notas'];
             $calificador = $this->getUser()->getUserEspol();
             $fechaActual = date("Y-m-d");
-//        }else{ 
-//            $notas = "empty"; 
-//        }  
+        }else{ 
+            $notas = "empty"; 
+        }  
         
         $calificacion = new Estudianteliteral();
         
