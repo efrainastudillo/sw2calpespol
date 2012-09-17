@@ -12,9 +12,6 @@ class NotaActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->estudianteliterals = Doctrine_Core::getTable('estudianteliteral')
-      ->createQuery('a')
-      ->execute();
     
     $user=$this->getUser()->getUserDB();
     if(isset ($user) && $user)
@@ -182,6 +179,25 @@ class NotaActions extends sfActions
      
      public function executeGuardarNota(sfWebRequest $request){
 
+         if (!empty($_GET['notas'])){ 
+             
+            $usuarios = $_GET['usuarios'];
+            $literales = $_GET['literales'];
+            $notas = $_GET['notas'];
+            $calificador = $this->getUser()->getUserEspol();
+            $fechaActual = date("Y-m-d");
+        }else{ 
+            $notas = "empty"; 
+        }  
+        
+        $calificacion = new Estudianteliteral();
+        
+        for($i=0; $i<count($notas); $i++){
+            $calificacion -> grabarNota($usuarios[$i], $literales[$i], $notas[$i], $calificador, $fechaActual);
+        }
+         
+         $this->getUser()->setFlash('nota_grabada', 'Notas Guardadas Exitosamente');
+         
          $this -> redirect('Nota/index');
      }
 }

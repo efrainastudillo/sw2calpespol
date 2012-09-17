@@ -39,7 +39,7 @@ class Literal extends BaseLiteral
         return $q->execute();
     }
     
-    public function grabarLiteral(sfWebRequest $request){
+    public function grabarLiteral($request){
          $literal_actividad = new Literal();
          $literal_actividad ->setNombreLiteral($request->getParameter("detalle"));
          $literal_actividad ->setValorPonderacion($request->getParameter("puntos"));

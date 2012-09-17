@@ -18,6 +18,10 @@
             <div class="titulo_head_panel">
                 <p>Ingreso de Notas</p>
             </div>
+        
+            <?php if ($sf_user->hasFlash('nota_grabada')): ?>
+                <span style="margin-left: 50px;color: red;"><?php echo $sf_user->getFlash('nota_grabada') ?></span>
+            <?php endif ?>
             <div id="info_materia" class="extra_head_panel">
                <?php echo "<p>".$sf_user->getMateriaActual()."</p>"; ?>
             </div>
@@ -107,7 +111,7 @@
                                 $total = 0;
                                 foreach ($literal as $lit) {
                                     echo "<td>" . "Literal ". $i++ ." (" .$lit-> getValorPonderacion().")"  . "</td>";
-                                    $total = $total + $lit->getValorPonderacion() ;
+                                    
                                     
                                 }
                             }
@@ -144,13 +148,17 @@
                                     echo "<td class='estudiante'>" . $us->getNombre() . " ". $us->getApellido() . "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' name='nota_literal' class='nota_literal' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                            $estudianteliteral = Estudianteliteral::getNotaXLiteralEstudiante($lit->getIdliteral(), $us->getIdusuario());
+                                            echo "<td><input type='text' name='nota_literal' class='nota_literal' id='".$lit->getIdliteral()."' value='".$estudianteliteral[0]->getNotaLiteral()."' size='3' maxlength='3' style='text-align:right'>
                                                       <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
+                                                      <input type='hidden' class='name_user' value='".$us->getIdusuario()."' >
                                                   </td>";
+                                            $total = $total + $estudianteliteral[0]->getNotaLiteral() ;
                                         }
                                     }
-                                    echo "<td>"."0"."</td>";
+                                    echo "<td>".$total."</td>";
                                     echo "</tr>";
+                                    $total = 0;
                                 }
                            }
                             
@@ -188,7 +196,7 @@
             </table>
         </div>
         <!-- Boton para guardar las notas -->
-        <a href="<?php echo url_for('Nota/guardarNota',array('target'=>'_blank'))?>" class="button rounded black" id="guardar_notas" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
+        <a href="<?php // echo url_for('Nota/guardarNota',array('target'=>'_blank'))?>" class="button rounded black" id="guardar_notas" title="Guardar Notas"  style="margin: 1em; margin-left: 34em">
             <?php echo image_tag('save.png', 'size=15x15')?> Guardar Notas
         </a>
     

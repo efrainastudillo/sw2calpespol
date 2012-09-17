@@ -10,7 +10,7 @@
 
 $(document).ready(function(){
     
-   
+   var error = 0;
     
    $("#tipo_seleccionado").change(function(){
        $("form#form_tipos").submit();
@@ -23,14 +23,54 @@ $(document).ready(function(){
    $(".nota_literal").on(
    
         "blur", function() {
+            
             if((!validarNumero($(this).val())) | ($(this).val() > parseInt($(this).next().val()))){
                 alert("Ingrese un valor de nota válido por favor");
                 $(this).css("background-color","red");
             }else{
                 $(this).css("background-color","white");
             }
+                
         }
    );
+   
+   $("#guardar_notas").click(function(){
+      
+      var arregloNotas = new Array();
+      var arregloUsuarios = new Array();
+      var arregloLiterales = new Array();
+      
+      
+      
+      $('.nota_literal').each(function(i) {
+        arregloNotas[i] = $(this).val();
+        arregloLiterales[i] = $(this).attr('id');
+        if($(this).next().val() < $(this).val() || $(this).val() < 0){
+            error++;
+        }
+      });
+      
+      $('.name_user').each(function(j) {
+        arregloUsuarios[j] = $(this).val();
+      });
+      
+      if (error>0){
+        $.ajax({
+            url: "GuardarNota",
+            type: "GET",
+            data: {notas: arregloNotas,
+                usuarios: arregloUsuarios,
+                literales: arregloLiterales},
+            async: false
+        }); 
+        error = 0;
+      }else{
+          alert("No ha ingresado valores o estan incorrectos. Revise por favor!!");
+      }
+        
+      
+
+   });
    
    function validarNumero(input){
        //NO cumple longitud minima  
