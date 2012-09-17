@@ -13,6 +13,8 @@
 <?php use_stylesheet('/css/modulo/nota/nota.css');?>
 <?php use_javascript('/js/nota.js')?>
 
+<?php $total = 0?>    
+    
 <div class="panel">
     <div class="head_panel">
             <div class="titulo_head_panel">
@@ -108,15 +110,16 @@
                         <?php
                             if (isset($literal)) {
                                 $i=1;
-                                $total = 0;
                                 foreach ($literal as $lit) {
-                                    echo "<td>" . "Literal ". $i++ ." (" .$lit-> getValorPonderacion().")"  . "</td>";
-                                    
+                                    echo "<td>" . "Literal ". $i++ ." (" .number_format( $lit-> getValorPonderacion() , 0 , ',' , ' ' ).")"  . "</td>";
+                                    $total = $total + $lit->getValorPonderacion();
                                     
                                 }
                             }
                         ?>
                         <td>Total(<?php echo $total?>)</td> 
+<!--                        number_format( $total , 2 , ',' , ' ' )-->
+                        <?php $total = 0;?>
                     </tr>
                 </thead>
                 <tbody id="estudiante">
@@ -129,7 +132,7 @@
                                     echo "<td class='grupo_estudiante'>" . $g->getNombre()." ". $us->getApellido() .  "</td>";
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
-                                            echo "<td><input type='text' class='nota_literal_grupo' id='".$lit->getIdliteral()."' placeholder='nota' size='3' maxlength='3' style='text-align:right'>
+                                            echo "<td><input type='text' class='nota_literal_grupo' id='".$lit->getIdliteral()."' placeholder='nota' size='5' maxlength='5' style='text-align:right'>
                                                       <input type='hidden' name='valor_literal_grupo' value='".$lit->getValorPonderacion()."'>  
                                                   </td>";
                                             
@@ -149,7 +152,7 @@
                                     if (isset($literal)) {
                                         foreach ($literal as $lit) {
                                             $estudianteliteral = Estudianteliteral::getNotaXLiteralEstudiante($lit->getIdliteral(), $us->getIdusuario());
-                                            echo "<td><input type='text' name='nota_literal' class='nota_literal' id='".$lit->getIdliteral()."' value='".$estudianteliteral[0]->getNotaLiteral()."' size='3' maxlength='3' style='text-align:right'>
+                                            echo "<td><input type='text' name='nota_literal' class='nota_literal' id='".$lit->getIdliteral()."' value='".$estudianteliteral[0]->getNotaLiteral()."' size='5' maxlength='5' style='text-align:right'>
                                                       <input type='hidden' name='valor_literal' value='".$lit->getValorPonderacion()."'>  
                                                       <input type='hidden' class='name_user' value='".$us->getIdusuario()."' >
                                                   </td>";

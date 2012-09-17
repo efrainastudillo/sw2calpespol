@@ -40,8 +40,6 @@ $(document).ready(function(){
       var arregloUsuarios = new Array();
       var arregloLiterales = new Array();
       
-      
-      
       $('.nota_literal').each(function(i) {
         arregloNotas[i] = $(this).val();
         arregloLiterales[i] = $(this).attr('id');
@@ -63,9 +61,10 @@ $(document).ready(function(){
                 literales: arregloLiterales},
             async: false
         }); 
-        error = 0;
+//        error = 0;
       }else{
           alert("No ha ingresado valores o estan incorrectos. Revise por favor!!");
+          
       }
         
       
@@ -77,11 +76,11 @@ $(document).ready(function(){
         if(input.length == 0){
             return false;  
         }  
-//        //no digitos de 0-9
-        else if(!input.match(/^[0-9]+$/)){ 
+//        //no digitos menores que 0
+        else if(input<0){ 
             return false;  
         }  
-//        // SI longitud, SI digitos 0-9  hace oculto el tag que muestra el mensaje
+//        hace oculto el tag que muestra el mensaje
         else{  
             return true;  
         }  
